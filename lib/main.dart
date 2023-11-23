@@ -1,9 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:wewith_flutter/config/router/router.dart';
+import 'package:provider/provider.dart';
+
+import 'package:wewith_flutter/presentation/signup_screen/provider/provider/check_box_widget_provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => CheckBoxWidgetProvider()),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
