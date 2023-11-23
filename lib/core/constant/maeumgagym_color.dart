@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class MeaumGaGymColor {
+class MaeumGaGymColor {
   /// Basic
   static Color black = const Color(0xFF000000);
   static Color white = const Color(0xFFFFFFFF);
@@ -8,7 +8,7 @@ class MeaumGaGymColor {
   /// Gray
   static Color gray900 = const Color(0xFF181919);
   static Color gray800 = const Color(0xFF313133);
-  static Color gray700 = const Color(0xFF292A4C);
+  static Color gray700 = const Color(0xFF494A4C);
   static Color gray600 = const Color(0xFF616366);
   static Color gray500 = const Color(0xFF7A7C80);
   static Color gray400 = const Color(0xFF929499);
@@ -27,7 +27,7 @@ class MeaumGaGymColor {
   static Color red300 = const Color(0xFFF56293);
   static Color red200 = const Color(0xFFF593B4);
   static Color red100 = const Color(0xFFF5C4D4);
-  static Color red50 = const Color(0xFFF5DcE4);
+  static Color red50 = const Color(0xFFF5DCE4);
 
   /// Yellow
   static Color yellow900 = const Color(0xFF332C02);
@@ -39,7 +39,7 @@ class MeaumGaGymColor {
   static Color yellow300 = const Color(0xFFF5E162);
   static Color yellow200 = const Color(0xFFF5E893);
   static Color yellow100 = const Color(0xFFF5EEC4);
-  static Color yellow50 = const Color(0xFFF5F2Dc);
+  static Color yellow50 = const Color(0xFFF5F2DC);
 
   /// Green
   static Color green900 = const Color(0xFF023302);
