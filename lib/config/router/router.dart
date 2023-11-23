@@ -11,7 +11,7 @@ final GoRouter router = GoRouter(
       builder: (_, state) => const OnBoardingScreen(),
       routes: [
         GoRoute(
-          path: 'signup',
+          path: 'signupAgree',
           builder: (_, state) => const SignUpAgreeScreen(),
         ),
       ],
