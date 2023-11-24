@@ -43,25 +43,25 @@ class MaeumGaGymColor {
 
   /// Green
   static Color green900 = const Color(0xFF023302);
-  static Color green800 = const Color(0xFF660425);
-  static Color green700 = const Color(0xFF990637);
-  static Color green600 = const Color(0xFFCC0849);
-  static Color green500 = const Color(0xFFF50A58);
-  static Color green400 = const Color(0xFFF53172);
-  static Color green300 = const Color(0xFFF56293);
-  static Color green200 = const Color(0xFFF593B4);
-  static Color green100 = const Color(0xFFF5C4D4);
-  static Color green50 = const Color(0xFFF5DCE4);
+  static Color green800 = const Color(0xFF046604);
+  static Color green700 = const Color(0xFF069906);
+  static Color green600 = const Color(0xFF08CC08);
+  static Color green500 = const Color(0xFF0AF50A);
+  static Color green400 = const Color(0xFF31F531);
+  static Color green300 = const Color(0xFF62F562);
+  static Color green200 = const Color(0xFF93F593);
+  static Color green100 = const Color(0xFFC4F5C4);
+  static Color green50 = const Color(0xFFE6F5E6);
 
   /// Blue
-  static Color blue900 = const Color(0xFF330212);
-  static Color blue800 = const Color(0xFF660425);
-  static Color blue700 = const Color(0xFF990637);
-  static Color blue600 = const Color(0xFFCC0849);
-  static Color blue500 = const Color(0xFFF50A58);
-  static Color blue400 = const Color(0xFFF53172);
-  static Color blue300 = const Color(0xFFF56293);
-  static Color blue200 = const Color(0xFFF593B4);
-  static Color blue100 = const Color(0xFFF5C4D4);
-  static Color blue50 = const Color(0xFFF5DCE4);
+  static Color blue900 = const Color(0xFF021B33);
+  static Color blue800 = const Color(0xFF043566);
+  static Color blue700 = const Color(0xFF065099);
+  static Color blue600 = const Color(0xFF086ACC);
+  static Color blue500 = const Color(0xFF0A7FF5);
+  static Color blue400 = const Color(0xFF3193F5);
+  static Color blue300 = const Color(0xFF62ABF5);
+  static Color blue200 = const Color(0xFF93C4F5);
+  static Color blue100 = const Color(0xFFC4DDF5);
+  static Color blue50 = const Color(0xFFE6EEF5);
 }
