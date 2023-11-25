@@ -213,7 +213,7 @@ class SignUpAgreeScreen extends StatelessWidget {
                     height: 58,
                     color: MaeumGaGymColor.blue500,
                     notUseRoute: false,
-                    route: '/',
+                    route: '/signupAgree/signupNickname',
                     textWidget:
                         PtdTextWidget.medium('확인', 20, MaeumGaGymColor.white),
                   ).padding(bottom: 20.h)
