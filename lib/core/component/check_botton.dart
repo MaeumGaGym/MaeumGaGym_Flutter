@@ -7,6 +7,7 @@ class CheckButton extends StatelessWidget {
   final num width, height;
   final String route;
   final Widget textWidget;
+  final bool notUseRoute;
 
   const CheckButton({
     required this.width,
@@ -14,6 +15,7 @@ class CheckButton extends StatelessWidget {
     required this.color,
     required this.route,
     required this.textWidget,
+    required this.notUseRoute,
     super.key,
   });
 
@@ -21,7 +23,9 @@ class CheckButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        context.go(route);
+        if (notUseRoute == false) {
+          context.go(route);
+        }
       },
       child: Container(
         width: width.w,
