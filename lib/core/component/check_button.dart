@@ -7,9 +7,10 @@ class CheckButton extends StatelessWidget {
   final num width, height;
   final String route;
   final Widget textWidget;
-  final bool notUseRoute;
+  final bool isCircular, notUseRoute;
 
   const CheckButton({
+    required this.isCircular,
     required this.width,
     required this.height,
     required this.color,
@@ -32,7 +33,9 @@ class CheckButton extends StatelessWidget {
         height: height.h,
         decoration: BoxDecoration(
           color: color,
-          borderRadius: BorderRadius.circular(8.w),
+          borderRadius: isCircular
+              ? BorderRadius.circular(8.w)
+              : BorderRadius.circular(0.w),
         ),
         child: Center(child: textWidget),
       ),

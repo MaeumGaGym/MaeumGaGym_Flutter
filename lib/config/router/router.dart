@@ -2,6 +2,7 @@ import 'package:go_router/go_router.dart';
 
 import 'package:wewith_flutter/presentation/on_boarding_screen/on_boarding_screen.dart';
 import 'package:wewith_flutter/presentation/signup_screen/signup_agree_screen.dart';
+import 'package:wewith_flutter/presentation/signup_screen/signup_nickname_screen.dart';
 
 final GoRouter router = GoRouter(
   initialLocation: '/',
@@ -13,6 +14,12 @@ final GoRouter router = GoRouter(
         GoRoute(
           path: 'signupAgree',
           builder: (_, state) => const SignUpAgreeScreen(),
+          routes: [
+            GoRoute(
+              path: 'signupNickname',
+              builder: (context, state) => const SignUpNickNameScreen(),
+            ),
+          ],
         ),
       ],
     ),

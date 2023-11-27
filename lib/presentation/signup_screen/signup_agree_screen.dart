@@ -8,7 +8,7 @@ import 'package:provider/provider.dart';
 
 /// Core
 import 'package:wewith_flutter/core/component/text/pretendard/ptd_text_widget.dart';
-import 'package:wewith_flutter/core/component/check_botton.dart';
+import 'package:wewith_flutter/core/component/check_button.dart';
 import 'package:wewith_flutter/core/constant/maeumgagym_color.dart';
 
 /// widget
@@ -209,6 +209,7 @@ class SignUpAgreeScreen extends StatelessWidget {
                     click.agreeConditionsOfUse &&
                     click.moreThanAgeFourteen
                 ? CheckButton(
+                    isCircular: true,
                     width: 390,
                     height: 58,
                     color: MaeumGaGymColor.blue500,
@@ -218,6 +219,7 @@ class SignUpAgreeScreen extends StatelessWidget {
                         PtdTextWidget.medium('확인', 20, MaeumGaGymColor.white),
                   ).padding(bottom: 20.h)
                 : CheckButton(
+                    isCircular: true,
                     width: 390,
                     height: 58,
                     color: MaeumGaGymColor.gray400,
