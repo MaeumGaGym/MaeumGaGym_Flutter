@@ -4,12 +4,14 @@ import 'package:wewith_flutter/config/router/router.dart';
 import 'package:provider/provider.dart';
 
 import 'package:wewith_flutter/presentation/signup_screen/provider/provider/check_box_widget_provider.dart';
+import 'package:wewith_flutter/presentation/signup_screen/provider/provider/textfield_control_provider.dart';
 
 void main() {
   runApp(
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => CheckBoxWidgetProvider()),
+        ChangeNotifierProvider(create: (context) => TextFieldControlProvider()),
       ],
       child: const MyApp(),
     ),
