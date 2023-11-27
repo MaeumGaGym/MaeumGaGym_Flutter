@@ -8,7 +8,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 /// Core
 import 'package:wewith_flutter/core/component/text/pretendard/ptd_text_widget.dart';
-import 'package:wewith_flutter/core/component/check_botton.dart';
+import 'package:wewith_flutter/core/component/check_button.dart';
 import 'package:wewith_flutter/core/constant/maeumgagym_color.dart';
 
 /// widget
