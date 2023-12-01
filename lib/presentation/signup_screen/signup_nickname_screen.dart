@@ -5,6 +5,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 import 'package:styled_widget/styled_widget.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:wewith_flutter/core/component/maeum_ga_gym_text_field.dart';
 
 /// Core
 import 'package:wewith_flutter/core/component/text/pretendard/ptd_text_widget.dart';
@@ -55,48 +56,14 @@ class SignUpNickNameScreen extends StatelessWidget {
                 .padding(top: 8.h, left: 20.w, right: 20.w),
 
             /// 닉네임 TextField
-            Consumer<TextFieldControlProvider>(
-              builder: (context, provider, child) {
-                return SizedBox(
-                  height: 66.h,
-                  child: Center(
-                    child: TextField(
-                      // controller
-                      controller: nicknameController,
-                      // button width control ~
-                      textInputAction: TextInputAction.go,
-                      onSubmitted: (value) => provider.onClick(false),
-                      onTap: () => provider.onClick(true),
-                      onTapOutside: (event) {
-                        provider.onClick(false);
-                        FocusScope.of(context).unfocus();
-                      },
-                      // button color control
-                      onChanged: (String value) {
-                        if (nicknameController.text.isNotEmpty) {
-                          provider.isNotEmptyText(true);
-                        } else {
-                          provider.isNotEmptyText(false);
-                        }
-                      },
-                      // decoration
-                      decoration: InputDecoration(
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide:
-                              BorderSide(color: MaeumGaGymColor.blue500),
-                        ),
-                        label: PtdTextWidget.regular(
-                            '닉네임', 20, MaeumGaGymColor.gray400),
-                      ),
-                    ),
-                  ),
-                ).padding(top: 32.h, left: 20.w, right: 20.w);
-              },
-            ),
+            MaeumGaGymTextField(
+              controller: nicknameController,
+              text: '닉네임',
+            ).padding(top: 32.h, left: 20.w, right: 20.w),
 
             /// 이미 사용중인 닉네임이에요.
             PtdTextWidget.regular('이미 사용중인 닉네임이에요.', 12, MaeumGaGymColor.red500)
-                .padding(top: 8.h, left: 20.w),
+                .padding(left: 20.w),
           ],
         ),
       ),
