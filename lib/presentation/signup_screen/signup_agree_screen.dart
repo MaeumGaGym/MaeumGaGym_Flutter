@@ -23,6 +23,7 @@ class SignUpAgreeScreen extends StatelessWidget {
     var click = Provider.of<CheckBoxWidgetProvider>(context);
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -57,20 +58,18 @@ class SignUpAgreeScreen extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               height: 44.h,
-              child: Row(
-                children: [
-                  /// CheckBoxWidget ( allCheck )
-                  GestureDetector(
-                    onTap: () {
-                      click.clickAllCheck();
-                    },
-                    child: CheckBoxWidget(state: click.allCheck),
-                  ),
+              child: GestureDetector(
+                onTap: () => click.clickAllCheck(),
+                child: Row(
+                  children: [
+                    /// CheckBoxWidget ( allCheck )
+                    CheckBoxWidget(state: click.allCheck),
 
-                  /// 모두 동의해요. 글자
-                  PtdTextWidget.medium('모두 동의해요.', 20, MaeumGaGymColor.black)
-                      .padding(left: 12.w),
-                ],
+                    /// 모두 동의해요. 글자
+                    PtdTextWidget.medium('모두 동의해요.', 20, MaeumGaGymColor.black)
+                        .padding(left: 12.w),
+                  ],
+                ),
               ),
             ).padding(top: 12.h, bottom: 12.h),
 
@@ -86,22 +85,21 @@ class SignUpAgreeScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   /// CheckBoxWidget ( agreePersonInformation )
-                  Row(
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          click.clickAgreePersonInformation();
-                          click.checkAll();
-                        },
-                        child:
-                            CheckBoxWidget(state: click.agreePersonInformation),
-                      ),
+                  GestureDetector(
+                    onTap: () {
+                      click.clickAgreePersonInformation();
+                      click.checkAll();
+                    },
+                    child: Row(
+                      children: [
+                        CheckBoxWidget(state: click.agreePersonInformation),
 
-                      /// 개인정보 수집 이용 동의 글자
-                      PtdTextWidget.regular(
-                              '개인정보 수집 이용 동의', 16, MaeumGaGymColor.black)
-                          .padding(left: 12.w),
-                    ],
+                        /// 개인정보 수집 이용 동의 글자
+                        PtdTextWidget.regular(
+                                '개인정보 수집 이용 동의', 16, MaeumGaGymColor.black)
+                            .padding(left: 12.w),
+                      ],
+                    ),
                   ),
 
                   /// 자세히 보기 ( agreePersonInformation )
@@ -123,22 +121,21 @@ class SignUpAgreeScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   /// CheckBoxWidget ( agreeConditionsOfUse )
-                  Row(
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          click.clickAgreeConditionsOfUse();
-                          click.checkAll();
-                        },
-                        child:
-                            CheckBoxWidget(state: click.agreeConditionsOfUse),
-                      ),
+                  GestureDetector(
+                    onTap: () {
+                      click.clickAgreeConditionsOfUse();
+                      click.checkAll();
+                    },
+                    child: Row(
+                      children: [
+                        CheckBoxWidget(state: click.agreeConditionsOfUse),
 
-                      /// 이용 약관 동의 글자
-                      PtdTextWidget.regular(
-                              '이용 약관 동의', 16, MaeumGaGymColor.black)
-                          .padding(left: 12.w),
-                    ],
+                        /// 이용 약관 동의 글자
+                        PtdTextWidget.regular(
+                                '이용 약관 동의', 16, MaeumGaGymColor.black)
+                            .padding(left: 12.w),
+                      ],
+                    ),
                   ),
 
                   /// 자세히 보기 ( agreeConditionsOfUse )
@@ -155,22 +152,22 @@ class SignUpAgreeScreen extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               height: 44.h,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  /// CheckBoxWidget ( moreThanAgeFourteen )
-                  GestureDetector(
-                    onTap: () {
-                      click.clickMoreThanAgeFourteen();
-                      click.checkAll();
-                    },
-                    child: CheckBoxWidget(state: click.moreThanAgeFourteen),
-                  ),
+              child: GestureDetector(
+                onTap: () {
+                  click.clickMoreThanAgeFourteen();
+                  click.checkAll();
+                },
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    /// CheckBoxWidget ( moreThanAgeFourteen )
+                    CheckBoxWidget(state: click.moreThanAgeFourteen),
 
-                  /// 만 14세 이상 글자
-                  PtdTextWidget.regular('만 14세 이상', 16, MaeumGaGymColor.black)
-                      .padding(left: 12.w),
-                ],
+                    /// 만 14세 이상 글자
+                    PtdTextWidget.regular('만 14세 이상', 16, MaeumGaGymColor.black)
+                        .padding(left: 12.w),
+                  ],
+                ),
               ),
             ).padding(top: 8.h, bottom: 8.h),
 
@@ -178,59 +175,52 @@ class SignUpAgreeScreen extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               height: 44.h,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  /// CheckBoxWidget ( agreeMarketingInformation )
-                  GestureDetector(
-                    onTap: () {
-                      click.clickAgreeMarketingInformation();
-                      click.checkAll();
-                    },
-                    child:
-                        CheckBoxWidget(state: click.agreeMarketingInformation),
-                  ),
+              child: GestureDetector(
+                onTap: () {
+                  click.clickAgreeMarketingInformation();
+                  click.checkAll();
+                },
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    /// CheckBoxWidget ( agreeMarketingInformation )
+                    CheckBoxWidget(state: click.agreeMarketingInformation),
 
-                  /// 마케팅 정보 수신 동의 글자
-                  PtdTextWidget.regular(
-                          '마케팅 정보 수신 동의 ', 16, MaeumGaGymColor.black)
-                      .padding(left: 12.w),
+                    /// 마케팅 정보 수신 동의 글자
+                    PtdTextWidget.regular(
+                            '마케팅 정보 수신 동의 ', 16, MaeumGaGymColor.black)
+                        .padding(left: 12.w),
 
-                  PtdTextWidget.regular('(선택)', 16, MaeumGaGymColor.gray400),
-                ],
+                    PtdTextWidget.regular('(선택)', 16, MaeumGaGymColor.gray400),
+                  ],
+                ),
               ),
             ).padding(top: 8.h),
-
-            /// 공간을 위한
-            const Expanded(child: SizedBox()),
-
-            /// 확인 버튼
-            click.agreePersonInformation &&
-                    click.agreeConditionsOfUse &&
-                    click.moreThanAgeFourteen
-                ? CheckButton(
-                    isCircular: true,
-                    width: 390,
-                    height: 58,
-                    color: MaeumGaGymColor.blue500,
-                    notUseRoute: false,
-                    route: '/signupAgree/signupNickname',
-                    textWidget:
-                        PtdTextWidget.medium('확인', 20, MaeumGaGymColor.white),
-                  ).padding(bottom: 20.h)
-                : CheckButton(
-                    isCircular: true,
-                    width: 390,
-                    height: 58,
-                    color: MaeumGaGymColor.gray400,
-                    notUseRoute: true,
-                    route: '',
-                    textWidget:
-                        PtdTextWidget.medium('확인', 20, MaeumGaGymColor.gray200),
-                  ).padding(bottom: 20.h)
           ],
         ).padding(left: 20.w, right: 20.w),
       ),
+      bottomSheet: click.agreePersonInformation &&
+              click.agreeConditionsOfUse &&
+              click.moreThanAgeFourteen
+          ? CheckButton(
+              isCircular: true,
+              width: 390,
+              height: 58,
+              color: MaeumGaGymColor.blue500,
+              notUseRoute: false,
+              route: '/signupAgree/signupNickname',
+              textWidget: PtdTextWidget.medium('확인', 20, MaeumGaGymColor.white),
+            ).padding(bottom: 20.h)
+          : CheckButton(
+              isCircular: true,
+              width: 390,
+              height: 58,
+              color: MaeumGaGymColor.gray400,
+              notUseRoute: true,
+              route: '',
+              textWidget:
+                  PtdTextWidget.medium('확인', 20, MaeumGaGymColor.gray200),
+            ).padding(bottom: 20.h),
     );
   }
 }
