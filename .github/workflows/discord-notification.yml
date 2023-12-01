@@ -9,7 +9,8 @@ jobs:
     - name: Discord Webhook Action
       uses: sarisia/actions-status-discord@v1
       with:
-        title: "I DON'T EVER GIVE UP"
+        title: 🔀 Pull Request 🔀
+        description: "**I DON'T EVER GIVE UP**"
         content: "<@1154312210705821756>"
         webhook: ${{ secrets.DISCORD_WEBHOOK }}
         color: 000000
