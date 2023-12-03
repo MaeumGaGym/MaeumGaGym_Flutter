@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:wewith_flutter/presentation/home_screen/home_screen.dart';
 
 import 'package:wewith_flutter/presentation/on_boarding_screen/on_boarding_screen.dart';
 import 'package:wewith_flutter/presentation/signup_screen/signup_agree_screen.dart';
@@ -54,5 +55,9 @@ final GoRouter router = GoRouter(
         ),
       ],
     ),
+    GoRoute(
+      path: '/home',
+      builder: (context, state) => const HomeScreen(),
+    )
   ],
 );
