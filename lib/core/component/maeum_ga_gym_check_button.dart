@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
-class CheckButton extends StatelessWidget {
+class MaeumGaGymCheckButton extends StatelessWidget {
   final Color color;
   final num width, height;
   final String route;
   final Widget textWidget;
   final bool isCircular, notUseRoute;
 
-  const CheckButton({
+  const MaeumGaGymCheckButton({
     required this.isCircular,
     required this.width,
     required this.height,
