@@ -50,9 +50,9 @@ class SignUpSuccessScreen extends StatelessWidget {
         width: 390,
         height: 58,
         color: MaeumGaGymColor.blue500,
-        route: '',
+        route: '/home',
         textWidget: PtdTextWidget.medium('확인', 20, MaeumGaGymColor.white),
-        notUseRoute: true,
+        notUseRoute: false,
       ).padding(bottom: 20.h),
     );
   }
