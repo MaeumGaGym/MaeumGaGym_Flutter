@@ -9,7 +9,7 @@ import 'package:provider/provider.dart';
 /// Core
 import 'package:wewith_flutter/core/component/text/pretendard/ptd_text_widget.dart';
 import 'package:wewith_flutter/core/constant/maeumgagym_color.dart';
-import 'package:wewith_flutter/core/component/check_button.dart';
+import 'package:wewith_flutter/core/component/maeum_ga_gym_check_button.dart';
 
 class SignUpSuccessScreen extends StatelessWidget {
   const SignUpSuccessScreen({super.key});
@@ -45,7 +45,7 @@ class SignUpSuccessScreen extends StatelessWidget {
           ],
         ),
       ),
-      bottomSheet: CheckButton(
+      bottomSheet: MaeumGaGymCheckButton(
         isCircular: true,
         width: 390,
         height: 58,
