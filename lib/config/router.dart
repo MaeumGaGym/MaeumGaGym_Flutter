@@ -30,5 +30,9 @@ final GoRouter router = GoRouter(
       path: '/',
       builder: (context, state) => const OnBoardingScreen(),
     ),
+    GoRoute(
+      path: '/signUpAgree',
+      builder: (context, state) => const SignUpAgreeScreen(),
+    )
   ],
 );
