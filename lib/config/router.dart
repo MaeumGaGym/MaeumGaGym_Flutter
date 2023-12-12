@@ -32,7 +32,9 @@ final GoRouter router = GoRouter(
     ),
     GoRoute(
       path: '/signUpAgree',
-      builder: (context, state) => const SignUpAgreeScreen(),
-    )
+      pageBuilder: (context, state) => pageAnimation(
+        const SignUpAgreeScreen(),
+      ),
+    ),
   ],
 );
