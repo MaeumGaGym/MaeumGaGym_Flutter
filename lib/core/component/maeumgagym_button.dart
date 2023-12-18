@@ -5,10 +5,9 @@ import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_wid
 
 class MaeumgagymButton extends StatelessWidget {
   final double width, height, fontSize;
-  final bool useRoute, isCircular;
-  final String text;
+  final bool useRoute, isCircular, isGo;
+  final String text, route;
   final Color color, fontColor;
-  final Future<Object?> isRoute;
 
   const MaeumgagymButton({
     required this.text,
@@ -18,15 +17,24 @@ class MaeumgagymButton extends StatelessWidget {
     required this.height,
     required this.color,
     required this.isCircular,
+    required this.route,
+    required this.isGo,
     required this.useRoute,
-    required this.isRoute,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => useRoute ? isRoute : '',
+      onTap: () {
+        if (useRoute) {
+          if (isGo) {
+            context.go(route);
+          } else {
+            context.push(route);
+          }
+        }
+      },
       child: Container(
         width: width,
         height: height,
