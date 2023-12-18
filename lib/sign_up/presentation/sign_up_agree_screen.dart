@@ -1,3 +1,5 @@
+// ignore_for_file: no_leading_underscores_for_local_identifiers
+
 /// Package
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -20,6 +22,33 @@ class SignUpAgreeScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     var state = ref.watch(checkBoxProvider);
+
+    Future _displayBottomSheet(BuildContext context) async {
+      return showModalBottomSheet(
+        context: context,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            top: Radius.circular(10.0),
+          ),
+        ),
+        builder: (context) {
+          return Wrap(
+            children: [
+              /// 이용 약관
+              SizedBox(
+                  child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const SizedBox(),
+                  PtdTextWidget.regular('이용약관', 20, MaeumgagymColor.black),
+                  Image.asset('assets/image/close.png', width: 12, height: 12)
+                ],
+              )).padding(left: 20, right: 20, top: 16, bottom: 16),
+            ],
+          );
+        },
+      );
+    }
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -104,11 +133,17 @@ class SignUpAgreeScreen extends ConsumerWidget {
                   ),
 
                   /// 자세히 보기 ( agreePersonInformation )
-                  PtdTextWidget.medium('자세히 보기', 14, MaeumgagymColor.gray300)
-                      .textStyle(TextStyle(
-                    decoration: TextDecoration.underline,
-                    decorationColor: MaeumgagymColor.gray300,
-                  )),
+                  GestureDetector(
+                    onTap: () {
+                      _displayBottomSheet(context);
+                    },
+                    child: PtdTextWidget.medium(
+                            '자세히 보기', 14, MaeumgagymColor.gray300)
+                        .textStyle(TextStyle(
+                      decoration: TextDecoration.underline,
+                      decorationColor: MaeumgagymColor.gray300,
+                    )),
+                  ),
                 ],
               ),
             ).padding(top: 12, bottom: 8),
@@ -207,34 +242,30 @@ class SignUpAgreeScreen extends ConsumerWidget {
             state.agreePersonInformation &&
                     state.agreeConditionsOfUse &&
                     state.moreThanAgeFourteen
-                ? Padding(
-                    padding: const EdgeInsets.only(bottom: 20),
-                    child: MaeumgagymButton(
-                      text: '확인',
-                      fontSize: 20,
-                      fontColor: MaeumgagymColor.white,
-                      width: 390,
-                      height: 58,
-                      color: MaeumgagymColor.blue500,
-                      isCircular: true,
-                      isRoute: context.push(''),
-                      useRoute: true,
-                    ),
-                  )
-                : Padding(
-                    padding: const EdgeInsets.only(bottom: 20),
-                    child: MaeumgagymButton(
-                      text: '확인',
-                      fontSize: 20,
-                      fontColor: MaeumgagymColor.gray200,
-                      width: 390,
-                      height: 58,
-                      color: MaeumgagymColor.gray400,
-                      isCircular: true,
-                      isRoute: context.push(''),
-                      useRoute: false,
-                    ),
-                  ),
+                ? MaeumgagymButton(
+                    text: '확인',
+                    fontSize: 20,
+                    fontColor: MaeumgagymColor.white,
+                    width: 390,
+                    height: 58,
+                    color: MaeumgagymColor.blue500,
+                    isCircular: true,
+                    route: '',
+                    isGo: false,
+                    useRoute: false,
+                  ).padding(bottom: 20)
+                : MaeumgagymButton(
+                    text: '확인',
+                    fontSize: 20,
+                    fontColor: MaeumgagymColor.gray200,
+                    width: 390,
+                    height: 58,
+                    color: MaeumgagymColor.gray400,
+                    isCircular: true,
+                    route: '',
+                    isGo: false,
+                    useRoute: false,
+                  ).padding(bottom: 20),
           ],
         ).padding(left: 20, right: 20),
       ),
