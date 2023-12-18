@@ -250,9 +250,9 @@ class SignUpAgreeScreen extends ConsumerWidget {
                     height: 58,
                     color: MaeumgagymColor.blue500,
                     isCircular: true,
-                    route: '',
+                    route: '/signUpNickName',
                     isGo: false,
-                    useRoute: false,
+                    useRoute: true,
                   ).padding(bottom: 20)
                 : MaeumgagymButton(
                     text: '확인',
