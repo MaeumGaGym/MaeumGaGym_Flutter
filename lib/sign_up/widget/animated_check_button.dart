@@ -19,7 +19,7 @@ class AnimatedCheckButton extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return GestureDetector(
       onTap: () => inText
-          ? context.push('')
+          ? context.go('/signUpSuccess')
           : ref.read(buttonProvider.notifier).theError(true),
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 100),
