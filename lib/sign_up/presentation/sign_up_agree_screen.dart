@@ -41,7 +41,8 @@ class SignUpAgreeScreen extends ConsumerWidget {
                 children: [
                   const SizedBox(),
                   PtdTextWidget.regular('이용약관', 20, MaeumgagymColor.black),
-                  Image.asset('assets/image/close.png', width: 12, height: 12)
+                  Image.asset('assets/image/core_icon/close.png',
+                      width: 12, height: 12)
                 ],
               )).padding(left: 20, right: 20, top: 16, bottom: 16),
             ],
@@ -63,7 +64,7 @@ class SignUpAgreeScreen extends ConsumerWidget {
                 context.go('/');
               },
               child: SvgPicture.asset(
-                'assets/image/left_arrow.svg',
+                'assets/image/core_icon/left_arrow.svg',
                 width: 24,
                 height: 24,
               ),

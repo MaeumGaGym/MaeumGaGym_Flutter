@@ -9,9 +9,9 @@ class CheckBoxWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (state) {
-      return SvgPicture.asset('assets/image/check_box.svg');
+      return SvgPicture.asset('assets/image/sign_up_icon/check_box.svg');
     } else {
-      return SvgPicture.asset('assets/image/empty_check_box.svg');
+      return SvgPicture.asset('assets/image/sign_up_icon/empty_check_box.svg');
     }
   }
 }

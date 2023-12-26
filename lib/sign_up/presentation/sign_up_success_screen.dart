@@ -18,7 +18,7 @@ class SignUpSuccessScreen extends StatelessWidget {
         children: [
           Center(
             child: Image.asset(
-              'assets/image/logo.png',
+              'assets/image/core_icon/logo.png',
               width: 102,
               height: 42,
             ),
