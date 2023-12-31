@@ -4,109 +4,157 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 String pretendard = 'Pretendard';
 
 class PtdTextWidget {
-  static Text thin(String text, num fontSize, Color color) {
+  static Text labelSmall(String text, Color color) {
     return Text(
       text,
       style: TextStyle(
         fontFamily: pretendard,
-        fontSize: fontSize.sp,
-        fontWeight: FontWeight.w100,
-        color: color,
-      ),
-    );
-  }
-
-  static Text extraLight(String text, num fontSize, Color color) {
-    return Text(
-      text,
-      style: TextStyle(
-        fontFamily: pretendard,
-        fontSize: fontSize.sp,
-        fontWeight: FontWeight.w200,
-        color: color,
-      ),
-    );
-  }
-
-  static Text light(String text, num fontSize, Color color) {
-    return Text(
-      text,
-      style: TextStyle(
-        fontFamily: pretendard,
-        fontSize: fontSize.sp,
-        fontWeight: FontWeight.w300,
-        color: color,
-      ),
-    );
-  }
-
-  static Text regular(String text, num fontSize, Color color) {
-    return Text(
-      text,
-      style: TextStyle(
-        fontFamily: pretendard,
-        fontSize: fontSize.sp,
-        fontWeight: FontWeight.w400,
-        color: color,
-      ),
-    );
-  }
-
-  static Text medium(String text, num fontSize, Color color) {
-    return Text(
-      text,
-      style: TextStyle(
-        fontFamily: pretendard,
-        fontSize: fontSize.sp,
+        fontSize: 14,
         fontWeight: FontWeight.w500,
         color: color,
       ),
     );
   }
 
-  static Text semiBold(String text, num fontSize, Color color) {
+  static Text labelMedium(String text, Color color) {
     return Text(
       text,
       style: TextStyle(
         fontFamily: pretendard,
-        fontSize: fontSize.sp,
+        fontSize: 16,
+        fontWeight: FontWeight.w500,
+        color: color,
+      ),
+    );
+  }
+
+  static Text labelLarge(String text, Color color) {
+    return Text(
+      text,
+      style: TextStyle(
+        fontFamily: pretendard,
+        fontSize: 20,
+        fontWeight: FontWeight.w500,
+        color: color,
+      ),
+    );
+  }
+
+  static Text bodyTiny(String text, Color color) {
+    return Text(
+      text,
+      style: TextStyle(
+        fontFamily: pretendard,
+        fontSize: 12,
+        fontWeight: FontWeight.w400,
+        color: color,
+      ),
+    );
+  }
+
+  static Text bodySmall(String text, Color color) {
+    return Text(
+      text,
+      style: TextStyle(
+        fontFamily: pretendard,
+        fontSize: 14,
+        fontWeight: FontWeight.w400,
+        color: color,
+      ),
+    );
+  }
+
+  static Text bodyMedium(String text, Color color) {
+    return Text(
+      text,
+      style: TextStyle(
+        fontFamily: pretendard,
+        fontSize: 16,
+        fontWeight: FontWeight.w400,
+        color: color,
+      ),
+    );
+  }
+
+  static Text bodyLarge(String text, Color color) {
+    return Text(
+      text,
+      style: TextStyle(
+        fontFamily: pretendard,
+        fontSize: 20,
+        fontWeight: FontWeight.w400,
+        color: color,
+      ),
+    );
+  }
+
+  static Text titleSmall(String text, Color color) {
+    return Text(
+      text,
+      style: TextStyle(
+        fontFamily: pretendard,
+        fontSize: 16,
         fontWeight: FontWeight.w600,
         color: color,
       ),
     );
   }
 
-  static Text bold(String text, num fontSize, Color color) {
+  static Text titleMedium(String text, Color color) {
     return Text(
       text,
       style: TextStyle(
         fontFamily: pretendard,
-        fontSize: fontSize.sp,
+        fontSize: 24,
+        fontWeight: FontWeight.w600,
+        color: color,
+      ),
+    );
+  }
+
+  static Text titleLarge(String text, Color color) {
+    return Text(
+      text,
+      style: TextStyle(
+        fontFamily: pretendard,
+        fontSize: 36,
+        fontWeight: FontWeight.w600,
+        color: color,
+      ),
+    );
+  }
+
+  static Text headLineSmall(String text, Color color) {
+    return Text(
+      text,
+      style: TextStyle(
+        fontFamily: pretendard,
+        fontSize: 40,
+        fontWeight: FontWeight.w600,
+        color: color,
+      ),
+    );
+  }
+
+  static Text headLineMedium(String text, Color color) {
+    return Text(
+      text,
+      style: TextStyle(
+        fontFamily: pretendard,
+        fontSize: 48,
         fontWeight: FontWeight.w700,
         color: color,
       ),
     );
   }
 
-  static Text extraBold(String text, num fontSize, Color color) {
+  static Text headLineLarge(String text, Color color) {
     return Text(
       text,
       style: TextStyle(
         fontFamily: pretendard,
-        fontSize: fontSize.sp,
+        fontSize: 64,
         fontWeight: FontWeight.w800,
-        color: color,
-      ),
-    );
-  }
-
-  static Text black(String text, num fontSize, Color color) {
-    return Text(
-      text,
-      style: TextStyle(
-        fontFamily: pretendard,
-        fontSize: fontSize.sp,
-        fontWeight: FontWeight.w900,
         color: color,
       ),
     );
