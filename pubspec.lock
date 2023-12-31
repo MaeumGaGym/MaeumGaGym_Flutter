@@ -215,6 +215,7 @@ packages:
     source: hosted
     version: "2.0.3"
   flutter_riverpod:
+<<<<<<< HEAD
     dependency: "direct main"
     description:
       name: flutter_riverpod
@@ -223,13 +224,15 @@ packages:
     source: hosted
     version: "2.4.9"
   flutter_screenutil:
+=======
+>>>>>>> v0.0.2.0
     dependency: "direct main"
     description:
-      name: flutter_screenutil
-      sha256: "8cf100b8e4973dc570b6415a2090b0bfaa8756ad333db46939efc3e774ee100d"
+      name: flutter_riverpod
+      sha256: da9591d1f8d5881628ccd5c25c40e74fc3eef50ba45e40c3905a06e1712412d5
       url: "https://pub.dev"
     source: hosted
-    version: "5.9.0"
+    version: "2.4.9"
   flutter_svg:
     dependency: "direct main"
     description:
@@ -288,6 +291,7 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "12.1.1"
+<<<<<<< HEAD
   graphs:
     dependency: transitive
     description:
@@ -344,6 +348,32 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.7.1"
+=======
+  leak_tracker:
+    dependency: transitive
+    description:
+      name: leak_tracker
+      sha256: "41b90ceaec6d79819f31e975e61d479516efe701dea35f891b2f986c1b031422"
+      url: "https://pub.dev"
+    source: hosted
+    version: "9.0.17"
+  leak_tracker_flutter_testing:
+    dependency: transitive
+    description:
+      name: leak_tracker_flutter_testing
+      sha256: "54808cfcfa87dbc0d74c61ac063d624adf1bd5c0407301f32b06c783c60dc4ca"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.0"
+  leak_tracker_testing:
+    dependency: transitive
+    description:
+      name: leak_tracker_testing
+      sha256: "7e71be3c161472f6c9158ac8875dd8de575060d60b5d159ebca3600ea32c9116"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.6"
+>>>>>>> v0.0.2.0
   lint:
     dependency: transitive
     description:
@@ -372,10 +402,10 @@ packages:
     dependency: transitive
     description:
       name: matcher
-      sha256: "1803e76e6653768d64ed8ff2e1e67bea3ad4b923eb5c56a295c3e634bad5960e"
+      sha256: d2323aa2060500f906aa31a895b4030b6da3ebdcc5619d14ce1aada65cd161cb
       url: "https://pub.dev"
     source: hosted
-    version: "0.12.16"
+    version: "0.12.16+1"
   material_color_utilities:
     dependency: transitive
     description:
@@ -412,10 +442,10 @@ packages:
     dependency: transitive
     description:
       name: path
-      sha256: "8829d8a55c13fc0e37127c29fedf290c102f4e40ae94ada574091fe0ff96c917"
+      sha256: "087ce49c3f0dc39180befefc60fdb4acd8f8620e5682fe2476afd0b3688bb4af"
       url: "https://pub.dev"
     source: hosted
-    version: "1.8.3"
+    version: "1.9.0"
   path_parsing:
     dependency: transitive
     description:
@@ -440,6 +470,7 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.0.2"
+<<<<<<< HEAD
   pool:
     dependency: transitive
     description:
@@ -464,6 +495,8 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.3"
+=======
+>>>>>>> v0.0.2.0
   riverpod:
     dependency: transitive
     description:
@@ -472,6 +505,7 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.4.9"
+<<<<<<< HEAD
   shelf:
     dependency: transitive
     description:
@@ -488,6 +522,8 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.4"
+=======
+>>>>>>> v0.0.2.0
   sky_engine:
     dependency: transitive
     description: flutter
@@ -636,6 +672,7 @@ packages:
       sha256: "3d2ad6751b3c16cf07c7fca317a1413b3f26530319181b37e3b9039b84fc01d8"
       url: "https://pub.dev"
     source: hosted
+<<<<<<< HEAD
     version: "1.1.0"
   web:
     dependency: transitive
@@ -653,6 +690,9 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.4.0"
+=======
+    version: "13.0.0"
+>>>>>>> v0.0.2.0
   xml:
     dependency: transitive
     description:
@@ -671,4 +711,4 @@ packages:
     version: "3.1.2"
 sdks:
   dart: ">=3.2.0 <4.0.0"
-  flutter: ">=3.10.0"
+  flutter: ">=3.7.0"

@@ -11,7 +11,7 @@ jobs:
       with:
         title: 🔀 Pull Request 🔀
         description: "**I DON'T EVER GIVE UP**"
-        content: "<@1154312210705821756>"
+        content: "<@&1154312210705821756>"
         webhook: ${{ secrets.DISCORD_WEBHOOK }}
         color: 000000
         image: "https://media.tenor.com/7fSQ8RYoBC0AAAAd/this-is-elon-musk.gif"
