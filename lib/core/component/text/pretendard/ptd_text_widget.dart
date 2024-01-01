@@ -27,7 +27,6 @@ class PtdTextWidget {
     );
   }
 
-
   static Text labelLarge(String text, Color color) {
     return Text(
       text,
@@ -89,7 +88,6 @@ class PtdTextWidget {
   }
 
   static Text titleSmall(String text, Color color) {
-
     return Text(
       text,
       style: TextStyle(
@@ -101,10 +99,7 @@ class PtdTextWidget {
     );
   }
 
-
   static Text titleMedium(String text, Color color) {
-
-
     return Text(
       text,
       style: TextStyle(
@@ -116,9 +111,7 @@ class PtdTextWidget {
     );
   }
 
-
   static Text titleLarge(String text, Color color) {
-
     return Text(
       text,
       style: TextStyle(
@@ -130,10 +123,7 @@ class PtdTextWidget {
     );
   }
 
-
   static Text headLineSmall(String text, Color color) {
-
-
     return Text(
       text,
       style: TextStyle(
