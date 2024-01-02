@@ -38,7 +38,7 @@ class SignUpSuccessScreen extends StatelessWidget {
           height: 58,
           color: MaeumgagymColor.blue500,
           isCircular: true,
-          route: '',
+          route: '/home',
           isGo: true,
           useRoute: true,
         ).padding(left: 20, right: 20, bottom: 20),

@@ -12,11 +12,11 @@ import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/sign_up/widget/animated_check_button.dart';
 import 'package:maeum_ga_gym_flutter/sign_up/provider/nickname_text_field_riverpod.dart';
 
-class SignUpNickNmaeScreen extends ConsumerWidget {
-  const SignUpNickNmaeScreen({super.key});
+class SignUpNickNameScreen extends StatelessWidget {
+  const SignUpNickNameScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     var nicknameController = TextEditingController();
 
     return Scaffold(
@@ -44,7 +44,7 @@ class SignUpNickNmaeScreen extends ConsumerWidget {
             ),
 
             /// 닉네임 글자
-            PtdTextWidget.titleLarge('닉네임',  MaeumgagymColor.black)
+            PtdTextWidget.titleLarge('닉네임', MaeumgagymColor.black)
                 .padding(top: 32, left: 20, right: 20),
 
             /// 자신만의 닉네임을 입력해 주세요 글자

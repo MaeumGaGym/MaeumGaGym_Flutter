@@ -6,6 +6,8 @@ import 'package:maeum_ga_gym_flutter/sign_up/presentation/sign_up_agree_screen.d
 import 'package:maeum_ga_gym_flutter/sign_up/presentation/sign_up_nick_name_screen.dart';
 import 'package:maeum_ga_gym_flutter/sign_up/presentation/sign_up_success_screen.dart';
 
+import '../home/presentation/view/home_main_screen.dart';
+
 CustomTransitionPage pageAnimation(Widget page) {
   return CustomTransitionPage(
     child: page,
@@ -41,7 +43,7 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: '/signUpNickName',
       pageBuilder: (context, state) => pageAnimation(
-        const SignUpNickNmaeScreen(),
+        const SignUpNickNameScreen(),
       ),
     ),
     GoRoute(
@@ -49,6 +51,12 @@ final GoRouter router = GoRouter(
       pageBuilder: (context, state) => pageAnimation(
         const SignUpSuccessScreen(),
       ),
-    )
+    ),
+    GoRoute(
+      path: '/home',
+      pageBuilder: (context, state) => pageAnimation(
+        const HomeMainScreen(),
+      ),
+    ),
   ],
 );
