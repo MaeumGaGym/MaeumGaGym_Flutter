@@ -21,7 +21,7 @@ class SignUpAgreeScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    var state = ref.watch(checkBoxProvider);
+    final state = ref.watch(checkBoxProvider);
 
     Future _displayBottomSheet(BuildContext context) async {
       return showModalBottomSheet(
@@ -71,7 +71,7 @@ class SignUpAgreeScreen extends ConsumerWidget {
             ).padding(top: 12),
 
             /// 약관 동의 글자
-            PtdTextWidget.titleLarge('약관동의',  MaeumgagymColor.black)
+            PtdTextWidget.titleLarge('약관동의', MaeumgagymColor.black)
                 .padding(top: 32),
 
             /// 서비스 이용을 위해 필수 약관동의가 필요해요. 글자
@@ -95,7 +95,7 @@ class SignUpAgreeScreen extends ConsumerWidget {
                     CheckBoxWidget(state: state.allAgree),
 
                     /// 모두 동의해요. 글자
-                    PtdTextWidget.labelLarge('모두 동의해요.',  MaeumgagymColor.black)
+                    PtdTextWidget.labelLarge('모두 동의해요.', MaeumgagymColor.black)
                         .padding(left: 12),
                   ],
                 ),
@@ -127,7 +127,7 @@ class SignUpAgreeScreen extends ConsumerWidget {
 
                         /// 개인정보 수집 이용 동의 글자
                         PtdTextWidget.bodyMedium(
-                                '개인정보 수집 이용 동의',MaeumgagymColor.black)
+                                '개인정보 수집 이용 동의', MaeumgagymColor.black)
                             .padding(left: 12),
                       ],
                     ),
@@ -171,7 +171,7 @@ class SignUpAgreeScreen extends ConsumerWidget {
 
                         /// 이용 약관 동의 글자
                         PtdTextWidget.bodyMedium(
-                                '이용 약관 동의',  MaeumgagymColor.black)
+                                '이용 약관 동의', MaeumgagymColor.black)
                             .padding(left: 12),
                       ],
                     ),
@@ -205,7 +205,7 @@ class SignUpAgreeScreen extends ConsumerWidget {
                     CheckBoxWidget(state: state.moreThanAgeFourteen),
 
                     /// 만 14세 이상 글자
-                    PtdTextWidget.bodyMedium('만 14세 이상',  MaeumgagymColor.black)
+                    PtdTextWidget.bodyMedium('만 14세 이상', MaeumgagymColor.black)
                         .padding(left: 12),
                   ],
                 ),
