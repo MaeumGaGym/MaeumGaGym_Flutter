@@ -24,7 +24,7 @@ class MainContainerTitle extends StatelessWidget {
           ),
           GestureDetector(
             child: SvgPicture.asset(
-              'assets/image/home_icon/right_arrow_icon.svg',
+              'assets/image/core_icon/right_arrow_icon.svg',
               width: 24,
               height: 24,
             ),
