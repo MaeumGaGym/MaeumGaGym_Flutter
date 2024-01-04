@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:maeum_ga_gym_flutter/on_boarding/presentation/on_boarding_screen.dart';
+import 'package:maeum_ga_gym_flutter/page_manager/presentation/page_manager_screen.dart';
 import 'package:maeum_ga_gym_flutter/sign_up/presentation/sign_up_agree_screen.dart';
 import 'package:maeum_ga_gym_flutter/sign_up/presentation/sign_up_nick_name_screen.dart';
 import 'package:maeum_ga_gym_flutter/sign_up/presentation/sign_up_success_screen.dart';
-
-import '../home/presentation/view/home_main_screen.dart';
 
 CustomTransitionPage pageAnimation(Widget page) {
   return CustomTransitionPage(
@@ -55,7 +54,7 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: '/home',
       pageBuilder: (context, state) => pageAnimation(
-        const HomeMainScreen(),
+        const PageManagerScreen(),
       ),
     ),
   ],

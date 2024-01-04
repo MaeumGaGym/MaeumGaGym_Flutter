@@ -21,6 +21,7 @@ dependencies:
   freezed_annotation: ^2.4.1
   json_annotation: ^4.8.1
   flutter_riverpod: ^2.4.9
+  auto_size_text: ^3.0.0
 
 dev_dependencies:
   flutter_test:
@@ -39,6 +40,8 @@ flutter:
     - assets/image/sign_up_icon/
     - assets/image/bottom_navigation_bar_icon/
     - assets/image/home_icon/
+    - assets/image/pose_icon/
+    - assets/image/pose_icon/pose_exercise/
 
   fonts:
     - family: Pretendard
