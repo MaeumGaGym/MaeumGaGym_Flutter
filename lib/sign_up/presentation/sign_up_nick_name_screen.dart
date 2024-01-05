@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:styled_widget/styled_widget.dart';
 
 import '../../core/component/maeumgagym_text_field.dart';
 import '../../core/component/text/pretendard/ptd_text_widget.dart';
@@ -28,37 +27,52 @@ class SignUpNickNameScreen extends StatelessWidget {
             /// pop 버튼
             Consumer(
               builder: (context, ref, child) {
-                return GestureDetector(
-                  onTap: () {
-                    context.pop();
-                    ref.read(nicknameTextFieldProvider.notifier).clicked(false);
-                    ref.read(nicknameTextFieldProvider.notifier).isText(false);
-                  },
-                  child: SvgPicture.asset(
-                    'assets/image/core_icon/left_arrow.svg',
-                    width: 24,
-                    height: 24,
+                return Padding(
+                  padding: const EdgeInsets.fromLTRB(20, 12, 20, 0),
+                  child: GestureDetector(
+                    onTap: () {
+                      context.pop();
+                      ref
+                          .read(nicknameTextFieldProvider.notifier)
+                          .clicked(false);
+                      ref
+                          .read(nicknameTextFieldProvider.notifier)
+                          .isText(false);
+                    },
+                    child: SvgPicture.asset(
+                      'assets/image/core_icon/left_arrow.svg',
+                      width: 24,
+                      height: 24,
+                    ),
                   ),
-                ).padding(top: 12, left: 20, right: 20);
+                );
               },
             ),
 
             /// 닉네임 글자
-            PtdTextWidget.titleLarge('닉네임', MaeumgagymColor.black)
-                .padding(top: 32, left: 20, right: 20),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(20, 32, 20, 0),
+              child: PtdTextWidget.titleLarge('닉네임', MaeumgagymColor.black),
+            ),
 
             /// 자신만의 닉네임을 입력해 주세요 글자
-            PtdTextWidget.bodyMedium(
-                    '자신만의 닉네임을 입력해 주세요', MaeumgagymColor.gray600)
-                .padding(top: 8, left: 20, right: 20),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(20, 8, 20, 0),
+              child: PtdTextWidget.bodyMedium(
+                  '자신만의 닉네임을 입력해 주세요', MaeumgagymColor.gray600),
+            ),
 
             /// 닉네임 TextField
-            MaeumgagymTextField(
-              controller: nicknameController,
-              text: '닉네임',
-              errorText: '이미 사용중인 닉네임이에요.',
-              textFieldProvider: nicknameTextFieldProvider,
-            ).padding(top: 32, left: 20, right: 20),
+
+            Padding(
+              padding: const EdgeInsets.fromLTRB(20, 32, 20, 0),
+              child: MaeumgagymTextField(
+                controller: nicknameController,
+                text: '닉네임',
+                errorText: '이미 사용중인 닉네임이에요.',
+                textFieldProvider: nicknameTextFieldProvider,
+              ),
+            )
           ],
         ),
       ),
