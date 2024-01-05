@@ -3,7 +3,12 @@ import 'package:flutter/material.dart';
 String pretendard = 'Pretendard';
 
 class PtdTextWidget {
-  static Text labelSmall(String text, Color color) {
+  static Text labelSmall(
+    String text,
+    Color color,
+    TextDecoration? textDecoration,
+    Color? textDecorationColor,
+  ) {
     return Text(
       text,
       style: TextStyle(
@@ -11,6 +16,8 @@ class PtdTextWidget {
         fontSize: 14,
         fontWeight: FontWeight.w500,
         color: color,
+        decoration: textDecoration,
+        decorationColor: textDecorationColor,
       ),
     );
   }
