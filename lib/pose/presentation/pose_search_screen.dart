@@ -17,12 +17,12 @@ class PoseSearchScreen extends ConsumerStatefulWidget {
 }
 
 class _PoseSearchScreenState extends ConsumerState<PoseSearchScreen> {
-  var textController = TextEditingController();
+  TextEditingController textController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    var textState = ref.watch(poseSearchController).text;
-    var textNotifierState = ref.read(poseSearchController.notifier);
+    final textState = ref.watch(poseSearchController).text;
+    final textNotifierState = ref.read(poseSearchController.notifier);
 
     return Scaffold(
       appBar: PreferredSize(
@@ -68,7 +68,7 @@ class _PoseSearchScreenState extends ConsumerState<PoseSearchScreen> {
       ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.only(left: 20, right: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Column(
             children: [
               const SizedBox(height: 4),
