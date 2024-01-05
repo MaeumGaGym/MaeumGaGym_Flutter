@@ -58,7 +58,7 @@ class SignUpAgreeScreen extends ConsumerWidget {
       resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.only(left: 20, right: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -93,7 +93,7 @@ class SignUpAgreeScreen extends ConsumerWidget {
 
               /// 모두 동의해요. 위젯
               Padding(
-                padding: const EdgeInsets.only(top: 12, bottom: 12),
+                padding: const EdgeInsets.symmetric(vertical: 12),
                 child: SizedBox(
                   width: double.infinity,
                   height: 44,
@@ -172,7 +172,7 @@ class SignUpAgreeScreen extends ConsumerWidget {
 
               /// 이용 약관 동의 위젯
               Padding(
-                padding: const EdgeInsets.only(top: 8, bottom: 8),
+                padding: const EdgeInsets.symmetric(vertical: 8),
                 child: SizedBox(
                   width: double.infinity,
                   height: 44,
@@ -216,7 +216,7 @@ class SignUpAgreeScreen extends ConsumerWidget {
 
               /// 만 14세 이상 위젯
               Padding(
-                padding: const EdgeInsets.only(top: 8, bottom: 8),
+                padding: const EdgeInsets.symmetric(vertical: 8),
                 child: SizedBox(
                   width: double.infinity,
                   height: 44,
