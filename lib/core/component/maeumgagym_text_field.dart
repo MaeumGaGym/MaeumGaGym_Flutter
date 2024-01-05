@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
-import 'package:styled_widget/styled_widget.dart';
 
 import '../../config/maeumgagym_color.dart';
 import '../riverpod/maeumgagym_text_field_riverpod.dart';
@@ -56,24 +55,25 @@ class MaeumgagymTextField extends ConsumerWidget {
 
                   /// LabelText
                   child: AnimatedDefaultTextStyle(
-                    duration: const Duration(milliseconds: 100),
-                    style: state.onClicked || state.inText
-                        ? TextStyle(
-                            fontFamily: pretendard,
-                            fontSize: 14,
-                            fontWeight: FontWeight.w400,
-                            color: MaeumgagymColor.gray500,
-                          )
-                        : TextStyle(
-                            fontFamily: pretendard,
-                            fontSize: 20,
-                            fontWeight: FontWeight.w400,
-                            color: MaeumgagymColor.gray400,
-                          ),
-                    child: Text(text).padding(
-                      bottom: state.onClicked ? 0 : 8,
-                    ),
-                  ),
+                      duration: const Duration(milliseconds: 100),
+                      style: state.onClicked || state.inText
+                          ? TextStyle(
+                              fontFamily: pretendard,
+                              fontSize: 14,
+                              fontWeight: FontWeight.w400,
+                              color: MaeumgagymColor.gray500,
+                            )
+                          : TextStyle(
+                              fontFamily: pretendard,
+                              fontSize: 20,
+                              fontWeight: FontWeight.w400,
+                              color: MaeumgagymColor.gray400,
+                            ),
+                      child: Padding(
+                        padding:
+                            EdgeInsets.only(bottom: state.onClicked ? 0 : 8),
+                        child: Text(text),
+                      )),
                 ),
 
                 /// TextField
