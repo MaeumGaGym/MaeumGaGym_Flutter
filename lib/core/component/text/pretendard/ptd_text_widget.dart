@@ -18,6 +18,7 @@ class PtdTextWidget {
         color: color,
         decoration: textDecoration,
         decorationColor: textDecorationColor,
+        overflow: TextOverflow.visible,
       ),
     );
   }
@@ -30,6 +31,7 @@ class PtdTextWidget {
         fontSize: 16,
         fontWeight: FontWeight.w500,
         color: color,
+        overflow: TextOverflow.visible,
       ),
     );
   }
@@ -42,6 +44,7 @@ class PtdTextWidget {
         fontSize: 20,
         fontWeight: FontWeight.w500,
         color: color,
+        overflow: TextOverflow.visible,
       ),
     );
   }
@@ -54,6 +57,7 @@ class PtdTextWidget {
         fontSize: 12,
         fontWeight: FontWeight.w400,
         color: color,
+        overflow: TextOverflow.visible,
       ),
     );
   }
@@ -66,6 +70,7 @@ class PtdTextWidget {
         fontSize: 14,
         fontWeight: FontWeight.w400,
         color: color,
+        overflow: TextOverflow.visible,
       ),
     );
   }
@@ -78,6 +83,7 @@ class PtdTextWidget {
         fontSize: 16,
         fontWeight: FontWeight.w400,
         color: color,
+        overflow: TextOverflow.visible,
       ),
     );
   }
@@ -90,6 +96,7 @@ class PtdTextWidget {
         fontSize: 20,
         fontWeight: FontWeight.w400,
         color: color,
+        overflow: TextOverflow.visible,
       ),
     );
   }
@@ -102,6 +109,7 @@ class PtdTextWidget {
         fontSize: 16,
         fontWeight: FontWeight.w600,
         color: color,
+        overflow: TextOverflow.visible,
       ),
     );
   }
@@ -114,6 +122,7 @@ class PtdTextWidget {
         fontSize: 24,
         fontWeight: FontWeight.w600,
         color: color,
+        overflow: TextOverflow.visible,
       ),
     );
   }
@@ -126,6 +135,7 @@ class PtdTextWidget {
         fontSize: 36,
         fontWeight: FontWeight.w600,
         color: color,
+        overflow: TextOverflow.visible,
       ),
     );
   }
@@ -138,6 +148,7 @@ class PtdTextWidget {
         fontSize: 40,
         fontWeight: FontWeight.w600,
         color: color,
+        overflow: TextOverflow.visible,
       ),
     );
   }
@@ -150,6 +161,7 @@ class PtdTextWidget {
         fontSize: 48,
         fontWeight: FontWeight.w700,
         color: color,
+        overflow: TextOverflow.visible,
       ),
     );
   }
@@ -162,6 +174,7 @@ class PtdTextWidget {
         fontSize: 64,
         fontWeight: FontWeight.w800,
         color: color,
+        overflow: TextOverflow.visible,
       ),
     );
   }
