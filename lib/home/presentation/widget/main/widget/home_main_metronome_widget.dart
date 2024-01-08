@@ -5,14 +5,14 @@ import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/providers/metronome_state_provider.dart';
 
-class MainMetronomeWidget extends ConsumerStatefulWidget {
-  const MainMetronomeWidget({Key? key}) : super(key: key);
+class HomeMainMetronomeWidget extends ConsumerStatefulWidget {
+  const HomeMainMetronomeWidget({Key? key}) : super(key: key);
 
   @override
-  ConsumerState<MainMetronomeWidget> createState() => _MainMetronomeWidgetState();
+  ConsumerState<HomeMainMetronomeWidget> createState() => _MainMetronomeWidgetState();
 }
 
-class _MainMetronomeWidgetState extends ConsumerState<MainMetronomeWidget> {
+class _MainMetronomeWidgetState extends ConsumerState<HomeMainMetronomeWidget> {
   @override
   Widget build(BuildContext context) {
     final metronomeState = ref.watch(metronomeStateProvider);

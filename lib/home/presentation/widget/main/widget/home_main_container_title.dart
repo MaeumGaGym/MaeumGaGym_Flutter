@@ -3,10 +3,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
 
-class MainContainerTitle extends StatelessWidget {
+class HomeMainContainerTitle extends StatelessWidget {
   final String title;
 
-  const MainContainerTitle({
+  const HomeMainContainerTitle({
     super.key,
     required this.title,
   });

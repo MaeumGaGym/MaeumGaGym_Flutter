@@ -5,14 +5,14 @@ import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/providers/timer_state_provider.dart';
 
-class MainTimerWidget extends ConsumerStatefulWidget {
-  const MainTimerWidget({Key? key}) : super(key: key);
+class HomeMainTimerWidget extends ConsumerStatefulWidget {
+  const HomeMainTimerWidget({Key? key}) : super(key: key);
 
   @override
-  ConsumerState<MainTimerWidget> createState() => _MainTimerWidgetState();
+  ConsumerState<HomeMainTimerWidget> createState() => _MainTimerWidgetState();
 }
 
-class _MainTimerWidgetState extends ConsumerState<MainTimerWidget> {
+class _MainTimerWidgetState extends ConsumerState<HomeMainTimerWidget> {
   @override
   Widget build(BuildContext context) {
     final timerList = ref.watch(timersProvider);

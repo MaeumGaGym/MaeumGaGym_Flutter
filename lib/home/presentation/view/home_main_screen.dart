@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
-import 'package:maeum_ga_gym_flutter/home/presentation/widget/main_app_bar.dart';
-import 'package:maeum_ga_gym_flutter/home/presentation/widget/main_content_list_container.dart';
-import 'package:maeum_ga_gym_flutter/home/presentation/widget/main_routine_container.dart';
-import 'package:maeum_ga_gym_flutter/home/presentation/widget/main_timer_and_metronome_container.dart';
-import 'package:maeum_ga_gym_flutter/home/presentation/widget/main_today_meal_container.dart';
-import 'package:maeum_ga_gym_flutter/home/presentation/widget/main_walk_container.dart';
+import 'package:maeum_ga_gym_flutter/home/presentation/widget/main/container/home_main_timer_and_metronome_container.dart';
+import 'package:maeum_ga_gym_flutter/home/presentation/widget/main/container/home_main_walk_container.dart';
+import 'package:maeum_ga_gym_flutter/home/presentation/widget/main/widget/home_main_app_bar.dart';
+import 'package:maeum_ga_gym_flutter/home/presentation/widget/main/container/home_main_content_list_container.dart';
+import 'package:maeum_ga_gym_flutter/home/presentation/widget/main/container/home_main_routine_container.dart';
+import 'package:maeum_ga_gym_flutter/home/presentation/widget/main/container/home_main_today_meal_container.dart';
 
 class HomeMainScreen extends StatefulWidget {
   const HomeMainScreen({Key? key}) : super(key: key);
@@ -19,7 +19,7 @@ class _HomeMainScreenState extends State<HomeMainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MainAppBar(appBar: AppBar()),
+      appBar: HomeMainAppBar(appBar: AppBar()),
       body: SingleChildScrollView(
         child: Container(
           decoration: BoxDecoration(
@@ -56,15 +56,15 @@ class _HomeMainScreenState extends State<HomeMainScreen> {
                   ),
                 ),
                 const SizedBox(height: 24),
-                const MainWalkContainer(),
+                const HomeMainWalkContainer(),
                 const SizedBox(height: 24),
-                const MainRoutineContainer(),
+                const HomeMainRoutineContainer(),
                 const SizedBox(height: 24),
-                const MainTimeAndMetronomeContainer(),
+                const HomeMainTimeAndMetronomeContainer(),
                 const SizedBox(height: 24),
-                const MainTodayMealContainer(),
+                const HomeMainTodayMealContainer(),
                 const SizedBox(height: 24),
-                const MainContentListContainer(),
+                const HomeMainContentListContainer(),
                 const SizedBox(height: 24),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 12),

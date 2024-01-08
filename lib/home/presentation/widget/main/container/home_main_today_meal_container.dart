@@ -3,10 +3,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/providers/meal_state_provider.dart';
-import 'package:maeum_ga_gym_flutter/home/presentation/widget/main_container_title.dart';
+import 'package:maeum_ga_gym_flutter/home/presentation/widget/main/widget/home_main_container_title.dart';
 
-class MainTodayMealContainer extends ConsumerWidget {
-  const MainTodayMealContainer({Key? key}) : super(key: key);
+class HomeMainTodayMealContainer extends ConsumerWidget {
+  const HomeMainTodayMealContainer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -27,7 +27,7 @@ class MainTodayMealContainer extends ConsumerWidget {
           children: [
             const Padding(
               padding: EdgeInsets.symmetric(vertical: 24),
-              child: MainContainerTitle(
+              child: HomeMainContainerTitle(
                 title: "오늘의 식단",
               ),
             ),

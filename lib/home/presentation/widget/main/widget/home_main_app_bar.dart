@@ -3,10 +3,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
 
-class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
+class HomeMainAppBar extends StatelessWidget implements PreferredSizeWidget {
   final AppBar appBar;
 
-  const MainAppBar({
+  const HomeMainAppBar({
     super.key,
     required this.appBar,
   });
