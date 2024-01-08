@@ -23,6 +23,8 @@ class SelfCareProfileMainScreen extends StatelessWidget {
           children: [
             SizedBox(height: 24),
             SelfCareProfileMainTitleContainer(),
+            SizedBox(height: 32),
+            SelfCareProfileMainInfoWidgetContainer(),
           ],
         ),
       ),
