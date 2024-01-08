@@ -41,6 +41,7 @@ class SelfCareMainProfileContainer extends StatelessWidget {
                       )
                     ],
                   ),
+                  const SizedBox(height: 2),
                   PtdTextWidget.bodyMedium(
                     "124시간", // 임시 값
                     MaeumgagymColor.gray400,
