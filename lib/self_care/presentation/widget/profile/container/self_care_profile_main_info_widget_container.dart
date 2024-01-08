@@ -5,6 +5,12 @@ class SelfCareProfileMainInfoWidgetContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return SafeArea(
+      child: Container(
+        width: 390,
+        height: 295,
+        child: const Placeholder(),
+      ),
+    );
   }
 }
