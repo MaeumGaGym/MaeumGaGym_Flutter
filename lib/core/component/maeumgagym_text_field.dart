@@ -122,8 +122,12 @@ class MaeumgagymTextField extends ConsumerWidget {
                           textFieldNotifier.isText(false);
                           textFieldNotifier.clicked(false);
                         },
-                        child: SvgPicture.asset(
-                            'assets/image/sign_up_icon/close_circle.svg'),
+                        child: textFieldState.inText &&
+                                    textFieldState.onClicked ||
+                                textFieldState.inText
+                            ? SvgPicture.asset(
+                                'assets/image/sign_up_icon/close_circle.svg')
+                            : const SizedBox(),
                       ),
                     ),
                   ],
