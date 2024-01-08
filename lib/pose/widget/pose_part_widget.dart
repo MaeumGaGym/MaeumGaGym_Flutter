@@ -1,8 +1,12 @@
+/// Package
 import 'package:flutter/material.dart';
 import 'package:maeum_ga_gym_flutter/pose/widget/pose_data.dart';
 
+/// core
 import '../../config/maeumgagym_color.dart';
 import '../../core/component/text/pretendard/ptd_text_widget.dart';
+
+/// Widget
 import '../presentation/pose_detail_screen.dart';
 
 class PosePartWidget extends StatelessWidget {
