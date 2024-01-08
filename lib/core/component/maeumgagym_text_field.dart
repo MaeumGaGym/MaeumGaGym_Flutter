@@ -1,5 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
 
 import '../../config/maeumgagym_color.dart';
@@ -37,7 +39,7 @@ class MaeumgagymTextField extends ConsumerWidget {
                 /// LabelText Controller
                 AnimatedContainer(
                   duration: const Duration(milliseconds: 100),
-                  height: state.onClicked || state.inText ? 54 : 40,
+                  height: state.onClicked || state.inText ? 48 : 40,
                   alignment: state.onClicked || state.inText
                       ? Alignment.topLeft
                       : Alignment.bottomLeft,
@@ -112,7 +114,18 @@ class MaeumgagymTextField extends ConsumerWidget {
                       ),
                     );
                   },
-                )
+                ),
+                Row(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 8),
+                      child: SvgPicture.asset(
+                          'assets/image/sign_up_icon/close_circle.svg'),
+                    ),
+                  ],
+                ),
               ],
             ),
           ),
