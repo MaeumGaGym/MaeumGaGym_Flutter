@@ -74,7 +74,7 @@ class _HomeMainScreenState extends State<HomeMainScreen> {
                         PtdTextWidget.labelSmall(
                           "©2023 마음가짐",
                           MaeumgagymColor.gray400,
-                          null,
+                          null, // 값이 없으면 null로 해줘야합니다. nullable하게 변수 선언해줬다고 해도
                           null,
                         ),
                         SizedBox(height: 8),
