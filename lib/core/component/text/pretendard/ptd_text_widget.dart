@@ -178,4 +178,30 @@ class PtdTextWidget {
       ),
     );
   }
+
+  static Text clauseTitle(String text, Color color) {
+    return Text(
+      text,
+      style: TextStyle(
+        fontFamily: pretendard,
+        fontSize: 20,
+        fontWeight: FontWeight.w600,
+        color: color,
+        overflow: TextOverflow.visible,
+      ),
+    );
+  }
+
+  static Text clauseSubTitle(String text, Color color) {
+    return Text(
+      text,
+      style: TextStyle(
+        fontFamily: pretendard,
+        fontSize: 18,
+        fontWeight: FontWeight.w400,
+        color: color,
+        overflow: TextOverflow.visible,
+      ),
+    );
+  }
 }
