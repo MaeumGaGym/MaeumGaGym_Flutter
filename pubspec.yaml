@@ -39,7 +39,6 @@ flutter:
     - assets/image/sign_up_icon/
     - assets/image/bottom_navigation_bar_icon/
     - assets/image/home_icon/
-    - assets/image/self_care_icon/
 
   fonts:
     - family: Pretendard
