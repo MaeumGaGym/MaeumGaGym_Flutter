@@ -49,7 +49,7 @@ class _PoseTabScreenState extends ConsumerState<PoseTabScreen>
       tabAlignment: TabAlignment.start,
       labelPadding: const EdgeInsets.symmetric(horizontal: 8),
       overlayColor: MaterialStateProperty.all(MaeumgagymColor.white),
-      tabs: [
+      tabs: const [
         TabWidget('추천'),
         TabWidget('가슴'),
         TabWidget('등'),
