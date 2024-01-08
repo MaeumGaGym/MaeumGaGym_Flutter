@@ -19,7 +19,7 @@ class SelfCareProfileMainSettingContainer extends StatelessWidget {
         child: Center(
           child: ListView.builder(
             shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
+            physics: const NeverScrollableScrollPhysics(),
             itemCount: selfCareProfileSettingItemList.length,
             itemBuilder: (context, index) {
               return SelfCareProfileSettingItemWidget(
