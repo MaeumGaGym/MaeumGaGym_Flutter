@@ -121,8 +121,15 @@ class MaeumgagymTextField extends ConsumerWidget {
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(bottom: 8),
-                      child: SvgPicture.asset(
-                          'assets/image/sign_up_icon/close_circle.svg'),
+                      child: GestureDetector(
+                        onTap: () {
+                          controller.text = '';
+                          ref.read(textFieldProvider.notifier).isText(false);
+                          ref.read(textFieldProvider.notifier).clicked(false);
+                        },
+                        child: SvgPicture.asset(
+                            'assets/image/sign_up_icon/close_circle.svg'),
+                      ),
                     ),
                   ],
                 ),
