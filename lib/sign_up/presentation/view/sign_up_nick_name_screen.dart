@@ -1,15 +1,17 @@
+/// Package
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../core/component/maeumgagym_text_field.dart';
-import '../../core/component/text/pretendard/ptd_text_widget.dart';
-
+/// Core
+import '../../../core/component/maeumgagym_text_field.dart';
+import '../../../core/component/text/pretendard/ptd_text_widget.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 
-import 'package:maeum_ga_gym_flutter/sign_up/widget/animated_check_button.dart';
-import 'package:maeum_ga_gym_flutter/sign_up/provider/nickname_text_field_riverpod.dart';
+/// Widget
+import '../widget/animated_check_button.dart';
+import '../provider/nickname_text_field_riverpod.dart';
 
 class SignUpNickNameScreen extends StatelessWidget {
   const SignUpNickNameScreen({super.key});
