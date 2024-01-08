@@ -121,8 +121,11 @@ class _PoseDetailScreenState extends State<PoseDetailScreen> {
                           children: [
                             PtdTextWidget.titleMedium(
                                 simpleName, MaeumgagymColor.gray600),
-                            PtdTextWidget.titleLarge(
-                                exactName, MaeumgagymColor.black)
+                            FittedBox(
+                              fit: BoxFit.fitWidth,
+                              child: PtdTextWidget.titleLarge(
+                                  exactName, MaeumgagymColor.black),
+                            )
                           ],
                         ),
                       ),
@@ -149,16 +152,17 @@ class _PoseDetailScreenState extends State<PoseDetailScreen> {
 
                         /// Exact Part
                         Container(
-                            decoration: BoxDecoration(
-                              color: MaeumgagymColor.blue50,
-                              borderRadius: BorderRadius.circular(100),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 16, vertical: 8),
-                              child: PtdTextWidget.labelMedium(
-                                  exactPart, MaeumgagymColor.blue500),
-                            )),
+                          decoration: BoxDecoration(
+                            color: MaeumgagymColor.blue50,
+                            borderRadius: BorderRadius.circular(100),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 16, vertical: 8),
+                            child: PtdTextWidget.labelMedium(
+                                exactPart, MaeumgagymColor.blue500),
+                          ),
+                        ),
                       ],
                     ),
 
@@ -183,8 +187,9 @@ class _PoseDetailScreenState extends State<PoseDetailScreen> {
                               width: 126,
                               height: 224,
                               decoration: BoxDecoration(
-                                  color: Colors.red,
-                                  borderRadius: BorderRadius.circular(8)),
+                                color: Colors.red,
+                                borderRadius: BorderRadius.circular(8),
+                              ),
                               child: Image.asset(pikleList[index]),
                             ),
                           );

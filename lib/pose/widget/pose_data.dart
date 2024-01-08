@@ -22,27 +22,27 @@ List<Map<String, dynamic>> data = [
       "복근과 둔근에 힘을 준 상태로 팔끔치를 피며 올라옵니다."
     ],
   },
-  // {
-  //   "simpleName": "바벨 백스쿼트",
-  //   "exactName": "바벨 백스쿼트",
-  //   "thumbnail": "",
-  //   "poseImages": <String>[
-  //     "assets/image/pose_icon/pose_exercise/pose_babel_back_sqt.png",
-  //   ],
-  //   "simplePart": "기구",
-  //   "exactPart": "하체",
-  //   "startPose": "",
-  //   "exerciseWay": <String>[
-  //     "양팔을 가슴 옆에 두고 바닥에 엎드립니다.",
-  //     "복근과 둔근에 힘을 준 상태로 팔꿈치를 피며 올라옵니다.",
-  //     "천천히 팔꿈치를 굽히며 시작 자세로 돌아갑니다."
-  //   ],
-  //   "breatheWay": "",
-  //   "caution": <String>[
-  //     "양팔을 가슴 옆에 두고 바닥에 엎드립니다.",
-  //     "복근과 둔근에 힘을 준 상태로 팔끔치를 피며 올라옵니다."
-  //   ],
-  // },
+  {
+    "simpleName": "바벨 백스쿼트",
+    "exactName": "바벨 백스쿼트",
+    "thumbnail": "",
+    "poseImages": <String>[
+      "assets/image/pose_icon/pose_exercise/pose_babel_back_sqt.png",
+    ],
+    "simplePart": "기구",
+    "exactPart": "하체",
+    "startPose": "",
+    "exerciseWay": <String>[
+      "양팔을 가슴 옆에 두고 바닥에 엎드립니다.",
+      "복근과 둔근에 힘을 준 상태로 팔꿈치를 피며 올라옵니다.",
+      "천천히 팔꿈치를 굽히며 시작 자세로 돌아갑니다."
+    ],
+    "breatheWay": "",
+    "caution": <String>[
+      "양팔을 가슴 옆에 두고 바닥에 엎드립니다.",
+      "복근과 둔근에 힘을 준 상태로 팔끔치를 피며 올라옵니다."
+    ],
+  },
   {
     "simpleName": "프론트 스쿼트",
     "exactName": "프론트 스쿼트",
@@ -64,48 +64,48 @@ List<Map<String, dynamic>> data = [
       "복근과 둔근에 힘을 준 상태로 팔끔치를 피며 올라옵니다."
     ],
   },
-  // {
-  //   "simpleName": "바벨 불가리안 스플릿 스쿼트",
-  //   "exactName": "바벨 불가리안 스플릿 스쿼트",
-  //   "thumbnail": "",
-  //   "poseImages": <String>[
-  //     "assets/image/pose_icon/pose_exercise/pose_babel_bgr_split_sqt.png",
-  //   ],
-  //   "simplePart": "기구",
-  //   "exactPart": "하체",
-  //   "startPose": "",
-  //   "exerciseWay": <String>[
-  //     "양팔을 가슴 옆에 두고 바닥에 엎드립니다.",
-  //     "복근과 둔근에 힘을 준 상태로 팔꿈치를 피며 올라옵니다.",
-  //     "천천히 팔꿈치를 굽히며 시작 자세로 돌아갑니다."
-  //   ],
-  //   "breatheWay": "",
-  //   "caution": <String>[
-  //     "양팔을 가슴 옆에 두고 바닥에 엎드립니다.",
-  //     "복근과 둔근에 힘을 준 상태로 팔끔치를 피며 올라옵니다."
-  //   ],
-  // },
-  // {
-  //   "simpleName": "덤벨 불가리안 스플릿 스쿼트",
-  //   "exactName": "덤벨 불가리안 스플릿 스쿼트",
-  //   "thumbnail": "",
-  //   "poseImages": <String>[
-  //     "assets/image/pose_icon/pose_exercise/pose_dumbel_bgr_split_sqt.png",
-  //   ],
-  //   "simplePart": "기구",
-  //   "exactPart": "하체",
-  //   "startPose": "",
-  //   "exerciseWay": <String>[
-  //     "양팔을 가슴 옆에 두고 바닥에 엎드립니다.",
-  //     "복근과 둔근에 힘을 준 상태로 팔꿈치를 피며 올라옵니다.",
-  //     "천천히 팔꿈치를 굽히며 시작 자세로 돌아갑니다."
-  //   ],
-  //   "breatheWay": "",
-  //   "caution": <String>[
-  //     "양팔을 가슴 옆에 두고 바닥에 엎드립니다.",
-  //     "복근과 둔근에 힘을 준 상태로 팔끔치를 피며 올라옵니다."
-  //   ],
-  // },
+  {
+    "simpleName": "바벨 불가리안 스플릿 스쿼트",
+    "exactName": "바벨 불가리안 스플릿 스쿼트",
+    "thumbnail": "",
+    "poseImages": <String>[
+      "assets/image/pose_icon/pose_exercise/pose_babel_bgr_split_sqt.png",
+    ],
+    "simplePart": "기구",
+    "exactPart": "하체",
+    "startPose": "",
+    "exerciseWay": <String>[
+      "양팔을 가슴 옆에 두고 바닥에 엎드립니다.",
+      "복근과 둔근에 힘을 준 상태로 팔꿈치를 피며 올라옵니다.",
+      "천천히 팔꿈치를 굽히며 시작 자세로 돌아갑니다."
+    ],
+    "breatheWay": "",
+    "caution": <String>[
+      "양팔을 가슴 옆에 두고 바닥에 엎드립니다.",
+      "복근과 둔근에 힘을 준 상태로 팔끔치를 피며 올라옵니다."
+    ],
+  },
+  {
+    "simpleName": "덤벨 불가리안 스플릿 스쿼트",
+    "exactName": "덤벨 불가리안 스플릿 스쿼트",
+    "thumbnail": "",
+    "poseImages": <String>[
+      "assets/image/pose_icon/pose_exercise/pose_dumbel_bgr_split_sqt.png",
+    ],
+    "simplePart": "기구",
+    "exactPart": "하체",
+    "startPose": "",
+    "exerciseWay": <String>[
+      "양팔을 가슴 옆에 두고 바닥에 엎드립니다.",
+      "복근과 둔근에 힘을 준 상태로 팔꿈치를 피며 올라옵니다.",
+      "천천히 팔꿈치를 굽히며 시작 자세로 돌아갑니다."
+    ],
+    "breatheWay": "",
+    "caution": <String>[
+      "양팔을 가슴 옆에 두고 바닥에 엎드립니다.",
+      "복근과 둔근에 힘을 준 상태로 팔끔치를 피며 올라옵니다."
+    ],
+  },
   {
     "simpleName": "덤벨 스플릿 스쿼트",
     "exactName": "덤벨 스플릿 스쿼트",
@@ -358,27 +358,27 @@ List<Map<String, dynamic>> data = [
       "복근과 둔근에 힘을 준 상태로 팔끔치를 피며 올라옵니다."
     ],
   },
-  // {
-  //   "simpleName": "인클라인 덤벨 벤치프레스",
-  //   "exactName": "인클라인 덤벨 벤치프레스",
-  //   "thumbnail": "",
-  //   "poseImages": <String>[
-  //     "assets/image/pose_icon/pose_exercise/pose_incline_dumbel_bench_press.png",
-  //   ],
-  //   "simplePart": "기구",
-  //   "exactPart": "가슴",
-  //   "startPose": "",
-  //   "exerciseWay": <String>[
-  //     "양팔을 가슴 옆에 두고 바닥에 엎드립니다.",
-  //     "복근과 둔근에 힘을 준 상태로 팔꿈치를 피며 올라옵니다.",
-  //     "천천히 팔꿈치를 굽히며 시작 자세로 돌아갑니다."
-  //   ],
-  //   "breatheWay": "",
-  //   "caution": <String>[
-  //     "양팔을 가슴 옆에 두고 바닥에 엎드립니다.",
-  //     "복근과 둔근에 힘을 준 상태로 팔끔치를 피며 올라옵니다."
-  //   ],
-  // },
+  {
+    "simpleName": "인클라인 덤벨 벤치프레스",
+    "exactName": "인클라인 덤벨 벤치프레스",
+    "thumbnail": "",
+    "poseImages": <String>[
+      "assets/image/pose_icon/pose_exercise/pose_incline_dumbel_bench_press.png",
+    ],
+    "simplePart": "기구",
+    "exactPart": "가슴",
+    "startPose": "",
+    "exerciseWay": <String>[
+      "양팔을 가슴 옆에 두고 바닥에 엎드립니다.",
+      "복근과 둔근에 힘을 준 상태로 팔꿈치를 피며 올라옵니다.",
+      "천천히 팔꿈치를 굽히며 시작 자세로 돌아갑니다."
+    ],
+    "breatheWay": "",
+    "caution": <String>[
+      "양팔을 가슴 옆에 두고 바닥에 엎드립니다.",
+      "복근과 둔근에 힘을 준 상태로 팔끔치를 피며 올라옵니다."
+    ],
+  },
   {
     "simpleName": "덤벨 스퀴즈 프레스",
     "exactName": "덤벨 스퀴즈 프레스",

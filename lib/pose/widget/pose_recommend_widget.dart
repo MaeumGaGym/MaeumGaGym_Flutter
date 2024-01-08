@@ -22,6 +22,8 @@ class PoseRecommendWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var listCount = 0;
+
     return SizedBox(
       width: MediaQuery.of(context).size.width,
       height: 340,
@@ -81,7 +83,11 @@ class PoseRecommendWidget extends StatelessWidget {
               itemBuilder: (context, index) {
                 if (!(keyData == data[index]['simplePart'])) {
                   return const SizedBox.shrink();
+                } else if (listCount >= 3) {
+                  return const SizedBox.shrink();
                 } else {
+                  listCount++;
+
                   return Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -120,8 +126,13 @@ class PoseRecommendWidget extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(height: 8),
-                      PtdTextWidget.labelMedium(
-                          data[index]['simpleName']!, MaeumgagymColor.black),
+                      SizedBox(
+                        width: 148,
+                        child: PtdTextWidget.labelMedium(
+                          data[index]['simpleName'],
+                          MaeumgagymColor.black,
+                        ),
+                      ),
                       const SizedBox(height: 4),
                       PtdTextWidget.bodyMedium(
                           data[index]['exactPart']!, MaeumgagymColor.black),

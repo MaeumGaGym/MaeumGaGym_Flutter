@@ -1,4 +1,3 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
 import '../../config/maeumgagym_color.dart';
@@ -43,11 +42,17 @@ class PoseDetailListWidget extends StatelessWidget {
                       MaeumgagymColor.gray200,
                     ),
                   ),
-                  const SizedBox(height: 6),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width - 92,
-                    child: AutoSizeText(listData[index]),
-                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const SizedBox(height: 7),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width - 92,
+                        child: PtdTextWidget.bodyMedium(
+                            listData[index], MaeumgagymColor.black),
+                      ),
+                    ],
+                  )
                 ],
               ),
             );
