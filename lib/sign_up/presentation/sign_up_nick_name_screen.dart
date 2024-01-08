@@ -40,7 +40,7 @@ class SignUpNickNameScreen extends StatelessWidget {
                           .isText(false);
                     },
                     child: SvgPicture.asset(
-                      'assets/image/core_icon/left_arrow.svg',
+                      'assets/image/core_icon/left_arrow_icon.svg',
                       width: 24,
                       height: 24,
                     ),
