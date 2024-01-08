@@ -1,5 +1,7 @@
+/// Package
 import 'package:flutter/material.dart';
 
+/// Core
 import '../../config/maeumgagym_color.dart';
 import '../../core/component/text/pretendard/ptd_text_widget.dart';
 
@@ -35,6 +37,7 @@ class PoseDetailListWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  /// 번호
                   SizedBox(
                     width: 52,
                     child: PtdTextWidget.titleMedium(
@@ -42,6 +45,8 @@ class PoseDetailListWidget extends StatelessWidget {
                       MaeumgagymColor.gray200,
                     ),
                   ),
+
+                  /// 콘텐츠
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
