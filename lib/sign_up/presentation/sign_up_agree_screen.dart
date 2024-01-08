@@ -14,6 +14,7 @@ import '../../core/component/text/pretendard/ptd_text_widget.dart';
 /// widget
 import '../widget/check_box_widget.dart';
 import '../provider/check_box_state_provider.dart';
+import 'package:maeum_ga_gym_flutter/sign_up/widget/read_more_widget.dart';
 
 class SignUpAgreeScreen extends ConsumerWidget {
   const SignUpAgreeScreen({super.key});
@@ -21,38 +22,6 @@ class SignUpAgreeScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(checkBoxProvider);
-
-    Future _displayBottomSheet(BuildContext context) async {
-      return showModalBottomSheet(
-        context: context,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-            top: Radius.circular(10.0),
-          ),
-        ),
-        builder: (context) {
-          return Wrap(
-            children: [
-              /// 이용 약관
-              Padding(
-                padding: const EdgeInsets.fromLTRB(20, 20, 16, 16),
-                child: SizedBox(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const SizedBox(),
-                      PtdTextWidget.bodyLarge('이용약관', MaeumgagymColor.black),
-                      Image.asset('assets/image/core_icon/close.png',
-                          width: 12, height: 12)
-                    ],
-                  ),
-                ),
-              )
-            ],
-          );
-        },
-      );
-    }
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -156,7 +125,7 @@ class SignUpAgreeScreen extends ConsumerWidget {
                       /// 자세히 보기 ( agreePersonInformation )
                       GestureDetector(
                         onTap: () {
-                          _displayBottomSheet(context);
+                          readMoreWidget(context);
                         },
                         child: PtdTextWidget.labelSmall(
                           '자세히 보기',
