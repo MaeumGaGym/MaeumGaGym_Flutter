@@ -1,9 +1,10 @@
+/// Package
 import 'package:flutter/material.dart';
+
+/// Core
 import 'package:maeum_ga_gym_flutter/core/component/maeumgagym_button.dart';
-
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
-
-import '../../config/maeumgagym_color.dart';
+import '../../../config/maeumgagym_color.dart';
 
 class SignUpSuccessScreen extends StatelessWidget {
   const SignUpSuccessScreen({super.key});
