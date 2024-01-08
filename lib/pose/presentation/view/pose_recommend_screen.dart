@@ -1,9 +1,9 @@
 /// Package
 import 'package:flutter/material.dart';
-import 'package:maeum_ga_gym_flutter/pose/widget/pose_recommend_widget.dart';
 
 /// Widget
-import 'package:maeum_ga_gym_flutter/pose/widget/pose_data.dart';
+import '../widget/pose_data.dart';
+import '../widget/pose_recommend_widget.dart';
 
 class PoseReCommendScreen extends StatelessWidget {
   const PoseReCommendScreen({super.key});
