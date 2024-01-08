@@ -24,8 +24,8 @@ class _PoseSearchScreenState extends ConsumerState<PoseSearchScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final textState = ref.watch(poseSearchController).text;
-    final textNotifierState = ref.read(poseSearchController.notifier);
+    final textFieldState = ref.watch(poseSearchController).text;
+    final textFieldNotifier = ref.read(poseSearchController.notifier);
 
     return Scaffold(
       appBar: PreferredSize(
@@ -47,7 +47,7 @@ class _PoseSearchScreenState extends ConsumerState<PoseSearchScreen> {
             child: TextField(
               controller: textController,
               onTapOutside: (event) => FocusScope.of(context).unfocus(),
-              onChanged: (value) => textNotifierState.saveText(value),
+              onChanged: (value) => textFieldNotifier.saveText(value),
               cursorWidth: 1,
               cursorHeight: 20,
               style: const TextStyle(height: 1.23),
@@ -88,8 +88,8 @@ class _PoseSearchScreenState extends ConsumerState<PoseSearchScreen> {
                   itemCount: data.length,
                   itemBuilder: (BuildContext context, int index) {
                     /// 만약 textField에 값에 이름이 들어가지 않는다면 SizedBox.shrink
-                    if (textState.isNotEmpty &&
-                        !(data[index]['simpleName'].contains(textState))) {
+                    if (textFieldState.isNotEmpty &&
+                        !(data[index]['simpleName'].contains(textFieldState))) {
                       return const SizedBox.shrink();
                     } else {
                       return GestureDetector(

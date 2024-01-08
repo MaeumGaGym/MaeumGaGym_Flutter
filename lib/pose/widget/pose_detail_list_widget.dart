@@ -54,7 +54,9 @@ class PoseDetailListWidget extends StatelessWidget {
                       SizedBox(
                         width: MediaQuery.of(context).size.width - 92,
                         child: PtdTextWidget.bodyMedium(
-                            listData[index], MaeumgagymColor.black),
+                          listData[index],
+                          MaeumgagymColor.black,
+                        ),
                       ),
                     ],
                   )

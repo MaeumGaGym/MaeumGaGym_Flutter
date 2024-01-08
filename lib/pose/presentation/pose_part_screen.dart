@@ -20,8 +20,8 @@ class PosePartScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    var posePartState = ref.watch(posePartController);
-    var posePartNotifierState = ref.read(posePartController.notifier);
+    final posePartState = ref.watch(posePartController);
+    final posePartNotifier = ref.read(posePartController.notifier);
 
     return SingleChildScrollView(
       child: Padding(
@@ -37,7 +37,7 @@ class PosePartScreen extends ConsumerWidget {
                 children: [
                   /// 맨몸
                   GestureDetector(
-                    onTap: () => posePartNotifierState.clickCalisthenics(),
+                    onTap: () => posePartNotifier.clickCalisthenics(),
                     child: PosePartSelector(
                       title: '맨몸',
                       state: posePartState.calisthenics,
@@ -49,7 +49,7 @@ class PosePartScreen extends ConsumerWidget {
 
                   /// 기구
                   GestureDetector(
-                    onTap: () => posePartNotifierState.clickMachine(),
+                    onTap: () => posePartNotifier.clickMachine(),
                     child: PosePartSelector(
                       title: '기구',
                       state: posePartState.machine,

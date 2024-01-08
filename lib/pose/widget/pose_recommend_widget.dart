@@ -8,13 +8,11 @@ import '../../config/maeumgagym_color.dart';
 import '../../core/component/text/pretendard/ptd_text_widget.dart';
 
 class PoseRecommendWidget extends StatelessWidget {
-  final TabController tabController;
   final List<Map<String, dynamic>> data;
   final int index;
   final String keyData, titleImage;
 
   const PoseRecommendWidget({
-    required this.tabController,
     required this.data,
     required this.keyData,
     required this.titleImage,
