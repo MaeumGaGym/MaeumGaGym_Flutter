@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -82,38 +81,34 @@ class MaeumgagymTextField extends ConsumerWidget {
                 ),
 
                 /// TextField
-                Consumer(
-                  builder: (context, ref, child) {
-                    return SizedBox(
-                      height: 40,
-                      child: TextField(
-                        controller: controller,
-                        onTap: () => textFieldNotifier.clicked(true),
-                        onTapOutside: (event) {
-                          textFieldNotifier.clicked(false);
-                          FocusScope.of(context).unfocus();
-                        },
-                        onChanged: (value) {
-                          textFieldNotifier.isText(controller.text.isNotEmpty);
-                        },
-                        cursorHeight: 20,
-                        cursorWidth: 2,
-                        cursorColor: MaeumgagymColor.black,
-                        decoration: const InputDecoration(
-                          enabledBorder: InputBorder.none,
-                          focusedBorder: InputBorder.none,
-                          border: InputBorder.none,
-                        ),
-                        style: TextStyle(
-                          fontFamily: pretendard,
-                          fontSize: 20,
-                          height: 1 / 1,
-                          fontWeight: FontWeight.w400,
-                          color: MaeumgagymColor.black,
-                        ),
-                      ),
-                    );
-                  },
+                SizedBox(
+                  height: 40,
+                  child: TextField(
+                    controller: controller,
+                    onTap: () => textFieldNotifier.clicked(true),
+                    onTapOutside: (event) {
+                      textFieldNotifier.clicked(false);
+                      FocusScope.of(context).unfocus();
+                    },
+                    onChanged: (value) {
+                      textFieldNotifier.isText(controller.text.isNotEmpty);
+                    },
+                    cursorHeight: 20,
+                    cursorWidth: 2,
+                    cursorColor: MaeumgagymColor.black,
+                    decoration: const InputDecoration(
+                      enabledBorder: InputBorder.none,
+                      focusedBorder: InputBorder.none,
+                      border: InputBorder.none,
+                    ),
+                    style: TextStyle(
+                      fontFamily: pretendard,
+                      fontSize: 20,
+                      height: 1 / 1,
+                      fontWeight: FontWeight.w400,
+                      color: MaeumgagymColor.black,
+                    ),
+                  ),
                 ),
                 Row(
                   mainAxisSize: MainAxisSize.max,
