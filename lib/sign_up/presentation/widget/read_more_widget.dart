@@ -1,7 +1,9 @@
+/// Package
 import 'package:flutter/material.dart';
 
-import '../../config/maeumgagym_color.dart';
-import '../../core/component/text/pretendard/ptd_text_widget.dart';
+/// Core
+import '../../../config/maeumgagym_color.dart';
+import '../../../core/component/text/pretendard/ptd_text_widget.dart';
 
 Future readMoreWidget(BuildContext context) async {
   return showModalBottomSheet(

@@ -9,12 +9,12 @@ import 'package:maeum_ga_gym_flutter/core/component/maeumgagym_button.dart';
 
 /// Core
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
-import '../../core/component/text/pretendard/ptd_text_widget.dart';
+import '../../../core/component/text/pretendard/ptd_text_widget.dart';
 
 /// widget
-import '../widget/check_box_widget.dart';
 import '../provider/check_box_state_provider.dart';
-import 'package:maeum_ga_gym_flutter/sign_up/widget/read_more_widget.dart';
+import '../widget/check_box_widget.dart';
+import '../widget/read_more_widget.dart';
 
 class SignUpAgreeScreen extends ConsumerWidget {
   const SignUpAgreeScreen({super.key});
