@@ -40,6 +40,7 @@ flutter:
     - assets/image/home_icon/
     - assets/image/pose_icon/
     - assets/image/pose_icon/pose_exercise/
+    - assets/image/core_icon/
 
   fonts:
     - family: Pretendard
