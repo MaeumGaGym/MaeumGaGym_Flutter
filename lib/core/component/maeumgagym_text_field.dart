@@ -22,7 +22,8 @@ class MaeumgagymTextField extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    var textFieldState = ref.watch(textFieldProvider);
+    final textFieldState = ref.watch(textFieldProvider);
+    final textFieldNotifier = ref.read(textFieldProvider.notifier);
 
     /// 하나로 묶기 위한 SizedBox
     return SizedBox(
@@ -87,16 +88,13 @@ class MaeumgagymTextField extends ConsumerWidget {
                       height: 40,
                       child: TextField(
                         controller: controller,
-                        onTap: () =>
-                            ref.read(textFieldProvider.notifier).clicked(true),
+                        onTap: () => textFieldNotifier.clicked(true),
                         onTapOutside: (event) {
-                          ref.read(textFieldProvider.notifier).clicked(false);
+                          textFieldNotifier.clicked(false);
                           FocusScope.of(context).unfocus();
                         },
                         onChanged: (value) {
-                          ref
-                              .read(textFieldProvider.notifier)
-                              .isText(controller.text.isNotEmpty);
+                          textFieldNotifier.isText(controller.text.isNotEmpty);
                         },
                         cursorHeight: 20,
                         cursorWidth: 2,
@@ -126,8 +124,8 @@ class MaeumgagymTextField extends ConsumerWidget {
                       child: GestureDetector(
                         onTap: () {
                           controller.text = '';
-                          ref.read(textFieldProvider.notifier).isText(false);
-                          ref.read(textFieldProvider.notifier).clicked(false);
+                          textFieldNotifier.isText(false);
+                          textFieldNotifier.clicked(false);
                         },
                         child: SvgPicture.asset(
                             'assets/image/sign_up_icon/close_circle.svg'),
