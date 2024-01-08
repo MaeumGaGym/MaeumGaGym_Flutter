@@ -22,7 +22,7 @@ class MaeumgagymTextField extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    var state = ref.watch(textFieldProvider);
+    var textFieldState = ref.watch(textFieldProvider);
 
     /// 하나로 묶기 위한 SizedBox
     return SizedBox(
@@ -39,16 +39,18 @@ class MaeumgagymTextField extends ConsumerWidget {
                 /// LabelText Controller
                 AnimatedContainer(
                   duration: const Duration(milliseconds: 100),
-                  height: state.onClicked || state.inText ? 48 : 40,
-                  alignment: state.onClicked || state.inText
+                  height: textFieldState.onClicked || textFieldState.inText
+                      ? 48
+                      : 40,
+                  alignment: textFieldState.onClicked || textFieldState.inText
                       ? Alignment.topLeft
                       : Alignment.bottomLeft,
                   decoration: BoxDecoration(
                     border: Border(
                       bottom: BorderSide(
-                        color: state.isError
+                        color: textFieldState.isError
                             ? MaeumgagymColor.red500
-                            : state.onClicked
+                            : textFieldState.onClicked
                                 ? MaeumgagymColor.blue500
                                 : MaeumgagymColor.gray400,
                       ),
@@ -58,7 +60,7 @@ class MaeumgagymTextField extends ConsumerWidget {
                   /// LabelText
                   child: AnimatedDefaultTextStyle(
                       duration: const Duration(milliseconds: 100),
-                      style: state.onClicked || state.inText
+                      style: textFieldState.onClicked || textFieldState.inText
                           ? TextStyle(
                               fontFamily: pretendard,
                               fontSize: 14,
@@ -72,8 +74,8 @@ class MaeumgagymTextField extends ConsumerWidget {
                               color: MaeumgagymColor.gray400,
                             ),
                       child: Padding(
-                        padding:
-                            EdgeInsets.only(bottom: state.onClicked ? 0 : 8),
+                        padding: EdgeInsets.only(
+                            bottom: textFieldState.onClicked ? 0 : 8),
                         child: Text(text),
                       )),
                 ),
@@ -144,7 +146,7 @@ class MaeumgagymTextField extends ConsumerWidget {
             child: AnimatedDefaultTextStyle(
               duration: const Duration(milliseconds: 100),
               style: TextStyle(color: MaeumgagymColor.red500, fontSize: 12),
-              child: state.isError
+              child: textFieldState.isError
                   ? PtdTextWidget.bodyLarge(errorText, MaeumgagymColor.red500)
                   : const Text(''),
             ),
