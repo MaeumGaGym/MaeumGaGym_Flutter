@@ -1,7 +1,9 @@
+/// Package
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:maeum_ga_gym_flutter/pose/presentation/pose_detail_screen.dart';
 
+/// Core
 import '../../config/maeumgagym_color.dart';
 import '../../core/component/text/pretendard/ptd_text_widget.dart';
 
@@ -93,9 +95,6 @@ class PoseRecommendWidget extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       GestureDetector(
-                        // onTap: () => context.push(
-                        //   '/poseDetail/${data[index]['poseImages']}/${data[index]['simpleName']}/${data[index]['exactName']}/${data[index]['simplePart']}/${data[index]['exactPart']}/${data[index]['exerciseWay']}/${data[index]['caution']}',
-                        // ),
                         onTap: () => Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -126,6 +125,8 @@ class PoseRecommendWidget extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(height: 8),
+
+                      /// SimpleName
                       SizedBox(
                         width: 148,
                         child: PtdTextWidget.labelMedium(
@@ -134,6 +135,8 @@ class PoseRecommendWidget extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(height: 4),
+
+                      /// ExactPart
                       PtdTextWidget.bodyMedium(
                           data[index]['exactPart']!, MaeumgagymColor.black),
                     ],
