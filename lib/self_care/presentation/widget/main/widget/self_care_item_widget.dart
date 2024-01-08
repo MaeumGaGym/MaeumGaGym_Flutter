@@ -23,10 +23,11 @@ class SelfCareItemWidget extends StatelessWidget {
           Row(
             children: [
               GestureDetector(
+                onTap: () {},
                 child: Container(
                   height: 40,
                   width: 40,
-                  alignment: Alignment.center,
+                  alignment: Alignment.center, // 이것도 align 지정안하면 크기 변경 안돼요
                   decoration: BoxDecoration(
                     color: MaeumgagymColor.gray200,
                     borderRadius: BorderRadius.circular(8),

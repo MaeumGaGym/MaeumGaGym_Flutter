@@ -15,35 +15,34 @@ class SelfCareMainProfileContainer extends StatelessWidget {
         children: [
           Row(
             children: [
-              Container(
+              Container( // 임시로 준 프로필 사진 (검은색으로 표시됩니당)
                 width: 48,
                 height: 48,
-                alignment: Alignment.center,
                 decoration: BoxDecoration(
                   color: MaeumgagymColor.black,
                   shape: BoxShape.circle,
                 ),
               ),
-              SizedBox(width: 12),
+              const SizedBox(width: 12),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
                     children: [
                       PtdTextWidget.labelLarge(
-                        "김현석",
+                        "김현석", // 임시 값
                         MaeumgagymColor.black,
                       ),
-                      SizedBox(width: 8),
+                      const SizedBox(width: 8),
                       SvgPicture.asset(
-                        "assets/image/self_care_icon/profile_icon.svg",
+                        "assets/image/self_care_icon/profile_icon.svg", // 이름 옆에 회오리 마냥 들어가는 아이콘
                         height: 16,
                         width: 16,
                       )
                     ],
                   ),
                   PtdTextWidget.bodyMedium(
-                    "124시간",
+                    "124시간", // 임시 값
                     MaeumgagymColor.gray400,
                   ),
                 ],

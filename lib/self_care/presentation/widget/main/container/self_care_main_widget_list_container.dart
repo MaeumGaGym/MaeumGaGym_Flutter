@@ -21,10 +21,10 @@ class SelfCareMainWidgetListContainer extends StatelessWidget {
               MaeumgagymColor.black,
             ),
           ),
-          SizedBox(height: 12),
+          const SizedBox(height: 12),
           ListView.builder(
             shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
+            physics: const NeverScrollableScrollPhysics(),
             itemCount: 4,
             itemBuilder: (context, index) {
               return SelfCareItemWidget(

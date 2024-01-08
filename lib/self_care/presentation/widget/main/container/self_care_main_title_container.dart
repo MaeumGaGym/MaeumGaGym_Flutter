@@ -9,6 +9,7 @@ class SelfCareMainTitleContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
+      // 공통 (같은 수치) 으로 들어가는 padding
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -16,6 +17,7 @@ class SelfCareMainTitleContainer extends StatelessWidget {
           Container(
             height: 40,
             width: 40,
+            // align 안넣어주면 svg 이미지 크기가 안 변하더라구용..
             alignment: Alignment.center,
             decoration: BoxDecoration(
               color: MaeumgagymColor.blue50,
@@ -28,6 +30,7 @@ class SelfCareMainTitleContainer extends StatelessWidget {
             ),
           ),
           Padding(
+            // text 위젯 위 아래로 같은 수치으로 들어가는 padding
             padding: const EdgeInsets.symmetric(vertical: 12),
             child: PtdTextWidget.titleLarge(
               "자기관리",
