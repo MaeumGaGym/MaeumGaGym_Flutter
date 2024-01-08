@@ -117,7 +117,7 @@ class _PoseTabScreenState extends ConsumerState<PoseTabScreen>
               child: TabBarView(
                 controller: tabController,
                 children: [
-                  PoseReCommendScreen(tabContoller: tabController),
+                  const PoseReCommendScreen(),
                   PosePartScreen(
                     tabContoller: tabController,
                     tabName: const ['상체', '가슴'],
