@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/widget/main_app_bar.dart';
-import 'package:maeum_ga_gym_flutter/home/presentation/widget/main_container_title.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/widget/main_content_list_container.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/widget/main_routine_container.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/widget/main_timer_and_metronome_container.dart';
@@ -75,6 +74,8 @@ class _HomeMainScreenState extends State<HomeMainScreen> {
                         PtdTextWidget.labelSmall(
                           "©2023 마음가짐",
                           MaeumgagymColor.gray400,
+                          null,
+                          null,
                         ),
                         SizedBox(height: 8),
                         PtdTextWidget.labelLarge(
