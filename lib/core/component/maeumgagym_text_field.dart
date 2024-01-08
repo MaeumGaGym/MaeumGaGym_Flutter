@@ -144,7 +144,7 @@ class MaeumgagymTextField extends ConsumerWidget {
               duration: const Duration(milliseconds: 100),
               style: TextStyle(color: MaeumgagymColor.red500, fontSize: 12),
               child: textFieldState.isError
-                  ? PtdTextWidget.bodyLarge(errorText, MaeumgagymColor.red500)
+                  ? PtdTextWidget.bodyTiny(errorText, MaeumgagymColor.red500)
                   : const Text(''),
             ),
           ),
