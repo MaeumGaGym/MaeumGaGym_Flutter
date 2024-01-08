@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
 
 import '../../config/maeumgagym_color.dart';
@@ -20,7 +21,8 @@ class MaeumgagymTextField extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    var state = ref.watch(textFieldProvider);
+    final textFieldState = ref.watch(textFieldProvider);
+    final textFieldNotifier = ref.read(textFieldProvider.notifier);
 
     /// 하나로 묶기 위한 SizedBox
     return SizedBox(
@@ -37,16 +39,18 @@ class MaeumgagymTextField extends ConsumerWidget {
                 /// LabelText Controller
                 AnimatedContainer(
                   duration: const Duration(milliseconds: 100),
-                  height: state.onClicked || state.inText ? 54 : 40,
-                  alignment: state.onClicked || state.inText
+                  height: textFieldState.onClicked || textFieldState.inText
+                      ? 48
+                      : 40,
+                  alignment: textFieldState.onClicked || textFieldState.inText
                       ? Alignment.topLeft
                       : Alignment.bottomLeft,
                   decoration: BoxDecoration(
                     border: Border(
                       bottom: BorderSide(
-                        color: state.isError
+                        color: textFieldState.isError
                             ? MaeumgagymColor.red500
-                            : state.onClicked
+                            : textFieldState.onClicked
                                 ? MaeumgagymColor.blue500
                                 : MaeumgagymColor.gray400,
                       ),
@@ -56,7 +60,7 @@ class MaeumgagymTextField extends ConsumerWidget {
                   /// LabelText
                   child: AnimatedDefaultTextStyle(
                       duration: const Duration(milliseconds: 100),
-                      style: state.onClicked || state.inText
+                      style: textFieldState.onClicked || textFieldState.inText
                           ? TextStyle(
                               fontFamily: pretendard,
                               fontSize: 14,
@@ -70,49 +74,64 @@ class MaeumgagymTextField extends ConsumerWidget {
                               color: MaeumgagymColor.gray400,
                             ),
                       child: Padding(
-                        padding:
-                            EdgeInsets.only(bottom: state.onClicked ? 0 : 8),
+                        padding: EdgeInsets.only(
+                            bottom: textFieldState.onClicked ? 0 : 8),
                         child: Text(text),
                       )),
                 ),
 
                 /// TextField
-                Consumer(
-                  builder: (context, ref, child) {
-                    return SizedBox(
-                      height: 40,
-                      child: TextField(
-                        controller: controller,
-                        onTap: () =>
-                            ref.read(textFieldProvider.notifier).clicked(true),
-                        onTapOutside: (event) {
-                          ref.read(textFieldProvider.notifier).clicked(false);
-                          FocusScope.of(context).unfocus();
+                SizedBox(
+                  height: 40,
+                  child: TextField(
+                    controller: controller,
+                    onTap: () => textFieldNotifier.clicked(true),
+                    onTapOutside: (event) {
+                      textFieldNotifier.clicked(false);
+                      FocusScope.of(context).unfocus();
+                    },
+                    onChanged: (value) {
+                      textFieldNotifier.isText(controller.text.isNotEmpty);
+                    },
+                    cursorHeight: 20,
+                    cursorWidth: 2,
+                    cursorColor: MaeumgagymColor.black,
+                    decoration: const InputDecoration(
+                      enabledBorder: InputBorder.none,
+                      focusedBorder: InputBorder.none,
+                      border: InputBorder.none,
+                    ),
+                    style: TextStyle(
+                      fontFamily: pretendard,
+                      fontSize: 20,
+                      height: 1 / 1,
+                      fontWeight: FontWeight.w400,
+                      color: MaeumgagymColor.black,
+                    ),
+                  ),
+                ),
+                Row(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 8),
+                      child: GestureDetector(
+                        onTap: () {
+                          controller.text = '';
+                          textFieldNotifier.isText(false);
+                          textFieldNotifier.clicked(false);
                         },
-                        onChanged: (value) {
-                          ref
-                              .read(textFieldProvider.notifier)
-                              .isText(controller.text.isNotEmpty);
-                        },
-                        cursorHeight: 20,
-                        cursorWidth: 2,
-                        cursorColor: MaeumgagymColor.black,
-                        decoration: const InputDecoration(
-                          enabledBorder: InputBorder.none,
-                          focusedBorder: InputBorder.none,
-                          border: InputBorder.none,
-                        ),
-                        style: TextStyle(
-                          fontFamily: pretendard,
-                          fontSize: 20,
-                          height: 1 / 1,
-                          fontWeight: FontWeight.w400,
-                          color: MaeumgagymColor.black,
-                        ),
+                        child: textFieldState.inText &&
+                                    textFieldState.onClicked ||
+                                textFieldState.inText
+                            ? SvgPicture.asset(
+                                'assets/image/sign_up_icon/close_circle.svg')
+                            : const SizedBox(),
                       ),
-                    );
-                  },
-                )
+                    ),
+                  ],
+                ),
               ],
             ),
           ),
@@ -124,8 +143,8 @@ class MaeumgagymTextField extends ConsumerWidget {
             child: AnimatedDefaultTextStyle(
               duration: const Duration(milliseconds: 100),
               style: TextStyle(color: MaeumgagymColor.red500, fontSize: 12),
-              child: state.isError
-                  ? PtdTextWidget.bodyLarge(errorText, MaeumgagymColor.red500)
+              child: textFieldState.isError
+                  ? PtdTextWidget.bodyTiny(errorText, MaeumgagymColor.red500)
                   : const Text(''),
             ),
           ),
