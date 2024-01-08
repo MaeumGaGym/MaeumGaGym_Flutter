@@ -19,11 +19,10 @@ class SelfCareProfileMainScreen extends StatelessWidget {
       ),
       body: const SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20),
+          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 24),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 24),
               SelfCareProfileMainTitleContainer(),
               SizedBox(height: 32),
               SelfCareProfileMainInfoWidgetContainer(),
