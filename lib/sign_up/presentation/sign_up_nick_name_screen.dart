@@ -35,7 +35,7 @@ class SignUpNickNmaeScreen extends ConsumerWidget {
                     ref.read(nicknameTextFieldProvider.notifier).isText(false);
                   },
                   child: SvgPicture.asset(
-                    'assets/image/core_icon/left_arrow.svg',
+                    'assets/image/core_icon/left_arrow_icon.svg',
                     width: 24,
                     height: 24,
                   ),
