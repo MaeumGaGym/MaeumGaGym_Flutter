@@ -64,7 +64,7 @@ class SignUpAgreeScreen extends ConsumerWidget {
                 context.go('/');
               },
               child: SvgPicture.asset(
-                'assets/image/core_icon/left_arrow_icon.svg',
+                'assets/image/core_icon/left_arrow.svg',
                 width: 24,
                 height: 24,
               ),
