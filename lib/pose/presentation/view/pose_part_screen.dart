@@ -1,12 +1,12 @@
 /// Package
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:maeum_ga_gym_flutter/pose/widget/pose_part_selector.dart';
 
 /// Widget
+import '../provider/pose_part_controller.dart';
 import '../widget/pose_data.dart';
-import 'package:maeum_ga_gym_flutter/pose/provider/pose_part_controller.dart';
-import 'package:maeum_ga_gym_flutter/pose/widget/pose_part_widget.dart';
+import '../widget/pose_part_selector.dart';
+import '../widget/pose_part_widget.dart';
 
 class PosePartScreen extends ConsumerWidget {
   final List<String> tabName;

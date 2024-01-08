@@ -8,9 +8,10 @@ import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
 
 /// Widget
-import 'package:maeum_ga_gym_flutter/pose/presentation/pose_detail_screen.dart';
-import 'package:maeum_ga_gym_flutter/pose/provider/pose_search_controller.dart';
-import 'package:maeum_ga_gym_flutter/pose/widget/pose_data.dart';
+import 'package:maeum_ga_gym_flutter/pose/presentation/view/pose_detail_screen.dart';
+
+import '../provider/pose_search_controller.dart';
+import '../widget/pose_data.dart';
 
 class PoseSearchScreen extends ConsumerStatefulWidget {
   const PoseSearchScreen({super.key});
