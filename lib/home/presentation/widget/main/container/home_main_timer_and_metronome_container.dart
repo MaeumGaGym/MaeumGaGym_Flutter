@@ -4,22 +4,22 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/providers/timer_state_provider.dart';
-import 'package:maeum_ga_gym_flutter/home/presentation/widget/main_container_title.dart';
-import 'package:maeum_ga_gym_flutter/home/presentation/widget/main_metronome_widget.dart';
-import 'package:maeum_ga_gym_flutter/home/presentation/widget/main_timer_widget.dart';
+import 'package:maeum_ga_gym_flutter/home/presentation/widget/main/widget/home_main_container_title.dart';
+import 'package:maeum_ga_gym_flutter/home/presentation/widget/main/widget/home_main_metronome_widget.dart';
+import 'package:maeum_ga_gym_flutter/home/presentation/widget/main/widget/home_main_timer_widget.dart';
 
-class MainTimeAndMetronomeContainer extends ConsumerStatefulWidget {
-  const MainTimeAndMetronomeContainer({
+class HomeMainTimeAndMetronomeContainer extends ConsumerStatefulWidget {
+  const HomeMainTimeAndMetronomeContainer({
     super.key,
   });
 
   @override
-  ConsumerState<MainTimeAndMetronomeContainer> createState() =>
+  ConsumerState<HomeMainTimeAndMetronomeContainer> createState() =>
       _MainTimerAndMetronomeContainerState();
 }
 
 class _MainTimerAndMetronomeContainerState
-    extends ConsumerState<MainTimeAndMetronomeContainer> {
+    extends ConsumerState<HomeMainTimeAndMetronomeContainer> {
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +35,7 @@ class _MainTimerAndMetronomeContainerState
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 24),
-              child: MainContainerTitle(
+              child: HomeMainContainerTitle(
                   title: ref.watch(timerStateProvider) ? "타이머" : "메트로놈"),
             ),
             Padding(
@@ -96,7 +96,7 @@ class _MainTimerAndMetronomeContainerState
                 ],
               ),
             ),
-            ref.watch(timerStateProvider) ? const MainTimerWidget() : const MainMetronomeWidget(),
+            ref.watch(timerStateProvider) ? const HomeMainTimerWidget() : const HomeMainMetronomeWidget(),
           ],
         ),
       ),

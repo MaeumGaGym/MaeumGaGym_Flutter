@@ -3,15 +3,15 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
 
-class MainWalkContainer extends StatefulWidget {
+class HomeMainWalkContainer extends StatefulWidget {
   // final String steps; // 걸음 수
-  const MainWalkContainer({super.key});
+  const HomeMainWalkContainer({super.key});
 
   @override
-  State<MainWalkContainer> createState() => _MainWalkContainerState();
+  State<HomeMainWalkContainer> createState() => _HomeMainWalkContainerState();
 }
 
-class _MainWalkContainerState extends State<MainWalkContainer> {
+class _HomeMainWalkContainerState extends State<HomeMainWalkContainer> {
 
   @override
   Widget build(BuildContext context) {
