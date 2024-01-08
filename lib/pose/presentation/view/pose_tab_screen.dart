@@ -1,10 +1,6 @@
 /// Package
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:maeum_ga_gym_flutter/pose/presentation/pose_part_screen.dart';
-import 'package:maeum_ga_gym_flutter/pose/presentation/pose_search_screen.dart';
-import 'package:maeum_ga_gym_flutter/pose/provider/pose_search_controller.dart';
-import 'package:maeum_ga_gym_flutter/pose/widget/tab_widget.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 /// Core
@@ -12,7 +8,11 @@ import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_wid
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 
 /// Screen
-import 'package:maeum_ga_gym_flutter/pose/presentation/pose_recommend_screen.dart';
+import 'package:maeum_ga_gym_flutter/pose/presentation/view/pose_part_screen.dart';
+import 'package:maeum_ga_gym_flutter/pose/presentation/view/pose_recommend_screen.dart';
+import 'package:maeum_ga_gym_flutter/pose/presentation/view/pose_search_screen.dart';
+import '../provider/pose_search_controller.dart';
+import '../widget/tab_widget.dart';
 
 class PoseTabScreen extends ConsumerStatefulWidget {
   const PoseTabScreen({super.key});
