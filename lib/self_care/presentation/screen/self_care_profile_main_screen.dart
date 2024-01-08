@@ -16,6 +16,16 @@ class SelfCareProfileMainScreen extends StatelessWidget {
       appBar: SelfCareDefaultAppBar(
         iconPath: "assets/image/core_icon/left_arrow_icon.svg",
       ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(height: 24),
+            SelfCareProfileMainTitleContainer(),
+          ],
+        ),
+      ),
     );
   }
 }
