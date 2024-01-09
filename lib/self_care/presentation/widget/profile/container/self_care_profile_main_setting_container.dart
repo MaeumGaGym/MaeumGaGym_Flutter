@@ -55,6 +55,7 @@ class SelfCareProfileMainSettingContainer extends StatelessWidget {
                 onTap: () {
                   showDialog(
                     context: context,
+                    barrierDismissible: true,
                     builder: (context) {
                       return const SelfCareProfileQuitDialog();
                     },
