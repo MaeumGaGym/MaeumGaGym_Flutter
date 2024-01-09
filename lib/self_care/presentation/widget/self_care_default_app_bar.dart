@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
+import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
 
 class SelfCareDefaultAppBar extends StatelessWidget
     implements PreferredSizeWidget {
@@ -34,6 +35,11 @@ class SelfCareDefaultAppBar extends StatelessWidget
                     height: 28,
                   ),
                 ),
+              ),
+              SizedBox(width: 24),
+              PtdTextWidget.labelLarge(
+                title!,
+                MaeumgagymColor.black,
               ),
             ],
           ),
