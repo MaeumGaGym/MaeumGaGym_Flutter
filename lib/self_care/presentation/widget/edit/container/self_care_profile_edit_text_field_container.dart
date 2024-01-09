@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/self_care_text_field_provider.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/edit/widget/self_care_text_field.dart';
 
 class SelfCareProfileEditTextFieldContainer extends ConsumerStatefulWidget {
@@ -52,6 +53,13 @@ class _SelfCareProfileEditTextFiledContainerState
     _sexController.dispose();
     _sexNode.dispose();
     super.dispose();
+  }
+
+  void focusCheck() {
+    ref.read(selfCareTextFieldProvider.notifier).state = _nameNode.hasFocus ||
+        _heightNode.hasFocus ||
+        _weightNode.hasFocus ||
+        _sexNode.hasFocus;
   }
 
   @override
