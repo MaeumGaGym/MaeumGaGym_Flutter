@@ -36,69 +36,78 @@ class OnBoardingScreen extends StatelessWidget {
             SizedBox(height: 105),
             Padding(
               padding: EdgeInsets.only(left: 16, right: 16, bottom: 16),
-              child: Container(
-                width: MediaQuery.of(context).size.width - 32,
-                height: 60,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  color: MaeumgagymColor.gray50,
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 22, right: 22),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      SvgPicture.asset(
-                          'assets/image/on_boarding_icon/google_logo.svg'),
-                      PtdTextWidget.labelMedium('구글로 로그인', Colors.black),
-                      SizedBox(),
-                    ],
+              child: GestureDetector(
+                onTap: () => context.push('/signUpAgree'),
+                child: Container(
+                  width: MediaQuery.of(context).size.width - 32,
+                  height: 60,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    color: MaeumgagymColor.gray50,
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 22, right: 22),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        SvgPicture.asset(
+                            'assets/image/on_boarding_icon/google_logo.svg'),
+                        PtdTextWidget.labelMedium('구글로 로그인', Colors.black),
+                        SizedBox(),
+                      ],
+                    ),
                   ),
                 ),
               ),
             ),
             Padding(
               padding: EdgeInsets.only(left: 16, right: 16, bottom: 16),
-              child: Container(
-                width: MediaQuery.of(context).size.width - 32,
-                height: 60,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  color: MaeumgagymColor.gray50,
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 22, right: 22),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      SvgPicture.asset(
-                          'assets/image/on_boarding_icon/kakao_talk_logo.svg'),
-                      PtdTextWidget.labelMedium('카카오로 로그인', Colors.black),
-                      SizedBox(),
-                    ],
+              child: GestureDetector(
+                onTap: () => context.push('/signUpAgree'),
+                child: Container(
+                  width: MediaQuery.of(context).size.width - 32,
+                  height: 60,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    color: MaeumgagymColor.gray50,
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 22, right: 22),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        SvgPicture.asset(
+                            'assets/image/on_boarding_icon/kakao_talk_logo.svg'),
+                        PtdTextWidget.labelMedium('카카오로 로그인', Colors.black),
+                        SizedBox(),
+                      ],
+                    ),
                   ),
                 ),
               ),
             ),
             Padding(
               padding: EdgeInsets.only(left: 16, right: 16, bottom: 28),
-              child: Container(
-                width: MediaQuery.of(context).size.width - 32,
-                height: 60,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  color: MaeumgagymColor.gray50,
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 22, right: 22),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      SvgPicture.asset(
-                          'assets/image/on_boarding_icon/apple_logo.svg'),
-                      PtdTextWidget.labelMedium('Apple로 로그인', Colors.black),
-                      SizedBox(),
-                    ],
+              child: GestureDetector(
+                onTap: () => context.push('/signUpAgree'),
+                child: Container(
+                  width: MediaQuery.of(context).size.width - 32,
+                  height: 60,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    color: MaeumgagymColor.gray50,
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 22, right: 22),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        SvgPicture.asset(
+                            'assets/image/on_boarding_icon/apple_logo.svg'),
+                        PtdTextWidget.labelMedium('Apple로 로그인', Colors.black),
+                        SizedBox(),
+                      ],
+                    ),
                   ),
                 ),
               ),
