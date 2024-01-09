@@ -2,8 +2,8 @@
 import 'package:flutter/material.dart';
 
 /// Core
-import '../../config/maeumgagym_color.dart';
-import '../../core/component/text/pretendard/ptd_text_widget.dart';
+import '../../../config/maeumgagym_color.dart';
+import '../../../core/component/text/pretendard/ptd_text_widget.dart';
 
 class PoseDetailListWidget extends StatelessWidget {
   final String title;
@@ -54,7 +54,9 @@ class PoseDetailListWidget extends StatelessWidget {
                       SizedBox(
                         width: MediaQuery.of(context).size.width - 92,
                         child: PtdTextWidget.bodyMedium(
-                            listData[index], MaeumgagymColor.black),
+                          listData[index],
+                          MaeumgagymColor.black,
+                        ),
                       ),
                     ],
                   )

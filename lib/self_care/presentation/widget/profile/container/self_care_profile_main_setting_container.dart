@@ -55,7 +55,7 @@ class SelfCareProfileMainSettingContainer extends StatelessWidget {
                 onTap: () {
                   showDialog(
                     context: context,
-                    barrierDismissible: true,
+                    barrierDismissible: true, /// dialog가 열렸을 때 빈 화면을 클릭해도 dialog가 꺼지도록 설정
                     builder: (context) {
                       return const SelfCareProfileQuitDialog();
                     },

@@ -1,11 +1,13 @@
+/// Package
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import 'package:maeum_ga_gym_flutter/on_boarding/presentation/on_boarding_screen.dart';
-import 'package:maeum_ga_gym_flutter/page_manager/presentation/page_manager_screen.dart';
-import 'package:maeum_ga_gym_flutter/sign_up/presentation/sign_up_agree_screen.dart';
-import 'package:maeum_ga_gym_flutter/sign_up/presentation/sign_up_nick_name_screen.dart';
-import 'package:maeum_ga_gym_flutter/sign_up/presentation/sign_up_success_screen.dart';
+/// Screen
+import 'package:maeum_ga_gym_flutter/sign_up/presentation/view/sign_up_agree_screen.dart';
+import 'package:maeum_ga_gym_flutter/sign_up/presentation/view/sign_up_nick_name_screen.dart';
+import '../on_boarding/presentation/view/on_boarding_screen.dart';
+import '../page_manager/presentation/view/page_manager_screen.dart';
+import '../sign_up/presentation/view/sign_up_success_screen.dart';
 
 CustomTransitionPage pageAnimation(Widget page) {
   return CustomTransitionPage(

@@ -1,14 +1,12 @@
 /// Package
 import 'package:flutter/material.dart';
-import 'package:maeum_ga_gym_flutter/pose/widget/pose_recommend_widget.dart';
 
 /// Widget
-import 'package:maeum_ga_gym_flutter/pose/widget/pose_data.dart';
+import '../widget/pose_data.dart';
+import '../widget/pose_recommend_widget.dart';
 
 class PoseReCommendScreen extends StatelessWidget {
-  final TabController tabContoller;
-
-  const PoseReCommendScreen({required this.tabContoller, super.key});
+  const PoseReCommendScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +19,6 @@ class PoseReCommendScreen extends StatelessWidget {
         children: [
           /// 맨몸 운동
           PoseRecommendWidget(
-            tabController: tabContoller,
             data: data,
             keyData: '맨몸',
             titleImage: 'assets/image/pose_icon/pose_arm.png',
@@ -30,7 +27,6 @@ class PoseReCommendScreen extends StatelessWidget {
 
           /// 기구 운동
           PoseRecommendWidget(
-            tabController: tabContoller,
             data: data,
             keyData: '기구',
             titleImage: 'assets/image/pose_icon/pose_machine.png',

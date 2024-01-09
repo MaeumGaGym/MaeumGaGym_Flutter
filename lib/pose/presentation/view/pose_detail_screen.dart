@@ -5,8 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
 
+import '../widget/pose_detail_list_widget.dart';
+
 /// Widget
-import 'package:maeum_ga_gym_flutter/pose/widget/pose_detail_list_widget.dart';
 
 class PoseDetailScreen extends StatefulWidget {
   final List<String> poseImages, exerciseWay, caution;

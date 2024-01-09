@@ -1,20 +1,20 @@
 /// Package
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:maeum_ga_gym_flutter/pose/presentation/pose_detail_screen.dart';
 
 /// Core
-import '../../config/maeumgagym_color.dart';
-import '../../core/component/text/pretendard/ptd_text_widget.dart';
+import '../../../config/maeumgagym_color.dart';
+import '../../../core/component/text/pretendard/ptd_text_widget.dart';
+
+/// Screen
+import 'package:maeum_ga_gym_flutter/pose/presentation/view/pose_detail_screen.dart';
 
 class PoseRecommendWidget extends StatelessWidget {
-  final TabController tabController;
   final List<Map<String, dynamic>> data;
   final int index;
   final String keyData, titleImage;
 
   const PoseRecommendWidget({
-    required this.tabController,
     required this.data,
     required this.keyData,
     required this.titleImage,

@@ -8,9 +8,10 @@ import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
 
 /// Widget
-import 'package:maeum_ga_gym_flutter/pose/presentation/pose_detail_screen.dart';
-import 'package:maeum_ga_gym_flutter/pose/provider/pose_search_controller.dart';
-import 'package:maeum_ga_gym_flutter/pose/widget/pose_data.dart';
+import 'package:maeum_ga_gym_flutter/pose/presentation/view/pose_detail_screen.dart';
+
+import '../provider/pose_search_controller.dart';
+import '../widget/pose_data.dart';
 
 class PoseSearchScreen extends ConsumerStatefulWidget {
   const PoseSearchScreen({super.key});
@@ -24,8 +25,8 @@ class _PoseSearchScreenState extends ConsumerState<PoseSearchScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final textState = ref.watch(poseSearchController).text;
-    final textNotifierState = ref.read(poseSearchController.notifier);
+    final textFieldState = ref.watch(poseSearchController).text;
+    final textFieldNotifier = ref.read(poseSearchController.notifier);
 
     return Scaffold(
       appBar: PreferredSize(
@@ -47,7 +48,7 @@ class _PoseSearchScreenState extends ConsumerState<PoseSearchScreen> {
             child: TextField(
               controller: textController,
               onTapOutside: (event) => FocusScope.of(context).unfocus(),
-              onChanged: (value) => textNotifierState.saveText(value),
+              onChanged: (value) => textFieldNotifier.saveText(value),
               cursorWidth: 1,
               cursorHeight: 20,
               style: const TextStyle(height: 1.23),
@@ -88,8 +89,8 @@ class _PoseSearchScreenState extends ConsumerState<PoseSearchScreen> {
                   itemCount: data.length,
                   itemBuilder: (BuildContext context, int index) {
                     /// 만약 textField에 값에 이름이 들어가지 않는다면 SizedBox.shrink
-                    if (textState.isNotEmpty &&
-                        !(data[index]['simpleName'].contains(textState))) {
+                    if (textFieldState.isNotEmpty &&
+                        !(data[index]['simpleName'].contains(textFieldState))) {
                       return const SizedBox.shrink();
                     } else {
                       return GestureDetector(
