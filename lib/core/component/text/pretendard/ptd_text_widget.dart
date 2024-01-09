@@ -204,4 +204,18 @@ class PtdTextWidget {
       ),
     );
   }
+
+  static Text onBoardingSubTitle(String text, Color color) {
+    return Text(
+      text,
+      textAlign: TextAlign.center,
+      style: TextStyle(
+        fontFamily: pretendard,
+        fontSize: 16,
+        fontWeight: FontWeight.w400,
+        color: color,
+        overflow: TextOverflow.visible,
+      ),
+    );
+  }
 }
