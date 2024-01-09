@@ -3,8 +3,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/profile/widget/dialog/self_care_profile_quit_dialog.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/profile/widget/self_care_profile_setting_item_widget.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/self_care_dummy.dart';
 
 class SelfCareProfileMainSettingContainer extends StatelessWidget {
   const SelfCareProfileMainSettingContainer({Key? key}) : super(key: key);
@@ -58,7 +56,7 @@ class SelfCareProfileMainSettingContainer extends StatelessWidget {
                   showDialog(
                     context: context,
                     builder: (context) {
-                      return SelfCareProfileQuitDialog();
+                      return const SelfCareProfileQuitDialog();
                     },
                   );
                 },
