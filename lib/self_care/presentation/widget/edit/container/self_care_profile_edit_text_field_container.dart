@@ -31,19 +31,27 @@ class _SelfCareProfileEditTextFiledContainerState
 
   @override
   void initState() {
-    _nameController = TextEditingController();
-    _heightController = TextEditingController();
-    _weightController = TextEditingController();
-    _sexController = TextEditingController();
     super.initState();
+    _nameController = TextEditingController();
+    _nameNode = FocusNode();
+    _heightController = TextEditingController();
+    _heightNode = FocusNode();
+    _weightController = TextEditingController();
+    _weightNode = FocusNode();
+    _sexController = TextEditingController();
+    _sexNode = FocusNode();
   }
 
   @override
   void dispose() {
     _nameController.dispose();
+    _nameNode.dispose();
     _heightController.dispose();
+    _heightNode.dispose();
     _weightController.dispose();
+    _weightNode.dispose();
     _sexController.dispose();
+    _sexNode.dispose();
     super.dispose();
   }
 
@@ -61,16 +69,19 @@ class _SelfCareProfileEditTextFiledContainerState
           width: MediaQuery.of(context).size.width,
           height: 48,
           decoration: BoxDecoration(
-            color: MaeumgagymColor.gray25,
+            color: _nameNode.hasFocus
+                ? MaeumgagymColor.blue50
+                : MaeumgagymColor.gray25,
             borderRadius: BorderRadius.circular(8),
             border: Border.all(
               width: 1,
-              color: MaeumgagymColor.gray50
-            )
+              color: _nameNode.hasFocus ? MaeumgagymColor.blue100 : MaeumgagymColor.gray50,
+            ),
           ),
           child: Center(
             child: TextFormField(
               controller: _nameController,
+              focusNode: _nameNode,
               style: const TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.w400,
