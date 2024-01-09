@@ -13,8 +13,8 @@ class HomeMainRoutineContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     Map<String, List<int>> routineData = {
       "벤치프레스": [10, 5],
-      "크런치" : [10, 5],
-      "싯업" : [10, 5],
+      "크런치": [10, 5],
+      "싯업": [10, 5],
     };
     return Container(
       decoration: BoxDecoration(
@@ -39,7 +39,8 @@ class HomeMainRoutineContainer extends StatelessWidget {
                 return Column(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 15, vertical: 8),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -72,7 +73,7 @@ class HomeMainRoutineContainer extends StatelessWidget {
                           ),
                           GestureDetector(
                             child: SvgPicture.asset(
-                              'assets/image/home_icon/right_arrow_icon.svg',
+                              'assets/image/core_icon/right_arrow_icon.svg',
                               width: 24,
                               height: 24,
                             ),
