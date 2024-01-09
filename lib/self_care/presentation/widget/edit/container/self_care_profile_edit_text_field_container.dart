@@ -33,13 +33,13 @@ class _SelfCareProfileEditTextFiledContainerState
   void initState() {
     super.initState();
     _nameController = TextEditingController();
-    _nameNode = FocusNode();
+    _nameNode = FocusNode()..addListener(focusCheck);
     _heightController = TextEditingController();
-    _heightNode = FocusNode();
+    _heightNode = FocusNode()..addListener(focusCheck);
     _weightController = TextEditingController();
-    _weightNode = FocusNode();
+    _weightNode = FocusNode()..addListener(focusCheck);
     _sexController = TextEditingController();
-    _sexNode = FocusNode();
+    _sexNode = FocusNode()..addListener(focusCheck);
   }
 
   @override
