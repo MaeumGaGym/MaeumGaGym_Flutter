@@ -24,12 +24,16 @@ class CumulativeCaloriesStateWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
+            /// 누적 칼로리 Title
             PtdTextWidget.labelLarge('누적 칼로리', MaeumgagymColor.black),
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
+                /// 선택된 음식의 칼로리 량
                 PtdTextWidget.titleMedium(caloriesState, MaeumgagymColor.black),
+
+                /// 칼로리 백분위 기중
                 PtdTextWidget.labelMedium(
                   ' / ${maxCaloriesState}kcal',
                   MaeumgagymColor.gray300,
