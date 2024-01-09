@@ -11,17 +11,17 @@ class SelfCareProfileEditScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: MaeumgagymColor.white,
-      appBar: SelfCareDefaultAppBar(
+      appBar: const SelfCareDefaultAppBar(
         iconPath: "assets/image/core_icon/left_arrow_icon.svg",
         title: "내 정보 변경",
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 24),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SelfCareProfileEditTextFieldContainer(),
+              const SelfCareProfileEditTextFieldContainer(),
               SizedBox(height: MediaQuery.of(context).viewInsets.bottom),
             ],
           ),
@@ -29,7 +29,7 @@ class SelfCareProfileEditScreen extends StatelessWidget {
       ),
       bottomSheet: Container(
         color: MaeumgagymColor.white,
-        child: SafeArea(
+        child: const SafeArea(
           child: SelfCareAnimatedButton(),
         ),
       ),
