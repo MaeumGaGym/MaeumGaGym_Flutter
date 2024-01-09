@@ -41,6 +41,7 @@ flutter:
     - assets/image/pose_icon/
     - assets/image/pose_icon/pose_exercise/
     - assets/image/self_care_icon/
+    - assets/image/on_boarding_icon/
 
   fonts:
     - family: Pretendard
