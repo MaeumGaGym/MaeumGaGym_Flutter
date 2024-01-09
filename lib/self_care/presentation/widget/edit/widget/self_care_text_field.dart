@@ -6,12 +6,14 @@ class SelfCareTextField extends StatefulWidget {
   final String title;
   final FocusNode focusNode;
   final TextEditingController controller;
+  final String? suffixText;
 
   const SelfCareTextField({
     super.key,
     required this.title,
     required this.focusNode,
     required this.controller,
+    this.suffixText,
   });
 
   @override
@@ -48,17 +50,27 @@ class _SelfCareTextFieldState extends State<SelfCareTextField> {
             child: TextFormField(
               controller: widget.controller,
               focusNode: widget.focusNode,
-              style: const TextStyle(
+              style: TextStyle(
+                color: MaeumgagymColor.black,
                 fontSize: 20,
                 fontWeight: FontWeight.w400,
                 fontFamily: "Pretendard",
                 overflow: TextOverflow.visible,
                 decorationThickness: 0,
               ),
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 border: InputBorder.none,
                 isCollapsed: true,
                 contentPadding: EdgeInsets.symmetric(horizontal: 12),
+                suffixText: widget.suffixText,
+                suffixStyle: TextStyle(
+                  color: MaeumgagymColor.gray600,
+                  fontSize: 20,
+                  fontWeight: FontWeight.w400,
+                  fontFamily: "Pretendard",
+                  overflow: TextOverflow.visible,
+                  decorationThickness: 0,
+                ),
               ),
               cursorColor: MaeumgagymColor.blue600,
             ),
