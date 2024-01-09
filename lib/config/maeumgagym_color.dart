@@ -19,15 +19,15 @@ class MaeumgagymColor {
   static Color gray25 = const Color(0xFFFAFAFA);
 
   /// Red
-  static Color red900 = const Color(0xFF330212);
-  static Color red800 = const Color(0xFF660425);
-  static Color red700 = const Color(0xFF990637);
-  static Color red600 = const Color(0xFFCC0849);
-  static Color red500 = const Color(0xFFF50A58);
-  static Color red400 = const Color(0xFFF53172);
-  static Color red300 = const Color(0xFFF56293);
-  static Color red200 = const Color(0xFFF593B4);
-  static Color red100 = const Color(0xFFF5C4D4);
+  static Color red900 = const Color(0xFF330902);
+  static Color red800 = const Color(0xFF661104);
+  static Color red700 = const Color(0xFF991A06);
+  static Color red600 = const Color(0xFFCC2208);
+  static Color red500 = const Color(0xFFF5290A);
+  static Color red400 = const Color(0xFFF54B31);
+  static Color red300 = const Color(0xFFF57662);
+  static Color red200 = const Color(0xFFF5A093);
+  static Color red100 = const Color(0xFFF5CBC4);
   static Color red50 = const Color(0xFFF5E8E6);
 
   /// Yellow
