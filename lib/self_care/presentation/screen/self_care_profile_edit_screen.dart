@@ -15,7 +15,7 @@ class SelfCareProfileEditScreen extends StatelessWidget {
         iconPath: "assets/image/core_icon/left_arrow_icon.svg",
         title: "내 정보 변경",
       ),
-      body: const Padding(
+      body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 20, vertical: 24),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -24,8 +24,11 @@ class SelfCareProfileEditScreen extends StatelessWidget {
           ],
         ),
       ),
-      bottomSheet: SafeArea(
-        child: SelfCareAnimatedButton(),
+      bottomSheet: Container(
+        color: MaeumgagymColor.white,
+        child: SafeArea(
+          child: SelfCareAnimatedButton(),
+        ),
       ),
     );
   }
