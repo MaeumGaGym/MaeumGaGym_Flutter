@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 /// Widget
 import '../widget/pose_data.dart';
-import '../widget/pose_recommend_widget.dart';
+import '../widget/recommend/pose_recommend_widget.dart';
 
 class PoseReCommendScreen extends StatelessWidget {
   const PoseReCommendScreen({super.key});

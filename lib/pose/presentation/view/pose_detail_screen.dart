@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
 
-import '../widget/pose_detail_list_widget.dart';
+import '../widget/detail/pose_detail_list_widget.dart';
 
 /// Widget
 
