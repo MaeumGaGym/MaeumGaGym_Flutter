@@ -16,15 +16,18 @@ class CalorieCalculatorAppBar extends StatelessWidget
       preferredSize: preferredSize,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: AppBar(
-          scrolledUnderElevation: 0,
-          centerTitle: true,
-          backgroundColor: MaeumgagymColor.white,
-          leading: SvgPicture.asset(
-            'assets/image/core_icon/left_arrow_icon.svg',
+        child: Opacity(
+          opacity: 0.48,
+          child: AppBar(
+            scrolledUnderElevation: 0,
+            centerTitle: true,
+            backgroundColor: MaeumgagymColor.white,
+            leading: SvgPicture.asset(
+              'assets/image/core_icon/left_arrow_icon.svg',
+            ),
+            leadingWidth: 32,
+            title: PtdTextWidget.labelLarge('칼로리 계산기', MaeumgagymColor.black),
           ),
-          leadingWidth: 32,
-          title: PtdTextWidget.labelLarge('칼로리 계산기', MaeumgagymColor.black),
         ),
       ),
     );
