@@ -53,6 +53,9 @@ class _SelfCareProfileEditTextFiledContainerState extends State<SelfCareProfileE
           child: TextFormField(
             controller: _nameController,
             style: TextStyle(decorationThickness: 0),
+            decoration: InputDecoration(
+              border: InputBorder.none,
+            ),
           ),
         ),
       ],
