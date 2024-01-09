@@ -36,7 +36,7 @@ class SelfCareDefaultAppBar extends StatelessWidget
                   ),
                 ),
               ),
-              SizedBox(width: 24),
+              const SizedBox(width: 24),
               PtdTextWidget.labelLarge(
                 title!,
                 MaeumgagymColor.black,
