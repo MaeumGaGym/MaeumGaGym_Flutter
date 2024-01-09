@@ -61,7 +61,29 @@ class _SelfCareProfileEditTextFiledContainerState
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SelfCareTextField(title: "이름", focusNode: _nameNode, controller: _nameController),
+        SelfCareTextField(
+          title: "이름",
+          focusNode: _nameNode,
+          controller: _nameController,
+        ),
+        SizedBox(height: 32),
+        SelfCareTextField(
+          title: "키",
+          focusNode: _heightNode,
+          controller: _heightController,
+        ),
+        SizedBox(height: 32),
+        SelfCareTextField(
+          title: "몸무게",
+          focusNode: _weightNode,
+          controller: _weightController,
+        ),
+        SizedBox(height: 32),
+        SelfCareTextField(
+          title: "성별",
+          focusNode: _sexNode,
+          controller: _sexController,
+        ),
       ],
     );
   }
