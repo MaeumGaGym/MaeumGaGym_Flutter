@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 import '../../../../config/maeumgagym_color.dart';
 
 class CumulativeCaloriesBarWidget extends StatelessWidget {
-  const CumulativeCaloriesBarWidget({super.key});
+  final int caloriesState, maxCaloriesState;
+
+  const CumulativeCaloriesBarWidget(
+      {super.key, required this.caloriesState, required this.maxCaloriesState});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +29,9 @@ class CumulativeCaloriesBarWidget extends StatelessWidget {
 
               /// 파란색 Bar
               Container(
-                width: 200,
+                width: caloriesState /
+                    maxCaloriesState *
+                    (MediaQuery.of(context).size.width - 60),
                 height: 10,
                 decoration: BoxDecoration(
                   color: MaeumgagymColor.blue400,
