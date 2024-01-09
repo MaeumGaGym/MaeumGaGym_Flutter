@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/edit/widget/self_care_text_field.dart';
 
 class SelfCareProfileEditTextFieldContainer extends ConsumerStatefulWidget {
   const SelfCareProfileEditTextFieldContainer({Key? key}) : super(key: key);
@@ -60,12 +61,7 @@ class _SelfCareProfileEditTextFiledContainerState
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        PtdTextWidget.bodyMedium(
-          "이름",
-          MaeumgagymColor.black,
-        ),
-        const SizedBox(height: 8),
-        SelfCareTextField(nameNode: _nameNode, nameController: _nameController),
+        SelfCareTextField(title: "이름", focusNode: _nameNode, controller: _nameController),
       ],
     );
   }
