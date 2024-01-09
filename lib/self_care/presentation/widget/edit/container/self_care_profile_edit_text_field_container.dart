@@ -1,28 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
 
-class SelfCareProfileEditTextFiledContainer extends StatefulWidget {
+class SelfCareProfileEditTextFiledContainer extends ConsumerStatefulWidget {
   const SelfCareProfileEditTextFiledContainer({Key? key}) : super(key: key);
 
   @override
-  State<SelfCareProfileEditTextFiledContainer> createState() =>
+  ConsumerState<SelfCareProfileEditTextFiledContainer> createState() =>
       _SelfCareProfileEditTextFiledContainerState();
 }
 
 class _SelfCareProfileEditTextFiledContainerState
-    extends State<SelfCareProfileEditTextFiledContainer> {
+    extends ConsumerState<SelfCareProfileEditTextFiledContainer> {
   /// 이름
   late TextEditingController _nameController;
+  late FocusNode _nameNode;
 
   /// 키
   late TextEditingController _heightController;
+  late FocusNode _heightNode;
 
   /// 몸무게
   late TextEditingController _weightController;
+  late FocusNode _weightNode;
 
   /// 성별
   late TextEditingController _sexController;
+  late FocusNode _sexNode;
 
   @override
   void initState() {
@@ -58,6 +63,10 @@ class _SelfCareProfileEditTextFiledContainerState
           decoration: BoxDecoration(
             color: MaeumgagymColor.gray25,
             borderRadius: BorderRadius.circular(8),
+            border: Border.all(
+              width: 1,
+              color: MaeumgagymColor.gray50
+            )
           ),
           child: Center(
             child: TextFormField(
@@ -74,7 +83,7 @@ class _SelfCareProfileEditTextFiledContainerState
                 isCollapsed: true,
                 contentPadding: EdgeInsets.symmetric(horizontal: 12),
               ),
-
+              cursorColor: MaeumgagymColor.blue600,
             ),
           ),
         ),
