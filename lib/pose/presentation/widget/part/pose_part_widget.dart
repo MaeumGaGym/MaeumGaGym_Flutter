@@ -2,12 +2,12 @@
 import 'package:flutter/material.dart';
 
 /// core
-import '../../../config/maeumgagym_color.dart';
-import '../../../core/component/text/pretendard/ptd_text_widget.dart';
+import '../../../../config/maeumgagym_color.dart';
+import '../../../../core/component/text/pretendard/ptd_text_widget.dart';
 
 /// Widget
 import 'package:maeum_ga_gym_flutter/pose/presentation/widget/pose_data.dart';
-import '../view/pose_detail_screen.dart';
+import '../../view/pose_detail_screen.dart';
 
 class PosePartWidget extends StatelessWidget {
   final int index;
