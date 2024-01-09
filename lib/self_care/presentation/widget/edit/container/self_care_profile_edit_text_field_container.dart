@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
-import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/edit/widget/self_care_text_field.dart';
 
 class SelfCareProfileEditTextFieldContainer extends ConsumerStatefulWidget {
@@ -66,19 +64,21 @@ class _SelfCareProfileEditTextFiledContainerState
           focusNode: _nameNode,
           controller: _nameController,
         ),
-        SizedBox(height: 32),
+        const SizedBox(height: 32),
         SelfCareTextField(
           title: "키",
           focusNode: _heightNode,
           controller: _heightController,
+          suffixText: "cm",
         ),
-        SizedBox(height: 32),
+        const SizedBox(height: 32),
         SelfCareTextField(
           title: "몸무게",
           focusNode: _weightNode,
           controller: _weightController,
+          suffixText: "kg",
         ),
-        SizedBox(height: 32),
+        const SizedBox(height: 32),
         SelfCareTextField(
           title: "성별",
           focusNode: _sexNode,
