@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/self_care_text_field_provider.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/edit/container/self_care_profile_edit_text_field_container.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/edit/widget/self_care_animated_button.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/self_care_default_app_bar.dart';
@@ -35,8 +36,14 @@ class SelfCareProfileEditScreen extends ConsumerWidget {
         /// 버튼 주변에 회색. 꼴받는 부분 색 변경
         /// >> 이렇게 해도 문제 없다네요 ~~
         color: MaeumgagymColor.white,
-        child: const SafeArea(
-          child: SelfCareAnimatedButton(),
+        child: Padding(
+          padding: EdgeInsets.only(
+            bottom:
+                ref.watch(selfCareTextFieldProvider.notifier).state ? 0 : 20,
+          ),
+          child: const SafeArea(
+            child: SelfCareAnimatedButton(),
+          ),
         ),
       ),
     );
