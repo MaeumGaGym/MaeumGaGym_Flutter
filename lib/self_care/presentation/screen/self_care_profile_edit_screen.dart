@@ -15,13 +15,15 @@ class SelfCareProfileEditScreen extends StatelessWidget {
         iconPath: "assets/image/core_icon/left_arrow_icon.svg",
         title: "내 정보 변경",
       ),
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 24),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SelfCareProfileEditTextFieldContainer(),
-          ],
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 24),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SelfCareProfileEditTextFieldContainer(),
+            ],
+          ),
         ),
       ),
       bottomSheet: Container(
