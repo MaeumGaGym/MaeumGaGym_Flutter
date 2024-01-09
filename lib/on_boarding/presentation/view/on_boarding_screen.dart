@@ -15,12 +15,12 @@ class OnBoardingScreen extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
-            SizedBox(height: 64),
+            const SizedBox(height: 64),
             Center(
               child: Container(
                 width: MediaQuery.of(context).size.width - 110,
                 height: MediaQuery.of(context).size.width - 110,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: Colors.grey,
                   shape: BoxShape.circle,
                 ),
@@ -33,9 +33,9 @@ class OnBoardingScreen extends StatelessWidget {
               '저희의 좋은 서비스를 통해 즐거운 헬창 생활을\n즐겨보세요!',
               MaeumgagymColor.gray600,
             ),
-            SizedBox(height: 105),
+            const SizedBox(height: 105),
             Padding(
-              padding: EdgeInsets.only(left: 16, right: 16, bottom: 16),
+              padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
               child: GestureDetector(
                 onTap: () => context.push('/signUpAgree'),
                 child: Container(
@@ -53,7 +53,7 @@ class OnBoardingScreen extends StatelessWidget {
                         SvgPicture.asset(
                             'assets/image/on_boarding_icon/google_logo.svg'),
                         PtdTextWidget.labelMedium('구글로 로그인', Colors.black),
-                        SizedBox(),
+                        const SizedBox(),
                       ],
                     ),
                   ),
@@ -61,7 +61,7 @@ class OnBoardingScreen extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(left: 16, right: 16, bottom: 16),
+              padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
               child: GestureDetector(
                 onTap: () => context.push('/signUpAgree'),
                 child: Container(
@@ -79,7 +79,7 @@ class OnBoardingScreen extends StatelessWidget {
                         SvgPicture.asset(
                             'assets/image/on_boarding_icon/kakao_talk_logo.svg'),
                         PtdTextWidget.labelMedium('카카오로 로그인', Colors.black),
-                        SizedBox(),
+                        const SizedBox(),
                       ],
                     ),
                   ),
@@ -87,7 +87,7 @@ class OnBoardingScreen extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(left: 16, right: 16, bottom: 28),
+              padding: const EdgeInsets.only(left: 16, right: 16, bottom: 28),
               child: GestureDetector(
                 onTap: () => context.push('/signUpAgree'),
                 child: Container(
@@ -105,7 +105,7 @@ class OnBoardingScreen extends StatelessWidget {
                         SvgPicture.asset(
                             'assets/image/on_boarding_icon/apple_logo.svg'),
                         PtdTextWidget.labelMedium('Apple로 로그인', Colors.black),
-                        SizedBox(),
+                        const SizedBox(),
                       ],
                     ),
                   ),
