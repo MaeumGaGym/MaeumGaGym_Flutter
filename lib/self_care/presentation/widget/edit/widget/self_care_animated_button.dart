@@ -9,13 +9,13 @@ class SelfCareAnimatedButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final focusState = ref.watch(selfCareTextFieldProvider);
+    final focusState = ref.watch(selfCareTextFieldProvider); /// textfield 클래스에서 변경해주던 그 provider
     return GestureDetector(
       onTap: () {},
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: focusState ? 0 : 20),
         child: AnimatedContainer(
-          duration: const Duration(milliseconds: 100),
+          duration: const Duration(milliseconds: 100), /// signup 버튼 가져와서 좀 많이 수정함
           width: MediaQuery.of(context).size.width,
           height: 58,
           decoration: BoxDecoration(
