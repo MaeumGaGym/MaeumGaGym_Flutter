@@ -58,11 +58,14 @@ class _SelfCareTextFieldState extends State<SelfCareTextField> {
                 overflow: TextOverflow.visible,
                 decorationThickness: 0,
               ),
-              decoration: (InputDecoration(
+              decoration: InputDecoration(
                 border: InputBorder.none,
-                isCollapsed: true, /// TextField 커서가 위로 올라가요
+                isCollapsed: true,
+
+                /// TextField 커서가 위로 올라가요
                 contentPadding: const EdgeInsets.symmetric(horizontal: 12),
                 suffixText: widget.suffixText,
+
                 /// 텍스트 필드 오른쪽에 뜨는 텍스트 (cm, kg),
                 /// 근데 suffixText는 controller에 값이 있을 때만 뜨더라구요.. 고칠려했지만 고칠 수 없다.
                 suffixStyle: TextStyle(
@@ -73,7 +76,7 @@ class _SelfCareTextFieldState extends State<SelfCareTextField> {
                   overflow: TextOverflow.visible,
                   decorationThickness: 0,
                 ),
-              )),
+              ),
               cursorColor: MaeumgagymColor.blue600,
               /// 커서 색상 변경
             ),
