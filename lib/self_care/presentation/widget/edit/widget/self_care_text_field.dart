@@ -61,7 +61,7 @@ class _SelfCareTextFieldState extends State<SelfCareTextField> {
               decoration: InputDecoration(
                 border: InputBorder.none,
                 isCollapsed: true,
-                contentPadding: EdgeInsets.symmetric(horizontal: 12),
+                contentPadding: const EdgeInsets.symmetric(horizontal: 12),
                 suffixText: widget.suffixText,
                 suffixStyle: TextStyle(
                   color: MaeumgagymColor.gray600,
