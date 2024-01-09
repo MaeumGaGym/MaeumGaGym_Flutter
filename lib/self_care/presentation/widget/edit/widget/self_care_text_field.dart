@@ -53,6 +53,9 @@ class _SelfCareTextFieldState extends State<SelfCareTextField> {
               controller: widget.controller,
               focusNode: widget.focusNode,
               textInputAction: widget.inputAction,
+              onTapOutside: (event) {
+                FocusScope.of(context).unfocus();
+              },
               style: TextStyle(
                 color: MaeumgagymColor.black,
                 fontSize: 20,
