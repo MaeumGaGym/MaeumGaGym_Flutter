@@ -13,6 +13,7 @@ class SelfCareProfileEditTextFieldContainer extends ConsumerStatefulWidget {
 
 class _SelfCareProfileEditTextFiledContainerState
     extends ConsumerState<SelfCareProfileEditTextFieldContainer> {
+  /// initState에서 초기화해주려고 late로 지정해줬습니다.
   /// 이름
   late TextEditingController _nameController;
   late FocusNode _nameNode;
@@ -33,6 +34,7 @@ class _SelfCareProfileEditTextFiledContainerState
   void initState() {
     super.initState();
     _nameController = TextEditingController();
+    /// addListener >> 변경이 감지될 때마다 로직 실행
     _nameNode = FocusNode()..addListener(focusCheck);
     _heightController = TextEditingController();
     _heightNode = FocusNode()..addListener(focusCheck);
@@ -44,6 +46,7 @@ class _SelfCareProfileEditTextFiledContainerState
 
   @override
   void dispose() {
+    /// 안 쓸때에는 죽이기 !
     _nameController.dispose();
     _nameNode.dispose();
     _heightController.dispose();
@@ -55,7 +58,7 @@ class _SelfCareProfileEditTextFiledContainerState
     super.dispose();
   }
 
-  void focusCheck() {
+  void focusCheck() { /// 각각의 FocusNode들이 Focus 되었는지 확인하는 함수
     ref.read(selfCareTextFieldProvider.notifier).state = _nameNode.hasFocus ||
         _heightNode.hasFocus ||
         _weightNode.hasFocus ||
