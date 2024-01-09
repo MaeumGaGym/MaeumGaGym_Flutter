@@ -3,16 +3,16 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
 
-class SelfCareProfileEditTextFiledContainer extends ConsumerStatefulWidget {
-  const SelfCareProfileEditTextFiledContainer({Key? key}) : super(key: key);
+class SelfCareProfileEditTextFieldContainer extends ConsumerStatefulWidget {
+  const SelfCareProfileEditTextFieldContainer({Key? key}) : super(key: key);
 
   @override
-  ConsumerState<SelfCareProfileEditTextFiledContainer> createState() =>
+  ConsumerState<SelfCareProfileEditTextFieldContainer> createState() =>
       _SelfCareProfileEditTextFiledContainerState();
 }
 
 class _SelfCareProfileEditTextFiledContainerState
-    extends ConsumerState<SelfCareProfileEditTextFiledContainer> {
+    extends ConsumerState<SelfCareProfileEditTextFieldContainer> {
   /// 이름
   late TextEditingController _nameController;
   late FocusNode _nameNode;
