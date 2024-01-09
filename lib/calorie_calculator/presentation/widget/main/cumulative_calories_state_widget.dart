@@ -6,7 +6,13 @@ import '../../../../config/maeumgagym_color.dart';
 import '../../../../core/component/text/pretendard/ptd_text_widget.dart';
 
 class CumulativeCaloriesStateWidget extends StatelessWidget {
-  const CumulativeCaloriesStateWidget({super.key});
+  final String caloriesState, maxCaloriesState;
+
+  const CumulativeCaloriesStateWidget({
+    super.key,
+    required this.caloriesState,
+    required this.maxCaloriesState,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -23,9 +29,9 @@ class CumulativeCaloriesStateWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                PtdTextWidget.titleMedium("1,080", MaeumgagymColor.black),
+                PtdTextWidget.titleMedium(caloriesState, MaeumgagymColor.black),
                 PtdTextWidget.labelMedium(
-                  ' / 1,774kcal',
+                  ' / ${maxCaloriesState}kcal',
                   MaeumgagymColor.gray300,
                 )
               ],
