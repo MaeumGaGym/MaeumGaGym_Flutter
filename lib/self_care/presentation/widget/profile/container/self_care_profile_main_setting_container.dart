@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/profile/widget/self_care_profile_setting_item_widget.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/self_care_dummy.dart';
+import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/profile/widget/dialog/self_care_profile_quit_dialog.dart';
 
 class SelfCareProfileMainSettingContainer extends StatelessWidget {
   const SelfCareProfileMainSettingContainer({Key? key}) : super(key: key);
@@ -17,15 +18,66 @@ class SelfCareProfileMainSettingContainer extends StatelessWidget {
           borderRadius: BorderRadius.circular(32),
         ),
         child: Center(
-          child: ListView.builder(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemCount: selfCareProfileSettingItemList.length,
-            itemBuilder: (context, index) {
-              return SelfCareProfileSettingItemWidget(
-                title: selfCareProfileSettingItemList[index],
-              );
-            },
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    PtdTextWidget.labelLarge(
+                      "내 정보 변경",
+                      MaeumgagymColor.black,
+                    ),
+                    SvgPicture.asset(
+                        "assets/image/core_icon/right_arrow_icon.svg"),
+                  ],
+                ),
+              ),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    PtdTextWidget.labelLarge(
+                      "로그아웃",
+                      MaeumgagymColor.black,
+                    ),
+                    SvgPicture.asset(
+                        "assets/image/core_icon/right_arrow_icon.svg"),
+                  ],
+                ),
+              ),
+              GestureDetector(
+                onTap: () {
+                  showDialog(
+                    context: context,
+                    barrierDismissible: true, /// dialog가 열렸을 때 빈 화면을 클릭해도 dialog가 꺼지도록 설정
+                    builder: (context) {
+                      return const SelfCareProfileQuitDialog();
+                    },
+                  );
+                },
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      PtdTextWidget.labelLarge(
+                        "회원탈퇴",
+                        MaeumgagymColor.black,
+                      ),
+                      SvgPicture.asset(
+                          "assets/image/core_icon/right_arrow_icon.svg"),
+                    ],
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
       ),
