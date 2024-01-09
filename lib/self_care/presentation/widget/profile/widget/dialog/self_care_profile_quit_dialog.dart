@@ -7,7 +7,7 @@ class SelfCareProfileQuitDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Dialog(
+    return Dialog( // AlertDialog 보다 크기 조절이 좋음
       child: Container(
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
@@ -17,7 +17,7 @@ class SelfCareProfileQuitDialog extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(24),
           child: Column(
-            mainAxisSize: MainAxisSize.min,
+            mainAxisSize: MainAxisSize.min, // Widget 아이템 길이만큼 Column 사이즈 지정
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               PtdTextWidget.titleMedium(
@@ -33,7 +33,7 @@ class SelfCareProfileQuitDialog extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Expanded(
+                  Expanded( // 구분선을 제외한 Row 사이즈의 반 만큼
                     child: Container(
                       height: 48,
                       decoration: BoxDecoration(
@@ -49,7 +49,7 @@ class SelfCareProfileQuitDialog extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(width: 8),
-                  Expanded(
+                  Expanded( // 구분선을 제외한 Row 사이즈의 반 만큼
                     child: Container(
                       height: 48,
                       decoration: BoxDecoration(
