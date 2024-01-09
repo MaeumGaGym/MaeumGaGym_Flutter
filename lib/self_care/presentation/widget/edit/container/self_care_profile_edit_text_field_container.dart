@@ -42,9 +42,19 @@ class _SelfCareProfileEditTextFiledContainerState extends State<SelfCareProfileE
           "이름",
           MaeumgagymColor.black,
         ),
-        TextFormField(
-          controller: ,
-        )
+        SizedBox(height: 8),
+        Container(
+          width: MediaQuery.of(context).size.width,
+          height: 48,
+          decoration: BoxDecoration(
+            color: MaeumgagymColor.gray25,
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: TextFormField(
+            controller: _nameController,
+            style: TextStyle(decorationThickness: 0),
+          ),
+        ),
       ],
     );
   }
