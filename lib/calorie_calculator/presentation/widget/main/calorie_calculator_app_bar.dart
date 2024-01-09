@@ -12,10 +12,13 @@ class CalorieCalculatorAppBar extends StatelessWidget
 
   @override
   Widget build(BuildContext context) {
+    /// 높이 조절
     return PreferredSize(
       preferredSize: preferredSize,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
+
+        /// 투명도 조절
         child: Opacity(
           opacity: 0.48,
           child: AppBar(
@@ -33,6 +36,7 @@ class CalorieCalculatorAppBar extends StatelessWidget
     );
   }
 
+  /// 높이 값은 여기에
   @override
   Size get preferredSize => const Size.fromHeight(48);
 }
