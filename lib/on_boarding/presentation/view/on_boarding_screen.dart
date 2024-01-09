@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
+import 'package:maeum_ga_gym_flutter/on_boarding/presentation/widget/on_boarding_contents_widget.dart';
+import 'package:maeum_ga_gym_flutter/on_boarding/presentation/widget/on_boarding_data.dart';
 
 import '../../../core/component/text/pretendard/ptd_text_widget.dart';
 
@@ -34,84 +35,23 @@ class OnBoardingScreen extends StatelessWidget {
               MaeumgagymColor.gray600,
             ),
             const SizedBox(height: 105),
-            Padding(
-              padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
-              child: GestureDetector(
-                onTap: () => context.push('/signUpAgree'),
-                child: Container(
-                  width: MediaQuery.of(context).size.width - 32,
-                  height: 60,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    color: MaeumgagymColor.gray50,
+            ListView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: onBoardingContentsData.length,
+              itemBuilder: (context, index) {
+                return GestureDetector(
+                  onTap: () => context.push(
+                    onBoardingContentsData[index]['route']!,
                   ),
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 22, right: 22),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        SvgPicture.asset(
-                            'assets/image/on_boarding_icon/google_logo.svg'),
-                        PtdTextWidget.labelMedium('구글로 로그인', Colors.black),
-                        const SizedBox(),
-                      ],
-                    ),
+                  child: OnBoardingContentsWidget(
+                    image: onBoardingContentsData[index]['image']!,
+                    title: onBoardingContentsData[index]['title']!,
                   ),
-                ),
-              ),
+                );
+              },
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
-              child: GestureDetector(
-                onTap: () => context.push('/signUpAgree'),
-                child: Container(
-                  width: MediaQuery.of(context).size.width - 32,
-                  height: 60,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    color: MaeumgagymColor.gray50,
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 22, right: 22),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        SvgPicture.asset(
-                            'assets/image/on_boarding_icon/kakao_talk_logo.svg'),
-                        PtdTextWidget.labelMedium('카카오로 로그인', Colors.black),
-                        const SizedBox(),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 16, right: 16, bottom: 28),
-              child: GestureDetector(
-                onTap: () => context.push('/signUpAgree'),
-                child: Container(
-                  width: MediaQuery.of(context).size.width - 32,
-                  height: 60,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    color: MaeumgagymColor.gray50,
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 22, right: 22),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        SvgPicture.asset(
-                            'assets/image/on_boarding_icon/apple_logo.svg'),
-                        PtdTextWidget.labelMedium('Apple로 로그인', Colors.black),
-                        const SizedBox(),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ),
+            const SizedBox(height: 12),
           ],
         ),
       ),
