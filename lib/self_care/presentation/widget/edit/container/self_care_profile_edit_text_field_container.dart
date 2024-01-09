@@ -12,18 +12,17 @@ class SelfCareProfileEditTextFiledContainer extends StatefulWidget {
 
 class _SelfCareProfileEditTextFiledContainerState
     extends State<SelfCareProfileEditTextFiledContainer> {
+  /// 이름
   late TextEditingController _nameController;
 
-  /// 이름
+  /// 키
   late TextEditingController _heightController;
 
-  /// 키
+  /// 몸무게
   late TextEditingController _weightController;
 
-  /// 몸무게
-  late TextEditingController _sexController;
-
   /// 성별
+  late TextEditingController _sexController;
 
   @override
   void initState() {
@@ -75,7 +74,7 @@ class _SelfCareProfileEditTextFiledContainerState
                 isCollapsed: true,
                 contentPadding: EdgeInsets.symmetric(horizontal: 12),
               ),
-              
+
             ),
           ),
         ),
