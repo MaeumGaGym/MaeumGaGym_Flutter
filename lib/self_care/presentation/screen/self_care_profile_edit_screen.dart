@@ -15,8 +15,8 @@ class SelfCareProfileEditScreen extends StatelessWidget {
         iconPath: "assets/image/core_icon/left_arrow_icon.svg",
         title: "내 정보 변경",
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
+      body: const Padding(
+        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 24),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
