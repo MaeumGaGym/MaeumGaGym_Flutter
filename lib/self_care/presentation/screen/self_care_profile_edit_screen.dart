@@ -22,6 +22,7 @@ class SelfCareProfileEditScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SelfCareProfileEditTextFieldContainer(),
+              SizedBox(height: MediaQuery.of(context).viewInsets.bottom),
             ],
           ),
         ),
