@@ -12,7 +12,7 @@ import 'package:maeum_ga_gym_flutter/pose/presentation/view/pose_part_screen.dar
 import 'package:maeum_ga_gym_flutter/pose/presentation/view/pose_recommend_screen.dart';
 import 'package:maeum_ga_gym_flutter/pose/presentation/view/pose_search_screen.dart';
 import '../provider/pose_search_controller.dart';
-import '../widget/tab_widget.dart';
+import '../widget/tab/tab_widget.dart';
 
 class PoseTabScreen extends ConsumerStatefulWidget {
   const PoseTabScreen({super.key});
