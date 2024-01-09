@@ -22,12 +22,17 @@ class SelfCareProfileEditScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SelfCareProfileEditTextFieldContainer(),
+
+              /// 키보드가 활성화 될 때 높이만큼 여백을 추가
+              /// >> 마지막 TextField가 키보드에 가려지지 않고 스크롤 잘됨 ^^ 이거 ㄹㅇ 개 꿀팁 미쳤음..
               SizedBox(height: MediaQuery.of(context).viewInsets.bottom),
             ],
           ),
         ),
       ),
       bottomSheet: Container(
+        /// 버튼 주변에 회색. 꼴받는 부분 색 변경
+        /// >> 이렇게 해도 문제 없다네요 ~~
         color: MaeumgagymColor.white,
         child: const SafeArea(
           child: SelfCareAnimatedButton(),
