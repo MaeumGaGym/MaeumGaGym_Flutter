@@ -25,6 +25,15 @@ class _SelfCareProfileEditTextFiledContainerState extends State<SelfCareProfileE
   }
 
   @override
+  void dispose() {
+    _nameController.dispose();
+    _heightController.dispose();
+    _weightController.dispose();
+    _sexController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
