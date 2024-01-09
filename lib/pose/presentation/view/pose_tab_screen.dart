@@ -67,93 +67,111 @@ class _PoseTabScreenState extends ConsumerState<PoseTabScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            /// Search와 Setting
-            SizedBox(
-                height: 52,
-                child: Padding(
-                  padding: const EdgeInsets.only(right: 20),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      GestureDetector(
-                          onTap: () async {
-                            await Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const PoseSearchScreen(),
-                              ),
-                            );
+        child: NestedScrollView(
+          headerSliverBuilder: (context, innerBoxIsScrolled) {
+            return <Widget>[
+              SliverOverlapAbsorber(
+                handle:
+                    NestedScrollView.sliverOverlapAbsorberHandleFor(context),
+                sliver: SliverAppBar(
+                  title: SizedBox(
+                    height: 52,
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 20),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          GestureDetector(
+                            onTap: () async {
+                              await Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      const PoseSearchScreen(),
+                                ),
+                              );
 
-                            ref.read(poseSearchController.notifier).setText();
-                          },
-                          child: Padding(
-                            padding: const EdgeInsets.only(right: 24),
+                              ref.read(poseSearchController.notifier).setText();
+                            },
                             child: SvgPicture.asset(
-                                'assets/image/pose_icon/search.svg'),
-                          )),
-                      SvgPicture.asset('assets/image/pose_icon/setting.svg'),
-                    ],
+                              'assets/image/pose_icon/search.svg',
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
-                )),
-
-            /// 자세 글씨
-            Padding(
-              padding: const EdgeInsets.only(left: 20),
-              child: PtdTextWidget.titleLarge('자세', MaeumgagymColor.black),
-            ),
-
-            /// Tap Bar
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8),
-              child: SizedBox(height: 56, child: _tabBar()),
-            ),
-
-            Expanded(
-              child: TabBarView(
-                controller: tabController,
-                children: [
-                  const PoseReCommendScreen(),
-                  PosePartScreen(
-                    tabContoller: tabController,
-                    tabName: const ['상체', '가슴'],
+                  bottom: PreferredSize(
+                    preferredSize: const Size.fromHeight(48),
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 20),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          PtdTextWidget.titleLarge('자세', MaeumgagymColor.black),
+                        ],
+                      ),
+                    ),
                   ),
-                  PosePartScreen(
-                    tabContoller: tabController,
-                    tabName: const ['상체', '등'],
-                  ),
-                  PosePartScreen(
-                    tabContoller: tabController,
-                    tabName: const ['상체', '어깨'],
-                  ),
-                  PosePartScreen(
-                    tabContoller: tabController,
-                    tabName: const ['상체', '팔'],
-                  ),
-                  PosePartScreen(
-                    tabContoller: tabController,
-                    tabName: const ['상체', '복근'],
-                  ),
-                  PosePartScreen(
-                    tabContoller: tabController,
-                    tabName: const ['하체', '앞 허벅지'],
-                  ),
-                  PosePartScreen(
-                    tabContoller: tabController,
-                    tabName: const ['하체', '뒷 허벅지'],
-                  ),
-                  PosePartScreen(
-                    tabContoller: tabController,
-                    tabName: const ['하체', '종아리'],
-                  ),
-                ],
+                  pinned: false,
+                  expandedHeight: 100,
+                  forceElevated: innerBoxIsScrolled,
+                ),
               ),
-            ),
-          ],
+            ];
+          },
+          body: Column(
+            children: [
+              /// Tap Bar
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8),
+                child: SizedBox(height: 56, child: _tabBar()),
+              ),
+
+              /// Tab Contents
+              Expanded(
+                child: TabBarView(
+                  controller: tabController,
+                  children: [
+                    const PoseReCommendScreen(),
+                    PosePartScreen(
+                      tabContoller: tabController,
+                      tabName: const ['상체', '가슴'],
+                    ),
+                    PosePartScreen(
+                      tabContoller: tabController,
+                      tabName: const ['상체', '등'],
+                    ),
+                    PosePartScreen(
+                      tabContoller: tabController,
+                      tabName: const ['상체', '어깨'],
+                    ),
+                    PosePartScreen(
+                      tabContoller: tabController,
+                      tabName: const ['상체', '팔'],
+                    ),
+                    PosePartScreen(
+                      tabContoller: tabController,
+                      tabName: const ['상체', '복근'],
+                    ),
+                    PosePartScreen(
+                      tabContoller: tabController,
+                      tabName: const ['하체', '앞 허벅지'],
+                    ),
+                    PosePartScreen(
+                      tabContoller: tabController,
+                      tabName: const ['하체', '뒷 허벅지'],
+                    ),
+                    PosePartScreen(
+                      tabContoller: tabController,
+                      tabName: const ['하체', '종아리'],
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
