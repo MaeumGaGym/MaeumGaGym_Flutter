@@ -7,12 +7,14 @@ class SelfCareTextField extends StatefulWidget {
   final FocusNode focusNode;
   final TextEditingController controller;
   final String? suffixText;
+  final TextInputAction inputAction;
 
   const SelfCareTextField({
     super.key,
     required this.title,
     required this.focusNode,
     required this.controller,
+    required this.inputAction,
     this.suffixText,
   });
 
@@ -50,6 +52,7 @@ class _SelfCareTextFieldState extends State<SelfCareTextField> {
             child: TextFormField(
               controller: widget.controller,
               focusNode: widget.focusNode,
+              textInputAction: widget.inputAction,
               style: TextStyle(
                 color: MaeumgagymColor.black,
                 fontSize: 20,
@@ -77,6 +80,7 @@ class _SelfCareTextFieldState extends State<SelfCareTextField> {
                   decorationThickness: 0,
                 ),
               ),
+
               cursorColor: MaeumgagymColor.blue600,
               /// 커서 색상 변경
             ),
