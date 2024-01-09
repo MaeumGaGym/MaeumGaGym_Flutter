@@ -6,14 +6,24 @@ class SelfCareProfileEditTextFiledContainer extends StatefulWidget {
   const SelfCareProfileEditTextFiledContainer({Key? key}) : super(key: key);
 
   @override
-  State<SelfCareProfileEditTextFiledContainer> createState() => _SelfCareProfileEditTextFiledContainerState();
+  State<SelfCareProfileEditTextFiledContainer> createState() =>
+      _SelfCareProfileEditTextFiledContainerState();
 }
 
-class _SelfCareProfileEditTextFiledContainerState extends State<SelfCareProfileEditTextFiledContainer> {
-  late TextEditingController _nameController; /// 이름
-  late TextEditingController _heightController; /// 키
-  late TextEditingController _weightController; /// 몸무게
-  late TextEditingController _sexController; /// 성별
+class _SelfCareProfileEditTextFiledContainerState
+    extends State<SelfCareProfileEditTextFiledContainer> {
+  late TextEditingController _nameController;
+
+  /// 이름
+  late TextEditingController _heightController;
+
+  /// 키
+  late TextEditingController _weightController;
+
+  /// 몸무게
+  late TextEditingController _sexController;
+
+  /// 성별
 
   @override
   void initState() {
@@ -42,7 +52,7 @@ class _SelfCareProfileEditTextFiledContainerState extends State<SelfCareProfileE
           "이름",
           MaeumgagymColor.black,
         ),
-        SizedBox(height: 8),
+        const SizedBox(height: 8),
         Container(
           width: MediaQuery.of(context).size.width,
           height: 48,
@@ -50,11 +60,22 @@ class _SelfCareProfileEditTextFiledContainerState extends State<SelfCareProfileE
             color: MaeumgagymColor.gray25,
             borderRadius: BorderRadius.circular(8),
           ),
-          child: TextFormField(
-            controller: _nameController,
-            style: TextStyle(decorationThickness: 0),
-            decoration: InputDecoration(
-              border: InputBorder.none,
+          child: Center(
+            child: TextFormField(
+              controller: _nameController,
+              style: const TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w400,
+                fontFamily: "Pretendard",
+                overflow: TextOverflow.visible,
+                decorationThickness: 0,
+              ),
+              decoration: const InputDecoration(
+                border: InputBorder.none,
+                isCollapsed: true,
+                contentPadding: EdgeInsets.symmetric(horizontal: 12),
+              ),
+              
             ),
           ),
         ),
