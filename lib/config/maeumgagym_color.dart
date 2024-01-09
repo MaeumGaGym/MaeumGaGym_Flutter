@@ -28,7 +28,7 @@ class MaeumgagymColor {
   static Color red300 = const Color(0xFFF56293);
   static Color red200 = const Color(0xFFF593B4);
   static Color red100 = const Color(0xFFF5C4D4);
-  static Color red50 = const Color(0xFFF5DCE4);
+  static Color red50 = const Color(0xFFF5E8E6);
 
   /// Yellow
   static Color yellow900 = const Color(0xFF332C02);
