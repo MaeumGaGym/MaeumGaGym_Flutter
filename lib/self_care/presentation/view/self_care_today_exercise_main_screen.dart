@@ -32,6 +32,7 @@ class _SelfCareTodayExerciseMainScreenState extends State<SelfCareTodayExerciseM
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SelfCareTodayExerciseMainTitle(),
+                SizedBox(height: 32),
                 SelfCareTodayExercisePageContainer(),
               ],
             ),
