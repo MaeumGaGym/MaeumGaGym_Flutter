@@ -20,6 +20,7 @@ class SelfCareDefaultAppBar extends StatelessWidget
       child: PreferredSize(
         preferredSize: preferredSize,
         child: AppBar(
+          automaticallyImplyLeading: false,
           scrolledUnderElevation: 0,
           backgroundColor: MaeumgagymColor.white,
           title: Row(
