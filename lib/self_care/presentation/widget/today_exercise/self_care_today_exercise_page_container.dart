@@ -20,8 +20,10 @@ class _SelfCareTodayExercisePageContainerState extends ConsumerState<SelfCareTod
     return Expanded(
       child: PageView(
         controller: pageController,
+        /// 화면을 터치로 밀어도 넘어가지 않도록 >> 디자인이 그럼
         physics: const NeverScrollableScrollPhysics(),
         children: const [
+          /// camera, gallery 나눔
           SelfCareTodayExerciseCameraScreen(),
           SelfCareTodayExerciseGalleryScreen(),
         ],
