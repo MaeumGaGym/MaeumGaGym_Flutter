@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/goal/widget/self_care_goal_shared_widget.dart';
 
 class SelfCareGoalRoutineItemWidget extends StatelessWidget {
-  const SelfCareGoalRoutineItemWidget({Key? key}) : super(key: key);
+  final String title;
+
+  const SelfCareGoalRoutineItemWidget({
+    Key? key,
+    required this.title,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +30,7 @@ class SelfCareGoalRoutineItemWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 PtdTextWidget.labelLarge(
-                  "주말 루틴",
+                  title,
                   MaeumgagymColor.black,
                 ),
                 SizedBox(height: 4),
