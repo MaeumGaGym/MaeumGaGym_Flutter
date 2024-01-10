@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
@@ -33,7 +32,7 @@ class SelfCareGoalRoutineItemWidget extends StatelessWidget {
                   title,
                   MaeumgagymColor.black,
                 ),
-                SizedBox(height: 4),
+                const SizedBox(height: 4),
                 PtdTextWidget.bodySmall(
                   "사용중",
                   MaeumgagymColor.blue500,
@@ -47,7 +46,7 @@ class SelfCareGoalRoutineItemWidget extends StatelessWidget {
                     color: MaeumgagymColor.white,
                     borderRadius: BorderRadius.circular(100),
                   ),
-                  child: SelfCareGoalSharedWidget(),
+                  child: const SelfCareGoalSharedWidget(),
                 ),
                 const SizedBox(width: 12),
                 SvgPicture.asset(
