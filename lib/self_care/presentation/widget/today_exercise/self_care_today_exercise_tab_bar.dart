@@ -9,7 +9,7 @@ class SelfCareTodayExerciseTabBar extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final exerciseTabBarState = ref.watch(exerciseTabBarNotifierProvider);
+    final exerciseTabBarState = ref.watch(exerciseTabBarNotifierProvider.notifier);
     final exerciseTabBarNotifier = ref.read(exerciseTabBarNotifierProvider.notifier);
     return SizedBox(
       height: 72,
@@ -19,7 +19,7 @@ class SelfCareTodayExerciseTabBar extends ConsumerWidget {
         children: [
           GestureDetector(
             onTap: () {
-
+              
             },
             child: Container(
               width: 83,
