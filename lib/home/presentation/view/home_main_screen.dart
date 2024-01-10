@@ -77,7 +77,7 @@ class _HomeMainScreenState extends State<HomeMainScreen> {
                           null, // 값이 없으면 null로 해줘야합니다. nullable하게 변수 선언해줬다고 해도
                           null,
                         ),
-                        SizedBox(height: 8),
+                        const SizedBox(height: 8),
                         PtdTextWidget.labelLarge(
                           "개인정보 처리방침 보기",
                           MaeumgagymColor.gray400,
@@ -86,7 +86,7 @@ class _HomeMainScreenState extends State<HomeMainScreen> {
                     ),
                   ),
                 ),
-                SizedBox(height: 64),
+                const SizedBox(height: 64),
               ],
             ),
           ),
