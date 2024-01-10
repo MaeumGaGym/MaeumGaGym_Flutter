@@ -22,16 +22,21 @@ class SelfCareMainWidgetListContainer extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 12),
-          ListView.builder(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemCount: 4,
-            itemBuilder: (context, index) {
-              return SelfCareItemWidget(
-                imagePath: selfCareWidgetItemList.keys.elementAt(index),
-                title: selfCareWidgetItemList.values.elementAt(index),
-              );
-            },
+          SelfCareItemWidget(
+            imagePath: "assets/image/self_care_icon/routine_icon.svg",
+            title: "내 루틴",
+          ),
+          SelfCareItemWidget(
+            imagePath: "assets/image/self_care_icon/objective_icon.svg",
+            title: "목표",
+          ),
+          SelfCareItemWidget(
+            imagePath: "assets/image/self_care_icon/protein_shake_icon.svg",
+            title: "식단",
+          ),
+          SelfCareItemWidget(
+            imagePath: "assets/image/self_care_icon/gallery_icon.svg",
+            title: "오운완",
           ),
         ],
       ),
