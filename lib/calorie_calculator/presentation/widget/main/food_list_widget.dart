@@ -37,11 +37,11 @@ class _FoodListWidgetState extends ConsumerState<FoodListWidget> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     PtdTextWidget.labelLarge(
-                      '김밥',
+                      listController[index].title,
                       MaeumgagymColor.black,
                     ),
                     PtdTextWidget.bodyMedium(
-                      '중접시(1줄)',
+                      '${listController[index].plate}(${listController[index].unitValue}${listController[index].unit})',
                       MaeumgagymColor.gray500,
                     ),
                   ],
@@ -49,7 +49,7 @@ class _FoodListWidgetState extends ConsumerState<FoodListWidget> {
                 Row(
                   children: [
                     PtdTextWidget.labelLarge(
-                      '0kal',
+                      '${listController[index].calories}kcal',
                       MaeumgagymColor.black,
                     ),
                     const SizedBox(width: 16),
