@@ -44,7 +44,7 @@ class TabAppBar extends ConsumerWidget {
                     ref.read(poseSearchController.notifier).setText();
                   },
                   child: SvgPicture.asset(
-                    'assets/image/pose_icon/search.svg',
+                    'assets/image/core_icon/search_icon.svg',
                   ),
                 ),
               ],

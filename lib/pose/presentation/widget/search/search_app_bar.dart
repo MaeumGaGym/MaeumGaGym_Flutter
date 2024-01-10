@@ -70,7 +70,7 @@ class _SearchAppBarState extends ConsumerState<SearchAppbar> {
               prefixIcon: Padding(
                 padding: const EdgeInsets.only(left: 12, right: 8),
                 child: SvgPicture.asset(
-                  'assets/image/pose_icon/search.svg',
+                  'assets/image/core_icon/search_icon.svg',
                   width: 24,
                 ),
               ),
