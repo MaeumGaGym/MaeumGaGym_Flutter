@@ -1,4 +1,4 @@
-enum ExerciseTabBarState {
+enum TodayExerciseTabBarState {
   camera,
   gallery,
 }
