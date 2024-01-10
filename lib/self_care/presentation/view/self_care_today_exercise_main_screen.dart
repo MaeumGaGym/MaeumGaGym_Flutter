@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/self_care_default_app_bar.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/today_exercise/self_care_today_exercise_main_title.dart';
@@ -24,6 +25,22 @@ class SelfCareTodayExerciseMainScreen extends StatelessWidget {
           ),
         ),
       ),
+      floatingActionButton: SizedBox(
+        height: 64,
+        width: 64,
+        child: FloatingActionButton(
+          onPressed: () {},
+          shape: CircleBorder(),
+          backgroundColor: MaeumgagymColor.blue500,
+          heroTag: "cameraButton",
+          child: SvgPicture.asset(
+            "assets/image/self_care_icon/camera_icon.svg",
+            width: 40,
+            height: 40,
+          ),
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
   }
 }
