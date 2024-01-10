@@ -35,6 +35,7 @@ class SelfCareTodayExerciseMainScreen extends StatelessWidget {
           heroTag: "cameraButton",
           child: SvgPicture.asset(
             "assets/image/self_care_icon/camera_icon.svg",
+            color: MaeumgagymColor.white,
             width: 40,
             height: 40,
           ),
