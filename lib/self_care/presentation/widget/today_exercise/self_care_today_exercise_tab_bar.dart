@@ -9,8 +9,9 @@ class SelfCareTodayExerciseTabBar extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final exerciseTabBarState = ref.watch(exerciseTabBarNotifierProvider.notifier);
-    final exerciseTabBarNotifier = ref.read(exerciseTabBarNotifierProvider.notifier);
+    final exerciseTabBarState = ref.watch(exerciseTabBarNotifierProvider);
+    final exerciseTabBarNotifier =
+        ref.read(exerciseTabBarNotifierProvider.notifier);
     return SizedBox(
       height: 72,
       child: Row(
@@ -19,35 +20,46 @@ class SelfCareTodayExerciseTabBar extends ConsumerWidget {
         children: [
           GestureDetector(
             onTap: () {
-              
+              exerciseTabBarNotifier.changeCamera();
             },
             child: Container(
               width: 83,
               height: 40,
               decoration: BoxDecoration(
-                color: MaeumgagymColor.gray50,
+                color: exerciseTabBarState == ExerciseTabBarState.camera
+                    ? MaeumgagymColor.gray50
+                    : MaeumgagymColor.white,
                 borderRadius: BorderRadius.circular(100),
               ),
               child: Center(
                 child: PtdTextWidget.labelLarge(
                   "사진",
-                  MaeumgagymColor.blue500,
+                  exerciseTabBarState == ExerciseTabBarState.camera
+                      ? MaeumgagymColor.blue500
+                      : MaeumgagymColor.gray400,
                 ),
               ),
             ),
           ),
           SizedBox(width: 16),
-          Container(
-            width: 83,
-            height: 40,
-            decoration: BoxDecoration(
-              color: MaeumgagymColor.gray50,
-              borderRadius: BorderRadius.circular(100),
-            ),
-            child: Center(
-              child: PtdTextWidget.labelLarge(
-                "앨범",
-                MaeumgagymColor.blue500,
+          GestureDetector(
+            onTap: () {
+              exerciseTabBarNotifier.changeGallery();
+            },
+            child: Container(
+              width: 83,
+              height: 40,
+              decoration: BoxDecoration(
+                color: exerciseTabBarState == ExerciseTabBarState.gallery
+                    ? MaeumgagymColor.gray50
+                    : MaeumgagymColor.white,
+                borderRadius: BorderRadius.circular(100),
+              ),
+              child: Center(
+                child: PtdTextWidget.labelLarge(
+                  "앨범",
+                  exerciseTabBarState == ExerciseTabBarState.gallery ? MaeumgagymColor.blue500 : MaeumgagymColor.gray400,
+                ),
               ),
             ),
           ),
