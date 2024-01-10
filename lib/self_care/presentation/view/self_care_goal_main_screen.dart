@@ -8,12 +8,12 @@ class SelfCareGoalMainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       appBar: SelfCareDefaultAppBar(
         iconPath: "assets/image/core_icon/left_arrow_icon.svg",
       ),
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 24),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
