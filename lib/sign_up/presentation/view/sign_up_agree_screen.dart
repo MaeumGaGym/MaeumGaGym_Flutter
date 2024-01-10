@@ -13,8 +13,8 @@ import '../../../core/component/text/pretendard/ptd_text_widget.dart';
 
 /// widget
 import '../provider/check_box_state_provider.dart';
-import '../widget/check_box_widget.dart';
-import '../widget/read_more_widget.dart';
+import '../widget/sign_up_agree/check_box_widget.dart';
+import '../widget/sign_up_agree/read_more_widget.dart';
 
 class SignUpAgreeScreen extends ConsumerWidget {
   const SignUpAgreeScreen({super.key});
