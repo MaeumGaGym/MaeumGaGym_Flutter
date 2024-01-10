@@ -1,13 +1,16 @@
 /// Package
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:maeum_ga_gym_flutter/calorie_calculator/presentation/widget/main/calorie_calculator_button.dart';
 
 /// Widget
 import '../widget/main/calorie_calculator_app_bar.dart';
 import '../widget/main/cumulative_caloriees_bar_widget.dart';
 import '../widget/main/cumulative_calories_state_widget.dart';
 import '../widget/main/food_list_widget.dart';
+import 'add_food_screen.dart';
+
+/// Screen
+import 'package:maeum_ga_gym_flutter/calorie_calculator/presentation/widget/main/calorie_calculator_button.dart';
 
 class CalorieCalculatorScreen extends StatelessWidget {
   const CalorieCalculatorScreen({super.key});
@@ -46,7 +49,15 @@ class CalorieCalculatorScreen extends StatelessWidget {
               ),
 
               /// 음식 추가 버튼
-              const CalorieCalculatorButton(),
+              GestureDetector(
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const AddFoodScreen(),
+                  ),
+                ),
+                child: const CalorieCalculatorButton(),
+              ),
             ],
           ),
         ),
