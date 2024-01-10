@@ -27,7 +27,7 @@ class SelfCareDefaultAppBar extends StatelessWidget
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               GestureDetector(
-                onTap: () {},
+                onTap: () => Navigator.pop(context),
                 child: Container(
                   alignment: Alignment.center,
                   child: SvgPicture.asset(
