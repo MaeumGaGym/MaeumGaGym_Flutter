@@ -17,18 +17,20 @@ class SelfCareProfileMainScreen extends StatelessWidget {
       appBar: const SelfCareDefaultAppBar(
         iconPath: "assets/image/core_icon/left_arrow_icon.svg",
       ),
-      body: const SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 24),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SelfCareProfileMainTitleContainer(),
-              SizedBox(height: 32),
-              SelfCareProfileMainInfoWidgetContainer(),
-              SizedBox(height: 32),
-              SelfCareProfileMainSettingContainer(),
-            ],
+      body: const SafeArea(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 24),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SelfCareProfileMainTitleContainer(),
+                SizedBox(height: 32),
+                SelfCareProfileMainInfoWidgetContainer(),
+                SizedBox(height: 32),
+                SelfCareProfileMainSettingContainer(),
+              ],
+            ),
           ),
         ),
       ),
