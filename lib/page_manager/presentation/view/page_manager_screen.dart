@@ -5,6 +5,7 @@ import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/view/home_main_screen.dart';
 import 'package:maeum_ga_gym_flutter/page_manager/presentation/view/animated_indexed_stack_screen.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/view/self_care_main_screen.dart';
 import '../../../pose/presentation/view/pose_tab_screen.dart';
 import '../provider/page_manager_controller.dart';
 
@@ -21,7 +22,7 @@ class PageManagerScreen extends ConsumerWidget {
       const PoseTabScreen(),
       Container(color: Colors.red),
       Container(color: Colors.blue),
-      Container(color: Colors.green),
+      const SelfCareMainScreen(),
     ];
 
     return Scaffold(
