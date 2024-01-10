@@ -21,32 +21,34 @@ class CalorieCalculatorScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: const CalorieCalculatorAppBar(),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: Column(
-          children: [
-            /// 누적 칼로리 State + Bar
-            CumulativeCaloriesStateWidget(
-              caloriesState: textFormet.format(caloriesState),
-              maxCaloriesState: textFormet.format(maxCaloriesState),
-            ),
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Column(
+            children: [
+              /// 누적 칼로리 State + Bar
+              CumulativeCaloriesStateWidget(
+                caloriesState: textFormet.format(caloriesState),
+                maxCaloriesState: textFormet.format(maxCaloriesState),
+              ),
 
-            /// 누적 칼로리 Bar
-            CumulativeCaloriesBarWidget(
-              caloriesState: caloriesState,
-              maxCaloriesState: maxCaloriesState,
-            ),
+              /// 누적 칼로리 Bar
+              CumulativeCaloriesBarWidget(
+                caloriesState: caloriesState,
+                maxCaloriesState: maxCaloriesState,
+              ),
 
-            const SizedBox(height: 40),
+              const SizedBox(height: 40),
 
-            /// 음식 List
-            const Expanded(
-              child: FoodListWidget(),
-            ),
+              /// 음식 List
+              const Expanded(
+                child: FoodListWidget(),
+              ),
 
-            /// 음식 추가 버튼
-            const CalorieCalculatorButton(),
-          ],
+              /// 음식 추가 버튼
+              const CalorieCalculatorButton(),
+            ],
+          ),
         ),
       ),
     );
