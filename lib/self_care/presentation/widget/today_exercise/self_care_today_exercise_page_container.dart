@@ -4,18 +4,11 @@ import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/self_care_t
 import 'package:maeum_ga_gym_flutter/self_care/presentation/view/self_care_today_exercise_camera_screen.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/view/self_care_today_exercise_gallery_screen.dart';
 
-class SelfCareTodayExercisePageContainer extends ConsumerStatefulWidget {
+class SelfCareTodayExercisePageContainer extends ConsumerWidget {
   const SelfCareTodayExercisePageContainer({Key? key}) : super(key: key);
 
   @override
-  ConsumerState<SelfCareTodayExercisePageContainer> createState() =>
-      _SelfCareTodayExercisePageContainerState();
-}
-
-class _SelfCareTodayExercisePageContainerState extends ConsumerState<SelfCareTodayExercisePageContainer> {
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final pageController = ref.watch(exercisePageControllerProvider);
     return Expanded(
       child: PageView(
