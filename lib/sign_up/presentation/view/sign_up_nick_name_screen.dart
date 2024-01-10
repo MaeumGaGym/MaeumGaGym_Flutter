@@ -10,7 +10,7 @@ import '../../../core/component/text/pretendard/ptd_text_widget.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 
 /// Widget
-import '../widget/animated_check_button.dart';
+import '../widget/sign_up_nick_name/animated_check_button.dart';
 import '../provider/nickname_text_field_riverpod.dart';
 
 class SignUpNickNameScreen extends StatelessWidget {
