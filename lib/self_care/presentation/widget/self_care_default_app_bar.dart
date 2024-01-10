@@ -39,7 +39,8 @@ class SelfCareDefaultAppBar extends StatelessWidget
               ),
               const SizedBox(width: 24),
               PtdTextWidget.labelLarge(
-                title!,
+                title ?? "",
+                /// title이 null이라면 공백처리
                 MaeumgagymColor.black,
               ),
             ],
