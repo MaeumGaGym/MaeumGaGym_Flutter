@@ -6,20 +6,24 @@ class HomeMainContentListContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Row(
-      children: [
-        HomeMainContentWidget(
-          iconPath: "assets/image/home_icon/calculate_icon.svg",
-          title: "칼로리 계산기",
-          content: "먹은 음식의 칼로리를\n계산해 보세요.",
-        ),
-        SizedBox(width: 12),
-        HomeMainContentWidget(
-          iconPath: "assets/image/home_icon/wakatime_icon.svg",
-          title: "와카타임",
-          content: "지금까지 한 운동 시간을\n확인해 보세요.",
-        ),
-      ],
+    return SizedBox(
+      height: 240,
+      child: ListView(
+        scrollDirection: Axis.horizontal, // 가로 스크롤 설정
+        children: [
+          HomeMainContentWidget(
+            iconPath: "assets/image/home_icon/calculate_icon.svg",
+            title: "칼로리 계산기",
+            content: "먹은 음식의 칼로리를\n계산해 보세요.",
+          ),
+          SizedBox(width: 12),
+          HomeMainContentWidget(
+            iconPath: "assets/image/home_icon/wakatime_icon.svg",
+            title: "와카타임",
+            content: "지금까지 한 운동 시간을\n확인해 보세요.",
+          ),
+        ],
+      ),
     );
   }
 }
