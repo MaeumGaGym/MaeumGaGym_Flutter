@@ -1,0 +1,4 @@
+enum ExerciseTabBarState {
+  camera,
+  gallery,
+}
