@@ -12,25 +12,20 @@ class SelfCareTodayExercisePageContainer extends ConsumerStatefulWidget {
       _SelfCareTodayExercisePageContainerState();
 }
 
-class _SelfCareTodayExercisePageContainerState
-    extends ConsumerState<SelfCareTodayExercisePageContainer> {
-  late PageController _pageController;
-
-  @override
-  void initState() {
-    _pageController = PageController(initialPage: 0);
-    super.initState();
-  }
+class _SelfCareTodayExercisePageContainerState extends ConsumerState<SelfCareTodayExercisePageContainer> {
 
   @override
   Widget build(BuildContext context) {
-    final exerciseTabBarState = ref.watch(exerciseTabBarNotifierProvider);
-    return PageView(
-      controller: _pageController,
-      children: [
-        SelfCareTodayExerciseCameraScreen(),
-        SelfCareTodayExerciseGalleryScreen(),
-      ],
+    final pageController = ref.watch(exercisePageControllerProvider);
+    return Expanded(
+      child: PageView(
+        controller: pageController,
+        physics: const NeverScrollableScrollPhysics(),
+        children: const [
+          SelfCareTodayExerciseCameraScreen(),
+          SelfCareTodayExerciseGalleryScreen(),
+        ],
+      ),
     );
   }
 }
