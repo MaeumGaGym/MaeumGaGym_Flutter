@@ -9,6 +9,8 @@ class SelfCareTodayExerciseTabBar extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final exerciseTabBarState = ref.watch(exerciseTabBarNotifierProvider);
+    final exerciseTabBarNotifier = ref.read(exerciseTabBarNotifierProvider.notifier);
     return SizedBox(
       height: 72,
       child: Row(
