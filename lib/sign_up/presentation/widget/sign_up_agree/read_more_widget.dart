@@ -27,7 +27,7 @@ Future readMoreWidget(BuildContext context) async {
                 children: [
                   const SizedBox(),
                   PtdTextWidget.bodyLarge('이용약관', MaeumgagymColor.black),
-                  Image.asset('assets/image/core_icon/close.png',
+                  Image.asset('assets/image/core_icon/close_icon.png',
                       width: 12, height: 12)
                 ],
               ),
