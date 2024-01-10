@@ -9,17 +9,7 @@ class HomeMainContentListContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Map<String, List<String>> contentsData = {
-      "칼로리 계산기": [
-        "assets/image/home_icon/calculate_icon.svg",
-        "먹은 음식의 칼로리를\n계산해 보세요."
-      ],
-      "와카타임": [
-        "assets/image/home_icon/wakatime_icon.svg",
-        "지금까지 한 운동 시간을\n확인해 보세요."
-      ],
-    };
-    return Row(
+    return const Row(
       children: [
         HomeMainContentWidget(
           iconPath: "assets/image/home_icon/calculate_icon.svg",
