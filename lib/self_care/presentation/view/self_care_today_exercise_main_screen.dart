@@ -18,30 +18,27 @@ class SelfCareTodayExerciseMainScreen extends StatefulWidget {
 class _SelfCareTodayExerciseMainScreenState extends State<SelfCareTodayExerciseMainScreen> {
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 2,
-      child: Scaffold(
-        backgroundColor: MaeumgagymColor.white,
-        appBar: const SelfCareDefaultAppBar(
-          iconPath: "assets/image/core_icon/left_arrow_icon.svg",
-        ),
-        body: const SafeArea(
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 24),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SelfCareTodayExerciseMainTitle(),
-                SizedBox(height: 32),
-                SelfCareTodayExercisePageContainer(),
-              ],
-            ),
+    return Scaffold(
+      backgroundColor: MaeumgagymColor.white,
+      appBar: const SelfCareDefaultAppBar(
+        iconPath: "assets/image/core_icon/left_arrow_icon.svg",
+      ),
+      body: const SafeArea(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 24),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SelfCareTodayExerciseMainTitle(),
+              SizedBox(height: 32),
+              SelfCareTodayExercisePageContainer(),
+            ],
           ),
         ),
-        bottomNavigationBar: const SelfCareTodayExerciseTabBar(),
-        floatingActionButton: const SelfCareTodayExerciseFAB(),
-        floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       ),
+      bottomNavigationBar: const SelfCareTodayExerciseTabBar(),
+      floatingActionButton: const SelfCareTodayExerciseFAB(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
   }
 }
