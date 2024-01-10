@@ -10,10 +10,8 @@ import '../widget/part/pose_part_widget.dart';
 
 class PosePartScreen extends ConsumerWidget {
   final List<String> tabName;
-  final TabController tabContoller;
 
   const PosePartScreen({
-    required this.tabContoller,
     required this.tabName,
     super.key,
   });
