@@ -11,13 +11,13 @@ class HomeMainContentListContainer extends StatelessWidget {
       child: ListView(
         scrollDirection: Axis.horizontal, // 가로 스크롤 설정
         children: [
-          HomeMainContentWidget(
+          const HomeMainContentWidget(
             iconPath: "assets/image/home_icon/calculate_icon.svg",
             title: "칼로리 계산기",
             content: "먹은 음식의 칼로리를\n계산해 보세요.",
           ),
-          SizedBox(width: 12),
-          HomeMainContentWidget(
+          const SizedBox(width: 12),
+          const HomeMainContentWidget(
             iconPath: "assets/image/home_icon/wakatime_icon.svg",
             title: "와카타임",
             content: "지금까지 한 운동 시간을\n확인해 보세요.",
