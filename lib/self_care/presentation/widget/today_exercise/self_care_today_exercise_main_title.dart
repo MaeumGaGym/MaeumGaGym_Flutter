@@ -14,7 +14,7 @@ class SelfCareTodayExerciseMainTitle extends StatelessWidget {
           "오운완",
           MaeumgagymColor.black,
         ),
-        SizedBox(height: 12),
+        const SizedBox(height: 12),
         PtdTextWidget.bodyMedium(
           "오늘의 운동을 완료하고,\n내 모습을 사진으로 남겨보세요.",
           MaeumgagymColor.gray600,
