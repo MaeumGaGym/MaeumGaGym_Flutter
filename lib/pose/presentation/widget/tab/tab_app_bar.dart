@@ -1,11 +1,17 @@
+/// Package
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 
+/// Core
 import '../../../../config/maeumgagym_color.dart';
 import '../../../../core/component/text/pretendard/ptd_text_widget.dart';
-import '../../provider/pose_search_controller.dart';
+
+/// Screen
 import '../../view/pose_search_screen.dart';
+
+/// Provider
+import '../../provider/pose_search_controller.dart';
 
 class TabAppBar extends ConsumerWidget {
   final bool innerBoxIsScrolled;
@@ -17,6 +23,7 @@ class TabAppBar extends ConsumerWidget {
     return SliverOverlapAbsorber(
       handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
       sliver: SliverAppBar(
+        /// Search_Icon
         title: SizedBox(
           height: 52,
           child: Padding(
@@ -44,6 +51,8 @@ class TabAppBar extends ConsumerWidget {
             ),
           ),
         ),
+
+        /// 자세 글씨
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(48),
           child: Padding(
@@ -56,6 +65,8 @@ class TabAppBar extends ConsumerWidget {
             ),
           ),
         ),
+
+        /// 화면 내릴때 고정이 되지 않음
         pinned: false,
         expandedHeight: 100,
         forceElevated: innerBoxIsScrolled,
