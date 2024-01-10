@@ -14,44 +14,45 @@ class OnBoardingScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Column(
-          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const SizedBox(height: 64),
             Center(
               child: Container(
-                width: MediaQuery.of(context).size.width - 110,
-                height: MediaQuery.of(context).size.width - 110,
+                width: MediaQuery.of(context).size.width - 150,
+                height: MediaQuery.of(context).size.width - 150,
                 decoration: const BoxDecoration(
                   color: Colors.grey,
                   shape: BoxShape.circle,
                 ),
               ),
             ),
-            const SizedBox(height: 32),
+            const SizedBox(height: 30),
             PtdTextWidget.titleMedium('이제 헬창이 되어보세요!', Colors.black),
-            const SizedBox(height: 12),
+            const SizedBox(height: 10),
             PtdTextWidget.onBoardingSubTitle(
               '저희의 좋은 서비스를 통해 즐거운 헬창 생활을\n즐겨보세요!',
               MaeumgagymColor.gray600,
             ),
-            const SizedBox(height: 105),
+            const SizedBox(height: 68),
             ListView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               itemCount: onBoardingContentsData.length,
               itemBuilder: (context, index) {
-                return GestureDetector(
-                  onTap: () => context.push(
-                    onBoardingContentsData[index]['route']!,
-                  ),
-                  child: OnBoardingContentsWidget(
-                    image: onBoardingContentsData[index]['image']!,
-                    title: onBoardingContentsData[index]['title']!,
+                return Padding(
+                  padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+                  child: GestureDetector(
+                    onTap: () => context.push(
+                      onBoardingContentsData[index]['route']!,
+                    ),
+                    child: OnBoardingContentsWidget(
+                      image: onBoardingContentsData[index]['image']!,
+                      title: onBoardingContentsData[index]['title']!,
+                    ),
                   ),
                 );
               },
             ),
-            const SizedBox(height: 12),
           ],
         ),
       ),
