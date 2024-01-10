@@ -1,5 +1,7 @@
+/// Package
 import 'package:flutter/material.dart';
 
+/// Screen
 import '../../view/pose_part_screen.dart';
 import '../../view/pose_recommend_screen.dart';
 
@@ -24,39 +26,31 @@ class TabContents extends StatelessWidget {
         Expanded(
           child: TabBarView(
             controller: tabController,
-            children: [
-              const PoseReCommendScreen(),
+            children: const [
+              PoseReCommendScreen(),
               PosePartScreen(
-                tabContoller: tabController,
-                tabName: const ['상체', '가슴'],
+                tabName: ['상체', '가슴'],
               ),
               PosePartScreen(
-                tabContoller: tabController,
-                tabName: const ['상체', '등'],
+                tabName: ['상체', '등'],
               ),
               PosePartScreen(
-                tabContoller: tabController,
-                tabName: const ['상체', '어깨'],
+                tabName: ['상체', '어깨'],
               ),
               PosePartScreen(
-                tabContoller: tabController,
-                tabName: const ['상체', '팔'],
+                tabName: ['상체', '팔'],
               ),
               PosePartScreen(
-                tabContoller: tabController,
-                tabName: const ['상체', '복근'],
+                tabName: ['상체', '복근'],
               ),
               PosePartScreen(
-                tabContoller: tabController,
-                tabName: const ['하체', '앞 허벅지'],
+                tabName: ['하체', '앞 허벅지'],
               ),
               PosePartScreen(
-                tabContoller: tabController,
-                tabName: const ['하체', '뒷 허벅지'],
+                tabName: ['하체', '뒷 허벅지'],
               ),
               PosePartScreen(
-                tabContoller: tabController,
-                tabName: const ['하체', '종아리'],
+                tabName: ['하체', '종아리'],
               ),
             ],
           ),
