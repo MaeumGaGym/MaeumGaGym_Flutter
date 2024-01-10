@@ -1,7 +1,8 @@
-import 'package:flutter/cupertino.dart';
+/// Package
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+/// Core
 import '../../../../config/maeumgagym_color.dart';
 import '../../../../core/component/text/pretendard/ptd_text_widget.dart';
 
@@ -17,6 +18,7 @@ class DetailAppBar extends StatelessWidget implements PreferredSizeWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            /// POP 버튼
             GestureDetector(
               onTap: () => Navigator.pop(context),
               child: SvgPicture.asset(
@@ -25,6 +27,8 @@ class DetailAppBar extends StatelessWidget implements PreferredSizeWidget {
                 height: 28,
               ),
             ),
+
+            /// 루틴에 추가
             Container(
               decoration: BoxDecoration(
                   color: MaeumgagymColor.blue50,
@@ -41,7 +45,7 @@ class DetailAppBar extends StatelessWidget implements PreferredSizeWidget {
                   ),
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),
