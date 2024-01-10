@@ -9,8 +9,10 @@ class SelfCareTodayExerciseTabBar extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    /// TabBar 상태 관리 provider
     final exerciseTabBarState = ref.watch(exerciseTabBarNotifierProvider);
     final exerciseTabBarNotifier = ref.read(exerciseTabBarNotifierProvider.notifier);
+    /// pageController 상태 관리 provider
     final pageController = ref.read(exercisePageControllerProvider.notifier);
     return SizedBox(
       height: 72,
@@ -20,7 +22,9 @@ class SelfCareTodayExerciseTabBar extends ConsumerWidget {
         children: [
           GestureDetector(
             onTap: () {
+              /// TabBar 상태 변경
               exerciseTabBarNotifier.changeCamera();
+              /// 0번째 index 화면으로 화면 전환
               pageController.state.jumpToPage(0);
             },
             child: Container(
