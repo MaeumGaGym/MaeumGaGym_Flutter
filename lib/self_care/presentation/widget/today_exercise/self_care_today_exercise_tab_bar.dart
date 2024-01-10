@@ -41,7 +41,7 @@ class SelfCareTodayExerciseTabBar extends ConsumerWidget {
               ),
             ),
           ),
-          SizedBox(width: 16),
+          const SizedBox(width: 16),
           GestureDetector(
             onTap: () {
               exerciseTabBarNotifier.changeGallery();
