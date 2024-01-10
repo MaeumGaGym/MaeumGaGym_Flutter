@@ -20,13 +20,14 @@ class SelfCareDefaultAppBar extends StatelessWidget
       child: PreferredSize(
         preferredSize: preferredSize,
         child: AppBar(
+          automaticallyImplyLeading: false,
           scrolledUnderElevation: 0,
           backgroundColor: MaeumgagymColor.white,
           title: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               GestureDetector(
-                onTap: () {},
+                onTap: () => Navigator.pop(context),
                 child: Container(
                   alignment: Alignment.center,
                   child: SvgPicture.asset(
@@ -38,7 +39,8 @@ class SelfCareDefaultAppBar extends StatelessWidget
               ),
               const SizedBox(width: 24),
               PtdTextWidget.labelLarge(
-                title!,
+                title ?? "",
+                /// title이 null이라면 공백처리
                 MaeumgagymColor.black,
               ),
             ],
