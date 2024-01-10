@@ -12,9 +12,9 @@ class SelfCareTodayExerciseFAB extends StatelessWidget {
       width: 64,
       child: FloatingActionButton(
         onPressed: () {},
-        shape: const CircleBorder(),
+        shape: const CircleBorder(), /// 둥글게
         backgroundColor: MaeumgagymColor.blue500,
-        heroTag: "cameraButton",
+        heroTag: "cameraButton", /// FAB 식별 태그
         child: SvgPicture.asset(
           "assets/image/self_care_icon/camera_icon.svg",
           color: MaeumgagymColor.white,
