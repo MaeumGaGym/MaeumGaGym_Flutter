@@ -8,9 +8,14 @@ import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/today_exercis
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/today_exercise/self_care_today_exercise_page_container.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/today_exercise/self_care_today_exercise_tab_bar.dart';
 
-class SelfCareTodayExerciseMainScreen extends StatelessWidget {
+class SelfCareTodayExerciseMainScreen extends StatefulWidget {
   const SelfCareTodayExerciseMainScreen({Key? key}) : super(key: key);
 
+  @override
+  State<SelfCareTodayExerciseMainScreen> createState() => _SelfCareTodayExerciseMainScreenState();
+}
+
+class _SelfCareTodayExerciseMainScreenState extends State<SelfCareTodayExerciseMainScreen> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
