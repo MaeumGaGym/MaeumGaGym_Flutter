@@ -1,7 +1,13 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final exerciseTabBarNotifierProvider = StateNotifierProvider<ExerciseTabBarNotifier, ExerciseTabBarState>(
+final exerciseTabBarNotifierProvider =
+    StateNotifierProvider<ExerciseTabBarNotifier, ExerciseTabBarState>(
   (ref) => ExerciseTabBarNotifier(),
+);
+
+final exercisePageControllerProvider = StateProvider<PageController>(
+  (ref) => PageController(initialPage: 0),
 );
 
 enum ExerciseTabBarState {
