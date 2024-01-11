@@ -1,11 +1,11 @@
 class SelfCareRoutineItemModel {
   final String title;
-  bool isUsed;
+  bool isKept;
   bool isShared;
 
   SelfCareRoutineItemModel({
     required this.title,
-    this.isUsed = false,
+    this.isKept = false,
     this.isShared = false,
   });
 }
