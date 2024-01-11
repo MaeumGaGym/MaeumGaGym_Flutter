@@ -27,7 +27,10 @@ class SelfCareRoutineItemNotifier extends StateNotifier<List<SelfCareRoutineItem
     state = [...state];
   }
 
-  void cancelShareRoutineItem() {}
+  void cancelShareRoutineItem(int index) {
+    state[index].isShared = false;
+    state = [...state];
+  }
 
   void deleteRoutineItem() {}
 }
