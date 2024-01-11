@@ -7,10 +7,14 @@ import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/goal/widget/s
 
 class SelfCareGoalRoutineItemWidget extends StatefulWidget {
   final String title;
+  final bool isKept;
+  final bool isShared;
 
   const SelfCareGoalRoutineItemWidget({
     Key? key,
     required this.title,
+    required this.isKept,
+    required this.isShared,
   }) : super(key: key);
 
   @override
