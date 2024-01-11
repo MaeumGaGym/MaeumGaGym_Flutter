@@ -9,12 +9,14 @@ class SelfCareGoalRoutineItemWidget extends StatefulWidget {
   final String title;
   final bool isKept;
   final bool isShared;
+  final int index;
 
   const SelfCareGoalRoutineItemWidget({
     Key? key,
     required this.title,
     required this.isKept,
     required this.isShared,
+    required this.index,
   }) : super(key: key);
 
   @override
