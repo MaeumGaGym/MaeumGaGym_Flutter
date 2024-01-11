@@ -41,6 +41,7 @@ class _SelfCareGoalMainScreenState extends ConsumerState<SelfCareGoalMainScreen>
                       title: item.title,
                       isKept: item.isKept,
                       isShared: item.isShared,
+                      index: index,
                     ),
                   );
                 },
