@@ -22,7 +22,7 @@ class SelfCareGoalRoutineManageBottomSheet extends StatelessWidget {
               borderRadius: BorderRadius.circular(2),
             ),
           ),
-          Column(
+          const Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               SelfCareGoalRoutineManageItemWidget(
