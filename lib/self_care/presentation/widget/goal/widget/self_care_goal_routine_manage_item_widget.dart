@@ -23,7 +23,7 @@ class SelfCareGoalRoutineManageItemWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             SvgPicture.asset(
-              "assets/image/self_care_icon/edit_pencil_icon.svg",
+              iconPath,
               width: 28,
               height: 28,
             ),
