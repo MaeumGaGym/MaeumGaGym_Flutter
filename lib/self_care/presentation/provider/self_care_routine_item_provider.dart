@@ -9,4 +9,6 @@ class SelfCareRoutineItemNotifier extends StateNotifier<List<SelfCareRoutineItem
   void useRoutineItem() {}
 
   void disuseRoutineItem() {}
+
+  void shareRoutineItem() {}
 }
