@@ -32,33 +32,6 @@ class _PoseTabScreenState extends ConsumerState<PoseTabScreen>
     super.dispose();
   }
 
-  /// TabBar
-  Widget _tabBar() {
-    return TabBar(
-      controller: tabController,
-      indicatorWeight: 2,
-      indicatorSize: TabBarIndicatorSize.values.last,
-      indicatorColor: MaeumgagymColor.blue500,
-      dividerHeight: 2,
-      dividerColor: MaeumgagymColor.gray50,
-      isScrollable: true,
-      tabAlignment: TabAlignment.start,
-      labelPadding: const EdgeInsets.symmetric(horizontal: 8),
-      overlayColor: MaterialStateProperty.all(MaeumgagymColor.white),
-      tabs: const [
-        TabWidget('추천'),
-        TabWidget('가슴'),
-        TabWidget('등'),
-        TabWidget('어깨'),
-        TabWidget('팔'),
-        TabWidget('복근'),
-        TabWidget('앞 허벅지'),
-        TabWidget('뒷 허벅지'),
-        TabWidget('종아리'),
-      ],
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,7 +45,7 @@ class _PoseTabScreenState extends ConsumerState<PoseTabScreen>
           },
 
           /// TabContents
-          body: TabContents(tabBar: _tabBar(), tabController: tabController),
+          body: TabContents(tabController: tabController),
         ),
       ),
     );
