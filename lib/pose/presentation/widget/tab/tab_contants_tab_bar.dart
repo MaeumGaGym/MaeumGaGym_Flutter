@@ -1,9 +1,13 @@
+/// Package
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
-import 'package:maeum_ga_gym_flutter/pose/presentation/provider/tab/pose_tab_controller.dart';
 
+/// Core
+import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import '../../../../core/component/text/pretendard/ptd_text_widget.dart';
+
+/// Provider
+import 'package:maeum_ga_gym_flutter/pose/presentation/provider/tab/pose_tab_controller.dart';
 
 class TabContentsTabBar extends ConsumerWidget {
   const TabContentsTabBar({super.key});
@@ -26,6 +30,7 @@ class TabContentsTabBar extends ConsumerWidget {
     final tabController = ref.watch(poseTabController);
     final tabControllerNotifier = ref.read(poseTabController.notifier);
 
+    /// Tab을 구현하기 위한 ListViewBuilder
     return ListView.builder(
       shrinkWrap: true,
       scrollDirection: Axis.horizontal,
@@ -38,6 +43,7 @@ class TabContentsTabBar extends ConsumerWidget {
             child: Container(
               decoration: BoxDecoration(
                 border: Border(
+                  /// 하단 Border가 선택시 blue 아니면 gray
                   bottom: BorderSide(
                     width: 2,
                     color: tabController.index == index
@@ -51,6 +57,8 @@ class TabContentsTabBar extends ConsumerWidget {
                     const EdgeInsets.symmetric(vertical: 16, horizontal: 4),
                 child: PtdTextWidget.labelLarge(
                   tabData[index],
+
+                  /// 글자가 선택시 black 아니면 gray400
                   tabController.index == index
                       ? MaeumgagymColor.black
                       : MaeumgagymColor.gray400,
