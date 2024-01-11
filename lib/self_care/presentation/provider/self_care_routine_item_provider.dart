@@ -22,7 +22,10 @@ class SelfCareRoutineItemNotifier extends StateNotifier<List<SelfCareRoutineItem
     state = [...state];
   }
 
-  void shareRoutineItem() {}
+  void shareRoutineItem(int index) {
+    state[index].isShared = true;
+    state = [...state];
+  }
 
   void cancelShareRoutineItem() {}
 
