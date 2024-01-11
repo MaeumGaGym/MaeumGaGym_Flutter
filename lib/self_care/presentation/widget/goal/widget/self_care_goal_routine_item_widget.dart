@@ -70,7 +70,7 @@ class _SelfCareGoalRoutineItemWidgetState
                     showModalBottomSheet(
                       context: context,
                       builder: (context) {
-                        return const SelfCareGoalRoutineManageBottomSheet(isShared: widget.isShared, isKept: widget.isKept);
+                        return SelfCareGoalRoutineManageBottomSheet(isShared: widget.isShared, isKept: widget.isKept);
                       },
                     );
                   },
