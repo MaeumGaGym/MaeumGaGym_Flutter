@@ -5,10 +5,12 @@ import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_wid
 
 class SelfCareGoalRoutineManageItemWidget extends StatelessWidget {
   final String title;
+  final String iconPath;
 
   const SelfCareGoalRoutineManageItemWidget({
     Key? key,
     required this.title,
+    required this.iconPath,
   }) : super(key: key);
 
   @override
