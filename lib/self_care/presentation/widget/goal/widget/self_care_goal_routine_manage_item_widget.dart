@@ -15,27 +15,24 @@ class SelfCareGoalRoutineManageItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {},
-      child: SizedBox(
-        width: MediaQuery.of(context).size.width,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              SvgPicture.asset(
-                iconPath,
-                width: 28,
-                height: 28,
-              ),
-              const SizedBox(width: 24),
-              PtdTextWidget.labelLarge(
-                title,
-                MaeumgagymColor.black,
-              ),
-            ],
-          ),
+    return SizedBox(
+      width: MediaQuery.of(context).size.width,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            SvgPicture.asset(
+              iconPath,
+              width: 28,
+              height: 28,
+            ),
+            const SizedBox(width: 24),
+            PtdTextWidget.labelLarge(
+              title,
+              MaeumgagymColor.black,
+            ),
+          ],
         ),
       ),
     );
