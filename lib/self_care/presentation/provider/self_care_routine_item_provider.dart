@@ -32,5 +32,7 @@ class SelfCareRoutineItemNotifier extends StateNotifier<List<SelfCareRoutineItem
     state = [...state];
   }
 
-  void deleteRoutineItem() {}
+  void deleteRoutineItem(int index) {
+    state = List.from(state)..removeAt(index);
+  }
 }
