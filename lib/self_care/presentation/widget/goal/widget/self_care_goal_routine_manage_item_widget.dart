@@ -29,7 +29,7 @@ class SelfCareGoalRoutineManageItemWidget extends StatelessWidget {
             ),
             const SizedBox(width: 24),
             PtdTextWidget.labelLarge(
-              "수정",
+              title,
               MaeumgagymColor.black,
             ),
           ],
