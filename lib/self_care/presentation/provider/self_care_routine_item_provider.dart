@@ -5,4 +5,6 @@ class SelfCareRoutineItemNotifier extends StateNotifier<List<SelfCareRoutineItem
   SelfCareRoutineItemNotifier() : super([]);
 
   void addRoutineItem() {}
+
+  void useRoutineItem() {}
 }
