@@ -5,11 +5,16 @@ import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/goal/widget/s
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/goal/widget/self_care_goal_routine_item_widget.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/self_care_default_app_bar.dart';
 
-class SelfCareGoalMainScreen extends ConsumerWidget {
+class SelfCareGoalMainScreen extends ConsumerStatefulWidget {
   const SelfCareGoalMainScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<SelfCareGoalMainScreen> createState() => _SelfCareGoalMainScreenState();
+}
+
+class _SelfCareGoalMainScreenState extends ConsumerState<SelfCareGoalMainScreen> {
+  @override
+  Widget build(BuildContext context) {
     final routineItemState = ref.watch(selfCareRoutineItemProvider);
     return Scaffold(
       appBar: const SelfCareDefaultAppBar(
@@ -28,8 +33,13 @@ class SelfCareGoalMainScreen extends ConsumerWidget {
                 itemBuilder: (context, index) {
                   final item = routineItemState[index];
                   return Padding(
-                    padding: EdgeInsets.only(bottom: index == routineItemState.length - 1 ? 0 : 12),
-                    child: SelfCareGoalRoutineItemWidget(title: item.title),
+                    padding: EdgeInsets.only(
+                        bottom: index == routineItemState.length - 1 ? 0 : 12),
+                    child: SelfCareGoalRoutineItemWidget(
+                      title: item.title,
+                      isKept: item.isKept,
+                      isShared: item.isShared,
+                    ),
                   );
                 },
               ),
