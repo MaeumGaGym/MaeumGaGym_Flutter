@@ -3,4 +3,6 @@ import 'package:maeum_ga_gym_flutter/self_care/presentation/model/self_care_rout
 
 class SelfCareRoutineItemNotifier extends StateNotifier<List<SelfCareRoutineItemModel>> {
   SelfCareRoutineItemNotifier() : super([]);
+
+  void addRoutineItem() {}
 }
