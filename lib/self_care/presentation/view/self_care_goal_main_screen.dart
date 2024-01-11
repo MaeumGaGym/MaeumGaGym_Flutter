@@ -39,8 +39,7 @@ class _SelfCareGoalMainScreenState extends ConsumerState<SelfCareGoalMainScreen>
                         bottom: index == routineItemState.length - 1 ? 0 : 12),
                     child: SelfCareGoalRoutineItemWidget(
                       title: item.title,
-                      isKept: item.isKept,
-                      isShared: item.isShared,
+                      index: item.itemIndex,
                     ),
                   );
                 },

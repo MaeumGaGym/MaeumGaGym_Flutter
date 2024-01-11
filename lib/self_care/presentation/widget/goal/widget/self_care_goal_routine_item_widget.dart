@@ -1,31 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/self_care_routine_item_provider.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/goal/widget/self_care_goal_routine_manage_bottom_sheet.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/goal/widget/self_care_goal_shared_widget.dart';
 
-class SelfCareGoalRoutineItemWidget extends StatefulWidget {
+class SelfCareGoalRoutineItemWidget extends ConsumerStatefulWidget {
   final String title;
-  final bool isKept;
-  final bool isShared;
+  final int index;
 
   const SelfCareGoalRoutineItemWidget({
     Key? key,
     required this.title,
-    required this.isKept,
-    required this.isShared,
+    required this.index,
   }) : super(key: key);
 
   @override
-  State<SelfCareGoalRoutineItemWidget> createState() =>
+  ConsumerState<SelfCareGoalRoutineItemWidget> createState() =>
       _SelfCareGoalRoutineItemWidgetState();
 }
 
-class _SelfCareGoalRoutineItemWidgetState
-    extends State<SelfCareGoalRoutineItemWidget> {
+class _SelfCareGoalRoutineItemWidgetState extends ConsumerState<SelfCareGoalRoutineItemWidget> {
   @override
   Widget build(BuildContext context) {
+    final isKeptState = ref.watch(selfCareRoutineItemProvider)[widget.index].isKept;
+    final isSharedState = ref.watch(selfCareRoutineItemProvider)[widget.index].isShared;
     return Container(
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
@@ -46,8 +47,8 @@ class _SelfCareGoalRoutineItemWidgetState
                 ),
                 const SizedBox(height: 4),
                 PtdTextWidget.bodySmall(
-                  widget.isKept ? "보관중" : "사용중",
-                  widget.isKept
+                  isKeptState ? "보관중" : "사용중",
+                  isKeptState
                       ? MaeumgagymColor.gray400
                       : MaeumgagymColor.blue500,
                 ),
@@ -55,7 +56,7 @@ class _SelfCareGoalRoutineItemWidgetState
             ),
             Row(
               children: [
-                widget.isShared
+                isSharedState
                     ? Container(
                         decoration: BoxDecoration(
                           color: MaeumgagymColor.white,
@@ -70,7 +71,9 @@ class _SelfCareGoalRoutineItemWidgetState
                     showModalBottomSheet(
                       context: context,
                       builder: (context) {
-                        return const SelfCareGoalRoutineManageBottomSheet();
+                        return SelfCareGoalRoutineManageBottomSheet(
+                          index: widget.index,
+                        );
                       },
                     );
                   },
