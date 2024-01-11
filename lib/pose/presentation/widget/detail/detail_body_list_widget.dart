@@ -21,10 +21,13 @@ class DetailBodyListWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        /// Title
         Padding(
           padding: const EdgeInsets.only(bottom: 24),
           child: PtdTextWidget.titleMedium(title, MaeumgagymColor.black),
         ),
+
+        /// listData로 온 데이터를 ListView.builder로 만들어서 뿌려줌
         ListView.builder(
           padding: EdgeInsets.zero,
           shrinkWrap: true,
