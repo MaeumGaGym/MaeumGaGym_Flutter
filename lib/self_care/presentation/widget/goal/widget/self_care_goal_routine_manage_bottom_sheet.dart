@@ -4,8 +4,8 @@ import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/goal/widget/self_care_goal_routine_manage_item_widget.dart';
 
 class SelfCareGoalRoutineManageBottomSheet extends ConsumerWidget {
-  final String isShared;
-  final String isKept;
+  final bool isShared;
+  final bool isKept;
 
   const SelfCareGoalRoutineManageBottomSheet({
     Key? key,
