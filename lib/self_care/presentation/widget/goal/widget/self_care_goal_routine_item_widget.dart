@@ -5,14 +5,25 @@ import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_wid
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/goal/widget/self_care_goal_routine_manage_bottom_sheet.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/goal/widget/self_care_goal_shared_widget.dart';
 
-class SelfCareGoalRoutineItemWidget extends StatelessWidget {
+class SelfCareGoalRoutineItemWidget extends StatefulWidget {
   final String title;
+  final bool isKept;
+  final bool isShared;
 
   const SelfCareGoalRoutineItemWidget({
     Key? key,
     required this.title,
+    required this.isKept,
+    required this.isShared,
   }) : super(key: key);
 
+  @override
+  State<SelfCareGoalRoutineItemWidget> createState() =>
+      _SelfCareGoalRoutineItemWidgetState();
+}
+
+class _SelfCareGoalRoutineItemWidgetState
+    extends State<SelfCareGoalRoutineItemWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -30,25 +41,29 @@ class SelfCareGoalRoutineItemWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 PtdTextWidget.labelLarge(
-                  title,
+                  widget.title,
                   MaeumgagymColor.black,
                 ),
                 const SizedBox(height: 4),
                 PtdTextWidget.bodySmall(
-                  "사용중",
-                  MaeumgagymColor.blue500,
+                  widget.isKept ? "보관중" : "사용중",
+                  widget.isKept
+                      ? MaeumgagymColor.gray400
+                      : MaeumgagymColor.blue500,
                 ),
               ],
             ),
             Row(
               children: [
-                Container(
-                  decoration: BoxDecoration(
-                    color: MaeumgagymColor.white,
-                    borderRadius: BorderRadius.circular(100),
-                  ),
-                  child: const SelfCareGoalSharedWidget(),
-                ),
+                widget.isShared
+                    ? Container(
+                        decoration: BoxDecoration(
+                          color: MaeumgagymColor.white,
+                          borderRadius: BorderRadius.circular(100),
+                        ),
+                        child: const SelfCareGoalSharedWidget(),
+                      )
+                    : const SizedBox(),
                 const SizedBox(width: 12),
                 GestureDetector(
                   onTap: () {
