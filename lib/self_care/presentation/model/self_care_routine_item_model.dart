@@ -8,7 +8,7 @@ class SelfCareRoutineItemModel {
 
   SelfCareRoutineItemModel({
     required this.title,
-    this.isKept = false,
+    this.isKept = true,
     this.isShared = false,
   });
 }
