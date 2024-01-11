@@ -7,6 +7,7 @@ class DetailBodyPickleListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    /// PickleList를 받고 뿌려줌
     return SizedBox(
       height: 224,
       child: ListView.builder(

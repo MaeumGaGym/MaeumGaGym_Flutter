@@ -64,18 +64,23 @@ class PosePartScreen extends ConsumerWidget {
               physics: const NeverScrollableScrollPhysics(),
               itemCount: data.length,
               itemBuilder: (context, index) {
+                /// tabName으로 들어온 값이랑 exactPart가 맞지 않으면 SizedBox.shrink()
                 if (!(tabName.contains(data[index]['exactPart']))) {
                   return const SizedBox.shrink();
                 } else {
                   if (posePartState.calisthenics) {
+                    /// 맨몸 태그를 눌렀을때
                     return data[index]["simplePart"] == "맨몸"
                         ? PosePartWidget(index: index)
                         : const SizedBox.shrink();
+
+                    /// 기구 태그를 눌렀을때
                   } else if (posePartState.machine) {
                     return data[index]["simplePart"] == "기구"
                         ? PosePartWidget(index: index)
                         : const SizedBox.shrink();
                   } else {
+                    /// 태그를 둘다 누르지 않았을 때
                     return PosePartWidget(index: index);
                   }
                 }

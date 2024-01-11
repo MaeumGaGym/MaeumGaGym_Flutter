@@ -1,7 +1,11 @@
+/// Package
 import 'package:flutter/material.dart';
 
+/// Core
 import '../../../../config/maeumgagym_color.dart';
 import '../../../../core/component/text/pretendard/ptd_text_widget.dart';
+
+/// Widget
 import 'detail_body_list_widget.dart';
 import 'detail_body_pickle_list_widget.dart';
 import 'detail_body_tag.dart';

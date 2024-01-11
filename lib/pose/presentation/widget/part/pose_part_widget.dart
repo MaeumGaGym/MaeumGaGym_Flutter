@@ -16,6 +16,7 @@ class PosePartWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    /// 눌렀을 때 PoseDetailScreen
     return GestureDetector(
       onTap: () => Navigator.push(
           context,
@@ -33,7 +34,6 @@ class PosePartWidget extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(12),
         child: SizedBox(
-          // height: 88,
           child: Row(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -51,6 +51,8 @@ class PosePartWidget extends StatelessWidget {
                 ),
               ),
               const SizedBox(width: 18),
+
+              /// 운동 이름
               SizedBox(
                 width: MediaQuery.of(context).size.width - 122,
                 child: PtdTextWidget.bodyMedium(
