@@ -29,8 +29,10 @@ class _SelfCareGoalMainScreenState extends ConsumerState<SelfCareGoalMainScreen>
             const SizedBox(height: 32),
             Expanded(
               child: ListView.builder(
+                /// Notifier에 입력된 Model 개수만큼
                 itemCount: routineItemState.length,
                 itemBuilder: (context, index) {
+                  /// 공통된 변수
                   final item = routineItemState[index];
                   return Padding(
                     padding: EdgeInsets.only(
