@@ -4,7 +4,12 @@ import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
 
 class SelfCareGoalRoutineManageItemWidget extends StatelessWidget {
-  const SelfCareGoalRoutineManageItemWidget({Key? key}) : super(key: key);
+  final String title;
+
+  const SelfCareGoalRoutineManageItemWidget({
+    Key? key,
+    required this.title,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
