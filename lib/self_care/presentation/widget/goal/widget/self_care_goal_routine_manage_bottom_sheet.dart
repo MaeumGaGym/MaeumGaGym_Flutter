@@ -56,9 +56,18 @@ class SelfCareGoalRoutineManageBottomSheet extends ConsumerWidget {
                   iconPath: "assets/image/self_care_icon/inbox_icon.svg",
                 ),
               ),
-              SelfCareGoalRoutineManageItemWidget(
-                title: isShared ? "공유 취소" : "공유",
-                iconPath: "assets/image/self_care_icon/earth_icon.svg",
+              GestureDetector(
+                onTap: () {
+                  if (isShared == true) {
+                    routineItemNotifier.cancelShareRoutineItem(index);
+                  } else {
+                    routineItemNotifier.shareRoutineItem(index);
+                  }
+                },
+                child: SelfCareGoalRoutineManageItemWidget(
+                  title: isShared ? "공유 취소" : "공유",
+                  iconPath: "assets/image/self_care_icon/earth_icon.svg",
+                ),
               ),
               SelfCareGoalRoutineManageItemWidget(
                 title: "삭제",
