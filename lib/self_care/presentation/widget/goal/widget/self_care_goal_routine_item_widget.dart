@@ -5,7 +5,7 @@ import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_wid
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/goal/widget/self_care_goal_routine_manage_bottom_sheet.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/goal/widget/self_care_goal_shared_widget.dart';
 
-class SelfCareGoalRoutineItemWidget extends StatelessWidget {
+class SelfCareGoalRoutineItemWidget extends StatefulWidget {
   final String title;
 
   const SelfCareGoalRoutineItemWidget({
@@ -13,6 +13,11 @@ class SelfCareGoalRoutineItemWidget extends StatelessWidget {
     required this.title,
   }) : super(key: key);
 
+  @override
+  State<SelfCareGoalRoutineItemWidget> createState() => _SelfCareGoalRoutineItemWidgetState();
+}
+
+class _SelfCareGoalRoutineItemWidgetState extends State<SelfCareGoalRoutineItemWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -30,7 +35,7 @@ class SelfCareGoalRoutineItemWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 PtdTextWidget.labelLarge(
-                  title,
+                  widget.title,
                   MaeumgagymColor.black,
                 ),
                 const SizedBox(height: 4),
