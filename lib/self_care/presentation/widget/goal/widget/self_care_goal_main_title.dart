@@ -14,7 +14,7 @@ class SelfCareGoalMainTitle extends StatelessWidget {
           "내 루틴",
           MaeumgagymColor.black,
         ),
-        SizedBox(height: 12),
+        const SizedBox(height: 12),
         PtdTextWidget.bodyMedium(
           "나만의 루틴을 구성하여\n규칙적인 운동을 해보세요.",
           MaeumgagymColor.gray600,
