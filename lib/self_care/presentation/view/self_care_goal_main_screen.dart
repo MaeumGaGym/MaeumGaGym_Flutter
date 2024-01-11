@@ -12,7 +12,7 @@ class SelfCareGoalMainScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final routineItemState = ref.watch(selfCareRoutineItemProvider);
     return Scaffold(
-      appBar: SelfCareDefaultAppBar(
+      appBar: const SelfCareDefaultAppBar(
         iconPath: "assets/image/core_icon/left_arrow_icon.svg",
       ),
       body: Padding(
@@ -20,8 +20,8 @@ class SelfCareGoalMainScreen extends ConsumerWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SelfCareGoalMainTitle(),
-            SizedBox(height: 32),
+            const SelfCareGoalMainTitle(),
+            const SizedBox(height: 32),
             Expanded(
               child: ListView.builder(
                 itemCount: routineItemState.length,
