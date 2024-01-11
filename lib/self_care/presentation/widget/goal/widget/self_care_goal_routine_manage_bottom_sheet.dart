@@ -5,10 +5,12 @@ import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/goal/widget/s
 
 class SelfCareGoalRoutineManageBottomSheet extends ConsumerWidget {
   final String isShared;
+  final String isKept;
 
   const SelfCareGoalRoutineManageBottomSheet({
     Key? key,
     required this.isShared,
+    required this.isKept,
   }) : super(key: key);
 
   @override
