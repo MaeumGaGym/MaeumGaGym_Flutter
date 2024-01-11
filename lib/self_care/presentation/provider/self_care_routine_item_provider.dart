@@ -11,8 +11,10 @@ class SelfCareRoutineItemNotifier extends StateNotifier<List<SelfCareRoutineItem
   /// 나중에 기능 구현하겠습니다.
   void addRoutineItem() {}
 
-  void keepRoutineItem() {
-
+  void keepRoutineItem(int index) {
+    state[index].isKept = true;
+    state = [...state];
+    // 상태 변경
   }
 
   void cancelKeepRoutineItem() {}
