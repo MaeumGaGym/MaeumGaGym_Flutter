@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/goal/widget/self_care_goal_routine_manage_bottom_sheet.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/goal/widget/self_care_goal_shared_widget.dart';
 
 class SelfCareGoalRoutineItemWidget extends StatelessWidget {
@@ -49,9 +50,19 @@ class SelfCareGoalRoutineItemWidget extends StatelessWidget {
                   child: const SelfCareGoalSharedWidget(),
                 ),
                 const SizedBox(width: 12),
-                SvgPicture.asset(
-                  "assets/image/core_icon/dots_vertical_icon.svg",
-                  color: MaeumgagymColor.gray400,
+                GestureDetector(
+                  onTap: () {
+                    showModalBottomSheet(
+                      context: context,
+                      builder: (context) {
+                        return SelfCareGoalRoutineManageBottomSheet();
+                      },
+                    );
+                  },
+                  child: SvgPicture.asset(
+                    "assets/image/core_icon/dots_vertical_icon.svg",
+                    color: MaeumgagymColor.gray400,
+                  ),
                 ),
               ],
             ),
