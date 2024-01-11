@@ -32,7 +32,7 @@ class SelfCareGoalRoutineManageBottomSheet extends ConsumerWidget {
               borderRadius: BorderRadius.circular(2),
             ),
           ),
-          const Column(
+          Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               SelfCareGoalRoutineManageItemWidget(
@@ -40,7 +40,7 @@ class SelfCareGoalRoutineManageBottomSheet extends ConsumerWidget {
                 iconPath: "assets/image/self_care_icon/edit_pencil_icon.svg",
               ),
               SelfCareGoalRoutineManageItemWidget(
-                title: "보관",
+                title: isKept ? "보관 취소" : "보관",
                 iconPath: "assets/image/self_care_icon/inbox_icon.svg",
               ),
               SelfCareGoalRoutineManageItemWidget(
