@@ -5,20 +5,18 @@ import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/self_care_r
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/goal/widget/self_care_goal_routine_manage_item_widget.dart';
 
 class SelfCareGoalRoutineManageBottomSheet extends ConsumerWidget {
-  final bool isShared;
-  final bool isKept;
   final int index;
 
   const SelfCareGoalRoutineManageBottomSheet({
     Key? key,
-    required this.isShared,
-    required this.isKept,
     required this.index,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final routineItemNotifier = ref.watch(selfCareRoutineItemProvider.notifier);
+    final isKeptState = ref.watch(selfCareRoutineItemProvider)[index].isKept;
+    final isSharedState = ref.watch(selfCareRoutineItemProvider)[index].isShared;
     return SizedBox(
       width: MediaQuery.of(context).size.width,
       child: Column(
@@ -45,27 +43,27 @@ class SelfCareGoalRoutineManageBottomSheet extends ConsumerWidget {
               ),
               GestureDetector(
                 onTap: () {
-                  if (isKept == true) {
+                  if (isKeptState == true) {
                     routineItemNotifier.cancelKeepRoutineItem(index);
                   } else {
                     routineItemNotifier.keepRoutineItem(index);
                   }
                 },
                 child: SelfCareGoalRoutineManageItemWidget(
-                  title: isKept ? "보관 취소" : "보관",
+                  title: isKeptState ? "보관 취소" : "보관",
                   iconPath: "assets/image/self_care_icon/inbox_icon.svg",
                 ),
               ),
               GestureDetector(
                 onTap: () {
-                  if (isShared == true) {
+                  if (isSharedState == true) {
                     routineItemNotifier.cancelShareRoutineItem(index);
                   } else {
                     routineItemNotifier.shareRoutineItem(index);
                   }
                 },
                 child: SelfCareGoalRoutineManageItemWidget(
-                  title: isShared ? "공유 취소" : "공유",
+                  title: isSharedState ? "공유 취소" : "공유",
                   iconPath: "assets/image/self_care_icon/earth_icon.svg",
                 ),
               ),
