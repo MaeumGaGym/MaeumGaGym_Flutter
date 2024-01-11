@@ -7,8 +7,8 @@ final selfCareRoutineItemProvider = StateNotifierProvider<SelfCareRoutineItemNot
 
 class SelfCareRoutineItemNotifier extends StateNotifier<List<SelfCareRoutineItemModel>> {
   SelfCareRoutineItemNotifier() : super([
-    SelfCareRoutineItemModel(title: "주말 루틴"),
-    SelfCareRoutineItemModel(title: "평일 루틴"),
+    SelfCareRoutineItemModel(title: "주말 루틴", itemIndex: 0),
+    SelfCareRoutineItemModel(title: "평일 루틴", itemIndex: 1),
   ]);
 
   /// 나중에 기능 구현하겠습니다.
