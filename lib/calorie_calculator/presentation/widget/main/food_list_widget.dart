@@ -59,7 +59,7 @@ class _FoodListWidgetState extends ConsumerState<FoodListWidget> {
                         setState(() {});
                       },
                       child: Image.asset(
-                        'assets/image/core_icon/close.png',
+                        'assets/image/core_icon/close_icon.png',
                         width: 12,
                         height: 12,
                         color: MaeumgagymColor.gray200,
