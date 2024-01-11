@@ -18,7 +18,7 @@ class SelfCareRoutineItemNotifier extends StateNotifier<List<SelfCareRoutineItem
   void keepRoutineItem(int index) {
     state[index].isKept = true;
     state = [...state];
-    // 상태 변경💉
+    // 상태 변경
   }
 
   /// 루틴 아이템 사용
