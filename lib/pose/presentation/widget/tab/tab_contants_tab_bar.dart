@@ -6,12 +6,23 @@ import 'package:maeum_ga_gym_flutter/pose/presentation/provider/tab/pose_tab_con
 import '../../../../core/component/text/pretendard/ptd_text_widget.dart';
 
 class TabContentsTabBar extends ConsumerWidget {
-  final List<String> tabData;
-
-  const TabContentsTabBar({super.key, required this.tabData});
+  const TabContentsTabBar({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    /// TabBar
+    final List<String> tabData = [
+      '추천',
+      '가슴',
+      '등',
+      '어깨',
+      '팔',
+      '복근',
+      '앞 허벅지',
+      '뒷 허벅지',
+      '종아리',
+    ];
+
     final tabController = ref.watch(poseTabController);
     final tabControllerNotifier = ref.read(poseTabController.notifier);
 
