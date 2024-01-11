@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:maeum_ga_gym_flutter/calorie_calculator/presentation/widget/addFood/add_food_app_bar.dart';
+import 'package:maeum_ga_gym_flutter/calorie_calculator/presentation/widget/addFood/add_food_tab_bar.dart';
 import 'package:maeum_ga_gym_flutter/calorie_calculator/presentation/widget/addFood/add_food_text_field.dart';
 
 class AddFoodScreen extends StatefulWidget {
@@ -17,15 +18,20 @@ class _AddFoodScreenState extends State<AddFoodScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const AddFoodAppBar(),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: Column(
-          children: [
-            const SizedBox(height: 6),
-            AddFoodTextField(textController: textController),
-            const SizedBox(height: 16),
-          ],
-        ),
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Column(
+              children: [
+                const SizedBox(height: 6),
+                AddFoodTextField(textController: textController),
+                const SizedBox(height: 16),
+              ],
+            ),
+          ),
+          const AddFoodTabBar(),
+        ],
       ),
     );
   }
