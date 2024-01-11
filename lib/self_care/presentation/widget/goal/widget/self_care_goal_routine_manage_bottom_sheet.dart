@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/goal/widget/self_care_goal_routine_manage_item_widget.dart';
 
-class SelfCareGoalRoutineManageBottomSheet extends StatelessWidget {
+class SelfCareGoalRoutineManageBottomSheet extends ConsumerWidget {
   const SelfCareGoalRoutineManageBottomSheet({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return SizedBox(
       width: MediaQuery.of(context).size.width,
       child: Column(
@@ -14,6 +15,7 @@ class SelfCareGoalRoutineManageBottomSheet extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           const SizedBox(height: 10),
+          /// 맨 위 회색 바
           Container(
             width: 64,
             height: 5,
