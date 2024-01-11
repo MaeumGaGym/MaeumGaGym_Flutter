@@ -18,10 +18,12 @@ class SelfCareGoalRoutineItemWidget extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<SelfCareGoalRoutineItemWidget> createState() => _SelfCareGoalRoutineItemWidgetState();
+  State<SelfCareGoalRoutineItemWidget> createState() =>
+      _SelfCareGoalRoutineItemWidgetState();
 }
 
-class _SelfCareGoalRoutineItemWidgetState extends State<SelfCareGoalRoutineItemWidget> {
+class _SelfCareGoalRoutineItemWidgetState
+    extends State<SelfCareGoalRoutineItemWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -44,20 +46,24 @@ class _SelfCareGoalRoutineItemWidgetState extends State<SelfCareGoalRoutineItemW
                 ),
                 const SizedBox(height: 4),
                 PtdTextWidget.bodySmall(
-                  "사용중",
-                  MaeumgagymColor.blue500,
+                  widget.isKept ? "보관중" : "사용중",
+                  widget.isKept
+                      ? MaeumgagymColor.gray400
+                      : MaeumgagymColor.blue500,
                 ),
               ],
             ),
             Row(
               children: [
-                Container(
-                  decoration: BoxDecoration(
-                    color: MaeumgagymColor.white,
-                    borderRadius: BorderRadius.circular(100),
-                  ),
-                  child: const SelfCareGoalSharedWidget(),
-                ),
+                widget.isShared
+                    ? Container(
+                        decoration: BoxDecoration(
+                          color: MaeumgagymColor.white,
+                          borderRadius: BorderRadius.circular(100),
+                        ),
+                        child: const SelfCareGoalSharedWidget(),
+                      )
+                    : const SizedBox(),
                 const SizedBox(width: 12),
                 GestureDetector(
                   onTap: () {
