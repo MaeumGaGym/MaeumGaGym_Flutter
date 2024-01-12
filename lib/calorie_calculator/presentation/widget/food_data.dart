@@ -1,4 +1,4 @@
-List<Map<String, dynamic>> foodData = [
+List<Map<String, dynamic>> basicsFoodData = [
   {
     "image": 'assets/image/core_icon/logo.png',
     "foodName": '감자',
