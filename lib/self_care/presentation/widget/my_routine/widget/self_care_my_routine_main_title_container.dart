@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
 
-class SelfCareMyRoutineMainTitle extends StatelessWidget {
-  const SelfCareMyRoutineMainTitle({Key? key}) : super(key: key);
+class SelfCareMyRoutineMainTitleContainer extends StatelessWidget {
+  const SelfCareMyRoutineMainTitleContainer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
