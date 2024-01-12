@@ -1,21 +1,23 @@
 /// Package
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:maeum_ga_gym_flutter/calorie_calculator/presentation/provider/food_text_field_provider.dart';
 
 /// Core
 import '../../../../config/maeumgagym_color.dart';
 import '../../../../core/component/text/pretendard/ptd_text_widget.dart';
 
-class AddFoodTextField extends StatefulWidget {
+class AddFoodTextField extends ConsumerStatefulWidget {
   final TextEditingController textController;
 
   const AddFoodTextField({super.key, required this.textController});
 
   @override
-  State<AddFoodTextField> createState() => _AddFoodTextFieldState();
+  ConsumerState<AddFoodTextField> createState() => _AddFoodTextFieldState();
 }
 
-class _AddFoodTextFieldState extends State<AddFoodTextField> {
+class _AddFoodTextFieldState extends ConsumerState<AddFoodTextField> {
   @override
   Widget build(BuildContext context) {
     /// 변ㅅ등
@@ -49,6 +51,8 @@ class _AddFoodTextFieldState extends State<AddFoodTextField> {
 
                 // OnTap
                 onTapOutside: (event) => FocusScope.of(context).unfocus(),
+                onChanged: (value) =>
+                    ref.read(foodTextFieldController.notifier).saveText(value),
 
                 // cusor
                 cursorHeight: 15,
