@@ -1,40 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:maeum_ga_gym_flutter/pose/presentation/widget/pose_data.dart';
-
-List<Map<String, dynamic>> data = [
-  {
-    "image": 'assets/image/core_icon/logo.png',
-    "foodName": '감자',
-    'g': 215,
-    'kcal': 460,
-    'state': false,
-    'category': ['전체', '채소']
-  },
-  {
-    "image": 'assets/image/core_icon/logo.png',
-    "foodName": '감자',
-    'g': 215,
-    'kcal': 460,
-    'state': false,
-    'category': ['전체', '채소']
-  },
-  {
-    "image": 'assets/image/core_icon/logo.png',
-    "foodName": '감자',
-    'g': 215,
-    'kcal': 460,
-    'state': false,
-    'category': ['전체', '채소']
-  },
-  {
-    "image": 'assets/image/core_icon/logo.png',
-    "foodName": '감자',
-    'g': 215,
-    'kcal': 460,
-    'state': false,
-    'category': ['전체', '채소']
-  },
-];
+import '../widget/food_data.dart';
 
 final foodDataController =
     StateNotifierProvider<FoodDataStateNotifier, FoodDataState>((ref) {
@@ -42,7 +7,7 @@ final foodDataController =
 });
 
 class FoodDataStateNotifier extends StateNotifier<FoodDataState> {
-  FoodDataStateNotifier() : super(FoodDataState(foodData: data));
+  FoodDataStateNotifier() : super(FoodDataState(foodData: basicsFoodData));
 
   void changeState(int index, bool nowState) {
     List<Map<String, dynamic>> tmpData = state.foodData;
