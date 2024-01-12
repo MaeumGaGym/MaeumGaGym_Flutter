@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/self_care_routine_item_provider.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/goal/widget/self_care_goal_main_title.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/goal/widget/self_care_goal_routine_item_widget.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/widget/self_care_my_routine_item_widget.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/widget/self_care_my_routine_main_title.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/self_care_default_app_bar.dart';
 
 class SelfCareGoalMainScreen extends ConsumerStatefulWidget {
@@ -25,7 +25,7 @@ class _SelfCareGoalMainScreenState extends ConsumerState<SelfCareGoalMainScreen>
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SelfCareGoalMainTitle(),
+            const SelfCareMyRoutineMainTitle(),
             const SizedBox(height: 32),
             Expanded(
               child: ListView.builder(
@@ -37,7 +37,7 @@ class _SelfCareGoalMainScreenState extends ConsumerState<SelfCareGoalMainScreen>
                   return Padding(
                     padding: EdgeInsets.only(
                         bottom: index == routineItemState.length - 1 ? 0 : 12),
-                    child: SelfCareGoalRoutineItemWidget(
+                    child: SelfCareMyRoutineItemWidget(
                       title: item.title,
                       index: item.itemIndex,
                     ),
