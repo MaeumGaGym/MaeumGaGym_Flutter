@@ -4,6 +4,8 @@ import 'package:maeum_ga_gym_flutter/calorie_calculator/presentation/widget/addF
 import 'package:maeum_ga_gym_flutter/calorie_calculator/presentation/widget/addFood/add_food_tab_bar.dart';
 import 'package:maeum_ga_gym_flutter/calorie_calculator/presentation/widget/addFood/add_food_text_field.dart';
 
+import '../widget/addFood/add_food_tab_body.dart';
+
 class AddFoodScreen extends StatefulWidget {
   const AddFoodScreen({super.key});
 
@@ -31,6 +33,7 @@ class _AddFoodScreenState extends State<AddFoodScreen> {
             ),
           ),
           const AddFoodTabBar(),
+          const AddFoodTabBody(),
         ],
       ),
     );
