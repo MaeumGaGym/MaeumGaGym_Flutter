@@ -17,18 +17,6 @@ class AddFoodTabBar extends ConsumerWidget {
     final tabController = ref.watch(foodTabController);
     final tabControllerNotifier = ref.read(foodTabController.notifier);
 
-    /// Tab에 들어갈 데이터
-    List<String> tabData = [
-      "MY",
-      "전체",
-      "과자/아이스크림",
-      "음료",
-      "과일/견과류",
-      "한식",
-      "양식/중식",
-      "패스트푸드",
-    ];
-
     /// Tab의 Border를 관리하는 함수
     BorderSide borderSide(bool state) {
       if (state) {
