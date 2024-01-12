@@ -5,14 +5,14 @@ import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/wi
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/widget/self_care_my_routine_main_title.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/self_care_default_app_bar.dart';
 
-class SelfCareGoalMainScreen extends ConsumerStatefulWidget {
-  const SelfCareGoalMainScreen({Key? key}) : super(key: key);
+class SelfCareMyRoutineMainScreen extends ConsumerStatefulWidget {
+  const SelfCareMyRoutineMainScreen({Key? key}) : super(key: key);
 
   @override
-  ConsumerState<SelfCareGoalMainScreen> createState() => _SelfCareGoalMainScreenState();
+  ConsumerState<SelfCareMyRoutineMainScreen> createState() => _SelfCareGoalMainScreenState();
 }
 
-class _SelfCareGoalMainScreenState extends ConsumerState<SelfCareGoalMainScreen> {
+class _SelfCareGoalMainScreenState extends ConsumerState<SelfCareMyRoutineMainScreen> {
   @override
   Widget build(BuildContext context) {
     final routineItemState = ref.watch(selfCareRoutineItemProvider);
