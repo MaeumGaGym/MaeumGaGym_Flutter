@@ -3,8 +3,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
 
-class SelfCareGoalSharedWidget extends StatelessWidget {
-  const SelfCareGoalSharedWidget({Key? key}) : super(key: key);
+class SelfCareMyRoutineSharedWidget extends StatelessWidget {
+  const SelfCareMyRoutineSharedWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
