@@ -1,18 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/self_care_routine_item_provider.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/widget/self_care_my_routine_button.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/widget/self_care_my_routine_item_widget.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/widget/self_care_my_routine_main_title.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/widget/self_care_my_routine_main_title_container.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/self_care_default_app_bar.dart';
 
 class SelfCareMyRoutineMainScreen extends ConsumerStatefulWidget {
   const SelfCareMyRoutineMainScreen({Key? key}) : super(key: key);
 
   @override
-  ConsumerState<SelfCareMyRoutineMainScreen> createState() => _SelfCareGoalMainScreenState();
+  ConsumerState<SelfCareMyRoutineMainScreen> createState() =>
+      _SelfCareGoalMainScreenState();
 }
 
-class _SelfCareGoalMainScreenState extends ConsumerState<SelfCareMyRoutineMainScreen> {
+class _SelfCareGoalMainScreenState
+    extends ConsumerState<SelfCareMyRoutineMainScreen> {
   @override
   Widget build(BuildContext context) {
     final routineItemState = ref.watch(selfCareRoutineItemProvider);
@@ -25,7 +29,7 @@ class _SelfCareGoalMainScreenState extends ConsumerState<SelfCareMyRoutineMainSc
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SelfCareMyRoutineMainTitle(),
+            const SelfCareMyRoutineMainTitleContainer(),
             const SizedBox(height: 32),
             Expanded(
               child: ListView.builder(
@@ -46,6 +50,25 @@ class _SelfCareGoalMainScreenState extends ConsumerState<SelfCareMyRoutineMainSc
               ),
             ),
           ],
+        ),
+      ),
+      bottomSheet: Container(
+        color: MaeumgagymColor.white,
+        child: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.only(bottom: 20),
+            child: SelfCareMyRoutineButton(
+              width: MediaQuery.of(context).size.width,
+              height: 58,
+              imageWidth: 24,
+              imageHeight: 24,
+              imagePath: "assets/image/self_care_icon/add_icon.svg",
+              imageColor: MaeumgagymColor.white,
+              title: "루틴 추가하기",
+              textColor: MaeumgagymColor.white,
+              buttonColor: MaeumgagymColor.blue500,
+            ),
+          ),
         ),
       ),
     );
