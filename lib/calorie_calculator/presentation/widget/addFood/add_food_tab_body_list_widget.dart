@@ -1,8 +1,12 @@
+/// Package
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
+/// Core
 import '../../../../config/maeumgagym_color.dart';
 import '../../../../core/component/text/pretendard/ptd_text_widget.dart';
+
+/// Provider
 import '../../provider/food_data_provider.dart';
 
 class AddFoodTabBodyListWidget extends StatelessWidget {
@@ -31,6 +35,7 @@ class AddFoodTabBodyListWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
+          /// FoodImage
           Image.asset(
             image,
             width: 80,
@@ -47,9 +52,12 @@ class AddFoodTabBodyListWidget extends StatelessWidget {
                 children: [
                   Row(
                     children: [
+                      /// FoodName
                       PtdTextWidget.labelMedium(
                           foodName, MaeumgagymColor.black),
                       const SizedBox(width: 10),
+
+                      /// Food 그람수
                       PtdTextWidget.bodyMedium(
                         "${g}g",
                         MaeumgagymColor.gray200,
@@ -57,6 +65,8 @@ class AddFoodTabBodyListWidget extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(height: 10),
+
+                  /// Food 칼로리수
                   PtdTextWidget.bodyMedium(
                     "${kcal}kcal",
                     MaeumgagymColor.gray500,
