@@ -4,25 +4,26 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/self_care_routine_item_provider.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/goal/widget/self_care_goal_routine_manage_bottom_sheet.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/goal/widget/self_care_goal_shared_widget.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/widget/self_care_my_routine_manage_bottom_sheet.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/widget/self_care_my_routine_shared_widget.dart';
 
-class SelfCareGoalRoutineItemWidget extends ConsumerStatefulWidget {
+
+class SelfCareMyRoutineItemWidget extends ConsumerStatefulWidget {
   final String title;
   final int index;
 
-  const SelfCareGoalRoutineItemWidget({
+  const SelfCareMyRoutineItemWidget({
     Key? key,
     required this.title,
     required this.index,
   }) : super(key: key);
 
   @override
-  ConsumerState<SelfCareGoalRoutineItemWidget> createState() =>
+  ConsumerState<SelfCareMyRoutineItemWidget> createState() =>
       _SelfCareGoalRoutineItemWidgetState();
 }
 
-class _SelfCareGoalRoutineItemWidgetState extends ConsumerState<SelfCareGoalRoutineItemWidget> {
+class _SelfCareGoalRoutineItemWidgetState extends ConsumerState<SelfCareMyRoutineItemWidget> {
   @override
   Widget build(BuildContext context) {
     final isKeptState = ref.watch(selfCareRoutineItemProvider)[widget.index].isKept;
@@ -62,7 +63,7 @@ class _SelfCareGoalRoutineItemWidgetState extends ConsumerState<SelfCareGoalRout
                           color: MaeumgagymColor.white,
                           borderRadius: BorderRadius.circular(100),
                         ),
-                        child: const SelfCareGoalSharedWidget(),
+                        child: const SelfCareMyRoutineSharedWidget(),
                       )
                     : const SizedBox(),
                 const SizedBox(width: 12),
@@ -71,7 +72,7 @@ class _SelfCareGoalRoutineItemWidgetState extends ConsumerState<SelfCareGoalRout
                     showModalBottomSheet(
                       context: context,
                       builder: (context) {
-                        return SelfCareGoalRoutineManageBottomSheet(
+                        return SelfCareMyRoutineManageBottomSheet(
                           index: widget.index,
                         );
                       },
