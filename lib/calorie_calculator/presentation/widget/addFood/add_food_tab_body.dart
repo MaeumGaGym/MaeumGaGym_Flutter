@@ -5,7 +5,9 @@ import 'package:maeum_ga_gym_flutter/calorie_calculator/presentation/provider/fo
 import 'package:maeum_ga_gym_flutter/calorie_calculator/presentation/widget/addFood/add_food_tab_body_list_widget.dart';
 
 class AddFoodTabBody extends ConsumerWidget {
-  const AddFoodTabBody({super.key});
+  final String tabName;
+
+  const AddFoodTabBody({super.key, required this.tabName});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -18,15 +20,22 @@ class AddFoodTabBody extends ConsumerWidget {
         shrinkWrap: true,
         itemCount: foodDataState.foodData.length,
         itemBuilder: (context, index) {
-          return AddFoodTabBodyListWidget(
-            index: index,
-            g: foodDataState.foodData[index]['g'],
-            kcal: foodDataState.foodData[index]['kcal'],
-            image: foodDataState.foodData[index]['image'],
-            foodName: foodDataState.foodData[index]['foodName'],
-            state: foodDataState.foodData[index]['state'],
-            foodDataStateNotifier: foodDataStateNotifier,
-          );
+          final List<String> category =
+              foodDataState.foodData[index]['category'];
+
+          if (!(category.contains(tabName))) {
+            return const SizedBox.shrink();
+          } else {
+            return AddFoodTabBodyListWidget(
+              index: index,
+              g: foodDataState.foodData[index]['g'],
+              kcal: foodDataState.foodData[index]['kcal'],
+              image: foodDataState.foodData[index]['image'],
+              foodName: foodDataState.foodData[index]['foodName'],
+              state: foodDataState.foodData[index]['state'],
+              foodDataStateNotifier: foodDataStateNotifier,
+            );
+          }
         },
       ),
     );

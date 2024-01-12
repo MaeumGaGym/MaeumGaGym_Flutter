@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:maeum_ga_gym_flutter/calorie_calculator/presentation/provider/food_tab_bar_controller.dart';
 
 import 'package:maeum_ga_gym_flutter/calorie_calculator/presentation/widget/addFood/add_food_app_bar.dart';
 import 'package:maeum_ga_gym_flutter/calorie_calculator/presentation/widget/addFood/add_food_tab_bar.dart';
@@ -6,14 +8,14 @@ import 'package:maeum_ga_gym_flutter/calorie_calculator/presentation/widget/addF
 
 import '../widget/addFood/add_food_tab_body.dart';
 
-class AddFoodScreen extends StatefulWidget {
+class AddFoodScreen extends ConsumerStatefulWidget {
   const AddFoodScreen({super.key});
 
   @override
-  State<AddFoodScreen> createState() => _AddFoodScreenState();
+  ConsumerState<AddFoodScreen> createState() => _AddFoodScreenState();
 }
 
-class _AddFoodScreenState extends State<AddFoodScreen> {
+class _AddFoodScreenState extends ConsumerState<AddFoodScreen> {
   final textController = TextEditingController();
 
   @override
@@ -33,7 +35,13 @@ class _AddFoodScreenState extends State<AddFoodScreen> {
             ),
           ),
           const AddFoodTabBar(),
-          const AddFoodTabBody(),
+          IndexedStack(
+            index: ref.watch(foodTabController).index,
+            children: [
+              for (int i = 0; i < tabData.length; i++)
+                AddFoodTabBody(tabName: tabData[i]),
+            ],
+          ),
         ],
       ),
     );
