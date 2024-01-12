@@ -37,7 +37,7 @@ class SelfCareMyRoutineManageBottomSheet extends ConsumerWidget {
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              SelfCareMyRoutineManageItemWidget(
+              const SelfCareMyRoutineManageItemWidget(
                 title: "수정",
                 iconPath: "assets/image/self_care_icon/edit_pencil_icon.svg",
               ),
@@ -67,7 +67,7 @@ class SelfCareMyRoutineManageBottomSheet extends ConsumerWidget {
                   iconPath: "assets/image/self_care_icon/earth_icon.svg",
                 ),
               ),
-              SelfCareMyRoutineManageItemWidget(
+              const SelfCareMyRoutineManageItemWidget(
                 title: "삭제",
                 iconPath: "assets/image/self_care_icon/edit_trash_icon.svg",
               ),
