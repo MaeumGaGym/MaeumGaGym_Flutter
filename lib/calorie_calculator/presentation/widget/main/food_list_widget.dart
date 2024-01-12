@@ -1,10 +1,12 @@
-import 'package:flutter/cupertino.dart';
+/// Package
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+/// Core
 import '../../../../config/maeumgagym_color.dart';
 import '../../../../core/component/text/pretendard/ptd_text_widget.dart';
+
+/// Provider
 import 'package:maeum_ga_gym_flutter/calorie_calculator/presentation/provider/food_list_provider.dart';
 
 class FoodListWidget extends ConsumerStatefulWidget {
@@ -24,6 +26,7 @@ class _FoodListWidgetState extends ConsumerState<FoodListWidget> {
       shrinkWrap: true,
       itemCount: listController.length,
       itemBuilder: (context, index) {
+        /// List Contents
         return SizedBox(
           height: 72,
           child: Padding(
@@ -36,10 +39,13 @@ class _FoodListWidgetState extends ConsumerState<FoodListWidget> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    /// Title
                     PtdTextWidget.labelLarge(
                       listController[index].title,
                       MaeumgagymColor.black,
                     ),
+
+                    /// 단위와 접시 ex) 중접시 1줄
                     PtdTextWidget.bodyMedium(
                       '${listController[index].plate}(${listController[index].unitValue}${listController[index].unit})',
                       MaeumgagymColor.gray500,
@@ -48,11 +54,14 @@ class _FoodListWidgetState extends ConsumerState<FoodListWidget> {
                 ),
                 Row(
                   children: [
+                    /// 칼로리 량
                     PtdTextWidget.labelLarge(
                       '${listController[index].calories}kcal',
                       MaeumgagymColor.black,
                     ),
                     const SizedBox(width: 16),
+
+                    /// 삭제 버튼
                     GestureDetector(
                       onTap: () {
                         listControllerNotifier.delFoodList(index);
