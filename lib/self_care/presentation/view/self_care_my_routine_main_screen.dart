@@ -53,16 +53,19 @@ class _SelfCareGoalMainScreenState
         ),
       ),
       bottomSheet: SafeArea(
-        child: SelfCareMyRoutineButton(
-          width: MediaQuery.of(context).size.width,
-          height: 58,
-          imageWidth: 24,
-          imageHeight: 24,
-          imagePath: "assets/image/self_care_icon/add_icon.svg",
-          imageColor: MaeumgagymColor.white,
-          title: "루틴 추가하기",
-          textColor: MaeumgagymColor.white,
-          buttonColor: MaeumgagymColor.blue500,
+        child: Padding(
+          padding: const EdgeInsets.only(bottom: 20),
+          child: SelfCareMyRoutineButton(
+            width: MediaQuery.of(context).size.width,
+            height: 58,
+            imageWidth: 24,
+            imageHeight: 24,
+            imagePath: "assets/image/self_care_icon/add_icon.svg",
+            imageColor: MaeumgagymColor.white,
+            title: "루틴 추가하기",
+            textColor: MaeumgagymColor.white,
+            buttonColor: MaeumgagymColor.blue500,
+          ),
         ),
       ),
     );
