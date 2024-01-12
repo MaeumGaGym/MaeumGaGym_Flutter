@@ -21,10 +21,15 @@ class AddFoodAppBar extends StatelessWidget implements PreferredSizeWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               /// 그냥 뒤로가기 버튼
-              Image.asset(
-                'assets/image/core_icon/close_icon.png',
-                width: 16,
-                height: 16,
+              GestureDetector(
+                onTap: () {
+                  Navigator.pop(context);
+                },
+                child: Image.asset(
+                  'assets/image/core_icon/close_icon.png',
+                  width: 16,
+                  height: 16,
+                ),
               ),
 
               /// Title
