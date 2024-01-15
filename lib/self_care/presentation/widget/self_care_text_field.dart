@@ -6,8 +6,10 @@ class SelfCareTextField extends StatefulWidget {
   final String title;
   final FocusNode focusNode;
   final TextEditingController controller;
-  final String? suffixText;
   final TextInputAction inputAction;
+
+  final String? suffixText;
+  final String? hintText;
 
   const SelfCareTextField({
     super.key,
@@ -16,6 +18,7 @@ class SelfCareTextField extends StatefulWidget {
     required this.controller,
     required this.inputAction,
     this.suffixText,
+    this.hintText,
   });
 
   @override
@@ -73,6 +76,7 @@ class _SelfCareTextFieldState extends State<SelfCareTextField> {
                 /// TextField 커서가 위로 올라가요
                 contentPadding: const EdgeInsets.symmetric(horizontal: 12),
                 suffixText: widget.suffixText,
+                hintText: widget.hintText,
 
                 /// 텍스트 필드 오른쪽에 뜨는 텍스트 (cm, kg),
                 /// 근데 suffixText는 controller에 값이 있을 때만 뜨더라구요.. 고칠려했지만 고칠 수 없다.
@@ -80,10 +84,18 @@ class _SelfCareTextFieldState extends State<SelfCareTextField> {
                   color: MaeumgagymColor.gray600,
                   fontSize: 20,
                   fontWeight: FontWeight.w400,
-                  fontFamily: "Pretendard",
+                  fontFamily: pretendard,
                   overflow: TextOverflow.visible,
                   decorationThickness: 0,
                 ),
+                hintStyle: TextStyle(
+                  color: MaeumgagymColor.gray400,
+                  fontSize: 20,
+                  fontWeight: FontWeight.w400,
+                  fontFamily: pretendard,
+                  overflow: TextOverflow.visible,
+                  decorationThickness: 0,
+                )
               ),
 
               cursorColor: MaeumgagymColor.blue600,
