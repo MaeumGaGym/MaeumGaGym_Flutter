@@ -30,7 +30,9 @@ class _SelfCareTextFieldState extends State<SelfCareTextField> {
       children: [
         PtdTextWidget.bodyMedium(
           widget.title,
-          MaeumgagymColor.black,
+          widget.focusNode.hasFocus
+              ? MaeumgagymColor.blue500
+              : MaeumgagymColor.black,
         ),
         const SizedBox(height: 8),
         Container(
@@ -85,6 +87,7 @@ class _SelfCareTextFieldState extends State<SelfCareTextField> {
               ),
 
               cursorColor: MaeumgagymColor.blue600,
+
               /// 커서 색상 변경
             ),
           ),
