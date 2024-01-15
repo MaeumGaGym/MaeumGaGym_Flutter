@@ -25,32 +25,34 @@ class _SelfCareGoalMainScreenState
       appBar: const SelfCareDefaultAppBar(
         iconPath: "assets/image/core_icon/left_arrow_icon.svg",
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SelfCareMyRoutineMainTitleContainer(),
-            const SizedBox(height: 32),
-            Expanded(
-              child: ListView.builder(
-                /// Notifier에 입력된 Model 개수만큼
-                itemCount: routineItemState.length,
-                itemBuilder: (context, index) {
-                  /// 공통된 변수
-                  final item = routineItemState[index];
-                  return Padding(
-                    padding: EdgeInsets.only(
-                        bottom: index == routineItemState.length - 1 ? 0 : 12),
-                    child: SelfCareMyRoutineItemWidget(
-                      title: item.title,
-                      index: item.itemIndex,
-                    ),
-                  );
-                },
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SelfCareMyRoutineMainTitleContainer(),
+              const SizedBox(height: 32),
+              Expanded(
+                child: ListView.builder(
+                  /// Notifier에 입력된 Model 개수만큼
+                  itemCount: routineItemState.length,
+                  itemBuilder: (context, index) {
+                    /// 공통된 변수
+                    final item = routineItemState[index];
+                    return Padding(
+                      padding: EdgeInsets.only(
+                          bottom: index == routineItemState.length - 1 ? 0 : 12),
+                      child: SelfCareMyRoutineItemWidget(
+                        title: item.title,
+                        index: item.itemIndex,
+                      ),
+                    );
+                  },
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
       bottomSheet: Container(
