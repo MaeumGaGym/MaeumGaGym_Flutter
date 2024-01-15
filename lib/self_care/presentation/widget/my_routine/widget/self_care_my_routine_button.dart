@@ -29,33 +29,30 @@ class SelfCareMyRoutineButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {},
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: Container(
-          width: width,
-          height: height,
-          decoration: BoxDecoration(
-            color: buttonColor,
-            borderRadius: BorderRadius.circular(8),
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SvgPicture.asset(
-                imagePath,
-                width: imageHeight,
-                height: imageWidth,
-                color: imageColor,
-              ),
-              const SizedBox(width: 8),
-              PtdTextWidget.labelLarge(
-                title,
-                textColor,
-              ),
-            ],
-          ),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: Container(
+        width: width,
+        height: height,
+        decoration: BoxDecoration(
+          color: buttonColor,
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SvgPicture.asset(
+              imagePath,
+              width: imageHeight,
+              height: imageWidth,
+              color: imageColor,
+            ),
+            const SizedBox(width: 8),
+            PtdTextWidget.labelLarge(
+              title,
+              textColor,
+            ),
+          ],
         ),
       ),
     );
