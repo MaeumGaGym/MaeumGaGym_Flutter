@@ -22,6 +22,7 @@ class _SelfCareGoalMainScreenState
   Widget build(BuildContext context) {
     final routineItemState = ref.watch(selfCareRoutineItemProvider);
     return Scaffold(
+      backgroundColor: MaeumgagymColor.white,
       appBar: const SelfCareDefaultAppBar(
         iconPath: "assets/image/core_icon/left_arrow_icon.svg",
       ),
