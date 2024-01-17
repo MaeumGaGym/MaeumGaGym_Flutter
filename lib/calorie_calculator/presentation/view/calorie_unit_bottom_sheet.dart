@@ -49,7 +49,7 @@ class _CalorieUnitBottomSheetState
         ),
       ),
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(20, 26, 20, 26),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 26),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
