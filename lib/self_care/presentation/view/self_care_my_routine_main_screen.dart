@@ -27,15 +27,17 @@ class _SelfCareGoalMainScreenState
         iconPath: "assets/image/core_icon/left_arrow_icon.svg",
       ),
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SelfCareMyRoutineMainTitleContainer(),
-              const SizedBox(height: 32),
-              Expanded(
-                child: ListView.builder(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SelfCareMyRoutineMainTitleContainer(),
+                const SizedBox(height: 32),
+                ListView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
                   /// Notifier에 입력된 Model 개수만큼
                   itemCount: routineItemState.length,
                   itemBuilder: (context, index) {
@@ -51,8 +53,8 @@ class _SelfCareGoalMainScreenState
                     );
                   },
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
