@@ -69,7 +69,7 @@ class _SelfCareGoalMainScreenState
               );
             },
             child: Padding(
-              padding: const EdgeInsets.only(bottom: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
               child: SelfCareMyRoutineButton(
                 width: MediaQuery.of(context).size.width,
                 height: 58,
