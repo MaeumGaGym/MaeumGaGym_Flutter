@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/self_care_text_field_provider.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/edit/widget/self_care_text_field.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/self_care_text_field.dart';
 
 class SelfCareProfileEditTextFieldContainer extends ConsumerStatefulWidget {
   const SelfCareProfileEditTextFieldContainer({Key? key}) : super(key: key);
