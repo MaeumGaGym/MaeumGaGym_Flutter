@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:maeum_ga_gym_flutter/calorie_calculator/presentation/provider/food_text_field_provider.dart';
+import 'package:maeum_ga_gym_flutter/calorie_calculator/presentation/provider/food_search_provider.dart';
 
 /// Core
 import '../../../../config/maeumgagym_color.dart';
@@ -20,7 +20,7 @@ class AddFoodTextField extends ConsumerStatefulWidget {
 class _AddFoodTextFieldState extends ConsumerState<AddFoodTextField> {
   @override
   Widget build(BuildContext context) {
-    /// 변ㅅ등
+    /// 변수
     final num mediaWidth = MediaQuery.of(context).size.width;
     final TextEditingController textController = widget.textController;
 
@@ -52,7 +52,7 @@ class _AddFoodTextFieldState extends ConsumerState<AddFoodTextField> {
                 // OnTap
                 onTapOutside: (event) => FocusScope.of(context).unfocus(),
                 onChanged: (value) =>
-                    ref.read(foodTextFieldController.notifier).saveText(value),
+                    ref.read(foodSearchController.notifier).saveText(value),
 
                 // cusor
                 cursorHeight: 15,
