@@ -12,7 +12,7 @@ import '../../provider/food_data_provider.dart';
 class AddFoodTabBodyListWidget extends StatelessWidget {
   final int index, g, kcal;
   final String image, foodName;
-  final bool state;
+  final bool selected;
   final FoodDataStateNotifier foodDataStateNotifier;
 
   const AddFoodTabBodyListWidget({
@@ -22,7 +22,7 @@ class AddFoodTabBodyListWidget extends StatelessWidget {
     required this.kcal,
     required this.image,
     required this.foodName,
-    required this.state,
+    required this.selected,
     required this.foodDataStateNotifier,
   });
 
@@ -76,9 +76,9 @@ class AddFoodTabBodyListWidget extends StatelessWidget {
             ),
           ),
           GestureDetector(
-            onTap: () => foodDataStateNotifier.changeState(index, state),
+            onTap: () => foodDataStateNotifier.toggleSelection(index),
             child: SvgPicture.asset(
-              state
+              selected
                   ? 'assets/image/home_icon/check_circle_icon.svg'
                   : 'assets/image/home_icon/add_circle_icon.svg',
               width: 40,
