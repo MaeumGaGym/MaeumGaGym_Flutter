@@ -65,6 +65,7 @@ class _SelfCareMyRoutineAddScreenState
                     );
                   },
                 ),
+                const SizedBox(height: 98),
               ],
             ),
           ),
