@@ -65,6 +65,8 @@ class _SelfCareMyRoutineAddScreenState
                     );
                   },
                 ),
+                /// 디자인 보고 간격 넣었습니다.
+                /// 안 넣으니깐 아이템이 밑에 씹히더라구용
                 const SizedBox(height: 98),
               ],
             ),
