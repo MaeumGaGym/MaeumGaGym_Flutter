@@ -28,6 +28,7 @@ class _SelfCareMyRoutineAddScreenState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: MaeumgagymColor.white,
       appBar: const SelfCareDefaultAppBar(
         iconPath: "assets/image/core_icon/left_arrow_icon.svg",
@@ -53,12 +54,11 @@ class _SelfCareMyRoutineAddScreenState
                 ListView.builder(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
-                  itemCount: 32,
+                  itemCount: 1,
                   itemBuilder: (context, index) {
                     return Column(
                       children: [
                         const SelfCareMyRoutinePoseItemWidget(),
-
                         /// 마지막 item이라면 간격 x
                         SizedBox(height: index == 32 - 1 ? 0 : 40),
                       ],
