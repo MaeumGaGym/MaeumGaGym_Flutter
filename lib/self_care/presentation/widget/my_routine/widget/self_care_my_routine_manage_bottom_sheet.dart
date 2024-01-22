@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/self_care_routine_item_provider.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/view/self_care_my_routine_edit_screen.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/widget/self_care_my_routine_manage_item_widget.dart';
 
 class SelfCareMyRoutineManageBottomSheet extends ConsumerWidget {
@@ -16,7 +17,8 @@ class SelfCareMyRoutineManageBottomSheet extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final routineItemNotifier = ref.watch(selfCareRoutineItemProvider.notifier);
     final isKeptState = ref.watch(selfCareRoutineItemProvider)[index].isKept;
-    final isSharedState = ref.watch(selfCareRoutineItemProvider)[index].isShared;
+    final isSharedState =
+        ref.watch(selfCareRoutineItemProvider)[index].isShared;
     return SizedBox(
       width: MediaQuery.of(context).size.width,
       child: Column(
@@ -37,9 +39,17 @@ class SelfCareMyRoutineManageBottomSheet extends ConsumerWidget {
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              const SelfCareMyRoutineManageItemWidget(
-                title: "수정",
-                iconPath: "assets/image/self_care_icon/edit_pencil_icon.svg",
+              GestureDetector(
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => SelfCareMyRoutineEditScreen(),
+                  ),
+                ),
+                child: const SelfCareMyRoutineManageItemWidget(
+                  title: "수정",
+                  iconPath: "assets/image/self_care_icon/edit_pencil_icon.svg",
+                ),
               ),
               GestureDetector(
                 onTap: () {
