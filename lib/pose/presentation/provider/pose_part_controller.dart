@@ -10,6 +10,17 @@ class PosePartControllerStateNotifier
   PosePartControllerStateNotifier()
       : super(PosePartControllerState(calisthenics: false, machine: false));
 
+  void init(int index) {
+    switch (index) {
+      case 0:
+        state = PosePartControllerState(calisthenics: true, machine: false);
+      case 1:
+        state = PosePartControllerState(calisthenics: false, machine: true);
+      default:
+        state = PosePartControllerState(calisthenics: false, machine: false);
+    }
+  }
+
   void clickCalisthenics() {
     if (state.calisthenics == false) {
       state = PosePartControllerState(
