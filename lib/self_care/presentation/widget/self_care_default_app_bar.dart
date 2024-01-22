@@ -8,9 +8,14 @@ class SelfCareDefaultAppBar extends StatelessWidget
   final String? title;
   final String iconPath;
 
+  final Color? backgroundColor;
+  final Color? color;
+
   const SelfCareDefaultAppBar({
     Key? key,
     this.title,
+    this.backgroundColor,
+    this.color,
     required this.iconPath,
   }) : super(key: key);
 
@@ -22,7 +27,7 @@ class SelfCareDefaultAppBar extends StatelessWidget
         child: AppBar(
           automaticallyImplyLeading: false,
           scrolledUnderElevation: 0,
-          backgroundColor: MaeumgagymColor.white,
+          backgroundColor: backgroundColor ?? MaeumgagymColor.white,
           title: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -34,14 +39,16 @@ class SelfCareDefaultAppBar extends StatelessWidget
                     iconPath,
                     width: 28,
                     height: 28,
+                    color: color ?? MaeumgagymColor.black,
                   ),
                 ),
               ),
               const SizedBox(width: 24),
               PtdTextWidget.labelLarge(
                 title ?? "",
+
                 /// title이 null이라면 공백처리
-                MaeumgagymColor.black,
+                color ?? MaeumgagymColor.black,
               ),
             ],
           ),
