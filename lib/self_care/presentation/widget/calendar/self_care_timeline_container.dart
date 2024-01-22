@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
 
-class SelfCareCalendarContainer extends StatelessWidget {
-  const SelfCareCalendarContainer({super.key});
+class SelfCareTimelineContainer extends StatelessWidget {
+  const SelfCareTimelineContainer({super.key});
 
   @override
   Widget build(BuildContext context) {
