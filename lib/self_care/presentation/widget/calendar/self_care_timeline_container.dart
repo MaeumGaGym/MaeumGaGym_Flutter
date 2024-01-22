@@ -25,7 +25,8 @@ class SelfCareCalendarContainer extends StatelessWidget {
                 MaeumgagymColor.gray400,
               ),
             ],
-          )
+          ),
+          const SizedBox(height: 24),
         ],
       ),
     );
