@@ -1,7 +1,5 @@
 /// Package
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/pose/presentation/provider/tab/pose_tab_controller.dart';
@@ -12,12 +10,23 @@ import '../../view/pose_part_screen.dart';
 import '../../view/pose_recommend_screen.dart';
 
 class TabContents extends ConsumerWidget {
-  final TabController tabController;
-
-  const TabContents({super.key, required this.tabController});
+  const TabContents({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    List<List<String>> tabNameList = [
+      ['상체', '하체', '가슴', '등', '어깨', '팔', '복근', '앞 허벅지', '뒷 허벅지', '종아리'],
+      ['상체', '하체', '가슴', '등', '어깨', '팔', '복근', '앞 허벅지', '뒷 허벅지', '종아리'],
+      ['상체', '가슴'],
+      ['상체', '등'],
+      ['상체', '어깨'],
+      ['상체', '팔'],
+      ['상체', '복근'],
+      ['하체', '앞 허벅지'],
+      ['하체', '뒷 허벅지'],
+      ['하체', '종아리'],
+    ];
+
     return Column(
       children: [
         /// Tap Bar
@@ -44,32 +53,13 @@ class TabContents extends ConsumerWidget {
         Expanded(
           child: IndexedStack(
             index: ref.watch(poseTabController).index,
-            children: const [
-              PoseReCommendScreen(),
-              PosePartScreen(
-                tabName: ['상체', '가슴'],
-              ),
-              PosePartScreen(
-                tabName: ['상체', '등'],
-              ),
-              PosePartScreen(
-                tabName: ['상체', '어깨'],
-              ),
-              PosePartScreen(
-                tabName: ['상체', '팔'],
-              ),
-              PosePartScreen(
-                tabName: ['상체', '복근'],
-              ),
-              PosePartScreen(
-                tabName: ['하체', '앞 허벅지'],
-              ),
-              PosePartScreen(
-                tabName: ['하체', '뒷 허벅지'],
-              ),
-              PosePartScreen(
-                tabName: ['하체', '종아리'],
-              ),
+            children: [
+              const PoseReCommendScreen(),
+              for (int i = 0; i < tabNameList.length; i++)
+                PosePartScreen(
+                  tabName: tabNameList[i],
+                  nonePosePartSelector: i <= 1 ? true : false,
+                ),
             ],
           ),
         ),
