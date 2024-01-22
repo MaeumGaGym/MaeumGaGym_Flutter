@@ -9,6 +9,8 @@ import '../../../../core/component/text/pretendard/ptd_text_widget.dart';
 /// Provider
 import 'package:maeum_ga_gym_flutter/pose/presentation/provider/tab/pose_tab_controller.dart';
 
+import '../../provider/pose_part_controller.dart';
+
 class TabContentsTabBar extends ConsumerWidget {
   const TabContentsTabBar({super.key});
 
@@ -17,6 +19,8 @@ class TabContentsTabBar extends ConsumerWidget {
     /// TabBar
     final List<String> tabData = [
       '추천',
+      '맨몸',
+      '기구',
       '가슴',
       '등',
       '어깨',
@@ -27,8 +31,10 @@ class TabContentsTabBar extends ConsumerWidget {
       '종아리',
     ];
 
-    final tabController = ref.watch(poseTabController);
-    final tabControllerNotifier = ref.read(poseTabController.notifier);
+    final poseTabControllerState = ref.watch(poseTabController);
+    final poseTabControllerStateNotifier = ref.read(poseTabController.notifier);
+
+    final posePartStateNotifier = ref.watch(posePartController.notifier);
 
     /// Tab을 구현하기 위한 ListViewBuilder
     return ListView.builder(
@@ -39,14 +45,17 @@ class TabContentsTabBar extends ConsumerWidget {
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8),
           child: GestureDetector(
-            onTap: () => tabControllerNotifier.saveIndex(index),
+            onTap: () {
+              poseTabControllerStateNotifier.saveIndex(index);
+              posePartStateNotifier.init(poseTabControllerState.index);
+            },
             child: Container(
               decoration: BoxDecoration(
                 border: Border(
                   /// 하단 Border가 선택시 blue 아니면 gray
                   bottom: BorderSide(
                     width: 2,
-                    color: tabController.index == index
+                    color: poseTabControllerState.index == index
                         ? MaeumgagymColor.blue500
                         : MaeumgagymColor.gray50,
                   ),
@@ -59,7 +68,7 @@ class TabContentsTabBar extends ConsumerWidget {
                   tabData[index],
 
                   /// 글자가 선택시 black 아니면 gray400
-                  tabController.index == index
+                  poseTabControllerState.index == index
                       ? MaeumgagymColor.black
                       : MaeumgagymColor.gray400,
                 ),
