@@ -2,35 +2,47 @@
 import 'package:flutter/material.dart';
 
 /// core
-import '../../../../config/maeumgagym_color.dart';
-import '../../../../core/component/text/pretendard/ptd_text_widget.dart';
+import '../../../../../../config/maeumgagym_color.dart';
+import '../../../../text/pretendard/ptd_text_widget.dart';
 
 /// Widget
 import 'package:maeum_ga_gym_flutter/pose/presentation/widget/pose_data.dart';
-import '../../view/pose_detail_screen.dart';
+import '../../../../../../pose/presentation/view/pose_detail_screen.dart';
 
 class PosePartWidget extends StatelessWidget {
   final int index;
+  final bool useNavigator;
 
-  const PosePartWidget({required this.index, super.key});
+  const PosePartWidget({
+    required this.index,
+    required this.useNavigator,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
     /// 눌렀을 때 PoseDetailScreen
     return GestureDetector(
-      onTap: () => Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => PoseDetailScreen(
-              poseImages: data[index]['poseImages'],
-              simpleName: data[index]['simpleName'],
-              exactName: data[index]['exactName'],
-              simplePart: data[index]['simplePart'],
-              exactPart: data[index]['exactPart'],
-              exerciseWay: data[index]['exerciseWay'],
-              caution: data[index]['caution'],
+      onTap: () {
+        /// useNavigator 가 true 일때
+        if (useNavigator) {
+          /// PoseDetailScreen 으로 이동
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => PoseDetailScreen(
+                poseImages: data[index]['poseImages'],
+                simpleName: data[index]['simpleName'],
+                exactName: data[index]['exactName'],
+                simplePart: data[index]['simplePart'],
+                exactPart: data[index]['exactPart'],
+                exerciseWay: data[index]['exerciseWay'],
+                caution: data[index]['caution'],
+              ),
             ),
-          )),
+          );
+        }
+      },
       child: Padding(
         padding: const EdgeInsets.all(12),
         child: SizedBox(
@@ -39,6 +51,7 @@ class PosePartWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              /// 운동 사진
               Container(
                 width: 64,
                 height: 64,

@@ -1,9 +1,10 @@
 /// Packge
 import 'package:flutter/material.dart';
 
+import '../../../../../../config/maeumgagym_color.dart';
+import '../../../../text/pretendard/ptd_text_widget.dart';
+
 /// Core
-import '../../../../config/maeumgagym_color.dart';
-import '../../../../core/component/text/pretendard/ptd_text_widget.dart';
 
 class PosePartSelectorWidget extends StatelessWidget {
   final bool state;
