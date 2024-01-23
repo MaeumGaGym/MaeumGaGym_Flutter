@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/self_care_routine_item_provider.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/view/self_care_my_routine_add_screen.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/view/self_care_my_routine_detail_screen.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/widget/self_care_my_routine_button.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/widget/self_care_my_routine_item_widget.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/container/self_care_my_routine_main_title_container.dart';
@@ -38,6 +39,7 @@ class _SelfCareGoalMainScreenState
                 ListView.builder(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
+
                   /// Notifier에 입력된 Model 개수만큼
                   itemCount: routineItemState.length,
                   itemBuilder: (context, index) {
@@ -45,10 +47,20 @@ class _SelfCareGoalMainScreenState
                     final item = routineItemState[index];
                     return Padding(
                       padding: EdgeInsets.only(
-                          bottom: index == routineItemState.length - 1 ? 0 : 12),
-                      child: SelfCareMyRoutineItemWidget(
-                        title: item.title,
-                        index: item.itemIndex,
+                          bottom:
+                              index == routineItemState.length - 1 ? 0 : 12),
+                      child: GestureDetector(
+                        onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                SelfCareMyRoutineDetailScreen(index: index),
+                          ),
+                        ),
+                        child: SelfCareMyRoutineItemWidget(
+                          title: item.title,
+                          index: item.itemIndex,
+                        ),
                       ),
                     );
                   },
