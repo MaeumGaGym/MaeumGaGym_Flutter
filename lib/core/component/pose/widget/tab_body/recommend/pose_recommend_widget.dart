@@ -1,7 +1,7 @@
 /// Package
 import 'package:flutter/material.dart';
-import 'package:maeum_ga_gym_flutter/pose/presentation/widget/recommend/pose_recommend_bottom.dart';
-import 'package:maeum_ga_gym_flutter/pose/presentation/widget/recommend/pose_recommend_top.dart';
+import 'package:maeum_ga_gym_flutter/core/component/pose/widget/tab_body/recommend/pose_recommend_bottom.dart';
+import 'package:maeum_ga_gym_flutter/core/component/pose/widget/tab_body/recommend/pose_recommend_top.dart';
 
 class PoseRecommendWidget extends StatelessWidget {
   final List<Map<String, dynamic>> data;

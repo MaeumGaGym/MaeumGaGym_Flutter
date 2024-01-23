@@ -2,11 +2,11 @@
 import 'package:flutter/material.dart';
 
 /// Widget
-import '../widget/pose_data.dart';
-import '../widget/recommend/pose_recommend_widget.dart';
+import '../../../../../pose/presentation/widget/pose_data.dart';
+import 'recommend/pose_recommend_widget.dart';
 
-class PoseReCommendScreen extends StatelessWidget {
-  const PoseReCommendScreen({super.key});
+class TabBodyRecommendScreen extends StatelessWidget {
+  const TabBodyRecommendScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
