@@ -58,13 +58,7 @@ class _SelfCareGoalRoutineItemWidgetState extends ConsumerState<SelfCareMyRoutin
             Row(
               children: [
                 isSharedState
-                    ? Container(
-                        decoration: BoxDecoration(
-                          color: MaeumgagymColor.white,
-                          borderRadius: BorderRadius.circular(100),
-                        ),
-                        child: const SelfCareMyRoutineSharedWidget(),
-                      )
+                    ? const SelfCareMyRoutineSharedWidget()
                     : const SizedBox(),
                 const SizedBox(width: 12),
                 GestureDetector(
