@@ -4,12 +4,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 /// Core
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
-import '../../../../core/component/text/pretendard/ptd_text_widget.dart';
+import '../../../text/pretendard/ptd_text_widget.dart';
 
 /// Provider
-import 'package:maeum_ga_gym_flutter/pose/presentation/provider/tab/pose_tab_controller.dart';
+import 'package:maeum_ga_gym_flutter/core/component/pose/provider/pose_tab_controller.dart';
 
-import '../../provider/pose_part_controller.dart';
+import '../../provider/pose_part_selector_controller.dart';
 
 class TabContentsTabBar extends ConsumerWidget {
   const TabContentsTabBar({super.key});
@@ -34,7 +34,8 @@ class TabContentsTabBar extends ConsumerWidget {
     final poseTabControllerState = ref.watch(poseTabController);
     final poseTabControllerStateNotifier = ref.read(poseTabController.notifier);
 
-    final posePartStateNotifier = ref.watch(posePartController.notifier);
+    final posePartStateNotifier =
+        ref.watch(posePartSelectorController.notifier);
 
     /// Tab을 구현하기 위한 ListViewBuilder
     return ListView.builder(
@@ -47,7 +48,7 @@ class TabContentsTabBar extends ConsumerWidget {
           child: GestureDetector(
             onTap: () {
               poseTabControllerStateNotifier.saveIndex(index);
-              posePartStateNotifier.init(poseTabControllerState.index);
+              posePartStateNotifier.init(index);
             },
             child: Container(
               decoration: BoxDecoration(
