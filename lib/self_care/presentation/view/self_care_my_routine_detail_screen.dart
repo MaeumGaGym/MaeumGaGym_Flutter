@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/view/self_care_my_routine_edit_screen.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/view/self_care_my_routine_pose_add_screen.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/container/self_care_my_routine_detail_title_container.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/widget/self_care_my_routine_button.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/widget/self_care_my_routine_detail_dialog.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/widget/self_care_my_routine_detail_routine_item_widget.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/self_care_default_app_bar.dart';
 
@@ -41,6 +41,7 @@ class SelfCareMyRoutineDetailScreen extends StatelessWidget {
                     return Column(
                       children: [
                         const SelfCareMyRoutineDetailRoutineItemWidget(),
+
                         /// 마지막 아이템일 경우 간격 x
                         SizedBox(height: index == 50 - 1 ? 0 : 12),
                       ],
@@ -74,7 +75,8 @@ class SelfCareMyRoutineDetailScreen extends StatelessWidget {
                     width: MediaQuery.of(context).size.width,
                     height: 58,
                     title: "루틴 삭제",
-                    imagePath: "assets/image/self_care_icon/edit_trash_icon.svg",
+                    imagePath:
+                        "assets/image/self_care_icon/edit_trash_icon.svg",
                     buttonColor: MaeumgagymColor.gray50,
                     textColor: MaeumgagymColor.gray800,
                   ),
@@ -86,15 +88,17 @@ class SelfCareMyRoutineDetailScreen extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                         builder: (context) =>
-                        /// 루틴 수정 페이지로 이동
-                        const SelfCareMyRoutineEditScreen(),
+
+                            /// 루틴 수정 페이지로 이동
+                            const SelfCareMyRoutineEditScreen(),
                       ),
                     ),
                     child: SelfCareMyRoutineButton(
                       width: MediaQuery.of(context).size.width,
                       height: 58,
                       title: "루틴 수정",
-                      imagePath: "assets/image/self_care_icon/edit_pencil_icon.svg",
+                      imagePath:
+                          "assets/image/self_care_icon/edit_pencil_icon.svg",
                       imageColor: MaeumgagymColor.white,
                       buttonColor: MaeumgagymColor.blue500,
                       textColor: MaeumgagymColor.white,
@@ -102,11 +106,22 @@ class SelfCareMyRoutineDetailScreen extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(width: 20),
-                SvgPicture.asset(
-                  "assets/image/core_icon/dots_vertical_icon.svg",
-                  width: 32,
-                  height: 32,
-                  color: MaeumgagymColor.black,
+                GestureDetector(
+                  onTap: () {
+                    showDialog(
+                      context: context,
+                      barrierDismissible: true,
+                      builder: (context) {
+                        return SelfCareMyRoutineDetailDialog(index: index);
+                      },
+                    );
+                  },
+                  child: SvgPicture.asset(
+                    "assets/image/core_icon/dots_vertical_icon.svg",
+                    width: 32,
+                    height: 32,
+                    color: MaeumgagymColor.black,
+                  ),
                 ),
               ],
             ),
