@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:maeum_ga_gym_flutter/pose/presentation/widget/part/pose_part_selector_widget.dart';
+import 'package:maeum_ga_gym_flutter/core/component/pose/widget/tab_body/part/pose_part_selector_widget.dart';
 
-import '../../provider/pose_part_controller.dart';
+import '../../../provider/pose_part_selector_controller.dart';
 
 class PosePartSelector extends ConsumerWidget {
   const PosePartSelector({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final posePartState = ref.watch(posePartController);
-    final posePartNotifier = ref.read(posePartController.notifier);
+    final posePartState = ref.watch(posePartSelectorController);
+    final posePartNotifier = ref.read(posePartSelectorController.notifier);
 
     return Padding(
       padding: const EdgeInsets.all(12),
@@ -23,7 +23,7 @@ class PosePartSelector extends ConsumerWidget {
             onTap: () => posePartNotifier.clickCalisthenics(),
             child: PosePartSelectorWidget(
               title: '맨몸',
-              state: posePartState.calisthenics,
+              state: posePartState == PartSelectorState.calisthenics,
             ),
           ),
 
@@ -35,7 +35,7 @@ class PosePartSelector extends ConsumerWidget {
             onTap: () => posePartNotifier.clickMachine(),
             child: PosePartSelectorWidget(
               title: '기구',
-              state: posePartState.machine,
+              state: posePartState == PartSelectorState.machine,
             ),
           ),
         ],
