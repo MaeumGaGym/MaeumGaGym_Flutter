@@ -6,6 +6,7 @@ import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/main/widget/d
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/main/container/self_care_main_profile_container.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/main/container/self_care_main_title_container.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/main/container/self_care_main_widget_list_container.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/calendar/self_care_timeline_container.dart';
 
 class SelfCareMainScreen extends StatefulWidget {
   const SelfCareMainScreen({Key? key}) : super(key: key);
@@ -30,6 +31,7 @@ class _SelfCareMainScreenState extends State<SelfCareMainScreen> {
               DividingLineWidget(),
               SelfCareMainWidgetListContainer(),
               DividingLineWidget(),
+              SelfCareTimelineContainer(),
             ],
           ),
         ),

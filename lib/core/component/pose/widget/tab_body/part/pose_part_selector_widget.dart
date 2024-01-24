@@ -1,16 +1,18 @@
 /// Packge
 import 'package:flutter/material.dart';
 
-/// Core
-import '../../../../config/maeumgagym_color.dart';
-import '../../../../core/component/text/pretendard/ptd_text_widget.dart';
+import '../../../../../../config/maeumgagym_color.dart';
+import '../../../../text/pretendard/ptd_text_widget.dart';
 
-class PosePartSelector extends StatelessWidget {
+/// Core
+
+class PosePartSelectorWidget extends StatelessWidget {
   final bool state;
 
   final String title;
 
-  const PosePartSelector({required this.state, required this.title, super.key});
+  const PosePartSelectorWidget(
+      {required this.state, required this.title, super.key});
 
   @override
   Widget build(BuildContext context) {
