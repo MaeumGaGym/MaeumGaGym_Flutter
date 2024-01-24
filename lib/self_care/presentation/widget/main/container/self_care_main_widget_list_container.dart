@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/view/self_care_my_routine_main_screen.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/view/self_care_today_exercise_main_screen.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/view/my_routine/self_care_my_routine_main_screen.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/view/today_exercise/self_care_today_exercise_main_screen.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/main/widget/self_care_item_widget.dart';
 
 class SelfCareMainWidgetListContainer extends StatelessWidget {

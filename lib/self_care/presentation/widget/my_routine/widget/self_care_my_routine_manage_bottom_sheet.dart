@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/self_care_routine_item_provider.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/view/self_care_my_routine_edit_screen.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/view/my_routine/self_care_my_routine_edit_screen.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/widget/self_care_my_routine_manage_item_widget.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/widget/self_care_my_routine_toast_message.dart';
 
@@ -71,7 +71,7 @@ class _SelfCareMyRoutineManageBottomSheetState
                 onTap: () => Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => SelfCareMyRoutineEditScreen(),
+                    builder: (context) => const SelfCareMyRoutineEditScreen(),
                   ),
                 ),
                 child: const SelfCareMyRoutineManageItemWidget(
