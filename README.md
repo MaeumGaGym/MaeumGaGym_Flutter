@@ -1,3 +1,3 @@
 # maeumgagym_flutter
 
-v0.0.6.17
+v0.0.7.0
