@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/self_care_today_exercise_tab_bar_provider.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/view/self_care_today_exercise_camera_screen.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/view/self_care_today_exercise_gallery_screen.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/view/today_exercise/self_care_today_exercise_camera_screen.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/view/today_exercise/self_care_today_exercise_gallery_screen.dart';
 
 class SelfCareTodayExercisePageContainer extends ConsumerWidget {
   const SelfCareTodayExercisePageContainer({Key? key}) : super(key: key);
