@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/view/self_care_profile_edit_screen.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/view/profile/self_care_profile_edit_screen.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/profile/widget/dialog/self_care_profile_quit_dialog.dart';
 
 class SelfCareProfileMainSettingContainer extends StatelessWidget {
