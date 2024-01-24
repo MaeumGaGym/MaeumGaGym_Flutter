@@ -6,6 +6,7 @@ import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/profile/conta
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/profile/container/self_care_profile_main_title_container.dart';
 
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/self_care_default_app_bar.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/self_care_default_title_container.dart';
 
 class SelfCareProfileMainScreen extends StatelessWidget {
   const SelfCareProfileMainScreen({Key? key}) : super(key: key);
@@ -24,7 +25,10 @@ class SelfCareProfileMainScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SelfCareProfileMainTitleContainer(),
+                SelfCareDefaultTitleContainer(
+                  title: "내 프로필",
+                  subTitle: "내 프로필을 관리해보세요.",
+                ),
                 SizedBox(height: 32),
                 SelfCareProfileMainInfoWidgetContainer(),
                 SizedBox(height: 32),
