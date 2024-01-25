@@ -35,11 +35,16 @@ class SelfCareGoalAddScreen extends ConsumerWidget {
         color: MaeumgagymColor.white,
         child: Padding(
           padding: EdgeInsets.only(
-            bottom: ref.watch(selfCareTextFieldProvider.notifier).state ? 0 : 20,
+            bottom:
+                ref.watch(selfCareTextFieldProvider.notifier).state ? 0 : 20,
+
             /// textfield가 활성화 되면 padding 0, 비활성화 상태라면 padding 20
           ),
           child: const SafeArea(
-            child: SelfCareAnimatedButton(),
+            child: SelfCareAnimatedButton(
+              buttonTitle: "확인",
+              buttonAnimatedTitle: "확인",
+            ),
           ),
         ),
       ),

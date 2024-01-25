@@ -25,7 +25,7 @@ class SelfCareProfileEditScreen extends ConsumerWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SelfCareProfileEditTextFieldContainer(),
-        
+
                 /// 키보드가 활성화 될 때 높이만큼 여백을 추가
                 /// >> 마지막 TextField가 키보드에 가려지지 않고 스크롤 잘됨 ^^ 이거 ㄹㅇ 개 꿀팁 미쳤음..
                 SizedBox(height: MediaQuery.of(context).viewInsets.bottom),
@@ -40,11 +40,16 @@ class SelfCareProfileEditScreen extends ConsumerWidget {
         color: MaeumgagymColor.white,
         child: Padding(
           padding: EdgeInsets.only(
-            bottom: ref.watch(selfCareTextFieldProvider.notifier).state ? 0 : 20,
+            bottom:
+                ref.watch(selfCareTextFieldProvider.notifier).state ? 0 : 20,
+
             /// textfield가 활성화 되면 padding 0, 비활성화 상태라면 padding 20
           ),
           child: const SafeArea(
-            child: SelfCareAnimatedButton(),
+            child: SelfCareAnimatedButton(
+              buttonTitle: "수정 완료",
+              buttonAnimatedTitle: "확인",
+            ),
           ),
         ),
       ),
