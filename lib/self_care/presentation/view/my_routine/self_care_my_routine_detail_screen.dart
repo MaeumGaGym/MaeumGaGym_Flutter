@@ -48,6 +48,7 @@ class SelfCareMyRoutineDetailScreen extends StatelessWidget {
                     );
                   },
                 ),
+                const SizedBox(height: 98),
               ],
             ),
           ),
