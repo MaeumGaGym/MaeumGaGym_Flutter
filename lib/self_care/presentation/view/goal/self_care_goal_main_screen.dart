@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/view/goal/self_care_goal_add_screen.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/view/goal/self_care_goal_detail_screen.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/goal/widget/self_care_goal_item_widget.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/widget/self_care_my_routine_button.dart';
@@ -38,7 +39,8 @@ class SelfCareGoalMainScreen extends StatelessWidget {
                         GestureDetector(
                           onTap: () => Navigator.of(context).push(
                             MaterialPageRoute(
-                              builder: (context) => const SelfCareGoalDetailScreen(),
+                              builder: (context) =>
+                                  const SelfCareGoalDetailScreen(),
                             ),
                           ),
                           child: const SelfCareGoalItemWidget(
@@ -61,7 +63,11 @@ class SelfCareGoalMainScreen extends StatelessWidget {
         color: MaeumgagymColor.white,
         child: SafeArea(
           child: GestureDetector(
-            onTap: () {},
+            onTap: () => Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => const SelfCareGoalAddScreen(),
+              ),
+            ),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
               child: SelfCareMyRoutineButton(
