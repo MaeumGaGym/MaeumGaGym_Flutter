@@ -51,6 +51,7 @@ class SelfCareGoalMainScreen extends StatelessWidget {
                     );
                   },
                 ),
+                const SizedBox(height: 98),
               ],
             ),
           ),
