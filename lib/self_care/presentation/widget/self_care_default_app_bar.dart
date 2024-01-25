@@ -8,7 +8,7 @@ class SelfCareDefaultAppBar extends StatelessWidget
     implements PreferredSizeWidget {
   final String? title;
   final String iconPath;
-  final String? leadingIconPath;
+  final String? actionIconPath;
 
   final Color? backgroundColor;
   final Color? color;
@@ -18,7 +18,7 @@ class SelfCareDefaultAppBar extends StatelessWidget
     this.title,
     this.backgroundColor,
     this.color,
-    this.leadingIconPath,
+    this.actionIconPath,
     required this.iconPath,
   }) : super(key: key);
 
@@ -58,7 +58,7 @@ class SelfCareDefaultAppBar extends StatelessWidget
                   ),
                 ],
               ),
-              if (leadingIconPath != null)
+              if (actionIconPath != null)
                 GestureDetector(
                   onTap: () {
                     showModalBottomSheet(
@@ -69,7 +69,7 @@ class SelfCareDefaultAppBar extends StatelessWidget
                     );
                   },
                   child: SvgPicture.asset(
-                    leadingIconPath!,
+                    actionIconPath!,
                     width: 28,
                     height: 28,
                     color:  color ?? MaeumgagymColor.black,
