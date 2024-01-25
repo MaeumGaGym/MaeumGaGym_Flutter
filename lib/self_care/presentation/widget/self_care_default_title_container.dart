@@ -2,8 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
 
-class SelfCareMyRoutineMainTitleContainer extends StatelessWidget {
-  const SelfCareMyRoutineMainTitleContainer({Key? key}) : super(key: key);
+class SelfCareDefaultTitleContainer extends StatelessWidget {
+  final String title;
+  final String subTitle;
+
+  const SelfCareDefaultTitleContainer({
+    super.key,
+    required this.title,
+    required this.subTitle,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -11,12 +18,12 @@ class SelfCareMyRoutineMainTitleContainer extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         PtdTextWidget.titleLarge(
-          "내 루틴",
+          title,
           MaeumgagymColor.black,
         ),
         const SizedBox(height: 12),
         PtdTextWidget.bodyMedium(
-          "나만의 루틴을 구성하여\n규칙적인 운동을 해보세요.",
+          subTitle,
           MaeumgagymColor.gray600,
         ),
       ],
