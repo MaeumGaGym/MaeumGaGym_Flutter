@@ -3,11 +3,11 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
 
-class SelfCareMyRoutineManageItemWidget extends StatelessWidget {
+class SelfCareDefaultManageItemWidget extends StatelessWidget {
   final String title;
   final String iconPath;
 
-  const SelfCareMyRoutineManageItemWidget({
+  const SelfCareDefaultManageItemWidget({
     Key? key,
     required this.title,
     required this.iconPath,
