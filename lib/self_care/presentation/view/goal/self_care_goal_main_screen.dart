@@ -22,7 +22,7 @@ class SelfCareGoalMainScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SelfCareDefaultTitleContainer(
+                const SelfCareDefaultTitleContainer(
                   title: "목표",
                   subTitle: "나만의 목표를 세워보세요.",
                 ),

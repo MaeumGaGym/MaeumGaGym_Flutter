@@ -4,7 +4,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/self_care_routine_item_provider.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/view/my_routine/self_care_my_routine_edit_screen.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/widget/self_care_my_routine_manage_item_widget.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/self_care_default_manage_item_widget.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/widget/self_care_my_routine_toast_message.dart';
 
 class SelfCareMyRoutineManageBottomSheet extends ConsumerStatefulWidget {
@@ -74,7 +74,7 @@ class _SelfCareMyRoutineManageBottomSheetState
                     builder: (context) => const SelfCareMyRoutineEditScreen(),
                   ),
                 ),
-                child: const SelfCareMyRoutineManageItemWidget(
+                child: const SelfCareDefaultManageItemWidget(
                   title: "수정",
                   iconPath: "assets/image/self_care_icon/edit_pencil_icon.svg",
                 ),
@@ -89,7 +89,7 @@ class _SelfCareMyRoutineManageBottomSheetState
                     _showToast("루틴을 보관했어요.");
                   }
                 },
-                child: SelfCareMyRoutineManageItemWidget(
+                child: SelfCareDefaultManageItemWidget(
                   title: isKeptState ? "보관 취소" : "보관",
                   iconPath: "assets/image/self_care_icon/inbox_icon.svg",
                 ),
@@ -104,12 +104,12 @@ class _SelfCareMyRoutineManageBottomSheetState
                     _showToast("루틴을 공유했어요.");
                   }
                 },
-                child: SelfCareMyRoutineManageItemWidget(
+                child: SelfCareDefaultManageItemWidget(
                   title: isSharedState ? "공유 취소" : "공유",
                   iconPath: "assets/image/self_care_icon/earth_icon.svg",
                 ),
               ),
-              const SelfCareMyRoutineManageItemWidget(
+              const SelfCareDefaultManageItemWidget(
                 title: "삭제",
                 iconPath: "assets/image/self_care_icon/edit_trash_icon.svg",
               ),
