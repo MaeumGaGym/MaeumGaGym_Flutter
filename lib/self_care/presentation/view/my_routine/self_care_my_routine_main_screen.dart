@@ -6,18 +6,18 @@ import 'package:maeum_ga_gym_flutter/self_care/presentation/view/my_routine/self
 import 'package:maeum_ga_gym_flutter/self_care/presentation/view/my_routine/self_care_my_routine_detail_screen.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/widget/self_care_my_routine_button.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/widget/self_care_my_routine_item_widget.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/container/self_care_my_routine_main_title_container.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/self_care_default_app_bar.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/self_care_default_title_container.dart';
 
 class SelfCareMyRoutineMainScreen extends ConsumerStatefulWidget {
   const SelfCareMyRoutineMainScreen({Key? key}) : super(key: key);
 
   @override
   ConsumerState<SelfCareMyRoutineMainScreen> createState() =>
-      _SelfCareGoalMainScreenState();
+      _SelfCareMyRoutineMainScreenState();
 }
 
-class _SelfCareGoalMainScreenState
+class _SelfCareMyRoutineMainScreenState
     extends ConsumerState<SelfCareMyRoutineMainScreen> {
   @override
   Widget build(BuildContext context) {
@@ -34,7 +34,10 @@ class _SelfCareGoalMainScreenState
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SelfCareMyRoutineMainTitleContainer(),
+                const SelfCareDefaultTitleContainer(
+                  title: "내 루틴",
+                  subTitle: "나만의 루틴을 구성하여\n규칙적인 운동을 해보세요.",
+                ),
                 const SizedBox(height: 32),
                 ListView.builder(
                   shrinkWrap: true,
