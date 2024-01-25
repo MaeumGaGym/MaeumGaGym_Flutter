@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/view/goal/self_care_goal_detail_screen.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/goal/widget/self_care_goal_item_widget.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/widget/self_care_my_routine_button.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/self_care_default_app_bar.dart';
@@ -34,9 +35,16 @@ class SelfCareGoalMainScreen extends StatelessWidget {
                   itemBuilder: (context, index) {
                     return Column(
                       children: [
-                        const SelfCareGoalItemWidget(
-                          title: "디자인 완성하기",
-                          subTitle: "12월 26일 ~ 12월 27일",
+                        GestureDetector(
+                          onTap: () => Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => const SelfCareGoalDetailScreen(),
+                            ),
+                          ),
+                          child: const SelfCareGoalItemWidget(
+                            title: "디자인 완성하기",
+                            subTitle: "12월 26일 ~ 12월 27일",
+                          ),
                         ),
                         SizedBox(height: index == 30 - 1 ? 0 : 12),
                       ],
