@@ -6,8 +6,8 @@ import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/goal/containe
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/self_care_animated_button.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/self_care_default_app_bar.dart';
 
-class SelfCareGoalAddScreen extends ConsumerWidget {
-  const SelfCareGoalAddScreen({super.key});
+class SelfCareGoalEditScreen extends ConsumerWidget {
+  const SelfCareGoalEditScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -15,7 +15,7 @@ class SelfCareGoalAddScreen extends ConsumerWidget {
       backgroundColor: MaeumgagymColor.white,
       appBar: const SelfCareDefaultAppBar(
         iconPath: "assets/image/core_icon/left_arrow_icon.svg",
-        title: "목표 추가",
+        title: "목표 수정",
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -36,14 +36,14 @@ class SelfCareGoalAddScreen extends ConsumerWidget {
         child: Padding(
           padding: EdgeInsets.only(
             bottom:
-                ref.watch(selfCareTextFieldProvider.notifier).state ? 0 : 20,
+            ref.watch(selfCareTextFieldProvider.notifier).state ? 0 : 20,
 
             /// textfield가 활성화 되면 padding 0, 비활성화 상태라면 padding 20
           ),
           child: const SafeArea(
             child: SelfCareAnimatedButton(
-              buttonTitle: "확인",
-              buttonAnimatedTitle: "확인",
+              buttonTitle: "수정하기",
+              buttonAnimatedTitle: "수정하기",
             ),
           ),
         ),

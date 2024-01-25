@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/view/goal/self_care_goal_edit_screen.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/self_care_default_manage_item_widget.dart';
 
 class SelfCareGoalManageBottomSheet extends StatelessWidget {
@@ -24,14 +25,24 @@ class SelfCareGoalManageBottomSheet extends StatelessWidget {
               borderRadius: BorderRadius.circular(2),
             ),
           ),
-          const Column(
+          Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              SelfCareDefaultManageItemWidget(
-                title: "수정",
-                iconPath: "assets/image/self_care_icon/edit_pencil_icon.svg",
+              GestureDetector(
+                onTap: () {
+                  Navigator.of(context).pop();
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => SelfCareGoalEditScreen(),
+                    ),
+                  );
+                },
+                child: const SelfCareDefaultManageItemWidget(
+                  title: "수정",
+                  iconPath: "assets/image/self_care_icon/edit_pencil_icon.svg",
+                ),
               ),
-              SelfCareDefaultManageItemWidget(
+              const SelfCareDefaultManageItemWidget(
                 title: "삭제",
                 iconPath: "assets/image/self_care_icon/edit_trash_icon.svg",
               ),

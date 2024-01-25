@@ -3,16 +3,16 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/self_care_text_field_provider.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/self_care_text_field.dart';
 
-class SelfCareGoalEditTextFieldContainer extends ConsumerStatefulWidget {
-  const SelfCareGoalEditTextFieldContainer({super.key});
+class SelfCareGoalTextFieldContainer extends ConsumerStatefulWidget {
+  const SelfCareGoalTextFieldContainer({super.key});
 
   @override
-  ConsumerState<SelfCareGoalEditTextFieldContainer> createState() =>
+  ConsumerState<SelfCareGoalTextFieldContainer> createState() =>
       _SelfCareGoalEditTextFieldContainerState();
 }
 
 class _SelfCareGoalEditTextFieldContainerState
-    extends ConsumerState<SelfCareGoalEditTextFieldContainer> {
+    extends ConsumerState<SelfCareGoalTextFieldContainer> {
   /// 제목
   late TextEditingController _titleController;
   late FocusNode _titleNode;
