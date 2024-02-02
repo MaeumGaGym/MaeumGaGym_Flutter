@@ -7,7 +7,7 @@ class HomeTimerCircularTimerContainer extends StatefulWidget {
   State<HomeTimerCircularTimerContainer> createState() => _HomeTimerCircularTimerContainerState();
 }
 
-class _HomeTimerCircularTimerContainerState extends State<HomeTimerCircularTimerContainer> {
+class _HomeTimerCircularTimerContainerState extends State<HomeTimerCircularTimerContainer> with TickerProviderStateMixin{
   @override
   Widget build(BuildContext context) {
     return Placeholder();
