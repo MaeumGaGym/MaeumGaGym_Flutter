@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/providers/timer_state_provider.dart';
 
@@ -10,9 +8,9 @@ part 'timers.g.dart';
 class Timers with _$Timers {
   factory Timers({
     required int timerId,
-    required int initialTime,
+    required Duration initialTime,
     @Default(TimerState.initial) TimerState timerState,
-    required int currentTime,
+    required Duration currentTime,
   }) = _Timers;
 
   factory Timers.fromJson(Map<String, dynamic> json) => _$TimersFromJson(json);
