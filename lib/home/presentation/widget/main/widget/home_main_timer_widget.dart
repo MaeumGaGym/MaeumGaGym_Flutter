@@ -35,7 +35,7 @@ class _MainTimerWidgetState extends ConsumerState<HomeMainTimerWidget> {
                       behavior: HitTestBehavior.translucent,
                       onTap: () => Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (context) => const HomeTimerScreen(),
+                          builder: (context) => HomeTimerScreen(),
                         ),
                       ),
                       child: Row(
@@ -51,14 +51,7 @@ class _MainTimerWidgetState extends ConsumerState<HomeMainTimerWidget> {
                               ),
                               const SizedBox(width: 24),
                               PtdTextWidget.titleLarge(
-                                Duration(
-                                        seconds: timerList[index]
-                                            .currentTime
-                                            .toInt())
-                                    .toString()
-                                    .split(".")
-                                    .first
-                                    .substring(2, 7),
+                                formatDuration(timerList[index].currentTime).toString(),
                                 timerList[index].timerState ==
                                         TimerState.started
                                     ? MaeumgagymColor.blue500
@@ -131,5 +124,31 @@ class _MainTimerWidgetState extends ConsumerState<HomeMainTimerWidget> {
         const SizedBox(height: 16),
       ],
     );
+  }
+
+  String formatDuration(Duration duration) {
+    String twoDigits(int n) {
+      return n < 10 ? "0$n" : "$n";
+    }
+
+    int hours = duration.inHours;
+    int minutes = duration.inMinutes.remainder(60);
+    int seconds = duration.inSeconds.remainder(60);
+
+    String formattedDuration = "";
+
+    if (hours != 0) {
+      formattedDuration += "$hours:";
+    }
+
+    if (minutes != 0) {
+      formattedDuration += hours != 0 ? "${twoDigits(minutes)}:" : "$minutes:";
+    } else if (hours != 0) {
+      formattedDuration += "00:";
+    }
+
+    formattedDuration += hours == 0 && minutes == 0 ? "$seconds" : twoDigits(seconds);
+
+    return formattedDuration;
   }
 }
