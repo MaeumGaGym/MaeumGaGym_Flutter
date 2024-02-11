@@ -39,7 +39,7 @@ class _MainTimerAndMetronomeContainerState
                 behavior: HitTestBehavior.translucent,
                 onTap: () => Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) => const HomeTimerScreen(),
+                    builder: (context) => ref.watch(timerStateProvider) ? const HomeTimerScreen() : const HomeTimerScreen() /// 메트로놈 페이지,
                   ),
                 ),
                 child: HomeMainContainerTitle(
