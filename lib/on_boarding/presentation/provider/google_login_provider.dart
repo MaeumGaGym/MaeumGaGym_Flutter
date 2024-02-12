@@ -1,9 +1,9 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/on_boarding/data/repositoryImpl/google_login_repository_impl.dart';
-import 'package:maeum_ga_gym_flutter/on_boarding/domain/usecase/social_login_usercase.dart';
+import 'package:maeum_ga_gym_flutter/on_boarding/domain/usecase/social_login_usecase.dart';
 
 final googleLoginController =
-StateNotifierProvider<GoogleLoginStateNotifier, GoogleLoginState>((ref) {
+    StateNotifierProvider<GoogleLoginStateNotifier, GoogleLoginState>((ref) {
   return GoogleLoginStateNotifier();
 });
 
@@ -12,7 +12,7 @@ class GoogleLoginStateNotifier extends StateNotifier<GoogleLoginState> {
       : super(GoogleLoginState(isLogined: false, token: ''));
 
   final SocialLoginUseCase _useCase =
-  SocialLoginUseCase(GoogleLoginRepositoryImpl());
+      SocialLoginUseCase(GoogleLoginRepositoryImpl());
 
   Future<void> login() async {
     bool loginState = await _useCase.login();
