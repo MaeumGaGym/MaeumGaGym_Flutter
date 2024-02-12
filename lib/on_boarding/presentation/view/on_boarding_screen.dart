@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 /// Core
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
-import 'package:maeum_ga_gym_flutter/on_boarding/presentation/provider/google_login_provider.dart';
+import 'package:maeum_ga_gym_flutter/on_boarding/presentation/provider/social_login_provider.dart';
 import '../../../core/component/text/pretendard/ptd_text_widget.dart';
 
 /// Widget
