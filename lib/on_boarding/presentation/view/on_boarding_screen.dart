@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 /// Core
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
-import 'package:maeum_ga_gym_flutter/on_boarding/presentation/provider/google_login_provider.dart';
+import 'package:maeum_ga_gym_flutter/on_boarding/presentation/provider/social_login_provider.dart';
 import '../../../core/component/text/pretendard/ptd_text_widget.dart';
 
 /// Widget
@@ -20,6 +20,9 @@ class OnBoardingScreen extends ConsumerStatefulWidget {
 class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
   @override
   Widget build(BuildContext context) {
+    final socialLoginState = ref.watch(socialLoginController);
+    final socialLoginStateNotifier = ref.read(socialLoginController.notifier);
+
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -47,7 +50,9 @@ class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
               padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
               child: GestureDetector(
                 onTap: () async {
-                  ref.read(googleLoginController.notifier).login();
+                  await socialLoginStateNotifier
+                      .setLoginOption(LoginOption.google);
+                  await socialLoginStateNotifier.login();
                 },
                 child: const OnBoardingContentsWidget(
                   image: 'assets/image/on_boarding_icon/google_logo.svg',
@@ -55,11 +60,18 @@ class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
                 ),
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.fromLTRB(16, 0, 16, 16),
-              child: OnBoardingContentsWidget(
-                image: 'assets/image/on_boarding_icon/kakao_talk_logo.svg',
-                title: '카카오로 로그인',
+            Padding(
+              padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+              child: GestureDetector(
+                onTap: () async {
+                  await socialLoginStateNotifier
+                      .setLoginOption(LoginOption.kakao);
+                  await socialLoginStateNotifier.login();
+                },
+                child: const OnBoardingContentsWidget(
+                  image: 'assets/image/on_boarding_icon/kakao_talk_logo.svg',
+                  title: '카카오로 로그인',
+                ),
               ),
             ),
             const Padding(
