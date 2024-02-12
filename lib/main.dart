@@ -2,6 +2,7 @@ import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart';
 
 import 'package:maeum_ga_gym_flutter/config/router.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/view/self_care_camera_screen.dart';
@@ -12,11 +13,20 @@ import 'firebase_options.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   cameras = await availableCameras();
+
   /// 다국어 설정을 위함
   await initializeDateFormatting();
+
+  /// Firebase Init
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
+  /// KaKao Init
+  KakaoSdk.init(
+    nativeAppKey: '1004d2c2e0f5e5d75974cff75a470391',
+  );
+
   runApp(const ProviderScope(child: MyApp()));
 }
 
