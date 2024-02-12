@@ -1,29 +1,25 @@
 /// Package
 import 'package:flutter/material.dart';
-
-/// OAuth
-import 'package:google_sign_in/google_sign_in.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 /// Core
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
+import 'package:maeum_ga_gym_flutter/on_boarding/presentation/provider/google_login_provider.dart';
 import '../../../core/component/text/pretendard/ptd_text_widget.dart';
 
 /// Widget
 import 'package:maeum_ga_gym_flutter/on_boarding/presentation/widget/on_boarding_contents_widget.dart';
 
-class OnBoardingScreen extends StatefulWidget {
+class OnBoardingScreen extends ConsumerStatefulWidget {
   const OnBoardingScreen({super.key});
 
   @override
-  State<OnBoardingScreen> createState() => _OnBoardingScreenState();
+  ConsumerState<OnBoardingScreen> createState() => _OnBoardingScreenState();
 }
 
-class _OnBoardingScreenState extends State<OnBoardingScreen> {
+class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
   @override
   Widget build(BuildContext context) {
-    late final UserCredential googleToken;
-
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -51,9 +47,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
               child: GestureDetector(
                 onTap: () async {
-                  googleToken = await signInWithGoogle();
-
-                  print("----- ${googleToken.credential!.accessToken} -----");
+                  ref.read(googleLoginController.notifier).login();
                 },
                 child: const OnBoardingContentsWidget(
                   image: 'assets/image/on_boarding_icon/google_logo.svg',
@@ -79,23 +73,5 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
         ),
       ),
     );
-  }
-
-  Future<UserCredential> signInWithGoogle() async {
-    // Trigger the authentication flow
-    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-
-    // Obtain the auth details from the request
-    final GoogleSignInAuthentication? googleAuth =
-        await googleUser?.authentication;
-
-    // Create a new credential
-    final credential = GoogleAuthProvider.credential(
-      accessToken: googleAuth?.accessToken,
-      idToken: googleAuth?.idToken,
-    );
-
-    // Once signed in, return the UserCredential
-    return await FirebaseAuth.instance.signInWithCredential(credential);
   }
 }
