@@ -33,15 +33,16 @@ class SocialLoginStateNotifier extends StateNotifier<SocialLoginState> {
     if (loginState) {
       String token = await _useCase.getToken();
 
-      state = SocialLoginState(isLogined: true, token: token);
+      state = SocialLoginState(isLogined: loginState, token: token);
     } else {
-      state = SocialLoginState(isLogined: false, token: '');
+      state = SocialLoginState(isLogined: loginState, token: '');
     }
   }
 
   Future<void> logout() async {
-    await _useCase.logout();
-    state = SocialLoginState(isLogined: false, token: '');
+    bool loginState = await _useCase.logout();
+
+    state = SocialLoginState(isLogined: loginState, token: '');
   }
 }
 
