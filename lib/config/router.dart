@@ -5,7 +5,7 @@ import 'package:go_router/go_router.dart';
 /// Screen
 import 'package:maeum_ga_gym_flutter/sign_up/presentation/view/sign_up_agree_screen.dart';
 import 'package:maeum_ga_gym_flutter/sign_up/presentation/view/sign_up_nick_name_screen.dart';
-import '../on_boarding/presentation/view/on_boarding_screen.dart';
+import '../sign_up/presentation/view/on_boarding_screen.dart';
 import '../page_manager/presentation/view/page_manager_screen.dart';
 import '../sign_up/presentation/view/sign_up_success_screen.dart';
 
