@@ -74,13 +74,6 @@ class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
                 ),
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.fromLTRB(16, 0, 16, 16),
-              child: OnBoardingContentsWidget(
-                image: 'assets/image/on_boarding_icon/apple_logo.svg',
-                title: 'Apple로 로그인',
-              ),
-            ),
           ],
         ),
       ),

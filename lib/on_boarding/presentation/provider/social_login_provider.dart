@@ -3,7 +3,7 @@ import 'package:maeum_ga_gym_flutter/on_boarding/data/repositoryImpl/google_logi
 import 'package:maeum_ga_gym_flutter/on_boarding/data/repositoryImpl/kakao_login_repository_impl.dart';
 import 'package:maeum_ga_gym_flutter/on_boarding/domain/usecase/social_login_usecase.dart';
 
-enum LoginOption { google, kakao, apple }
+enum LoginOption { google, kakao }
 
 final socialLoginController =
     StateNotifierProvider<SocialLoginStateNotifier, SocialLoginState>((ref) {
@@ -22,8 +22,6 @@ class SocialLoginStateNotifier extends StateNotifier<SocialLoginState> {
         _useCase = SocialLoginUseCase(GoogleLoginRepositoryImpl());
       case LoginOption.kakao:
         _useCase = SocialLoginUseCase(KaKaoLoginRepositoryImpl());
-      case LoginOption.apple:
-        _useCase = SocialLoginUseCase(GoogleLoginRepositoryImpl());
     }
   }
 
