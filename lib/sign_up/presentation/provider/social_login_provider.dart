@@ -1,7 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:maeum_ga_gym_flutter/on_boarding/data/repositoryImpl/google_login_repository_impl.dart';
-import 'package:maeum_ga_gym_flutter/on_boarding/data/repositoryImpl/kakao_login_repository_impl.dart';
-import 'package:maeum_ga_gym_flutter/on_boarding/domain/usecase/social_login_usecase.dart';
+
+import '../../data/repositoryImpl/google_login_repository_impl.dart';
+import '../../data/repositoryImpl/kakao_login_repository_impl.dart';
+import '../../domain/usecase/social_login_usecase.dart';
 
 enum LoginOption { google, kakao }
 
