@@ -10,6 +10,8 @@ class HomeTimerListContainer extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final timerState = ref.watch(timersProvider);
+    final timerIndexState = ref.watch(selectedTimerProvider);
+    final timerIndexNotifier = ref.read(selectedTimerProvider.notifier);
     return SizedBox(
       height: 100,
       width: MediaQuery.of(context).size.width,
@@ -21,35 +23,48 @@ class HomeTimerListContainer extends ConsumerWidget {
           return Row(
             children: [
               SizedBox(width: index == 0 ? 40 : 0),
-              Container(
-                height: 100,
-                width: 100,
-                decoration: BoxDecoration(
-                  color: MaeumgagymColor.white,
-                  border: Border.all(
-                    color: MaeumgagymColor.blue400,
-                    width: 2,
+              GestureDetector(
+                onTap: () {
+                  timerIndexNotifier.state = index;
+                  print(timerIndexNotifier.state);
+                },
+                child: Container(
+                  height: 100,
+                  width: 100,
+                  decoration: BoxDecoration(
+                    color: index == timerIndexState
+                        ? MaeumgagymColor.white
+                        : timerState[index].timerState == TimerState.started
+                            ? MaeumgagymColor.blue50
+                            : MaeumgagymColor.gray50,
+                    border: index == timerIndexState
+                        ? Border.all(
+                            color: MaeumgagymColor.blue400,
+                            width: 2,
+                          )
+                        : null,
+                    shape: BoxShape.circle,
                   ),
-                  shape: BoxShape.circle,
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    PtdTextWidget.timerListTitle(
-                      formatTimerListTime(timerState[index].initialTime),
-                      MaeumgagymColor.black,
-                    ),
-                    if (timerState[index].timerState == TimerState.started)
-                      Column(
-                        children: [
-                          const SizedBox(height: 2),
-                          PtdTextWidget.bodyTiny(
-                            formatTimerListTime(timerState[index].currentTime),
-                            MaeumgagymColor.blue500,
-                          ),
-                        ],
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      PtdTextWidget.timerListTitle(
+                        formatTimerListTime(timerState[index].initialTime),
+                        MaeumgagymColor.black,
                       ),
-                  ],
+                      if (timerState[index].timerState == TimerState.started)
+                        Column(
+                          children: [
+                            const SizedBox(height: 2),
+                            PtdTextWidget.bodyTiny(
+                              formatTimerListTime(
+                                  timerState[index].currentTime),
+                              MaeumgagymColor.blue500,
+                            ),
+                          ],
+                        ),
+                    ],
+                  ),
                 ),
               ),
               SizedBox(width: index == timerState.length ? 40 : 20),
