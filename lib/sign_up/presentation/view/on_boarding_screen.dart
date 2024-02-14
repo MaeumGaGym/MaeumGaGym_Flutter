@@ -1,6 +1,7 @@
 /// Package
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 /// Core
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
@@ -20,7 +21,6 @@ class OnBoardingScreen extends ConsumerStatefulWidget {
 class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
   @override
   Widget build(BuildContext context) {
-    final socialLoginState = ref.watch(socialLoginController);
     final socialLoginStateNotifier = ref.read(socialLoginController.notifier);
 
     return Scaffold(
@@ -30,8 +30,14 @@ class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
           children: [
             Center(
               child: Container(
-                width: MediaQuery.of(context).size.width - 150,
-                height: MediaQuery.of(context).size.width - 150,
+                width: MediaQuery
+                    .of(context)
+                    .size
+                    .width - 150,
+                height: MediaQuery
+                    .of(context)
+                    .size
+                    .width - 150,
                 decoration: const BoxDecoration(
                   color: Colors.grey,
                   shape: BoxShape.circle,
@@ -53,6 +59,19 @@ class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
                   await socialLoginStateNotifier
                       .setLoginOption(LoginOption.google);
                   await socialLoginStateNotifier.login();
+
+                  print(ref
+                      .watch(socialLoginController)
+                      .token);
+
+                  if (ref
+                      .watch(socialLoginController)
+                      .isLogined &&
+                      context.mounted) {
+                    await context.push('/signUpAgree');
+
+                    await socialLoginStateNotifier.logout();
+                  }
                 },
                 child: const OnBoardingContentsWidget(
                   image: 'assets/image/on_boarding_icon/google_logo.svg',
@@ -67,6 +86,15 @@ class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
                   await socialLoginStateNotifier
                       .setLoginOption(LoginOption.kakao);
                   await socialLoginStateNotifier.login();
+
+                  if (ref
+                      .watch(socialLoginController)
+                      .isLogined &&
+                      context.mounted) {
+                    await context.push('/signUpAgree');
+
+                    await socialLoginStateNotifier.logout();
+                  }
                 },
                 child: const OnBoardingContentsWidget(
                   image: 'assets/image/on_boarding_icon/kakao_talk_logo.svg',
