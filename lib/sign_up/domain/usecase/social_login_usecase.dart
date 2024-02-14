@@ -5,15 +5,15 @@ class SocialLoginUseCase {
 
   SocialLoginUseCase(this._repository);
 
-  Future<bool> login() {
-    return _repository.login();
+  Future<bool> login() async {
+    return await _repository.login();
   }
 
-  Future<bool> logout() {
-    return _repository.logout();
+  Future<bool> logout() async {
+    return await _repository.logout();
   }
 
-  Future<String> getToken() {
-    return _repository.getToken();
+  Future<String> getToken() async {
+    return await _repository.getToken();
   }
 }
