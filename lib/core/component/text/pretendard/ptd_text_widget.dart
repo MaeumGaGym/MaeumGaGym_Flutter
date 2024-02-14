@@ -218,4 +218,32 @@ class PtdTextWidget {
       ),
     );
   }
+
+  static Text onTimerTitle(String text, Color color) {
+    return Text(
+      text,
+      textAlign: TextAlign.center,
+      style: TextStyle(
+        fontFamily: pretendard,
+        fontSize: 64,
+        fontWeight: FontWeight.w300,
+        color: color,
+        overflow: TextOverflow.visible,
+      ),
+    );
+  }
+
+  static Text timerListTitle(String text, Color color) {
+    return Text(
+      text,
+      textAlign: TextAlign.center,
+      style: TextStyle(
+        fontFamily: pretendard,
+        fontSize: 16,
+        fontWeight: FontWeight.w300,
+        color: color,
+        overflow: TextOverflow.visible,
+      ),
+    );
+  }
 }
