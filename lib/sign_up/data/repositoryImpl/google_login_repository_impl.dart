@@ -5,17 +5,17 @@ class GoogleLoginRepositoryImpl implements SocialLoginRepository {
   final GoogleLoginRemoteDataSource _dataSource = GoogleLoginRemoteDataSource();
 
   @override
-  Future<String> getToken() {
-    return _dataSource.getToken();
+  Future<String> getToken() async {
+    return await _dataSource.getToken();
   }
 
   @override
-  Future<bool> login() {
-    return _dataSource.login();
+  Future<bool> login() async {
+    return await _dataSource.login();
   }
 
   @override
-  Future<bool> logout() {
-    return _dataSource.logout();
+  Future<bool> logout() async {
+    return await _dataSource.logout();
   }
 }
