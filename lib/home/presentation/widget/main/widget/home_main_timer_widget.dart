@@ -17,6 +17,7 @@ class _MainTimerWidgetState extends ConsumerState<HomeMainTimerWidget> {
   @override
   Widget build(BuildContext context) {
     final timerList = ref.watch(timersProvider);
+    final timerController = ref.watch(homeTimerProvider);
     return Column(
       children: [
         Padding(
@@ -35,7 +36,7 @@ class _MainTimerWidgetState extends ConsumerState<HomeMainTimerWidget> {
                       behavior: HitTestBehavior.translucent,
                       onTap: () => Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (context) => HomeTimerScreen(),
+                          builder: (context) => const HomeTimerScreen(),
                         ),
                       ),
                       child: Row(
@@ -61,17 +62,10 @@ class _MainTimerWidgetState extends ConsumerState<HomeMainTimerWidget> {
                           ),
                           GestureDetector(
                             onTap: () {
-                              if (timerList[index].timerState ==
-                                      TimerState.paused ||
-                                  timerList[index].timerState ==
-                                      TimerState.initial) {
-                                ref
-                                    .read(timersProvider.notifier)
-                                    .onStarted(timerList[index].timerId);
+                              if (timerList[index].timerState == TimerState.paused || timerList[index].timerState == TimerState.initial) {
+                                ref.read(timersProvider.notifier).onStarted(timerList[index].timerId);
                               } else {
-                                ref
-                                    .read(timersProvider.notifier)
-                                    .onPaused(timerList[index].timerId);
+                                ref.read(timersProvider.notifier).onPaused(timerList[index].timerId);
                               }
                             },
                             child: Container(
