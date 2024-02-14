@@ -37,7 +37,7 @@ class SignUpAgreeScreen extends ConsumerWidget {
                 padding: const EdgeInsets.only(top: 12),
                 child: GestureDetector(
                   onTap: () {
-                    context.go('/');
+                    context.pop();
                   },
                   child: SvgPicture.asset(
                     'assets/image/core_icon/left_arrow_icon.svg',
