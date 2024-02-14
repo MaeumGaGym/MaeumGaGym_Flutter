@@ -30,9 +30,9 @@ class SocialLoginStateNotifier extends StateNotifier<SocialLoginState> {
     bool loginState = await _useCase.login();
 
     if (loginState) {
-      String token = await _useCase.getToken();
+      String tokenValue = await _useCase.getToken();
 
-      state = SocialLoginState(isLogined: loginState, token: token);
+      state = SocialLoginState(isLogined: loginState, token: tokenValue);
     } else {
       state = SocialLoginState(isLogined: loginState, token: '');
     }
