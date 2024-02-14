@@ -1,8 +1,7 @@
 import 'dart:async';
-import 'package:flutter/animation.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/models/timers.dart';
+import 'package:maeum_ga_gym_flutter/home/presentation/widget/timer/widget/home_timer_widget.dart';
 
 final timerStateProvider = StateProvider<bool>((ref) => true);
 // true => 타이머 , false => 메트로놈
@@ -12,24 +11,46 @@ final timersProvider =
   return TimersNotifier();
 });
 
+/// HomeTimerController를 전역 변수로 사용하기 위한 provider
+final homeTimerProvider = StateProvider.autoDispose<HomeTimerController>(
+  (ref) => HomeTimerController(),
+);
+
+/// 화면에 보여지는 Timer의 index값을 관리하기 위한 provider
+final selectedTimerProvider = StateProvider<int>((ref) => 0);
+
 enum TimerState { initial, started, paused }
 
 class TimersNotifier extends StateNotifier<List<Timers>> {
   final List<StreamSubscription<int>?> _subscriptions = [null, null, null];
+
   // 이거 나중ㅇ ㅔ고쳐야됨
 
   TimersNotifier()
       : super([
-    Timers(currentTime: const Duration(seconds: 3), initialTime: const Duration(seconds: 3), timerId: 1),
-    Timers(currentTime: const Duration(seconds: 90), initialTime: const Duration(seconds: 90), timerId: 2),
-    Timers(currentTime: const Duration(seconds: 86400), initialTime: const Duration(seconds: 86400), timerId: 3),
-  ]);
+          Timers(
+            currentTime: const Duration(seconds: 3),
+            initialTime: const Duration(seconds: 3),
+            timerId: 1,
+          ),
+          Timers(
+            currentTime: const Duration(seconds: 90),
+            initialTime: const Duration(seconds: 90),
+            timerId: 2,
+          ),
+          Timers(
+            currentTime: const Duration(seconds: 86400),
+            initialTime: const Duration(seconds: 86400),
+            timerId: 3,
+          ),
+        ]);
 
   void onTick(int timerId) {
     state = state.map((timer) {
       if (timer.timerId == timerId && timer.timerState == TimerState.started) {
-        if (timer.currentTime != const Duration(seconds: 0)) {
-          return timer.copyWith(currentTime: timer.currentTime - const Duration(seconds: 1));
+        if (timer.currentTime > const Duration(seconds: 1)) {
+          return timer.copyWith(
+              currentTime: timer.currentTime - const Duration(seconds: 1));
         } else {
           _subscriptions[timerId - 1]?.cancel();
           return timer.copyWith(
@@ -46,8 +67,9 @@ class TimersNotifier extends StateNotifier<List<Timers>> {
     state = state.map((timer) {
       if (timer.timerId == timerId && timer.timerState != TimerState.started) {
         _subscriptions[timerId - 1]?.cancel();
-        _subscriptions[timerId - 1] = Stream.periodic(const Duration(seconds: 1), (x) => x)
-            .listen((_) => onTick(timerId));
+        _subscriptions[timerId - 1] =
+            Stream.periodic(const Duration(seconds: 1), (x) => x)
+                .listen((_) => onTick(timerId));
         return timer.copyWith(timerState: TimerState.started);
       }
       return timer;
