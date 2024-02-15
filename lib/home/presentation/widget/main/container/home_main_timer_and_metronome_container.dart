@@ -55,23 +55,24 @@ class _MainTimerAndMetronomeContainerState
                       ref.read(timerStateProvider.notifier).state = true;
                     },
                     child: Container(
-                      width: 78,
-                      height: 32,
                       decoration: BoxDecoration(
                           color: ref.watch(timerStateProvider)
                               ? MaeumgagymColor.blue500
                               : MaeumgagymColor.gray50,
                           borderRadius: BorderRadius.circular(16)),
-                      child: Center(
-                        child: ref.watch(timerStateProvider)
-                            ? PtdTextWidget.titleSmall(
-                                "타이머",
-                                MaeumgagymColor.white,
-                              )
-                            : PtdTextWidget.bodyMedium(
-                                "타이머",
-                                MaeumgagymColor.black,
-                              ),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 18),
+                        child: Center(
+                          child: ref.watch(timerStateProvider)
+                              ? PtdTextWidget.titleSmall(
+                                  "타이머",
+                                  MaeumgagymColor.white,
+                                )
+                              : PtdTextWidget.bodyMedium(
+                                  "타이머",
+                                  MaeumgagymColor.black,
+                                ),
+                        ),
                       ),
                     ),
                   ),
@@ -81,23 +82,24 @@ class _MainTimerAndMetronomeContainerState
                       ref.read(timerStateProvider.notifier).state = false;
                     },
                     child: Container(
-                      width: 92,
-                      height: 32,
                       decoration: BoxDecoration(
                           color: !ref.watch(timerStateProvider)
                               ? MaeumgagymColor.blue500
                               : MaeumgagymColor.gray50,
                           borderRadius: BorderRadius.circular(16)),
-                      child: Center(
-                        child: !ref.watch(timerStateProvider)
-                            ? PtdTextWidget.titleSmall(
-                                "메트로놈",
-                                MaeumgagymColor.white,
-                              )
-                            : PtdTextWidget.bodyMedium(
-                                "메트로놈",
-                                MaeumgagymColor.black,
-                              ),
+                      child: Padding(
+                        padding:  const EdgeInsets.symmetric(vertical: 4, horizontal: 18),
+                        child: Center(
+                          child: !ref.watch(timerStateProvider)
+                              ? PtdTextWidget.titleSmall(
+                                  "메트로놈",
+                                  MaeumgagymColor.white,
+                                )
+                              : PtdTextWidget.bodyMedium(
+                                  "메트로놈",
+                                  MaeumgagymColor.black,
+                                ),
+                        ),
                       ),
                     ),
                   ),
