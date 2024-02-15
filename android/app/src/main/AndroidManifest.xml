@@ -6,6 +6,9 @@
     <!-- 인터넷 사용 권한 설정-->
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <!-- Vibration 패키지 사용 권한-->
+    <uses-permission android:name="android.permission.VIBRATE"/>
+
     <application
         android:label="maeumgagym_flutter"
         android:name="${applicationName}"
