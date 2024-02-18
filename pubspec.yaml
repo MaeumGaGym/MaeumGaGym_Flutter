@@ -31,6 +31,7 @@ dependencies:
   just_audio: ^0.9.36
   vibration: ^1.8.4
   just_audio_background: ^0.0.1-beta.11
+  flutter_secure_storage: ^9.0.0
 
 dev_dependencies:
   flutter_test:
