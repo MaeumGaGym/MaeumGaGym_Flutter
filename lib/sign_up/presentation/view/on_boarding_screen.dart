@@ -22,7 +22,6 @@ class OnBoardingScreen extends ConsumerStatefulWidget {
 class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
   @override
   Widget build(BuildContext context) {
-    // Storage 추가
     final socialLoginStateNotifier = ref.read(socialLoginController.notifier);
 
     Future<void> clickLoginButton(LoginOption loginOption) async {
@@ -59,7 +58,13 @@ class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
           debugPrint('socialLogin Fail');
         }
       } catch (err) {
-        debugPrint('socialLoginStateNotifier.login Error');
+        if (context.mounted && err.toString().contains('404')) {
+          await context.push('/signUpAgree');
+
+          await socialLoginStateNotifier.logout();
+        } else {
+          debugPrint(err.toString());
+        }
       }
     }
 
@@ -101,7 +106,9 @@ class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
             Padding(
               padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
               child: GestureDetector(
-                onTap: () async {},
+                onTap: () async {
+                  clickLoginButton(LoginOption.kakao);
+                },
                 child: const OnBoardingContentsWidget(
                   image: 'assets/image/on_boarding_icon/kakao_talk_logo.svg',
                   title: '카카오로 로그인',
