@@ -14,10 +14,13 @@ class MaeumgagymLoginModel {
   });
 
   factory MaeumgagymLoginModel.fromJson(Headers json, int statusCode) {
+    String jsonRFToken = json.map['set-cookie']![1];
+    String jsonXSRFToken = json.map['set-cookie']![0];
+
     return MaeumgagymLoginModel(
       accessToken: json.value('authorization').toString(),
-      refreshToken: json.map['set-cookie']![0],
-      xsrfToken: json.map['set-cookie']![1],
+      refreshToken: jsonRFToken.substring(9, jsonRFToken.indexOf(';')),
+      xsrfToken: jsonXSRFToken.substring(11, jsonXSRFToken.indexOf(';')),
       statusCode: statusCode,
     );
   }
