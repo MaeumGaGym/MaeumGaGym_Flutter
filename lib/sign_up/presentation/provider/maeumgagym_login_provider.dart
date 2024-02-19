@@ -38,6 +38,26 @@ class MaeumgagymLoginStateNotifier extends StateNotifier<MaeumgagymLoginState> {
 
     state = MaeumgagymLoginState(stateusCode: googleLoginToken.statusCode);
   }
+
+  Future<void> kakaoLogin(String kakaoToken) async {
+    MaeumgagymLoginModel kakaoLoginToken =
+        await _useCase.kakaoLogin(kakaoToken);
+
+    await storage.write(
+      key: MaeumgagymLoginState.accessToken,
+      value: kakaoLoginToken.accessToken,
+    );
+    await storage.write(
+      key: MaeumgagymLoginState.refreshToken,
+      value: kakaoLoginToken.refreshToken,
+    );
+    await storage.write(
+      key: MaeumgagymLoginState.xsrfToken,
+      value: kakaoLoginToken.xsrfToken,
+    );
+
+    state = MaeumgagymLoginState(stateusCode: kakaoLoginToken.statusCode);
+  }
 }
 
 class MaeumgagymLoginState {
