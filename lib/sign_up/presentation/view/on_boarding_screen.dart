@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 
 /// Core
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
+import 'package:maeum_ga_gym_flutter/sign_up/presentation/provider/maeumgagym_login_provider.dart';
 import 'package:maeum_ga_gym_flutter/sign_up/presentation/provider/social_login_provider.dart';
 import '../../../core/component/text/pretendard/ptd_text_widget.dart';
 
@@ -21,7 +22,46 @@ class OnBoardingScreen extends ConsumerStatefulWidget {
 class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
   @override
   Widget build(BuildContext context) {
+    // Storage 추가
     final socialLoginStateNotifier = ref.read(socialLoginController.notifier);
+
+    Future<void> clickLoginButton(LoginOption loginOption) async {
+      /// Login Option을 google로 설정
+      await socialLoginStateNotifier.setLoginOption(loginOption);
+
+      try {
+        /// Social Login 시도
+        await socialLoginStateNotifier.login();
+
+        /// 성공 했다면
+        if (ref.watch(socialLoginController).isLogined) {
+          debugPrint(ref.watch(socialLoginController).token);
+
+          switch (loginOption) {
+            case LoginOption.google:
+              await ref
+                  .read(maeumgagymLoginController.notifier)
+                  .googleLogin(ref.watch(socialLoginController).token);
+
+            case LoginOption.kakao:
+              await ref
+                  .read(maeumgagymLoginController.notifier)
+                  .kakaoLogin(ref.watch(socialLoginController).token);
+          }
+
+          if (ref.watch(maeumgagymLoginController).stateusCode == 404 &&
+              context.mounted) {
+            await context.push('/signUpAgree');
+
+            await socialLoginStateNotifier.logout();
+          } else {}
+        } else {
+          debugPrint('socialLogin Fail');
+        }
+      } catch (err) {
+        debugPrint('socialLoginStateNotifier.login Error');
+      }
+    }
 
     return Scaffold(
       body: SafeArea(
@@ -30,14 +70,8 @@ class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
           children: [
             Center(
               child: Container(
-                width: MediaQuery
-                    .of(context)
-                    .size
-                    .width - 150,
-                height: MediaQuery
-                    .of(context)
-                    .size
-                    .width - 150,
+                width: MediaQuery.of(context).size.width - 150,
+                height: MediaQuery.of(context).size.width - 150,
                 decoration: const BoxDecoration(
                   color: Colors.grey,
                   shape: BoxShape.circle,
@@ -56,22 +90,7 @@ class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
               padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
               child: GestureDetector(
                 onTap: () async {
-                  await socialLoginStateNotifier
-                      .setLoginOption(LoginOption.google);
-                  await socialLoginStateNotifier.login();
-
-                  print(ref
-                      .watch(socialLoginController)
-                      .token);
-
-                  if (ref
-                      .watch(socialLoginController)
-                      .isLogined &&
-                      context.mounted) {
-                    await context.push('/signUpAgree');
-
-                    await socialLoginStateNotifier.logout();
-                  }
+                  clickLoginButton(LoginOption.google);
                 },
                 child: const OnBoardingContentsWidget(
                   image: 'assets/image/on_boarding_icon/google_logo.svg',
@@ -82,20 +101,7 @@ class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
             Padding(
               padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
               child: GestureDetector(
-                onTap: () async {
-                  await socialLoginStateNotifier
-                      .setLoginOption(LoginOption.kakao);
-                  await socialLoginStateNotifier.login();
-
-                  if (ref
-                      .watch(socialLoginController)
-                      .isLogined &&
-                      context.mounted) {
-                    await context.push('/signUpAgree');
-
-                    await socialLoginStateNotifier.logout();
-                  }
-                },
+                onTap: () async {},
                 child: const OnBoardingContentsWidget(
                   image: 'assets/image/on_boarding_icon/kakao_talk_logo.svg',
                   title: '카카오로 로그인',
