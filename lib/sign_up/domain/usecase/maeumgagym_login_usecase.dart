@@ -10,4 +10,8 @@ class MaeumgagymLoginUseCase {
   Future<MaeumgagymLoginModel> googleLogin(String googleToken) async {
     return await _repository.googleLogin(googleToken);
   }
+
+  Future<MaeumgagymLoginModel> kakaoLogin(String kakaoToken) async {
+    return await _repository.kakaoLogin(kakaoToken);
+  }
 }

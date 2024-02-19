@@ -22,4 +22,20 @@ class MaeumgagymLoginRemoteDataSource {
       throw Exception(err);
     }
   }
+
+  Future<MaeumgagymLoginModel> kakaoLogin(String kakaoToken) async {
+    try {
+      return await dio.get('/kakao/login', queryParameters: {
+        'access_token': kakaoToken,
+      }).then((response) {
+        debugPrint(response.statusCode.toString());
+        return MaeumgagymLoginModel.fromJson(
+          response.headers,
+          response.statusCode ?? 404,
+        );
+      });
+    } catch (err) {
+      throw Exception(err);
+    }
+  }
 }

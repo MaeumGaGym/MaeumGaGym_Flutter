@@ -10,4 +10,9 @@ class MaeumgagymLoginRepositoryImpl implements MaeumgagymLoginRepository {
   Future<MaeumgagymLoginModel> googleLogin(String googleToken) async {
     return await _dataSource.googleLogin(googleToken);
   }
+
+  @override
+  Future<MaeumgagymLoginModel> kakaoLogin(String kakaoToken) async {
+    return await _dataSource.kakaoLogin(kakaoToken);
+  }
 }
