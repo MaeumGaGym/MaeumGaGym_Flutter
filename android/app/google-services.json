@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "878566104031",
+    "project_id": "maeumgagym-5a9df",
+    "storage_bucket": "maeumgagym-5a9df.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:878566104031:android:eef50bc125905a2577026a",
+        "android_client_info": {
+          "package_name": "com.example.maeumgagym_flutter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "878566104031-8ckir7id2invcvgoaqn54spcajr0k2d4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.maeumgagym_flutter",
+            "certificate_hash": "33d2ad2c08b6be48a77358a911795b51cdb5a6dc"
+          }
+        },
+        {
+          "client_id": "878566104031-pmo6g8fprb01kija31ptullnvt1ji741.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyApgs53qdSpZL-sq0EROnBTjCEnnB-rBCU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "878566104031-pmo6g8fprb01kija31ptullnvt1ji741.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

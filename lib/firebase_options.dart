@@ -50,21 +50,21 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCvo8iZkSg6AJLjTYlBKaQWWd0KKanegww',
-    appId: '1:807718817116:android:d76e0d139ef7cae054c599',
-    messagingSenderId: '807718817116',
-    projectId: 'maeumgagym-9c6b7',
-    storageBucket: 'maeumgagym-9c6b7.appspot.com',
+    apiKey: 'AIzaSyApgs53qdSpZL-sq0EROnBTjCEnnB-rBCU',
+    appId: '1:878566104031:android:eef50bc125905a2577026a',
+    messagingSenderId: '878566104031',
+    projectId: 'maeumgagym-5a9df',
+    storageBucket: 'maeumgagym-5a9df.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyAf_f4Q-_0ybmRRHU1HgKH9KbMr7J48vuQ',
-    appId: '1:807718817116:ios:b6673dd4463d096f54c599',
-    messagingSenderId: '807718817116',
-    projectId: 'maeumgagym-9c6b7',
-    storageBucket: 'maeumgagym-9c6b7.appspot.com',
-    androidClientId: '807718817116-385334eq02niehojd69vsv0o89j6tind.apps.googleusercontent.com',
-    iosClientId: '807718817116-ettu6iltusaecnfbtmkrnhopua9mfjcc.apps.googleusercontent.com',
+    apiKey: 'AIzaSyDCkWNDJNbADNgGJkcXsYe-MPiR0czh1iI',
+    appId: '1:878566104031:ios:64228e91223d5b9377026a',
+    messagingSenderId: '878566104031',
+    projectId: 'maeumgagym-5a9df',
+    storageBucket: 'maeumgagym-5a9df.appspot.com',
+    androidClientId: '878566104031-8ckir7id2invcvgoaqn54spcajr0k2d4.apps.googleusercontent.com',
+    iosClientId: '878566104031-4n9ioco2dk32i2l9om1rhqb60hqir08k.apps.googleusercontent.com',
     iosBundleId: 'com.example.maeumgagymFlutter',
   );
 }
