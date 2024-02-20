@@ -40,6 +40,9 @@ class SignUpNickNameScreen extends StatelessWidget {
                       ref
                           .read(nicknameTextFieldProvider.notifier)
                           .isText(false);
+                      ref
+                          .read(nicknameTextFieldProvider.notifier)
+                          .theError(false);
                     },
                     child: SvgPicture.asset(
                       'assets/image/core_icon/left_arrow_icon.svg',
@@ -65,7 +68,6 @@ class SignUpNickNameScreen extends StatelessWidget {
             ),
 
             /// 닉네임 TextField
-
             Padding(
               padding: const EdgeInsets.fromLTRB(20, 32, 20, 0),
               child: MaeumgagymTextField(
@@ -82,6 +84,7 @@ class SignUpNickNameScreen extends StatelessWidget {
         child: Consumer(
           builder: (context, ref, child) {
             return AnimatedCheckButton(
+              textController: nicknameController,
               inText: ref.watch(nicknameTextFieldProvider).inText,
               onClicked: ref.watch(nicknameTextFieldProvider).onClicked,
               buttonProvider: nicknameTextFieldProvider,
@@ -92,5 +95,3 @@ class SignUpNickNameScreen extends StatelessWidget {
     );
   }
 }
-
-class MaeumGaGymColor {}
