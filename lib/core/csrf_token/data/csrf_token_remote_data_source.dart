@@ -1,14 +1,11 @@
-import 'package:dio/dio.dart';
-import 'package:maeum_ga_gym_flutter/core/base_url.dart';
+import 'package:maeum_ga_gym_flutter/core/di/dio_di.dart';
 
 import '../domain/csrf_token_model.dart';
 
 class CSRFTokenRemoteDataSource {
-  final Dio _dio = Dio(BaseOptions(baseUrl: baseUrl));
-
   Future<CSRFTokenModel> getCSRFToken() async {
     try {
-      return _dio
+      return dio
           .get('/public/csrf')
           .then((response) => CSRFTokenModel.fromJson(response.headers));
     } catch (err) {
