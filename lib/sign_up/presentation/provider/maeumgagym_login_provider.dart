@@ -21,9 +21,9 @@ class MaeumgagymLoginStateNotifier extends StateNotifier<MaeumgagymLoginState> {
   Future<void> googleLogin(String googleToken) async {
     MaeumgagymLoginModel googleLoginToken =
         await _useCase.googleLogin(googleToken);
-    TokenSecureStorageDi.writeAccessToken(googleLoginToken.accessToken);
-    TokenSecureStorageDi.writeRefreshToken(googleLoginToken.refreshToken);
-    TokenSecureStorageDi.writeXSRFToken(googleLoginToken.xsrfToken);
+    await TokenSecureStorageDi.writeAccessToken(googleLoginToken.accessToken);
+    await TokenSecureStorageDi.writeRefreshToken(googleLoginToken.refreshToken);
+    await TokenSecureStorageDi.writeXSRFToken(googleLoginToken.xsrfToken);
 
     state = MaeumgagymLoginState(stateusCode: googleLoginToken.statusCode);
   }
@@ -31,9 +31,9 @@ class MaeumgagymLoginStateNotifier extends StateNotifier<MaeumgagymLoginState> {
   Future<void> kakaoLogin(String kakaoToken) async {
     MaeumgagymLoginModel kakaoLoginToken =
         await _useCase.kakaoLogin(kakaoToken);
-    TokenSecureStorageDi.writeAccessToken(kakaoLoginToken.accessToken);
-    TokenSecureStorageDi.writeRefreshToken(kakaoLoginToken.refreshToken);
-    TokenSecureStorageDi.writeXSRFToken(kakaoLoginToken.xsrfToken);
+    await TokenSecureStorageDi.writeAccessToken(kakaoLoginToken.accessToken);
+    await TokenSecureStorageDi.writeRefreshToken(kakaoLoginToken.refreshToken);
+    await TokenSecureStorageDi.writeXSRFToken(kakaoLoginToken.xsrfToken);
 
     state = MaeumgagymLoginState(stateusCode: kakaoLoginToken.statusCode);
   }
