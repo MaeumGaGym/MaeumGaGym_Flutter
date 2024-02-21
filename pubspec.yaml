@@ -28,9 +28,10 @@ dependencies:
   kakao_flutter_sdk_user: ^1.8.0
   firebase_core: ^2.25.4
   dio: ^5.4.0
-  just_audio: ^0.9.36
   vibration: ^1.8.4
+  just_audio: ^0.9.36
   just_audio_background: ^0.0.1-beta.11
+  numberpicker: ^2.1.2
 
 dev_dependencies:
   flutter_test:
@@ -53,6 +54,7 @@ flutter:
     - assets/image/pose_icon/pose_exercise/
     - assets/image/self_care_icon/
     - assets/image/on_boarding_icon/
+    - assets/sounds/metronome/
 
   fonts:
     - family: Pretendard
