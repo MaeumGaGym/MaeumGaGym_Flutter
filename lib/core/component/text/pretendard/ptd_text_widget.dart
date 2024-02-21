@@ -219,7 +219,7 @@ class PtdTextWidget {
     );
   }
 
-  static Text onTimerTitle(String text, Color color) {
+  static Text onTimerAndMetronomeTitle(String text, Color color) {
     return Text(
       text,
       textAlign: TextAlign.center,
@@ -240,6 +240,20 @@ class PtdTextWidget {
       style: TextStyle(
         fontFamily: pretendard,
         fontSize: 16,
+        fontWeight: FontWeight.w300,
+        color: color,
+        overflow: TextOverflow.visible,
+      ),
+    );
+  }
+
+  static Text metronomeBeat(String text, Color color) {
+    return Text(
+      text,
+      textAlign: TextAlign.center,
+      style: TextStyle(
+        fontFamily: pretendard,
+        fontSize: 32,
         fontWeight: FontWeight.w300,
         color: color,
         overflow: TextOverflow.visible,
