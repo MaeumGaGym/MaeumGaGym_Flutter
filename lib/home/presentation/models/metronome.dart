@@ -1,5 +1,3 @@
-import 'package:maeum_ga_gym_flutter/sign_up/presentation/widget/on_boarding_data.dart';
-
 class Metronome {
   final double volume;
   final int beat;
