@@ -13,16 +13,22 @@ final socialLoginController =
 
 class SocialLoginStateNotifier extends StateNotifier<SocialLoginState> {
   SocialLoginStateNotifier()
-      : super(SocialLoginState(isLogined: false, token: ''));
+      : super(SocialLoginState(isGoogle: true, isLogined: false, token: ''));
 
   late SocialLoginUseCase _useCase;
 
   Future<void> setLoginOption(LoginOption option) async {
     switch (option) {
       case LoginOption.google:
+        state = SocialLoginState(
+            isGoogle: true, isLogined: state.isLogined, token: state.token);
         _useCase = SocialLoginUseCase(GoogleLoginRepositoryImpl());
+        break;
       case LoginOption.kakao:
+        state = SocialLoginState(
+            isGoogle: false, isLogined: state.isLogined, token: state.token);
         _useCase = SocialLoginUseCase(KaKaoLoginRepositoryImpl());
+        break;
     }
   }
 
@@ -32,25 +38,30 @@ class SocialLoginStateNotifier extends StateNotifier<SocialLoginState> {
     if (loginState) {
       String tokenValue = await _useCase.getToken();
 
-      state = SocialLoginState(isLogined: loginState, token: tokenValue);
+      state = SocialLoginState(
+          isGoogle: state.isGoogle, isLogined: loginState, token: tokenValue);
     } else {
-      state = SocialLoginState(isLogined: loginState, token: '');
+      state = SocialLoginState(
+          isGoogle: state.isGoogle, isLogined: loginState, token: '');
     }
   }
 
   Future<void> logout() async {
     bool loginState = await _useCase.logout();
 
-    state = SocialLoginState(isLogined: loginState, token: '');
+    SocialLoginState(
+        isGoogle: state.isGoogle, isLogined: loginState, token: '');
   }
 }
 
 class SocialLoginState {
-  bool isLogined;
-  String token;
+  final bool isLogined;
+  final bool isGoogle;
+  final String token;
 
   SocialLoginState({
     required this.isLogined,
+    required this.isGoogle,
     required this.token,
   });
 }
