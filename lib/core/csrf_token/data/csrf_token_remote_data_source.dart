@@ -5,9 +5,10 @@ import '../domain/csrf_token_model.dart';
 class CSRFTokenRemoteDataSource {
   Future<CSRFTokenModel> getCSRFToken() async {
     try {
-      return dio
-          .get('/public/csrf')
-          .then((response) => CSRFTokenModel.fromJson(response.headers));
+      return dio.get('/public/csrf').then((response) => CSRFTokenModel.fromJson(
+            response.headers,
+            response.statusCode ?? 500,
+          ));
     } catch (err) {
       throw Exception(err);
     }
