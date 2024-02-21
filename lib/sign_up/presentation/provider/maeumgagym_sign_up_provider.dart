@@ -22,7 +22,7 @@ class MaeumgagymSignUpStateNotifier
     MaeumgagymSignUpModel signUpXsrfToken =
         await _useCase.googleSignUp(googleToken, xsrfToken, name);
 
-    TokenSecureStorageDi.writeXSRFToken(signUpXsrfToken.xsrfToken);
+    await TokenSecureStorageDi.writeXSRFToken(signUpXsrfToken.xsrfToken);
 
     state = MaeumgagymSignUpState(
       statusCode: signUpXsrfToken.statusCode,
@@ -34,7 +34,7 @@ class MaeumgagymSignUpStateNotifier
     MaeumgagymSignUpModel signUpXsrfToken =
         await _useCase.kakaoSignUp(googleToken, xsrfToken, name);
 
-    TokenSecureStorageDi.writeXSRFToken(signUpXsrfToken.xsrfToken);
+    await TokenSecureStorageDi.writeXSRFToken(signUpXsrfToken.xsrfToken);
 
     state = MaeumgagymSignUpState(
       statusCode: signUpXsrfToken.statusCode,
