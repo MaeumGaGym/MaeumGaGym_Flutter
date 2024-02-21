@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/providers/timer_state_provider.dart';
+import 'package:maeum_ga_gym_flutter/home/presentation/view/home_metronome_screen.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/view/home_timer_screen.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/widget/main/widget/home_main_container_title.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/widget/main/widget/home_main_metronome_widget.dart';
@@ -39,7 +40,7 @@ class _MainTimerAndMetronomeContainerState
                 behavior: HitTestBehavior.translucent,
                 onTap: () => Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) => ref.watch(timerStateProvider) ? const HomeTimerScreen() : const HomeTimerScreen() /// 메트로놈 페이지,
+                    builder: (context) => ref.watch(timerStateProvider) ? const HomeTimerScreen() : const HomeMetronomeScreen() /// 메트로놈 페이지,
                   ),
                 ),
                 child: HomeMainContainerTitle(
