@@ -63,7 +63,7 @@ class MaeumgagymLoginStateNotifier extends StateNotifier<MaeumgagymLoginState> {
 class MaeumgagymLoginState {
   static String accessToken = 'accessToken';
   static String refreshToken = 'refreshToken';
-  static String xsrfToken = 'exrfToken';
+  static String xsrfToken = 'xsrfToken';
 
   final int stateusCode;
 
