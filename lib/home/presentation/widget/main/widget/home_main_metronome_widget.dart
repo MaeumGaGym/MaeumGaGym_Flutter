@@ -1,7 +1,7 @@
-import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/providers/metronome_state_provider.dart';
@@ -16,13 +16,13 @@ class HomeMainMetronomeWidget extends ConsumerStatefulWidget {
 
 class _MainMetronomeWidgetState extends ConsumerState<HomeMainMetronomeWidget>
     with WidgetsBindingObserver {
+  late AudioPlayer player;
   @override
   Widget build(BuildContext context) {
-    final deviceWidth = MediaQuery.of(context).size.width;
+    final metronomeBpmState = ref.watch(metronomeBpmProvider);
+    final metronomeBpmNotifier = ref.read(metronomeBpmProvider.notifier);
     final metronomeState = ref.watch(metronomeStateProvider);
-    final metronomeAudioPlayer = ref.read(metronomeAudioProvider);
-    final metronomeVolumeState = ref.watch(metronomeVolumeProvider);
-    final player = AudioPlayer();
+    final metronomeNotifier = ref.read(metronomeStateProvider.notifier);
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -55,7 +55,7 @@ class _MainMetronomeWidgetState extends ConsumerState<HomeMainMetronomeWidget>
                                 child: FittedBox(
                                   fit: BoxFit.fitWidth,
                                   child: PtdTextWidget.titleLarge(
-                                    ref.watch(metronomeValueProvider).toString(),
+                                    metronomeBpmState.toString(),
                                     metronomeState
                                         ? MaeumgagymColor.blue500
                                         : MaeumgagymColor.gray400,
@@ -85,9 +85,7 @@ class _MainMetronomeWidgetState extends ConsumerState<HomeMainMetronomeWidget>
                           children: [
                             GestureDetector(
                               onTap: () {
-                                ref
-                                    .read(metronomeValueProvider.notifier)
-                                    .minus();
+                                metronomeBpmNotifier.state--;
                               },
                               child: Container(
                                 alignment: Alignment.center,
@@ -109,7 +107,7 @@ class _MainMetronomeWidgetState extends ConsumerState<HomeMainMetronomeWidget>
                             const SizedBox(width: 8),
                             GestureDetector(
                               onTap: () {
-                                ref.read(metronomeValueProvider.notifier).add();
+                                metronomeBpmNotifier.state++;
                               },
                               child: Container(
                                 alignment: Alignment.center,
@@ -139,10 +137,9 @@ class _MainMetronomeWidgetState extends ConsumerState<HomeMainMetronomeWidget>
               GestureDetector(
                 onTap: () async {
                   if (metronomeState) {
-                    ref.read(metronomeStateProvider.notifier).state = false;
+                    metronomeNotifier.state = false;
                   } else {
-                    ref.read(metronomeStateProvider.notifier).state = true;
-                    await player.play(AssetSource("sounds/metronome/High.wav"));
+                    metronomeNotifier.state = true;
                   }
                 },
                 child: Container(
