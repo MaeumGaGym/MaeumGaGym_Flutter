@@ -4,14 +4,15 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/providers/metronome_state_provider.dart';
+import 'package:maeum_ga_gym_flutter/home/presentation/widget/metronome/widget/home_metronome_bpm_controller_widget.dart';
 
 class HomeMetronomeBpmContainer extends ConsumerWidget {
   const HomeMetronomeBpmContainer({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final metronomeBpmState = ref.watch(metronomeBpmProvider);
-    final metronomeBpmNotifier = ref.read(metronomeBpmProvider.notifier);
+    final metronomeState = ref.watch(metronomeController);
+    final metronomeNotifier = ref.read(metronomeController.notifier);
     return SizedBox(
       height: 152,
       child: Column(
@@ -29,45 +30,25 @@ class HomeMetronomeBpmContainer extends ConsumerWidget {
                 children: [
                   GestureDetector(
                     onTap: () {
-                      metronomeBpmNotifier.state--;
+                      metronomeNotifier.decreaseBpm();
                     },
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: MaeumgagymColor.gray50,
-                        shape: BoxShape.circle,
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: SvgPicture.asset(
-                          "assets/image/home_icon/remove_minus_icon.svg",
-                          color: MaeumgagymColor.gray300,
-                        ),
-                      ),
+                    child: const HomeMetronomeBpmControllerWidget(
+                      iconPath: "assets/image/home_icon/remove_minus_icon.svg",
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: PtdTextWidget.onTimerAndMetronomeTitle(
-                      metronomeBpmState.toString(),
+                      metronomeState.bpm.toString(),
                       MaeumgagymColor.black,
                     ),
                   ),
                   GestureDetector(
                     onTap: () {
-                      metronomeBpmNotifier.state++;
+                      metronomeNotifier.increaseBpm();
                     },
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: MaeumgagymColor.gray50,
-                        shape: BoxShape.circle,
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: SvgPicture.asset(
-                          "assets/image/home_icon/add_icon.svg",
-                          color: MaeumgagymColor.gray300,
-                        ),
-                      ),
+                    child: const HomeMetronomeBpmControllerWidget(
+                      iconPath: "assets/image/home_icon/add_icon.svg",
                     ),
                   ),
                 ],
@@ -78,11 +59,17 @@ class HomeMetronomeBpmContainer extends ConsumerWidget {
             activeColor: MaeumgagymColor.blue400,
             inactiveColor: MaeumgagymColor.gray100,
             thumbColor: MaeumgagymColor.blue400,
-            value: metronomeBpmState.toDouble(),
+            value: metronomeState.bpm.toDouble(),
             min: 1,
             max: 300,
             onChanged: (value) {
-              metronomeBpmNotifier.state = value.toInt();
+              metronomeNotifier.changeBpm(value.toInt());
+            },
+            onChangeStart: (value) {
+              metronomeNotifier.onPause();
+            },
+            onChangeEnd: (value) {
+              metronomeNotifier.onPlay();
             },
           ),
         ],
