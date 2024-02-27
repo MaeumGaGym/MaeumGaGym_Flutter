@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:just_audio/just_audio.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/providers/metronome_state_provider.dart';
@@ -14,15 +13,11 @@ class HomeMainMetronomeWidget extends ConsumerStatefulWidget {
       _MainMetronomeWidgetState();
 }
 
-class _MainMetronomeWidgetState extends ConsumerState<HomeMainMetronomeWidget>
-    with WidgetsBindingObserver {
-  late AudioPlayer player;
+class _MainMetronomeWidgetState extends ConsumerState<HomeMainMetronomeWidget> with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context) {
-    final metronomeBpmState = ref.watch(metronomeBpmProvider);
-    final metronomeBpmNotifier = ref.read(metronomeBpmProvider.notifier);
-    final metronomeState = ref.watch(metronomeStateProvider);
-    final metronomeNotifier = ref.read(metronomeStateProvider.notifier);
+    final metronomeState = ref.watch(metronomeController);
+    final metronomeNotifier = ref.read(metronomeController.notifier);
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -50,16 +45,13 @@ class _MainMetronomeWidgetState extends ConsumerState<HomeMainMetronomeWidget>
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
-                              SizedBox(
-                                width: 62,
-                                child: FittedBox(
-                                  fit: BoxFit.fitWidth,
-                                  child: PtdTextWidget.titleLarge(
-                                    metronomeBpmState.toString(),
-                                    metronomeState
-                                        ? MaeumgagymColor.blue500
-                                        : MaeumgagymColor.gray400,
-                                  ),
+                              FittedBox(
+                                fit: BoxFit.fitWidth,
+                                child: PtdTextWidget.titleLarge(
+                                  metronomeState.bpm.toString(),
+                                  metronomeState.onPlay
+                                      ? MaeumgagymColor.blue500
+                                      : MaeumgagymColor.gray400,
                                 ),
                               ),
                               const SizedBox(width: 8),
@@ -71,7 +63,7 @@ class _MainMetronomeWidgetState extends ConsumerState<HomeMainMetronomeWidget>
                                     fit: BoxFit.fitWidth,
                                     child: PtdTextWidget.titleSmall(
                                       "BPM",
-                                      metronomeState
+                                      metronomeState.onPlay
                                           ? MaeumgagymColor.blue500
                                           : MaeumgagymColor.gray400,
                                     ),
@@ -85,7 +77,7 @@ class _MainMetronomeWidgetState extends ConsumerState<HomeMainMetronomeWidget>
                           children: [
                             GestureDetector(
                               onTap: () {
-                                metronomeBpmNotifier.state--;
+                                metronomeNotifier.decreaseBpm();
                               },
                               child: Container(
                                 alignment: Alignment.center,
@@ -107,7 +99,7 @@ class _MainMetronomeWidgetState extends ConsumerState<HomeMainMetronomeWidget>
                             const SizedBox(width: 8),
                             GestureDetector(
                               onTap: () {
-                                metronomeBpmNotifier.state++;
+                                metronomeNotifier.increaseBpm();
                               },
                               child: Container(
                                 alignment: Alignment.center,
@@ -136,10 +128,10 @@ class _MainMetronomeWidgetState extends ConsumerState<HomeMainMetronomeWidget>
               const SizedBox(width: 46),
               GestureDetector(
                 onTap: () async {
-                  if (metronomeState) {
-                    metronomeNotifier.state = false;
+                  if (metronomeState.onPlay) {
+                    metronomeNotifier.onPause();
                   } else {
-                    metronomeNotifier.state = true;
+                    metronomeNotifier.onPlay();
                   }
                 },
                 child: Container(
@@ -147,18 +139,18 @@ class _MainMetronomeWidgetState extends ConsumerState<HomeMainMetronomeWidget>
                   height: 40,
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
-                    color: metronomeState
+                    color: metronomeState.onPlay
                         ? MaeumgagymColor.gray50
                         : MaeumgagymColor.blue500,
                     borderRadius: BorderRadius.circular(100),
                   ),
                   child: SvgPicture.asset(
-                    metronomeState
+                    metronomeState.onPlay
                         ? "assets/image/home_icon/pause_icon.svg"
                         : "assets/image/home_icon/play_filled_icon.svg",
                     width: 20,
                     height: 20,
-                    color: metronomeState
+                    color: metronomeState.onPlay
                         ? MaeumgagymColor.black
                         : MaeumgagymColor.white,
                   ),

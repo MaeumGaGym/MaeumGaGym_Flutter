@@ -26,8 +26,8 @@ class _HomeMetronomeBeatSelectorContainerState
 
   @override
   Widget build(BuildContext context) {
-    final metronomeBeatState = ref.watch(metronomeBeatProvider);
-    final metronomeBeatNotifier = ref.read(metronomeBeatProvider.notifier);
+    final metronomeState = ref.watch(metronomeController);
+    final metronomeNotifier = ref.read(metronomeController.notifier);
     return SizedBox(
       height: 82,
       child: Column(
@@ -36,6 +36,7 @@ class _HomeMetronomeBeatSelectorContainerState
             "비트수",
             MaeumgagymColor.blue400,
           ),
+          /// horizontal 스크롤 피커가 없어서, 라이브러리 사용했습니다.
           NumberPicker(
             axis: Axis.horizontal,
             itemHeight: 45,
@@ -53,11 +54,11 @@ class _HomeMetronomeBeatSelectorContainerState
               fontWeight: FontWeight.w300,
             ),
             itemCount: 5,
-            value: metronomeBeatState,
+            value: metronomeState.initialBeat,
             minValue: 1,
             maxValue: 10,
             onChanged: (value) {
-              metronomeBeatNotifier.state = value;
+              metronomeNotifier.changeBeat(value);
             },
           ),
         ],
