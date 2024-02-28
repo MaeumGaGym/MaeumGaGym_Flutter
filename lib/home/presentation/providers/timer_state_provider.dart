@@ -44,9 +44,9 @@ class TimersNotifier extends StateNotifier<List<Timers>> {
   void onTick(int timerId) {
     state = state.map((timer) {
       if (timer.timerId == timerId && timer.timerState == TimerState.started) {
-        if (timer.currentTime > const Duration(milliseconds: 50)) {
+        if (timer.currentTime > const Duration(milliseconds: 20)) {
           return timer.copyWith(
-            currentTime: timer.currentTime - const Duration(milliseconds: 50),
+            currentTime: timer.currentTime - const Duration(milliseconds: 20),
             timerValue: timer.currentTime.inMicroseconds /
                 timer.initialTime.inMicroseconds,
           );
@@ -67,7 +67,7 @@ class TimersNotifier extends StateNotifier<List<Timers>> {
       if (timer.timerId == timerId && timer.timerState != TimerState.started) {
         subscriptions[timerId - 1]?.cancel();
         subscriptions[timerId - 1] =
-            Stream.periodic(const Duration(milliseconds: 50), (x) => x)
+            Stream.periodic(const Duration(milliseconds: 20), (x) => x)
                 .listen((_) => onTick(timerId));
         return timer.copyWith(timerState: TimerState.started);
       }
