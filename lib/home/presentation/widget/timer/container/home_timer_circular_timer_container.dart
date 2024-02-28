@@ -22,7 +22,8 @@ class _HomeTimerCircularTimerContainerState
       width: MediaQuery.of(context).size.width - 80,
       child: CircularProgressIndicator(
         color: Colors.red,
-        value: timerState[timerIndex].timerValue,
+        value: timerState[timerIndex].currentTime.inMicroseconds /
+            timerState[timerIndex].initialTime.inMicroseconds,
       ),
     );
   }
