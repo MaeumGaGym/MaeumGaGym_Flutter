@@ -10,13 +10,13 @@ class HomeTimerFuncButtonListContainer extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final timerController = ref.watch(homeTimerProvider);
     final timerIndex = ref.watch(selectedTimerProvider);
     final timerState = ref.watch(timersProvider);
     final timerNotifier = ref.read(timersProvider.notifier);
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
+        // delete
         Container(
           decoration: BoxDecoration(
             color: MaeumgagymColor.white,
@@ -33,16 +33,15 @@ class HomeTimerFuncButtonListContainer extends ConsumerWidget {
             ),
           ),
         ),
+        // start parse
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24),
           child: GestureDetector(
             onTap: () {
               if (timerState[timerIndex].timerState != TimerState.started) {
                 timerNotifier.onStarted(timerIndex + 1);
-                timerController.resume();
               } else {
                 timerNotifier.onPaused(timerIndex + 1);
-                timerController.pause();
               }
             },
             child: Container(
@@ -64,19 +63,25 @@ class HomeTimerFuncButtonListContainer extends ConsumerWidget {
             ),
           ),
         ),
-        Container(
-          decoration: BoxDecoration(
-            color: MaeumgagymColor.white,
-            shape: BoxShape.circle,
-            border: Border.all(color: MaeumgagymColor.blue400, width: 1),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(22),
-            child: SvgPicture.asset(
-              "assets/image/home_icon/edit_redo_icon.svg",
-              width: 24,
-              height: 24,
-              color: MaeumgagymColor.blue400,
+        // reset
+        GestureDetector(
+          onTap: () {
+            timerNotifier.onReset(timerIndex + 1);
+          },
+          child: Container(
+            decoration: BoxDecoration(
+              color: MaeumgagymColor.white,
+              shape: BoxShape.circle,
+              border: Border.all(color: MaeumgagymColor.blue400, width: 1),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(22),
+              child: SvgPicture.asset(
+                "assets/image/home_icon/edit_redo_icon.svg",
+                width: 24,
+                height: 24,
+                color: MaeumgagymColor.blue400,
+              ),
             ),
           ),
         ),
