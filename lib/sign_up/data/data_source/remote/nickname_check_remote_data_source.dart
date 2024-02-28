@@ -4,7 +4,6 @@ import 'package:maeum_ga_gym_flutter/core/di/dio_di.dart';
 class NicknameCheckRemoteDataSource {
   Future<bool> checkNickname(String name) async {
     return await dio.get('/auth/nickname/$name').then((response) {
-      debugPrint("${response.data.toString()} --- $name");
       return response.data;
     });
   }
