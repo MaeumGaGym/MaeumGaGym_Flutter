@@ -11,6 +11,7 @@ class Timers with _$Timers {
     required Duration initialTime,
     @Default(TimerState.initial) TimerState timerState,
     required Duration currentTime,
+    required double timerValue,
   }) = _Timers;
 
   factory Timers.fromJson(Map<String, dynamic> json) => _$TimersFromJson(json);
