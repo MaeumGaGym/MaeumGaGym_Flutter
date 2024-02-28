@@ -12,7 +12,7 @@ part of 'timers.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 Timers _$TimersFromJson(Map<String, dynamic> json) {
   return _Timers.fromJson(json);
@@ -24,6 +24,7 @@ mixin _$Timers {
   Duration get initialTime => throw _privateConstructorUsedError;
   TimerState get timerState => throw _privateConstructorUsedError;
   Duration get currentTime => throw _privateConstructorUsedError;
+  double get timerValue => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -39,7 +40,8 @@ abstract class $TimersCopyWith<$Res> {
       {int timerId,
       Duration initialTime,
       TimerState timerState,
-      Duration currentTime});
+      Duration currentTime,
+      double timerValue});
 }
 
 /// @nodoc
@@ -59,6 +61,7 @@ class _$TimersCopyWithImpl<$Res, $Val extends Timers>
     Object? initialTime = null,
     Object? timerState = null,
     Object? currentTime = null,
+    Object? timerValue = null,
   }) {
     return _then(_value.copyWith(
       timerId: null == timerId
@@ -77,6 +80,10 @@ class _$TimersCopyWithImpl<$Res, $Val extends Timers>
           ? _value.currentTime
           : currentTime // ignore: cast_nullable_to_non_nullable
               as Duration,
+      timerValue: null == timerValue
+          ? _value.timerValue
+          : timerValue // ignore: cast_nullable_to_non_nullable
+              as double,
     ) as $Val);
   }
 }
@@ -92,7 +99,8 @@ abstract class _$$TimersImplCopyWith<$Res> implements $TimersCopyWith<$Res> {
       {int timerId,
       Duration initialTime,
       TimerState timerState,
-      Duration currentTime});
+      Duration currentTime,
+      double timerValue});
 }
 
 /// @nodoc
@@ -110,6 +118,7 @@ class __$$TimersImplCopyWithImpl<$Res>
     Object? initialTime = null,
     Object? timerState = null,
     Object? currentTime = null,
+    Object? timerValue = null,
   }) {
     return _then(_$TimersImpl(
       timerId: null == timerId
@@ -128,6 +137,10 @@ class __$$TimersImplCopyWithImpl<$Res>
           ? _value.currentTime
           : currentTime // ignore: cast_nullable_to_non_nullable
               as Duration,
+      timerValue: null == timerValue
+          ? _value.timerValue
+          : timerValue // ignore: cast_nullable_to_non_nullable
+              as double,
     ));
   }
 }
@@ -139,7 +152,8 @@ class _$TimersImpl implements _Timers {
       {required this.timerId,
       required this.initialTime,
       this.timerState = TimerState.initial,
-      required this.currentTime});
+      required this.currentTime,
+      required this.timerValue});
 
   factory _$TimersImpl.fromJson(Map<String, dynamic> json) =>
       _$$TimersImplFromJson(json);
@@ -153,10 +167,12 @@ class _$TimersImpl implements _Timers {
   final TimerState timerState;
   @override
   final Duration currentTime;
+  @override
+  final double timerValue;
 
   @override
   String toString() {
-    return 'Timers(timerId: $timerId, initialTime: $initialTime, timerState: $timerState, currentTime: $currentTime)';
+    return 'Timers(timerId: $timerId, initialTime: $initialTime, timerState: $timerState, currentTime: $currentTime, timerValue: $timerValue)';
   }
 
   @override
@@ -170,13 +186,15 @@ class _$TimersImpl implements _Timers {
             (identical(other.timerState, timerState) ||
                 other.timerState == timerState) &&
             (identical(other.currentTime, currentTime) ||
-                other.currentTime == currentTime));
+                other.currentTime == currentTime) &&
+            (identical(other.timerValue, timerValue) ||
+                other.timerValue == timerValue));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, timerId, initialTime, timerState, currentTime);
+  int get hashCode => Object.hash(
+      runtimeType, timerId, initialTime, timerState, currentTime, timerValue);
 
   @JsonKey(ignore: true)
   @override
@@ -197,7 +215,8 @@ abstract class _Timers implements Timers {
       {required final int timerId,
       required final Duration initialTime,
       final TimerState timerState,
-      required final Duration currentTime}) = _$TimersImpl;
+      required final Duration currentTime,
+      required final double timerValue}) = _$TimersImpl;
 
   factory _Timers.fromJson(Map<String, dynamic> json) = _$TimersImpl.fromJson;
 
@@ -209,6 +228,8 @@ abstract class _Timers implements Timers {
   TimerState get timerState;
   @override
   Duration get currentTime;
+  @override
+  double get timerValue;
   @override
   @JsonKey(ignore: true)
   _$$TimersImplCopyWith<_$TimersImpl> get copyWith =>

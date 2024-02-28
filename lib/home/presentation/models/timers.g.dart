@@ -13,6 +13,7 @@ _$TimersImpl _$$TimersImplFromJson(Map<String, dynamic> json) => _$TimersImpl(
           $enumDecodeNullable(_$TimerStateEnumMap, json['timerState']) ??
               TimerState.initial,
       currentTime: Duration(microseconds: json['currentTime'] as int),
+      timerValue: (json['timerValue'] as num).toDouble(),
     );
 
 Map<String, dynamic> _$$TimersImplToJson(_$TimersImpl instance) =>
@@ -21,6 +22,7 @@ Map<String, dynamic> _$$TimersImplToJson(_$TimersImpl instance) =>
       'initialTime': instance.initialTime.inMicroseconds,
       'timerState': _$TimerStateEnumMap[instance.timerState]!,
       'currentTime': instance.currentTime.inMicroseconds,
+      'timerValue': instance.timerValue,
     };
 
 const _$TimerStateEnumMap = {

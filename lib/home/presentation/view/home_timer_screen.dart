@@ -3,7 +3,6 @@ import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/widget/timer/container/home_timer_circular_timer_container.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/widget/timer/container/home_timer_func_button_list_container.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/widget/timer/container/home_timer_list_container.dart';
-import 'package:maeum_ga_gym_flutter/home/presentation/widget/home_timer_and_metronome_tab_bar.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/widget/timer/widget/home_timer_app_bar.dart';
 
 class HomeTimerScreen extends StatefulWidget {
@@ -32,10 +31,6 @@ class _HomeTimerScreenState extends State<HomeTimerScreen> {
             ],
           ),
         ),
-      ),
-      bottomSheet: Container(
-        color: MaeumgagymColor.white,
-        child: const HomeTimerAndMetronomeTabBar(),
       ),
     );
   }

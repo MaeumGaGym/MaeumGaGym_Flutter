@@ -26,7 +26,8 @@ class HomeTimerListContainer extends ConsumerWidget {
               GestureDetector(
                 onTap: () {
                   timerIndexNotifier.state = index;
-                  print(timerIndexNotifier.state);
+                  // ref.watch(homeTimerPageController).jumpToPage(index);
+                  debugPrint(timerIndexNotifier.state.toString());
                 },
                 child: Container(
                   height: 100,
