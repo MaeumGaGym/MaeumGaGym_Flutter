@@ -17,7 +17,6 @@ class _MainTimerWidgetState extends ConsumerState<HomeMainTimerWidget> {
   @override
   Widget build(BuildContext context) {
     final timerList = ref.watch(timersProvider);
-    final timerController = ref.watch(homeTimerProvider);
     return Column(
       children: [
         Padding(
