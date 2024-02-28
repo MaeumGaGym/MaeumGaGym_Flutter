@@ -6,7 +6,7 @@ import 'package:maeum_ga_gym_flutter/core/csrf_token/domain/csrf_token_usecase.d
 import 'package:maeum_ga_gym_flutter/core/di/token_secure_storage_di.dart';
 
 final csrfTokenController =
-StateNotifierProvider<CSRFTokenStateNotifier, CSRFTokenState>((ref) {
+    StateNotifierProvider<CSRFTokenStateNotifier, CSRFTokenState>((ref) {
   return CSRFTokenStateNotifier();
 });
 
@@ -15,7 +15,7 @@ class CSRFTokenStateNotifier extends StateNotifier<CSRFTokenState> {
 
   final CSRFTokenUseCase _useCase = CSRFTokenUseCase(CSRFTokenRepositoryImpl());
 
-  Future<void> getSCRFToken() async {
+  Future<void> getCSRFToken() async {
     final CSRFTokenModel xsrfTokenModel = await _useCase.getCSRFToken();
 
     debugPrint(xsrfTokenModel.xsrfToken);
