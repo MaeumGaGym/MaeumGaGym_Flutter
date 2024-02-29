@@ -13,7 +13,7 @@ final selectedTimerProvider = StateProvider<int>((ref) => 0);
 enum TimerState { initial, started, paused }
 
 class TimersNotifier extends StateNotifier<List<Timers>> {
-  final List<StreamSubscription<int>?> subscriptions = [null, null, null];
+  final List<StreamSubscription<int>?> _subscriptions = [null];
 
   // 이거 나중ㅇ ㅔ고쳐야됨
 
@@ -25,18 +25,29 @@ class TimersNotifier extends StateNotifier<List<Timers>> {
               initialTime: const Duration(seconds: 3),
               timerId: 1,
             ),
-            Timers(
-              currentTime: const Duration(seconds: 30, minutes: 1),
-              initialTime: const Duration(seconds: 30, minutes: 1),
-              timerId: 2,
-            ),
-            Timers(
-              currentTime: const Duration(seconds: 86400),
-              initialTime: const Duration(seconds: 86400),
-              timerId: 3,
-            ),
+            // Timers(
+            //   currentTime: const Duration(seconds: 30, minutes: 1),
+            //   initialTime: const Duration(seconds: 30, minutes: 1),
+            //   timerId: 2,
+            // ),
+            // Timers(
+            //   currentTime: const Duration(hours: 2),
+            //   initialTime: const Duration(hours: 2),
+            //   timerId: 3,
+            // ),
           ],
         );
+
+  Future<void> addTimer(Duration duration) async {
+    _subscriptions.add(null);
+    state.add(
+      Timers(
+        timerId: state[state.length - 1].timerId + 1,
+        initialTime: duration,
+        currentTime: duration,
+      ),
+    );
+  }
 
   void onTick(int timerId) {
     state = state.map((timer) {
@@ -46,7 +57,7 @@ class TimersNotifier extends StateNotifier<List<Timers>> {
             currentTime: timer.currentTime - const Duration(milliseconds: 20),
           );
         } else {
-          subscriptions[timerId - 1]?.cancel();
+          _subscriptions[timerId - 1]?.cancel();
           return timer.copyWith(
             currentTime: timer.initialTime,
             timerState: TimerState.initial,
@@ -60,8 +71,8 @@ class TimersNotifier extends StateNotifier<List<Timers>> {
   void onStarted(int timerId) {
     state = state.map((timer) {
       if (timer.timerId == timerId && timer.timerState != TimerState.started) {
-        subscriptions[timerId - 1]?.cancel();
-        subscriptions[timerId - 1] =
+        _subscriptions[timerId - 1]?.cancel();
+        _subscriptions[timerId - 1] =
             Stream.periodic(const Duration(milliseconds: 20), (x) => x)
                 .listen((_) => onTick(timerId));
         return timer.copyWith(timerState: TimerState.started);
@@ -85,7 +96,7 @@ class TimersNotifier extends StateNotifier<List<Timers>> {
   void onPaused(int timerId) {
     state = state.map((timer) {
       if (timer.timerId == timerId && timer.timerState == TimerState.started) {
-        subscriptions[timerId - 1]?.cancel();
+        _subscriptions[timerId - 1]?.cancel();
         return timer.copyWith(timerState: TimerState.paused);
       }
       return timer;
@@ -108,7 +119,7 @@ String formatInitialTime(Duration duration) {
     formattedDuration += '$minutes분 ';
   }
 
-  if (seconds > 0) {
+  if (seconds > 0 || (seconds == 0 && hours == 0 && minutes == 0)) {
     formattedDuration += '$seconds초';
   }
 
@@ -123,6 +134,19 @@ String formatCurrentTime(Duration duration) {
   } else {
     return '${twoDigits(duration.inMinutes.remainder(60))} : ${twoDigits(duration.inSeconds.remainder(60))}';
   }
+}
+
+String formatFinishTime(Duration duration) {
+  DateTime dateTime = DateTime.now();
+
+  int dateTimeMill = dateTime.millisecondsSinceEpoch + duration.inMilliseconds;
+  DateTime finishTime = DateTime.fromMillisecondsSinceEpoch(dateTimeMill);
+
+  String hour =
+      finishTime.hour > 12 ? '${finishTime.hour - 12}' : '${finishTime.hour}';
+  String minute = '${finishTime.minute}'.padLeft(2, '0');
+
+  return '${finishTime.hour >= 12 ? '오후' : '오전'} $hour:$minute';
 }
 
 String formatTimerListTime(Duration duration) {
