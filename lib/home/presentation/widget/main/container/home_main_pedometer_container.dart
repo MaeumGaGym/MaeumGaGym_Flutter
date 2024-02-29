@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
+import 'package:maeum_ga_gym_flutter/home/presentation/view/home_pedometer_detail_screen.dart';
 
 class HomeMainWalkContainer extends StatefulWidget {
   // final String steps; // 걸음 수
@@ -12,11 +13,17 @@ class HomeMainWalkContainer extends StatefulWidget {
 }
 
 class _HomeMainWalkContainerState extends State<HomeMainWalkContainer> {
-
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      behavior: HitTestBehavior.translucent,
+      onTap: () {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => const HomeWalkDetailScreen(),
+          ),
+        );
+      },
       child: Container(
         decoration: BoxDecoration(
           color: MaeumgagymColor.white,
