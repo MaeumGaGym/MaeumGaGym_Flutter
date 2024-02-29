@@ -4,12 +4,7 @@ import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
 
 class HomeMainAppBar extends StatelessWidget implements PreferredSizeWidget {
-  final AppBar appBar;
-
-  const HomeMainAppBar({
-    super.key,
-    required this.appBar,
-  });
+  const HomeMainAppBar({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -47,5 +42,5 @@ class HomeMainAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => Size.fromHeight(appBar.preferredSize.height);
+  Size get preferredSize => Size.fromHeight(52);
 }
