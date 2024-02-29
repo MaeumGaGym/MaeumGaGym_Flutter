@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/widget/main/container/home_main_timer_and_metronome_container.dart';
-import 'package:maeum_ga_gym_flutter/home/presentation/widget/main/container/home_main_walk_container.dart';
+import 'package:maeum_ga_gym_flutter/home/presentation/widget/main/container/home_main_pedometer_container.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/widget/main/widget/home_main_app_bar.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/widget/main/container/home_main_content_list_container.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/widget/main/container/home_main_routine_container.dart';
@@ -19,7 +19,7 @@ class _HomeMainScreenState extends State<HomeMainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: HomeMainAppBar(appBar: AppBar()),
+      appBar: const HomeMainAppBar(),
       body: SingleChildScrollView(
         child: Container(
           decoration: BoxDecoration(
