@@ -99,19 +99,29 @@ class _MainTimerWidgetState extends ConsumerState<HomeMainTimerWidget> {
             },
           ),
         ),
-        Container(
-          width: MediaQuery.of(context).size.width,
-          height: 48,
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
-            color: MaeumgagymColor.gray50,
-            borderRadius: BorderRadius.circular(50),
-          ),
-          child: SvgPicture.asset(
-            'assets/image/home_icon/add_icon.svg',
-            color: MaeumgagymColor.gray800,
-            height: 24,
-            width: 24,
+        GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => HomeTimerScreen(),
+              ),
+            );
+          },
+          child: Container(
+            width: MediaQuery.of(context).size.width,
+            height: 48,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              color: MaeumgagymColor.gray50,
+              borderRadius: BorderRadius.circular(50),
+            ),
+            child: SvgPicture.asset(
+              'assets/image/home_icon/add_icon.svg',
+              color: MaeumgagymColor.gray800,
+              height: 24,
+              width: 24,
+            ),
           ),
         ),
         const SizedBox(height: 16),
