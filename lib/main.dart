@@ -10,9 +10,17 @@ import 'package:maeum_ga_gym_flutter/self_care/presentation/view/self_care_camer
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
+import 'package:hive_flutter/hive_flutter.dart';
+import 'home/domain/model/local_timer_model.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   cameras = await availableCameras();
+
+  /// Hive 설정
+  await Hive.initFlutter();
+  Hive.registerAdapter(LocalTimerModelAdapter());
+  await Hive.openBox<LocalTimerModel>('duration');
 
   /// 다국어 설정을 위함
   await initializeDateFormatting();
