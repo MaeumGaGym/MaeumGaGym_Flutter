@@ -2,6 +2,8 @@ import 'dart:async';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/models/timers.dart';
 
+import '../../domain/model/local_timer_model.dart';
+
 final timersProvider =
     StateNotifierProvider<TimersNotifier, List<Timers>>((ref) {
   return TimersNotifier();
@@ -37,6 +39,31 @@ class TimersNotifier extends StateNotifier<List<Timers>> {
             // ),
           ],
         );
+
+  Future<void> initAddTimer(List<LocalTimerModel> list) async {
+    List<Timers> movingList = [];
+    Timers timers;
+
+    for (int i = 0; i < list.length; i++) {
+      timers = Timers(
+        timerId: list[i].timerId,
+        initialTime: Duration(
+            hours: list[i].hours,
+            minutes: list[i].minutes,
+            seconds: list[i].seconds),
+        currentTime: Duration(
+            hours: list[i].hours,
+            minutes: list[i].minutes,
+            seconds: list[i].seconds),
+      );
+
+      movingList.add(timers);
+      _subscriptions.add(null);
+    }
+
+    state.clear();
+    state.addAll(movingList);
+  }
 
   Future<void> addTimer(Duration duration) async {
     _subscriptions.add(null);
