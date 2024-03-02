@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/providers/home_timer_add_duration_provider.dart';
+import 'package:maeum_ga_gym_flutter/home/presentation/providers/local_timer_provider.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/providers/timer_state_provider.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/widget/timer/widget/home_timer_picker_bottom_button_widget.dart';
 
@@ -91,6 +92,14 @@ class _HomeTimerTimePickerWidgetState
               GestureDetector(
                 behavior: HitTestBehavior.translucent,
                 onTap: () async {
+                  await ref.read(localTimerController.notifier).addTimers(
+                        timerId:
+                            timersState[timersState.length - 1].timerId + 1,
+                        hours: homeTimerDurationState.hour,
+                        minutes: homeTimerDurationState.minute,
+                        seconds: homeTimerDurationState.seconds,
+                      );
+
                   await timersNotifier.addTimer(
                     Duration(
                       hours: homeTimerDurationState.hour,
