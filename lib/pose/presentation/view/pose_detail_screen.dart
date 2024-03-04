@@ -1,5 +1,6 @@
 /// Package
 import 'package:flutter/material.dart';
+import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 
 /// Core
 
@@ -44,7 +45,7 @@ class _PoseDetailScreenState extends State<PoseDetailScreen> {
     ];
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: MaeumgagymColor.white,
       appBar: const DetailAppBar(),
       body: SafeArea(
         child: DetailBody(
