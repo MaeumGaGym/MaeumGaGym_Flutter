@@ -23,6 +23,9 @@ class TabAppBar extends ConsumerWidget {
     return SliverOverlapAbsorber(
       handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
       sliver: SliverAppBar(
+        backgroundColor: MaeumgagymColor.white,
+        surfaceTintColor: MaeumgagymColor.white,
+
         /// Search_Icon
         title: SizedBox(
           height: 52,

@@ -44,6 +44,7 @@ class _PoseDetailScreenState extends State<PoseDetailScreen> {
     ];
 
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: const DetailAppBar(),
       body: SafeArea(
         child: DetailBody(

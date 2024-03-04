@@ -13,6 +13,8 @@ class DetailAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: AppBar(
+        backgroundColor: MaeumgagymColor.white,
+        surfaceTintColor: MaeumgagymColor.white,
         automaticallyImplyLeading: false,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

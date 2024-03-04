@@ -44,7 +44,7 @@ class DetailBodyListWidget extends StatelessWidget {
                   SizedBox(
                     width: 52,
                     child: PtdTextWidget.titleMedium(
-                      index > 10 ? index.toString() : "0${index + 1}",
+                      (index + 1).toString().padLeft(2, '0'),
                       MaeumgagymColor.gray200,
                     ),
                   ),
