@@ -5,13 +5,13 @@ import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 
 /// Core
-import '../../../core/component/maeumgagym_text_field.dart';
 import '../../../core/component/text/pretendard/ptd_text_widget.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 
 /// Widget
 import '../widget/sign_up_nick_name/animated_check_button.dart';
 import '../provider/nickname_text_field_riverpod.dart';
+import '../widget/sign_up_nick_name/maeumgagym_text_field.dart';
 
 class SignUpNickNameScreen extends StatelessWidget {
   const SignUpNickNameScreen({super.key});

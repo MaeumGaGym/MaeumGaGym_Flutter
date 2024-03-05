@@ -3,8 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
 
-import '../../config/maeumgagym_color.dart';
-import '../riverpod/maeumgagym_text_field_riverpod.dart';
+import '../../../../config/maeumgagym_color.dart';
+import '../../provider/nickname_text_field_riverpod.dart';
 
 class MaeumgagymTextField extends ConsumerWidget {
   final TextEditingController controller;
