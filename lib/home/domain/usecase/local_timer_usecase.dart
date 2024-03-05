@@ -23,7 +23,7 @@ class DurationUseCase {
     return await _repository.getTimers();
   }
 
-  Future<void> delTimers() async {
-    return _repository.delTimers();
+  Future<void> delTimers(int timerId) async {
+    return await _repository.delTimers(timerId);
   }
 }

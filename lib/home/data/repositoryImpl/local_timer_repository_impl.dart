@@ -20,13 +20,12 @@ class DurationRepositoryImpl implements DurationRepository {
   }
 
   @override
-  Future<void> delTimers() {
-    // TODO: implement delTimers
-    throw UnimplementedError();
+  Future<List<LocalTimerModel>> getTimers() async {
+    return await _dataSource.getTimers();
   }
 
   @override
-  Future<List<LocalTimerModel>> getTimers() async {
-    return await _dataSource.getTimers();
+  Future<void> delTimers(int timerId) async {
+    return await _dataSource.delTimer(timerId);
   }
 }

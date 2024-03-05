@@ -27,8 +27,12 @@ class LocalTimerProvider extends StateNotifier<List<LocalTimerModel>> {
     );
   }
 
+  Future<void> delTimers(int timerId) async {
+    await _useCase.delTimers(timerId);
+  }
+
   Future<void> getTimers() async {
-    final List<LocalTimerModel> list = await _useCase.getTimers();
+    List<LocalTimerModel> list = await _useCase.getTimers();
     state.clear();
     state.addAll(list);
   }

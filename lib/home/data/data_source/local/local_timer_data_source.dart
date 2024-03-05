@@ -48,4 +48,11 @@ class DurationLocalDataSource {
       ),
     );
   }
+
+  Future<void> delTimer(int timerId) async {
+    if (box == null) await init();
+
+    // await box!.delete(timerId);
+    await box!.deleteAt(timerId);
+  }
 }
