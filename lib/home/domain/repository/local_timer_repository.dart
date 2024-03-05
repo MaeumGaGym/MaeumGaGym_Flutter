@@ -6,5 +6,5 @@ abstract class DurationRepository {
   Future<void> addTimers(
       {int timerId = 0, int hours = 0, int minutes = 0, int seconds = 0});
 
-  Future<void> delTimers();
+  Future<void> delTimers(int timerId);
 }
