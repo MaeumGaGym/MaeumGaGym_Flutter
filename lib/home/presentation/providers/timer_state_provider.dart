@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/models/timers.dart';
 
@@ -15,18 +16,18 @@ final selectedTimerProvider = StateProvider<int>((ref) => 0);
 enum TimerState { initial, started, paused }
 
 class TimersNotifier extends StateNotifier<List<Timers>> {
-  final List<StreamSubscription<int>?> _subscriptions = [null];
+  final List<StreamSubscription<int>?> _subscriptions = [null, null];
 
   // 이거 나중ㅇ ㅔ고쳐야됨
 
   TimersNotifier()
       : super(
           [
-            Timers(
-              currentTime: const Duration(seconds: 3),
-              initialTime: const Duration(seconds: 3),
-              timerId: 1,
-            ),
+            // Timers(
+            //   currentTime: const Duration(seconds: 3),
+            //   initialTime: const Duration(seconds: 3),
+            //   timerId: 1,
+            // ),
             // Timers(
             //   currentTime: const Duration(seconds: 30, minutes: 1),
             //   initialTime: const Duration(seconds: 30, minutes: 1),
@@ -44,20 +45,28 @@ class TimersNotifier extends StateNotifier<List<Timers>> {
     List<Timers> movingList = [];
     Timers timers;
 
+    int subScLength = 0;
+
     for (int i = 0; i < list.length; i++) {
       timers = Timers(
         timerId: list[i].timerId,
         initialTime: Duration(
-            hours: list[i].hours,
-            minutes: list[i].minutes,
-            seconds: list[i].seconds),
+          hours: list[i].hours,
+          minutes: list[i].minutes,
+          seconds: list[i].seconds,
+        ),
         currentTime: Duration(
-            hours: list[i].hours,
-            minutes: list[i].minutes,
-            seconds: list[i].seconds),
+          hours: list[i].hours,
+          minutes: list[i].minutes,
+          seconds: list[i].seconds,
+        ),
       );
 
+      subScLength = list[i].timerId;
       movingList.add(timers);
+    }
+
+    for (int i = 0; i < subScLength; i++) {
       _subscriptions.add(null);
     }
 
@@ -65,16 +74,16 @@ class TimersNotifier extends StateNotifier<List<Timers>> {
     state.addAll(movingList);
   }
 
-  Future<void> addTimer(Duration duration) async {
-    _subscriptions.add(null);
-    state.add(
-      Timers(
-        timerId: state[state.length - 1].timerId + 1,
-        initialTime: duration,
-        currentTime: duration,
-      ),
-    );
-  }
+  // Future<void> addTimer(Duration duration) async {
+  //   _subscriptions.add(null);
+  //   state.add(
+  //     Timers(
+  //       timerId: state[state.length - 1].timerId + 1,
+  //       initialTime: duration,
+  //       currentTime: duration,
+  //     ),
+  //   );
+  // }
 
   void onTick(int timerId) {
     state = state.map((timer) {
