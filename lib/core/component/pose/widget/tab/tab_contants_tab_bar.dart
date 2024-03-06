@@ -19,8 +19,6 @@ class TabContentsTabBar extends ConsumerWidget {
     /// TabBar
     final List<String> tabData = [
       '추천',
-      '맨몸',
-      '기구',
       '가슴',
       '등',
       '어깨',
