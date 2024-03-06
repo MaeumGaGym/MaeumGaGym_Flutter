@@ -6,13 +6,14 @@ import 'package:maeum_ga_gym_flutter/core/component/pose/widget/tab_body/recomme
 class PoseRecommendWidget extends StatelessWidget {
   final List<Map<String, dynamic>> data;
   final int index; // 더보기
-  final String keyData, titleImage;
+  final String keyData, titleImage, titleText;
 
   const PoseRecommendWidget({
     required this.data,
     required this.keyData,
     required this.titleImage,
     required this.index,
+    required this.titleText,
     super.key,
   });
 
@@ -26,7 +27,8 @@ class PoseRecommendWidget extends StatelessWidget {
           const SizedBox(height: 24),
 
           /// ~~ 운동 상단
-          PoseRecommendTop(titleImage: titleImage, keyData: keyData),
+          PoseRecommendTop(
+              titleImage: titleImage, titleText: titleText, index: index),
 
           /// ~ 운동 하단
           PoseRecommendBottom(keyData: keyData, data: data),
