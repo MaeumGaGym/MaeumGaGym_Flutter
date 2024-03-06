@@ -11,13 +11,11 @@ import '../../../../../pose/presentation/widget/pose_data.dart';
 import 'part/pose_part_widget.dart';
 
 class TabBodyPartScreen extends ConsumerWidget {
-  final bool nonePosePartSelector;
   final List<String> tabName;
   final bool useNavigator;
 
   const TabBodyPartScreen({
     required this.tabName,
-    required this.nonePosePartSelector,
     required this.useNavigator,
     super.key,
   });
@@ -32,7 +30,8 @@ class TabBodyPartScreen extends ConsumerWidget {
         child: Column(
           children: [
             /// 맨몸 기구 선택란
-            nonePosePartSelector ? const SizedBox() : const PosePartSelector(),
+            // nonePosePartSelector ? const SizedBox() :
+            const PosePartSelector(),
 
             /// Part Data List
             ListView.builder(

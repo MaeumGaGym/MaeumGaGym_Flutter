@@ -18,8 +18,6 @@ class PoseTabBody extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     List<List<String>> tabNameList = [
-      ['상체', '하체', '가슴', '등', '어깨', '팔', '복근', '앞 허벅지', '뒷 허벅지', '종아리'],
-      ['상체', '하체', '가슴', '등', '어깨', '팔', '복근', '앞 허벅지', '뒷 허벅지', '종아리'],
       ['상체', '가슴'],
       ['상체', '등'],
       ['상체', '어깨'],
@@ -42,7 +40,6 @@ class PoseTabBody extends ConsumerWidget {
             /// 부위별 스크린
             TabBodyPartScreen(
               tabName: tabNameList[i],
-              nonePosePartSelector: i <= 1,
               useNavigator: useNavigator,
             )
         ],
