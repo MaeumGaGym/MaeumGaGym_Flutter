@@ -1,17 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:maeum_ga_gym_flutter/core/component/pose/provider/pose_tab_controller.dart';
 
 import '../../../../../../config/maeumgagym_color.dart';
 import '../../../../text/pretendard/ptd_text_widget.dart';
 
-class PoseRecommendTop extends StatelessWidget {
-  final String titleImage, keyData;
+class PoseRecommendTop extends ConsumerWidget {
+  final String titleImage, titleText;
+  final int index;
 
   const PoseRecommendTop(
-      {super.key, required this.titleImage, required this.keyData});
+      {super.key,
+      required this.titleImage,
+      required this.titleText,
+      required this.index});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Row(
       mainAxisSize: MainAxisSize.max,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -31,12 +37,12 @@ class PoseRecommendTop extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(top: 8),
               child: PtdTextWidget.titleMedium(
-                  "$keyData 운동", MaeumgagymColor.black),
+                  "$titleText 운동", MaeumgagymColor.black),
             ),
           ],
         ),
         GestureDetector(
-          //onTap: () => tabController.index = index,
+          onTap: () => ref.read(poseTabController.notifier).saveIndex(index),
           child: Row(
             children: [
               PtdTextWidget.bodyMedium('더보기', MaeumgagymColor.gray400),
