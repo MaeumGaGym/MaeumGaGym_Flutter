@@ -17,20 +17,76 @@ class TabBodyRecommendScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          /// 맨몸 운동
+          /// 가슴 운동
           PoseRecommendWidget(
             data: data,
-            keyData: '맨몸',
+            keyData: '가슴',
+            titleText: '가슴',
             titleImage: 'assets/image/pose_icon/pose_arm.png',
             index: 1,
           ),
 
-          /// 기구 운동
+          /// 등 운동
           PoseRecommendWidget(
             data: data,
-            keyData: '기구',
+            keyData: '등',
+            titleText: '등',
             titleImage: 'assets/image/pose_icon/pose_machine.png',
             index: 2,
+          ),
+
+          /// 어깨 운동
+          PoseRecommendWidget(
+            data: data,
+            keyData: '어깨',
+            titleText: '어깨',
+            titleImage: 'assets/image/pose_icon/pose_machine.png',
+            index: 3,
+          ),
+
+          /// 팔 운동
+          PoseRecommendWidget(
+            data: data,
+            keyData: '팔',
+            titleText: '팔',
+            titleImage: 'assets/image/pose_icon/pose_machine.png',
+            index: 4,
+          ),
+
+          /// 복근 운동
+          PoseRecommendWidget(
+            data: data,
+            keyData: '복근',
+            titleText: '복근',
+            titleImage: 'assets/image/pose_icon/pose_machine.png',
+            index: 5,
+          ),
+
+          /// 앞 허벅지 운동
+          PoseRecommendWidget(
+            data: data,
+            keyData: '하체',
+            titleText: '앞 허벅지',
+            titleImage: 'assets/image/pose_icon/pose_machine.png',
+            index: 6,
+          ),
+
+          /// 뒷 허벅지 운동
+          PoseRecommendWidget(
+            data: data,
+            keyData: '하체',
+            titleText: '뒷 허벅지',
+            titleImage: 'assets/image/pose_icon/pose_machine.png',
+            index: 7,
+          ),
+
+          /// 종아리 운동
+          PoseRecommendWidget(
+            data: data,
+            keyData: '하체',
+            titleText: '종아리',
+            titleImage: 'assets/image/pose_icon/pose_machine.png',
+            index: 8,
           ),
         ],
       ),
