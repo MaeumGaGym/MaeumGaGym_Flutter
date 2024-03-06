@@ -20,7 +20,7 @@ class PoseRecommendBottom extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         itemCount: data.length,
         itemBuilder: (context, index) {
-          if (!(keyData == data[index]['simplePart'])) {
+          if (!(keyData == data[index]['exactPart'])) {
             return const SizedBox.shrink();
           } else if (listCount >= 3) {
             return const SizedBox.shrink();
