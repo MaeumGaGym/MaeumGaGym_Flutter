@@ -12,14 +12,15 @@ class PosePartSelectorControllerStateNotifier
   PosePartSelectorControllerStateNotifier() : super(PartSelectorState.all);
 
   void init(int index) {
-    switch (index) {
-      case 1:
-        state = PartSelectorState.calisthenics;
-      case 2:
-        state = PartSelectorState.machine;
-      default:
-        state = PartSelectorState.all;
-    }
+    // switch (index) {
+    //   case 1:
+    //     state = PartSelectorState.calisthenics;
+    //   case 2:
+    //     state = PartSelectorState.machine;
+    //   default:
+    //
+    // }
+    state = PartSelectorState.all;
   }
 
   void clickCalisthenics() {
