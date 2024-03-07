@@ -15,7 +15,7 @@ class MetronomeStateNotifier extends StateNotifier<Metronome> {
 
   MetronomeStateNotifier()
       : super(
-    /// 초기값 설정
+          /// 초기값 설정
           Metronome(
             volume: 10,
             initialBeat: 5,
@@ -24,6 +24,7 @@ class MetronomeStateNotifier extends StateNotifier<Metronome> {
             onVibration: false,
             onPlay: false,
             onVolume: false,
+            onBackGround: true,
           ),
         );
 
@@ -127,7 +128,19 @@ class MetronomeStateNotifier extends StateNotifier<Metronome> {
   /// Slider로 Volume 값 변경
   void setVolume(int value) async {
     state = state.copyWith(volume: value);
+
     /// Slider의 value는 double타입임
     await player.setVolume(state.volume.toDouble());
+  }
+
+  /// 백그라운드 설정
+  void changeBackGround() async {
+    if (state.onBackGround == true) {
+      state = state.copyWith(onBackGround: false);
+      await player.setReleaseMode(ReleaseMode.stop);
+    } else {
+      state = state.copyWith(onBackGround: true);
+      await player.setReleaseMode(ReleaseMode.release);
+    }
   }
 }
