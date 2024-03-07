@@ -4,14 +4,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/providers/home_timer_and_metronome_tab_bar_provider.dart';
-import 'package:maeum_ga_gym_flutter/home/presentation/providers/timer_state_provider.dart';
-import 'package:maeum_ga_gym_flutter/home/presentation/view/home_metronome_screen.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/view/home_timer_and_metronome_screen.dart';
-import 'package:maeum_ga_gym_flutter/home/presentation/view/home_timer_screen.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/widget/main/widget/home_main_container_title.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/widget/main/widget/home_main_metronome_widget.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/widget/main/widget/home_main_timer_widget.dart';
-import 'package:maeum_ga_gym_flutter/page_manager/presentation/provider/page_manager_controller.dart';
 
 class HomeMainTimeAndMetronomeContainer extends ConsumerStatefulWidget {
   const HomeMainTimeAndMetronomeContainer({

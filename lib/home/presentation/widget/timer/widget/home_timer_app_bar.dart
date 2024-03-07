@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/providers/home_timer_add_duration_provider.dart';
-import 'package:maeum_ga_gym_flutter/home/presentation/providers/timer_state_provider.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/widget/timer/widget/home_timer_time_picker_widget.dart';
 
 class HomeTimerAppBar extends ConsumerWidget implements PreferredSizeWidget {
