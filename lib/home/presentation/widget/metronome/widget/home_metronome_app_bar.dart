@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
+import 'package:maeum_ga_gym_flutter/home/presentation/view/metronome/home_metronome_setting_screen.dart';
 
 class HomeMetronomeAppBar extends StatelessWidget
     implements PreferredSizeWidget {
@@ -27,11 +28,18 @@ class HomeMetronomeAppBar extends StatelessWidget
                   color: MaeumgagymColor.black,
                 ),
               ),
-              SvgPicture.asset(
-                "assets/image/core_icon/dots_vertical_icon.svg",
-                width: 32,
-                height: 32,
-                color: MaeumgagymColor.black,
+              GestureDetector(
+                onTap: () => Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => const HomeMetronomeSettingScreen(),
+                  ),
+                ),
+                child: SvgPicture.asset(
+                  "assets/image/core_icon/dots_vertical_icon.svg",
+                  width: 32,
+                  height: 32,
+                  color: MaeumgagymColor.black,
+                ),
               ),
             ],
           ),
