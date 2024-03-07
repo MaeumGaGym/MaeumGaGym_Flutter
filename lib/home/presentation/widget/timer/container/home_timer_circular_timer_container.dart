@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
@@ -15,8 +13,7 @@ class HomeTimerCircularTimerContainer extends ConsumerStatefulWidget {
       _HomeTimerCircularTimerContainerState();
 }
 
-class _HomeTimerCircularTimerContainerState
-    extends ConsumerState<HomeTimerCircularTimerContainer> {
+class _HomeTimerCircularTimerContainerState extends ConsumerState<HomeTimerCircularTimerContainer> {
   @override
   Widget build(BuildContext context) {
     final timerState = ref.watch(timersProvider);

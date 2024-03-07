@@ -6,6 +6,7 @@ class Metronome {
   final bool onVibration;
   final bool onPlay;
   final bool onVolume;
+  final bool onBackGround;
 
   Metronome({
     required this.volume,
@@ -15,6 +16,7 @@ class Metronome {
     required this.onVibration,
     required this.onPlay,
     required this.onVolume,
+    required this.onBackGround,
   });
 
   Metronome copyWith({
@@ -25,6 +27,7 @@ class Metronome {
     bool? onVibration,
     bool? onPlay,
     bool? onVolume,
+    bool? onBackGround,
   }) {
     return Metronome(
       volume: volume ?? this.volume,
@@ -34,6 +37,7 @@ class Metronome {
       onPlay: onPlay ?? this.onPlay,
       onVibration: onVibration ?? this.onVibration,
       onVolume: onVolume ?? this.onVolume,
+      onBackGround: onBackGround ?? this.onBackGround
     );
   }
 }
