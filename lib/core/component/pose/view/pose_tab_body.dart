@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 /// Provider
 import '../provider/pose_part_selector_controller.dart';
-import '../provider/pose_tab_controller.dart';
+import '../provider/pose_tab_provider.dart';
 
 /// Screen
 import '../widget/tab_body/tab_body_part_screen.dart';
@@ -31,7 +31,7 @@ class PoseTabBody extends ConsumerWidget {
     /// Tab Contents
     return Expanded(
       child: IndexedStack(
-        index: ref.watch(poseTabController).index,
+        index: ref.watch(poseTabController),
         children: [
           /// 추천 운동 스크린
           const TabBodyRecommendScreen(),
