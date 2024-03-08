@@ -11,7 +11,7 @@ import '../../../../core/component/text/pretendard/ptd_text_widget.dart';
 import '../../view/pose_search_screen.dart';
 
 /// Provider
-import '../../provider/pose_search_controller.dart';
+import '../../provider/pose_search_provider.dart';
 
 class TabAppBar extends ConsumerWidget {
   final bool innerBoxIsScrolled;
@@ -44,7 +44,7 @@ class TabAppBar extends ConsumerWidget {
                       ),
                     );
 
-                    ref.read(poseSearchController.notifier).setText();
+                    ref.read(poseSearchController.notifier).state = '';
                   },
                   child: SvgPicture.asset(
                     'assets/image/core_icon/search_icon.svg',
