@@ -65,7 +65,7 @@ class SelfCareProfileQuitDialog extends StatelessWidget {
                     ),
                   ),
                 ],
-              )
+              ),
             ],
           ),
         ),
