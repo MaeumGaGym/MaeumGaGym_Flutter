@@ -68,6 +68,7 @@ class _SelfCareMyRoutineManageBottomSheetState
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               GestureDetector(
+                behavior: HitTestBehavior.translucent,
                 onTap: () => Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -80,6 +81,7 @@ class _SelfCareMyRoutineManageBottomSheetState
                 ),
               ),
               GestureDetector(
+                behavior: HitTestBehavior.translucent,
                 onTap: () {
                   if (isKeptState == true) {
                     routineItemNotifier.cancelKeepRoutineItem(widget.index);
@@ -95,6 +97,7 @@ class _SelfCareMyRoutineManageBottomSheetState
                 ),
               ),
               GestureDetector(
+                behavior: HitTestBehavior.translucent,
                 onTap: () {
                   if (isSharedState == true) {
                     routineItemNotifier.cancelShareRoutineItem(widget.index);
