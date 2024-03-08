@@ -26,7 +26,7 @@ class SearchAppbar extends ConsumerStatefulWidget
 class _SearchAppBarState extends ConsumerState<SearchAppbar> {
   @override
   Widget build(BuildContext context) {
-    final poseSearchNotifier = ref.watch(poseSearchController.notifier);
+    final poseSearchNotifier = ref.read(poseSearchController.notifier);
     TextEditingController textController = widget.textEditingController;
 
     return SafeArea(
