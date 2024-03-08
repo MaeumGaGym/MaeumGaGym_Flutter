@@ -1,5 +1,7 @@
 /// Package
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:maeum_ga_gym_flutter/pose/presentation/provider/pose_search_provider.dart';
 
 /// Core
 import '../../../../config/maeumgagym_color.dart';
@@ -8,19 +10,20 @@ import '../../../../core/component/text/pretendard/ptd_text_widget.dart';
 /// Screen
 import '../../view/pose_detail_screen.dart';
 
-class SearchBody extends StatelessWidget {
-  final String textFieldState;
+class SearchBody extends ConsumerWidget {
   final List<Map<String, dynamic>> data;
   final TextEditingController textEditingController;
 
-  const SearchBody(
-      {super.key,
-      required this.textFieldState,
-      required this.data,
-      required this.textEditingController});
+  const SearchBody({
+    super.key,
+    required this.data,
+    required this.textEditingController,
+  });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final poseSearchState = ref.watch(poseSearchController);
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Column(
@@ -33,8 +36,8 @@ class SearchBody extends StatelessWidget {
               itemCount: data.length,
               itemBuilder: (BuildContext context, int index) {
                 /// 만약 textField에 값에 이름이 들어가지 않는다면 SizedBox.shrink
-                if (textFieldState.isNotEmpty &&
-                    !(data[index]['simpleName']!.contains(textFieldState))) {
+                if (poseSearchState.isNotEmpty &&
+                    !(data[index]['simpleName']!.contains(poseSearchState))) {
                   return const SizedBox.shrink();
                 } else {
                   return GestureDetector(

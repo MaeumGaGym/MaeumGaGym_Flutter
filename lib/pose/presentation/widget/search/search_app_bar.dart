@@ -8,17 +8,13 @@ import '../../../../config/maeumgagym_color.dart';
 import '../../../../core/component/text/pretendard/ptd_text_widget.dart';
 
 /// Provider
-import '../../provider/pose_search_controller.dart';
+import '../../provider/pose_search_provider.dart';
 
 class SearchAppbar extends ConsumerStatefulWidget
     implements PreferredSizeWidget {
   final TextEditingController textEditingController;
-  final PoseSearchControllerStateNotifier textFieldNotifier;
 
-  const SearchAppbar(
-      {super.key,
-      required this.textFieldNotifier,
-      required this.textEditingController});
+  const SearchAppbar({super.key, required this.textEditingController});
 
   @override
   ConsumerState<SearchAppbar> createState() => _SearchAppBarState();
@@ -30,8 +26,7 @@ class SearchAppbar extends ConsumerStatefulWidget
 class _SearchAppBarState extends ConsumerState<SearchAppbar> {
   @override
   Widget build(BuildContext context) {
-    final PoseSearchControllerStateNotifier textFieldNotifier =
-        widget.textFieldNotifier;
+    final poseSearchNotifier = ref.read(poseSearchController.notifier);
     TextEditingController textController = widget.textEditingController;
 
     return SafeArea(
@@ -51,7 +46,7 @@ class _SearchAppBarState extends ConsumerState<SearchAppbar> {
           child: TextField(
             controller: textController,
             onTapOutside: (event) => FocusScope.of(context).unfocus(),
-            onChanged: (value) => textFieldNotifier.saveText(value),
+            onChanged: (value) => poseSearchNotifier.state = value,
             cursorWidth: 1,
             cursorHeight: 20,
             style: const TextStyle(height: 1.23),
