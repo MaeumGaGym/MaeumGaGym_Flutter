@@ -62,6 +62,7 @@ class _SelfCareMyRoutineDetailDialogState extends ConsumerState<SelfCareMyRoutin
               ),
               const SizedBox(height: 12),
               GestureDetector(
+                behavior: HitTestBehavior.translucent,
                 onTap: () {
                   if (isSharedState == true) {
                     routineItemNotifier.cancelShareRoutineItem(widget.index);
@@ -88,6 +89,7 @@ class _SelfCareMyRoutineDetailDialogState extends ConsumerState<SelfCareMyRoutin
                 ),
               ),
               GestureDetector(
+                behavior: HitTestBehavior.translucent,
                 onTap: () {
                   if (isKeptState == true) {
                     routineItemNotifier.cancelKeepRoutineItem(widget.index);

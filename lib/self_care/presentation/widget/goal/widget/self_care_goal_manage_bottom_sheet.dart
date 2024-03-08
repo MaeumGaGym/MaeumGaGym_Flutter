@@ -29,6 +29,7 @@ class SelfCareGoalManageBottomSheet extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               GestureDetector(
+                behavior: HitTestBehavior.translucent,
                 onTap: () {
                   Navigator.of(context).pop();
                   Navigator.of(context).push(
