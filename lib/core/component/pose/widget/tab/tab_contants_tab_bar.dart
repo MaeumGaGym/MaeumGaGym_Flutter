@@ -7,7 +7,7 @@ import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import '../../../text/pretendard/ptd_text_widget.dart';
 
 /// Provider
-import 'package:maeum_ga_gym_flutter/core/component/pose/provider/pose_tab_controller.dart';
+import 'package:maeum_ga_gym_flutter/core/component/pose/provider/pose_tab_provider.dart';
 
 import '../../provider/pose_part_selector_controller.dart';
 
@@ -29,8 +29,8 @@ class TabContentsTabBar extends ConsumerWidget {
       '종아리',
     ];
 
-    final poseTabControllerState = ref.watch(poseTabController);
-    final poseTabControllerStateNotifier = ref.read(poseTabController.notifier);
+    final poseTabState = ref.watch(poseTabController);
+    final poseTabNotifier = ref.read(poseTabController.notifier);
 
     final posePartStateNotifier =
         ref.watch(posePartSelectorController.notifier);
@@ -45,7 +45,7 @@ class TabContentsTabBar extends ConsumerWidget {
           padding: const EdgeInsets.symmetric(horizontal: 8),
           child: GestureDetector(
             onTap: () {
-              poseTabControllerStateNotifier.saveIndex(index);
+              poseTabNotifier.state = index;
               posePartStateNotifier.init(index);
             },
             child: Container(
@@ -54,7 +54,7 @@ class TabContentsTabBar extends ConsumerWidget {
                   /// 하단 Border가 선택시 blue 아니면 gray
                   bottom: BorderSide(
                     width: 2,
-                    color: poseTabControllerState.index == index
+                    color: poseTabState == index
                         ? MaeumgagymColor.blue500
                         : MaeumgagymColor.gray50,
                   ),
@@ -67,7 +67,7 @@ class TabContentsTabBar extends ConsumerWidget {
                   tabData[index],
 
                   /// 글자가 선택시 black 아니면 gray400
-                  poseTabControllerState.index == index
+                  poseTabState == index
                       ? MaeumgagymColor.black
                       : MaeumgagymColor.gray400,
                 ),

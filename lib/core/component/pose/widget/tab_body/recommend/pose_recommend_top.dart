@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:maeum_ga_gym_flutter/core/component/pose/provider/pose_tab_controller.dart';
+import 'package:maeum_ga_gym_flutter/core/component/pose/provider/pose_tab_provider.dart';
 
 import '../../../../../../config/maeumgagym_color.dart';
 import '../../../../text/pretendard/ptd_text_widget.dart';
@@ -42,7 +42,7 @@ class PoseRecommendTop extends ConsumerWidget {
           ],
         ),
         GestureDetector(
-          onTap: () => ref.read(poseTabController.notifier).saveIndex(index),
+          onTap: () => ref.read(poseTabController.notifier).state = index,
           child: Row(
             children: [
               PtdTextWidget.bodyMedium('더보기', MaeumgagymColor.gray400),
