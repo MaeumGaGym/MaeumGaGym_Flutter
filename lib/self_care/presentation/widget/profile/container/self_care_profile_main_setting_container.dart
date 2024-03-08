@@ -23,6 +23,7 @@ class SelfCareProfileMainSettingContainer extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               GestureDetector(
+                behavior: HitTestBehavior.translucent,
                 onTap: () => Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -61,6 +62,7 @@ class SelfCareProfileMainSettingContainer extends StatelessWidget {
                 ),
               ),
               GestureDetector(
+                behavior: HitTestBehavior.translucent,
                 onTap: () {
                   showDialog(
                     context: context,
