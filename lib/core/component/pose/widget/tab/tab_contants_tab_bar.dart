@@ -9,7 +9,7 @@ import '../../../text/pretendard/ptd_text_widget.dart';
 /// Provider
 import 'package:maeum_ga_gym_flutter/core/component/pose/provider/pose_tab_provider.dart';
 
-import '../../provider/pose_part_selector_controller.dart';
+import '../../provider/pose_part_selector_provider.dart';
 
 class TabContentsTabBar extends ConsumerWidget {
   const TabContentsTabBar({super.key});

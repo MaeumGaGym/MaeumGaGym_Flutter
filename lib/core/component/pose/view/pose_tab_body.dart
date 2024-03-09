@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 /// Provider
-import '../provider/pose_part_selector_controller.dart';
+import '../provider/pose_part_selector_provider.dart';
 import '../provider/pose_tab_provider.dart';
 
 /// Screen
