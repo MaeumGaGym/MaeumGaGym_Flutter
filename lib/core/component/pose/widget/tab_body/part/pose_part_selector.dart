@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/core/component/pose/widget/tab_body/part/pose_part_selector_widget.dart';
 
-import '../../../provider/pose_part_selector_controller.dart';
+import '../../../provider/pose_part_selector_provider.dart';
 
 class PosePartSelector extends ConsumerWidget {
   const PosePartSelector({super.key});
