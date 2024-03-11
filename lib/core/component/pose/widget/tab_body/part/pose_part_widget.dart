@@ -38,6 +38,7 @@ class PosePartWidget extends StatelessWidget {
                 exactPart: data[index]['exactPart'],
                 exerciseWay: data[index]['exerciseWay'],
                 caution: data[index]['caution'],
+                breatheWay: data[index]['breatheWay'],
               ),
             ),
           );
