@@ -1,11 +1,11 @@
 /// Package
 import 'package:flutter/material.dart';
-import 'package:maeum_ga_gym_flutter/core/component/pose/widget/tab_body/recommend/pose_recommend_bottom.dart';
-import 'package:maeum_ga_gym_flutter/core/component/pose/widget/tab_body/recommend/pose_recommend_top.dart';
+import 'package:maeum_ga_gym_flutter/core/component/pose/widget/tab_body/recommend/pose_recommend_widget_bottom.dart';
+import 'package:maeum_ga_gym_flutter/core/component/pose/widget/tab_body/recommend/pose_recommend_widget_top.dart';
 
 class PoseRecommendWidget extends StatelessWidget {
   final List<Map<String, dynamic>> data;
-  final int index; // 더보기
+  final int index;
   final String keyData, titleImage, titleText;
 
   const PoseRecommendWidget({
@@ -27,11 +27,14 @@ class PoseRecommendWidget extends StatelessWidget {
           const SizedBox(height: 24),
 
           /// ~~ 운동 상단
-          PoseRecommendTop(
-              titleImage: titleImage, titleText: titleText, index: index),
+          PoseRecommendWidgetTop(
+            titleImage: titleImage,
+            titleText: titleText,
+            index: index,
+          ),
 
           /// ~ 운동 하단
-          PoseRecommendBottom(keyData: keyData, data: data),
+          PoseRecommendWidgetBottom(keyData: keyData, data: data),
         ],
       ),
     );

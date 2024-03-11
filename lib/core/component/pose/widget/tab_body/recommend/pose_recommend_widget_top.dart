@@ -6,15 +6,16 @@ import 'package:maeum_ga_gym_flutter/core/component/pose/provider/pose_tab_provi
 import '../../../../../../config/maeumgagym_color.dart';
 import '../../../../text/pretendard/ptd_text_widget.dart';
 
-class PoseRecommendTop extends ConsumerWidget {
+class PoseRecommendWidgetTop extends ConsumerWidget {
   final String titleImage, titleText;
   final int index;
 
-  const PoseRecommendTop(
-      {super.key,
-      required this.titleImage,
-      required this.titleText,
-      required this.index});
+  const PoseRecommendWidgetTop({
+    super.key,
+    required this.titleImage,
+    required this.titleText,
+    required this.index,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -37,7 +38,9 @@ class PoseRecommendTop extends ConsumerWidget {
             Padding(
               padding: const EdgeInsets.only(top: 8),
               child: PtdTextWidget.titleMedium(
-                  "$titleText 운동", MaeumgagymColor.black),
+                "$titleText 운동",
+                MaeumgagymColor.black,
+              ),
             ),
           ],
         ),
