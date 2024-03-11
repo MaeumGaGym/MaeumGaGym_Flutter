@@ -5,10 +5,10 @@ import 'package:flutter/material.dart';
 import '../../../../config/maeumgagym_color.dart';
 import '../../../../core/component/text/pretendard/ptd_text_widget.dart';
 
-class DetailBodyTag extends StatelessWidget {
+class PoseDetailBodyTag extends StatelessWidget {
   final String tagName;
 
-  const DetailBodyTag({super.key, required this.tagName});
+  const PoseDetailBodyTag({super.key, required this.tagName});
 
   @override
   Widget build(BuildContext context) {

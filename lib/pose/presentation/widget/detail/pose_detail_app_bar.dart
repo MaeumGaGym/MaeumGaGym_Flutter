@@ -6,8 +6,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../../../../config/maeumgagym_color.dart';
 import '../../../../core/component/text/pretendard/ptd_text_widget.dart';
 
-class DetailAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const DetailAppBar({super.key});
+class PoseDetailAppBar extends StatelessWidget implements PreferredSizeWidget {
+  const PoseDetailAppBar({super.key});
 
   @override
   Widget build(BuildContext context) {
