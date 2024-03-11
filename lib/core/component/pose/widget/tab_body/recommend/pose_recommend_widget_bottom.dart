@@ -4,12 +4,15 @@ import '../../../../../../config/maeumgagym_color.dart';
 import '../../../../../../pose/presentation/view/pose_detail_screen.dart';
 import '../../../../text/pretendard/ptd_text_widget.dart';
 
-class PoseRecommendBottom extends StatelessWidget {
+class PoseRecommendWidgetBottom extends StatelessWidget {
   final String keyData;
   final List<Map<String, dynamic>> data;
 
-  const PoseRecommendBottom(
-      {super.key, required this.keyData, required this.data});
+  const PoseRecommendWidgetBottom({
+    super.key,
+    required this.keyData,
+    required this.data,
+  });
 
   @override
   Widget build(BuildContext context) {
