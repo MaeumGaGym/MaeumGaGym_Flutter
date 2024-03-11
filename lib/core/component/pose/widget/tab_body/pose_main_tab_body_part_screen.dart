@@ -6,15 +6,15 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../provider/pose_part_selector_provider.dart';
 
 /// Widget
-import 'package:maeum_ga_gym_flutter/core/component/pose/widget/tab_body/part/pose_part_selector.dart';
+import 'package:maeum_ga_gym_flutter/core/component/pose/widget/tab_body/part/pose_part_selector_widget.dart';
 import '../../../../../pose/presentation/widget/pose_data.dart';
 import 'part/pose_part_widget.dart';
 
-class TabBodyPartScreen extends ConsumerWidget {
+class PoseMainTabBodyPartScreen extends ConsumerWidget {
   final List<String> tabName;
   final bool useNavigator;
 
-  const TabBodyPartScreen({
+  const PoseMainTabBodyPartScreen({
     required this.tabName,
     required this.useNavigator,
     super.key,
@@ -30,8 +30,7 @@ class TabBodyPartScreen extends ConsumerWidget {
         child: Column(
           children: [
             /// 맨몸 기구 선택란
-            // nonePosePartSelector ? const SizedBox() :
-            const PosePartSelector(),
+            const PosePartSelectorWidget(),
 
             /// Part Data List
             ListView.builder(
@@ -59,7 +58,7 @@ class TabBodyPartScreen extends ConsumerWidget {
                               useNavigator: useNavigator,
                             )
                           : const SizedBox.shrink();
-                    default:
+                    case PartSelectorState.all:
                       return PosePartWidget(
                         index: index,
                         useNavigator: useNavigator,
