@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class DetailBodyPickleListWidget extends StatelessWidget {
+class PoseDetailBodyPickleListWidget extends StatelessWidget {
   final List<String> pikleList;
 
-  const DetailBodyPickleListWidget({super.key, required this.pikleList});
+  const PoseDetailBodyPickleListWidget({super.key, required this.pikleList});
 
   @override
   Widget build(BuildContext context) {

@@ -5,11 +5,11 @@ import 'package:flutter/material.dart';
 import '../../../../config/maeumgagym_color.dart';
 import '../../../../core/component/text/pretendard/ptd_text_widget.dart';
 
-class DetailBodyListWidget extends StatelessWidget {
+class PoseDetailBodyListWidget extends StatelessWidget {
   final String title;
   final List<String> listData;
 
-  const DetailBodyListWidget({
+  const PoseDetailBodyListWidget({
     required this.title,
     required this.listData,
     super.key,
