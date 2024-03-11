@@ -5,13 +5,13 @@ import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 
 /// Core
-import '../../../core/component/maeumgagym_text_field.dart';
 import '../../../core/component/text/pretendard/ptd_text_widget.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 
 /// Widget
 import '../widget/sign_up_nick_name/animated_check_button.dart';
 import '../provider/nickname_text_field_riverpod.dart';
+import '../widget/sign_up_nick_name/maeumgagym_text_field.dart';
 
 class SignUpNickNameScreen extends StatelessWidget {
   const SignUpNickNameScreen({super.key});
@@ -40,6 +40,9 @@ class SignUpNickNameScreen extends StatelessWidget {
                       ref
                           .read(nicknameTextFieldProvider.notifier)
                           .isText(false);
+                      ref
+                          .read(nicknameTextFieldProvider.notifier)
+                          .theError(false);
                     },
                     child: SvgPicture.asset(
                       'assets/image/core_icon/left_arrow_icon.svg',
@@ -65,7 +68,6 @@ class SignUpNickNameScreen extends StatelessWidget {
             ),
 
             /// 닉네임 TextField
-
             Padding(
               padding: const EdgeInsets.fromLTRB(20, 32, 20, 0),
               child: MaeumgagymTextField(
@@ -82,6 +84,7 @@ class SignUpNickNameScreen extends StatelessWidget {
         child: Consumer(
           builder: (context, ref, child) {
             return AnimatedCheckButton(
+              textController: nicknameController,
               inText: ref.watch(nicknameTextFieldProvider).inText,
               onClicked: ref.watch(nicknameTextFieldProvider).onClicked,
               buttonProvider: nicknameTextFieldProvider,
@@ -92,5 +95,3 @@ class SignUpNickNameScreen extends StatelessWidget {
     );
   }
 }
-
-class MaeumGaGymColor {}

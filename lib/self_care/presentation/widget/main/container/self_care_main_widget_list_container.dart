@@ -25,6 +25,7 @@ class SelfCareMainWidgetListContainer extends StatelessWidget {
           ),
           const SizedBox(height: 12),
           GestureDetector(
+            behavior: HitTestBehavior.translucent,
             onTap: () => Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (context) => const SelfCareMyRoutineMainScreen(),
@@ -36,6 +37,7 @@ class SelfCareMainWidgetListContainer extends StatelessWidget {
             ),
           ),
           GestureDetector(
+            behavior: HitTestBehavior.translucent,
             onTap: () => Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (context) => const SelfCareGoalMainScreen(),
@@ -51,6 +53,7 @@ class SelfCareMainWidgetListContainer extends StatelessWidget {
             title: "식단",
           ),
           GestureDetector(
+            behavior: HitTestBehavior.translucent,
             onTap: () => Navigator.push(
               context,
               MaterialPageRoute(

@@ -12,7 +12,7 @@ part of 'timers.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 Timers _$TimersFromJson(Map<String, dynamic> json) {
   return _Timers.fromJson(json);
@@ -21,9 +21,9 @@ Timers _$TimersFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Timers {
   int get timerId => throw _privateConstructorUsedError;
-  int get initialTime => throw _privateConstructorUsedError;
+  Duration get initialTime => throw _privateConstructorUsedError;
   TimerState get timerState => throw _privateConstructorUsedError;
-  int get currentTime => throw _privateConstructorUsedError;
+  Duration get currentTime => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,7 +36,10 @@ abstract class $TimersCopyWith<$Res> {
       _$TimersCopyWithImpl<$Res, Timers>;
   @useResult
   $Res call(
-      {int timerId, int initialTime, TimerState timerState, int currentTime});
+      {int timerId,
+      Duration initialTime,
+      TimerState timerState,
+      Duration currentTime});
 }
 
 /// @nodoc
@@ -65,7 +68,7 @@ class _$TimersCopyWithImpl<$Res, $Val extends Timers>
       initialTime: null == initialTime
           ? _value.initialTime
           : initialTime // ignore: cast_nullable_to_non_nullable
-              as int,
+              as Duration,
       timerState: null == timerState
           ? _value.timerState
           : timerState // ignore: cast_nullable_to_non_nullable
@@ -73,7 +76,7 @@ class _$TimersCopyWithImpl<$Res, $Val extends Timers>
       currentTime: null == currentTime
           ? _value.currentTime
           : currentTime // ignore: cast_nullable_to_non_nullable
-              as int,
+              as Duration,
     ) as $Val);
   }
 }
@@ -86,7 +89,10 @@ abstract class _$$TimersImplCopyWith<$Res> implements $TimersCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {int timerId, int initialTime, TimerState timerState, int currentTime});
+      {int timerId,
+      Duration initialTime,
+      TimerState timerState,
+      Duration currentTime});
 }
 
 /// @nodoc
@@ -113,7 +119,7 @@ class __$$TimersImplCopyWithImpl<$Res>
       initialTime: null == initialTime
           ? _value.initialTime
           : initialTime // ignore: cast_nullable_to_non_nullable
-              as int,
+              as Duration,
       timerState: null == timerState
           ? _value.timerState
           : timerState // ignore: cast_nullable_to_non_nullable
@@ -121,7 +127,7 @@ class __$$TimersImplCopyWithImpl<$Res>
       currentTime: null == currentTime
           ? _value.currentTime
           : currentTime // ignore: cast_nullable_to_non_nullable
-              as int,
+              as Duration,
     ));
   }
 }
@@ -141,12 +147,12 @@ class _$TimersImpl implements _Timers {
   @override
   final int timerId;
   @override
-  final int initialTime;
+  final Duration initialTime;
   @override
   @JsonKey()
   final TimerState timerState;
   @override
-  final int currentTime;
+  final Duration currentTime;
 
   @override
   String toString() {
@@ -189,20 +195,20 @@ class _$TimersImpl implements _Timers {
 abstract class _Timers implements Timers {
   factory _Timers(
       {required final int timerId,
-      required final int initialTime,
+      required final Duration initialTime,
       final TimerState timerState,
-      required final int currentTime}) = _$TimersImpl;
+      required final Duration currentTime}) = _$TimersImpl;
 
   factory _Timers.fromJson(Map<String, dynamic> json) = _$TimersImpl.fromJson;
 
   @override
   int get timerId;
   @override
-  int get initialTime;
+  Duration get initialTime;
   @override
   TimerState get timerState;
   @override
-  int get currentTime;
+  Duration get currentTime;
   @override
   @JsonKey(ignore: true)
   _$$TimersImplCopyWith<_$TimersImpl> get copyWith =>

@@ -23,6 +23,7 @@ class SelfCareItemWidget extends StatelessWidget {
           Row(
             children: [
               GestureDetector(
+                behavior: HitTestBehavior.translucent,
                 onTap: () {},
                 child: Container(
                   height: 40,

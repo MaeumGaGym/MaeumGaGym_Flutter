@@ -12,17 +12,18 @@ class SelfCareProfileMainSettingContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Container(
-        height: 216,
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
-          color: MaeumgagymColor.gray50,
-          borderRadius: BorderRadius.circular(32),
+          color: MaeumgagymColor.gray25,
+          borderRadius: BorderRadius.circular(16),
         ),
-        child: Center(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 8),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               GestureDetector(
+                behavior: HitTestBehavior.translucent,
                 onTap: () => Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -39,8 +40,7 @@ class SelfCareProfileMainSettingContainer extends StatelessWidget {
                         "내 정보 변경",
                         MaeumgagymColor.black,
                       ),
-                      SvgPicture.asset(
-                          "assets/image/core_icon/right_arrow_icon.svg"),
+                      SvgPicture.asset("assets/image/core_icon/right_arrow_icon.svg"),
                     ],
                   ),
                 ),
@@ -51,16 +51,16 @@ class SelfCareProfileMainSettingContainer extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    PtdTextWidget.labelLarge(
+                    PtdTextWidget.bodyLarge(
                       "로그아웃",
                       MaeumgagymColor.black,
                     ),
-                    SvgPicture.asset(
-                        "assets/image/core_icon/right_arrow_icon.svg"),
+                    SvgPicture.asset("assets/image/core_icon/right_arrow_icon.svg"),
                   ],
                 ),
               ),
               GestureDetector(
+                behavior: HitTestBehavior.translucent,
                 onTap: () {
                   showDialog(
                     context: context,
@@ -78,12 +78,11 @@ class SelfCareProfileMainSettingContainer extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      PtdTextWidget.labelLarge(
+                      PtdTextWidget.bodyLarge(
                         "회원탈퇴",
                         MaeumgagymColor.black,
                       ),
-                      SvgPicture.asset(
-                          "assets/image/core_icon/right_arrow_icon.svg"),
+                      SvgPicture.asset("assets/image/core_icon/right_arrow_icon.svg"),
                     ],
                   ),
                 ),

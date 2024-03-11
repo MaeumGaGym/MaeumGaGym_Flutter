@@ -218,4 +218,74 @@ class PtdTextWidget {
       ),
     );
   }
+
+  static Text onTimerAndMetronomeTitle(String text, Color color) {
+    return Text(
+      text,
+      textAlign: TextAlign.center,
+      style: TextStyle(
+        fontFamily: pretendard,
+        fontSize: 64,
+        fontWeight: FontWeight.w300,
+        color: color,
+        overflow: TextOverflow.visible,
+      ),
+    );
+  }
+
+  static Text timerListTitle(String text, Color color) {
+    return Text(
+      text,
+      textAlign: TextAlign.center,
+      style: TextStyle(
+        fontFamily: pretendard,
+        fontSize: 16,
+        fontWeight: FontWeight.w300,
+        color: color,
+        overflow: TextOverflow.visible,
+      ),
+    );
+  }
+
+  static Text metronomeBeat(String text, Color color) {
+    return Text(
+      text,
+      textAlign: TextAlign.center,
+      style: TextStyle(
+        fontFamily: pretendard,
+        fontSize: 32,
+        fontWeight: FontWeight.w300,
+        color: color,
+        overflow: TextOverflow.visible,
+      ),
+    );
+  }
+
+  static Text timerPickerNumber(String text, Color color) {
+    return Text(
+      text,
+      textAlign: TextAlign.center,
+      style: TextStyle(
+        fontFamily: pretendard,
+        fontSize: 64,
+        fontWeight: FontWeight.w300,
+        color: color,
+        overflow: TextOverflow.visible,
+      ),
+    );
+  }
+
+  static Text metronomeSettingTitle(String text, Color color) {
+    return Text(
+      text,
+      textAlign: TextAlign.center,
+      style: TextStyle(
+        fontFamily: pretendard,
+        fontSize: 20,
+        fontWeight: FontWeight.w400,
+        color: color,
+        overflow: TextOverflow.visible,
+      ),
+    );
+  }
 }

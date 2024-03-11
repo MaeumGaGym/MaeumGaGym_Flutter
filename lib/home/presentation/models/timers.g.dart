@@ -8,19 +8,19 @@ part of 'timers.dart';
 
 _$TimersImpl _$$TimersImplFromJson(Map<String, dynamic> json) => _$TimersImpl(
       timerId: json['timerId'] as int,
-      initialTime: json['initialTime'] as int,
+      initialTime: Duration(microseconds: json['initialTime'] as int),
       timerState:
           $enumDecodeNullable(_$TimerStateEnumMap, json['timerState']) ??
               TimerState.initial,
-      currentTime: json['currentTime'] as int,
+      currentTime: Duration(microseconds: json['currentTime'] as int),
     );
 
 Map<String, dynamic> _$$TimersImplToJson(_$TimersImpl instance) =>
     <String, dynamic>{
       'timerId': instance.timerId,
-      'initialTime': instance.initialTime,
+      'initialTime': instance.initialTime.inMicroseconds,
       'timerState': _$TimerStateEnumMap[instance.timerState]!,
-      'currentTime': instance.currentTime,
+      'currentTime': instance.currentTime.inMicroseconds,
     };
 
 const _$TimerStateEnumMap = {
