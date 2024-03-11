@@ -13,10 +13,10 @@ import '../../view/pose_search_screen.dart';
 /// Provider
 import '../../provider/pose_search_provider.dart';
 
-class TabAppBar extends ConsumerWidget {
+class PoseMainTabAppBar extends ConsumerWidget {
   final bool innerBoxIsScrolled;
 
-  const TabAppBar({super.key, required this.innerBoxIsScrolled});
+  const PoseMainTabAppBar({super.key, required this.innerBoxIsScrolled});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -27,31 +27,29 @@ class TabAppBar extends ConsumerWidget {
         surfaceTintColor: MaeumgagymColor.white,
 
         /// Search_Icon
-        title: SizedBox(
-          height: 52,
-          child: Padding(
-            padding: const EdgeInsets.only(right: 20),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                GestureDetector(
-                  onTap: () async {
-                    await Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const PoseSearchScreen(),
-                      ),
-                    );
+        title: Padding(
+          padding: const EdgeInsets.only(right: 20),
+          child: Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              GestureDetector(
+                onTap: () async {
+                  await Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const PoseSearchScreen(),
+                    ),
+                  );
 
-                    ref.read(poseSearchController.notifier).state = '';
-                  },
-                  child: SvgPicture.asset(
-                    'assets/image/core_icon/search_icon.svg',
-                  ),
+                  ref.read(poseSearchController.notifier).state = '';
+                },
+                child: SvgPicture.asset(
+                  'assets/image/core_icon/search_icon.svg',
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
 
