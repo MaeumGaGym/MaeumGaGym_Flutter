@@ -1,6 +1,7 @@
 /// Package
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
 import 'package:maeum_ga_gym_flutter/pose/presentation/provider/pose_search_provider.dart';
 
 /// Core
@@ -10,11 +11,11 @@ import '../../../../core/component/text/pretendard/ptd_text_widget.dart';
 /// Screen
 import '../../view/pose_detail_screen.dart';
 
-class SearchBody extends ConsumerWidget {
+class PoseSearchBody extends ConsumerWidget {
   final List<Map<String, dynamic>> data;
   final TextEditingController textEditingController;
 
-  const SearchBody({
+  const PoseSearchBody({
     super.key,
     required this.data,
     required this.textEditingController,
@@ -66,18 +67,13 @@ class SearchBody extends ConsumerWidget {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           /// Pose Image
-                          Container(
+                          ImageWidget(
+                            image: data[index]['poseImages'][0],
+                            imageType: ImageType.png,
+                            backgroundColor: MaeumgagymColor.gray50,
+                            radiusCircular: 8,
                             width: 64,
                             height: 64,
-                            decoration: BoxDecoration(
-                              color: MaeumgagymColor.gray50,
-                              borderRadius: BorderRadius.circular(8),
-                              image: DecorationImage(
-                                image: AssetImage(
-                                  data[index]['poseImages'][0],
-                                ),
-                              ),
-                            ),
                           ),
 
                           /// Contents
@@ -105,7 +101,7 @@ class SearchBody extends ConsumerWidget {
                                 ],
                               ),
                             ),
-                          )
+                          ),
                         ],
                       ),
                     ),
