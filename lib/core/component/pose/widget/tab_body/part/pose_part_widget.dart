@@ -1,5 +1,6 @@
 /// Package
 import 'package:flutter/material.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
 
 /// core
 import '../../../../../../config/maeumgagym_color.dart';
@@ -53,16 +54,13 @@ class PosePartWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               /// 운동 사진
-              Container(
+              ImageWidget(
+                image: data[index]['poseImages'][0],
+                imageType: ImageType.png,
                 width: 64,
                 height: 64,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage(data[index]['poseImages'][0]),
-                  ),
-                  color: MaeumgagymColor.gray25,
-                  borderRadius: BorderRadius.circular(8),
-                ),
+                radiusCircular: 8,
+                backgroundColor: MaeumgagymColor.gray25,
               ),
               const SizedBox(width: 18),
 
