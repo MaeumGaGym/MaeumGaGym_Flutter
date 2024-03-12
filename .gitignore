@@ -44,3 +44,4 @@ app.*.map.json
 /android/app/release
 
 /lib/core/base_url.dart
+/android/app/serviceAccount.json
