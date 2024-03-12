@@ -1,0 +1,66 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:android)
+
+def latest_googleplay_version_code
+  internalVersionCodes = google_play_track_version_codes(track: 'internal')
+
+  # puts version codes from all tracks into the same array
+  versionCodes = [
+    internalVersionCodes
+  ].reduce([], :concat)
+
+  # returns the highest version code from array
+  return versionCodes.max
+end
+
+desc "Deploy to Google Play Internal Test"
+lane :beta do
+  gradle(task: "assembleRelease")
+  version_code = latest_googleplay_version_code
+  upload_to_play_store(
+    track: 'internal',
+    aab: '../build/app/outputs/bundle/release/app-release.aab',
+    skip_upload_metadata: true,
+    skip_upload_images: true,
+    skip_upload_screenshots: true,
+    skip_upload_changelogs: true,
+    skip_upload_apk: true,
+    release_status: 'draft'
+  )
+end
+
+before_all do
+  sh "flutter pub get"
+  sh "flutter build appbundle"
+end
+
+platform :android do
+  desc "Deploy a new Internal Testing version to the Google Play"
+  lane :internal do
+    sh "flutter pub get"
+    gradle(task: 'clean assembleRelease')
+    version_code = latest_googleplay_version_code
+    supply(
+        track: internal,
+        version_code: version_code
+    )
+    upload_to_play_store(
+        track: 'internal',
+        version_code: version_code
+    )
+  end
+end
