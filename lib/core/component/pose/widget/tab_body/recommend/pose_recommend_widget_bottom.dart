@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
 
 import '../../../../../../config/maeumgagym_color.dart';
 import '../../../../../../pose/presentation/view/pose_detail_screen.dart';
@@ -52,16 +53,13 @@ class PoseRecommendWidgetBottom extends StatelessWidget {
                   ),
                   child: Padding(
                     padding: const EdgeInsets.only(right: 12),
-                    child: Container(
+                    child: ImageWidget(
+                      backgroundColor: MaeumgagymColor.gray25,
+                      radiusCircular: 8,
                       width: 148,
                       height: 148,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                        color: MaeumgagymColor.gray25,
-                      ),
-                      child: Center(
-                        child: Image.asset(data[index]['poseImages'][0]!),
-                      ),
+                      image: data[index]['poseImages'][0],
+                      imageType: ImageType.png,
                     ),
                   ),
                 ),

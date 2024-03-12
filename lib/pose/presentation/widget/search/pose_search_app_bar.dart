@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
 
 /// Core
 import '../../../../config/maeumgagym_color.dart';
@@ -10,20 +11,20 @@ import '../../../../core/component/text/pretendard/ptd_text_widget.dart';
 /// Provider
 import '../../provider/pose_search_provider.dart';
 
-class SearchAppbar extends ConsumerStatefulWidget
+class PoseSearchAppbar extends ConsumerStatefulWidget
     implements PreferredSizeWidget {
   final TextEditingController textEditingController;
 
-  const SearchAppbar({super.key, required this.textEditingController});
+  const PoseSearchAppbar({super.key, required this.textEditingController});
 
   @override
-  ConsumerState<SearchAppbar> createState() => _SearchAppBarState();
+  ConsumerState<PoseSearchAppbar> createState() => _PoseSearchAppbarState();
 
   @override
   Size get preferredSize => const Size.fromHeight(48);
 }
 
-class _SearchAppBarState extends ConsumerState<SearchAppbar> {
+class _PoseSearchAppbarState extends ConsumerState<PoseSearchAppbar> {
   @override
   Widget build(BuildContext context) {
     final poseSearchNotifier = ref.read(poseSearchController.notifier);
@@ -62,11 +63,13 @@ class _SearchAppBarState extends ConsumerState<SearchAppbar> {
               ),
               contentPadding: const EdgeInsets.only(top: 6),
               border: InputBorder.none,
-              prefixIcon: Padding(
-                padding: const EdgeInsets.only(left: 12, right: 8),
-                child: SvgPicture.asset(
-                  'assets/image/core_icon/search_icon.svg',
+              prefixIcon: const Padding(
+                padding: EdgeInsets.only(left: 12, right: 8),
+                child: ImageWidget(
                   width: 24,
+                  imageWidth: 24,
+                  image: 'assets/image/core_icon/search_icon.svg',
+                  imageType: ImageType.svg,
                 ),
               ),
             ),

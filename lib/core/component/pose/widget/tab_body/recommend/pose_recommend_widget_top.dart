@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
 import 'package:maeum_ga_gym_flutter/core/component/pose/provider/pose_tab_provider.dart';
 
 import '../../../../../../config/maeumgagym_color.dart';
@@ -28,8 +29,9 @@ class PoseRecommendWidgetTop extends ConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             /// Image
-            Image.asset(
-              titleImage,
+            ImageWidget(
+              image: titleImage,
+              imageType: ImageType.png,
               width: 40,
               height: 40,
             ),
