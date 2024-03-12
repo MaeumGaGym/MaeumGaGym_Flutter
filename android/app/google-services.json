@@ -29,6 +29,9 @@
       "api_key": [
         {
           "current_key": "AIzaSyApgs53qdSpZL-sq0EROnBTjCEnnB-rBCU"
+        },
+        {
+          "current_key": "AIzaSyB4-eqQrp3SXPAvP1_0lLhW1OLIxpIWp9M"
         }
       ],
       "services": {
@@ -37,6 +40,60 @@
             {
               "client_id": "878566104031-pmo6g8fprb01kija31ptullnvt1ji741.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "878566104031-4n9ioco2dk32i2l9om1rhqb60hqir08k.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.maeumgagymFlutter"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:878566104031:android:8a1b1ffe231ee33677026a",
+        "android_client_info": {
+          "package_name": "info.eunha.maeumgagym_flutter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "878566104031-e42v4e52e5j86tqh6kcfuc2sth2r0tjb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "info.eunha.maeumgagym_flutter",
+            "certificate_hash": "33d2ad2c08b6be48a77358a911795b51cdb5a6dc"
+          }
+        },
+        {
+          "client_id": "878566104031-pmo6g8fprb01kija31ptullnvt1ji741.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyApgs53qdSpZL-sq0EROnBTjCEnnB-rBCU"
+        },
+        {
+          "current_key": "AIzaSyB4-eqQrp3SXPAvP1_0lLhW1OLIxpIWp9M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "878566104031-pmo6g8fprb01kija31ptullnvt1ji741.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "878566104031-4n9ioco2dk32i2l9om1rhqb60hqir08k.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.maeumgagymFlutter"
+              }
             }
           ]
         }
