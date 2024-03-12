@@ -15,24 +15,52 @@
 
 default_platform(:android)
 
+def latest_googleplay_version_code
+  internalVersionCodes = google_play_track_version_codes(track: 'internal')
+
+  # puts version codes from all tracks into the same array
+  versionCodes = [
+    internalVersionCodes
+  ].reduce([], :concat)
+
+  # returns the highest version code from array
+  return versionCodes.max
+end
+
+desc "Deploy to Google Play Internal Test"
+lane :beta do
+  gradle(task: "assembleRelease")
+  version_code = latest_googleplay_version_code
+  upload_to_play_store(
+    track: 'internal',
+    aab: '../build/app/outputs/bundle/release/app-release.aab',
+    skip_upload_metadata: true,
+    skip_upload_images: true,
+    skip_upload_screenshots: true,
+    skip_upload_changelogs: true,
+    skip_upload_apk: true,
+    release_status: 'draft'
+  )
+end
+
+before_all do
+  sh "flutter pub get"
+  sh "flutter build appbundle"
+end
+
 platform :android do
-  desc "Runs all the tests"
-  lane :test do
-    gradle(task: "test")
-  end
-
-  desc "Submit a new Beta Build to Crashlytics Beta"
-  lane :beta do
-    gradle(task: "clean assembleRelease")
-    crashlytics
-  
-    # sh "your_script.sh"
-    # You can also use other beta testing services here
-  end
-
-  desc "Deploy a new version to the Google Play"
-  lane :deploy do
-    gradle(task: "clean assembleRelease")
-    upload_to_play_store
+  desc "Deploy a new Internal Testing version to the Google Play"
+  lane :internal do
+    sh "flutter pub get"
+    gradle(task: 'clean assembleRelease')
+    version_code = latest_googleplay_version_code
+    supply(
+        track: internal,
+        version_code: version_code
+    )
+    upload_to_play_store(
+        track: 'internal',
+        version_code: version_code
+    )
   end
 end
