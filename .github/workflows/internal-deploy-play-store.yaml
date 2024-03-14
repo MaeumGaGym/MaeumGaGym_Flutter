@@ -25,8 +25,6 @@ jobs:
       - name: Setup Fastlane
         run: |
           sudo gem install fastlane
-          cd android
-          fastlane add_plugin firebase_app_distribution
 
       - name: Deploy to Internal Track
         run: |
