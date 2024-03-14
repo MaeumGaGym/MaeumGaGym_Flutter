@@ -21,7 +21,6 @@ jobs:
           flutter-version: '3.16.9'
           channel: 'stable'
 
-
       - name: BaseURL File Settings
         run: |
           cd lib/core
@@ -37,32 +36,7 @@ jobs:
           echo "${{ secrets.SERVICE_ACCOUNT }}" | base64 --decode > serviceAccount.json
           ls
           pwd
-
-      - name: Extract Version from README and Remove 'v'
-        id: extract-version
-        run: |
-          version_name=$(sed -n '2p' README.md | sed 's/v//')
-          echo "Extracted version name: $version_name"
-          echo "VERSION_NAME=$version_name" >> $GITHUB_ENV
-
-      - name: Update Version in pubspec.yaml
-        run: |
-          version_code=$(sed -n 's/version:.*+\([0-9]*\)/\1/p' pubspec.yaml)
-          echo "Current version code: $version_code"
-
-          new_version_code=$((version_code + 1))
-          echo "New version code: $new_version_code"
-
-          sed -i "s/version:.*+/version: ${{ env.VERSION_NAME }}+$new_version_code/" pubspec.yaml
-
-      - name: Commit and Push Changes
-        run: |
-          git config --global user.email "azxcv1768@gmail.com"
-          git config --global user.name "HyunSu1768"
-          git add pubspec.yaml
-          git commit -m "Version up to ${{ env.VERSION_NAME }} pubspec.yaml"
-          git push
-
+          
       - name: Install dependencies
         run: flutter pub get
 
