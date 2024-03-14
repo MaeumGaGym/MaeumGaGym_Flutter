@@ -23,7 +23,6 @@ class MaeumgagymLoginStateNotifier extends StateNotifier<MaeumgagymLoginState> {
         await _useCase.googleLogin(googleToken);
     await TokenSecureStorageDi.writeAccessToken(googleLoginToken.accessToken);
     await TokenSecureStorageDi.writeRefreshToken(googleLoginToken.refreshToken);
-    await TokenSecureStorageDi.writeXSRFToken(googleLoginToken.xsrfToken);
 
     state = MaeumgagymLoginState(stateusCode: googleLoginToken.statusCode);
   }
@@ -33,7 +32,6 @@ class MaeumgagymLoginStateNotifier extends StateNotifier<MaeumgagymLoginState> {
         await _useCase.kakaoLogin(kakaoToken);
     await TokenSecureStorageDi.writeAccessToken(kakaoLoginToken.accessToken);
     await TokenSecureStorageDi.writeRefreshToken(kakaoLoginToken.refreshToken);
-    await TokenSecureStorageDi.writeXSRFToken(kakaoLoginToken.xsrfToken);
 
     state = MaeumgagymLoginState(stateusCode: kakaoLoginToken.statusCode);
   }

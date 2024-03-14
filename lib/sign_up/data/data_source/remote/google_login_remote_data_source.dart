@@ -4,20 +4,12 @@ class GoogleLoginRemoteDataSource {
   late String? _token;
 
   Future<bool> login() async {
-    const List<String> scopes = <String>[
-      'email',
-      'https://www.googleapis.com/auth/contacts.readonly',
-    ];
-
-    GoogleSignIn googleSignIn = GoogleSignIn(
-      scopes: scopes,
-    );
+    GoogleSignIn googleSignIn = GoogleSignIn();
 
     final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
     GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
 
     _token = googleAuth?.accessToken;
-
     if (_token != null) {
       return true;
     } else {

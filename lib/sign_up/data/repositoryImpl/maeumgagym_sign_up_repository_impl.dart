@@ -8,8 +8,8 @@ class MaeumgagymSignUpRepositoryImpl implements MaeumgagymSignUpRepository {
 
   @override
   Future<MaeumgagymSignUpModel> googleSignUp(
-      String googleToken, String xsrfToken, String name) async {
-    return await _dataSource.googleSignUp(googleToken, xsrfToken, name);
+      String googleToken, String name) async {
+    return await _dataSource.googleSignUp(googleToken, name);
   }
 
   @override

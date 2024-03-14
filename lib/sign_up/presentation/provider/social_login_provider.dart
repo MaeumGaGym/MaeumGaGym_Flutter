@@ -21,12 +21,18 @@ class SocialLoginStateNotifier extends StateNotifier<SocialLoginState> {
     switch (option) {
       case LoginOption.google:
         state = SocialLoginState(
-            isGoogle: true, isLogined: state.isLogined, token: state.token);
+          isGoogle: true,
+          isLogined: state.isLogined,
+          token: state.token,
+        );
         _useCase = SocialLoginUseCase(GoogleLoginRepositoryImpl());
         break;
       case LoginOption.kakao:
         state = SocialLoginState(
-            isGoogle: false, isLogined: state.isLogined, token: state.token);
+          isGoogle: false,
+          isLogined: state.isLogined,
+          token: state.token,
+        );
         _useCase = SocialLoginUseCase(KaKaoLoginRepositoryImpl());
         break;
     }

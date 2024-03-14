@@ -8,8 +8,8 @@ class MaeumgagymSignUpUseCase {
   MaeumgagymSignUpUseCase(this._repository);
 
   Future<MaeumgagymSignUpModel> googleSignUp(
-      String googleToken, String xsrfToken, String name) async {
-    return await _repository.googleSignUp(googleToken, xsrfToken, name);
+      String googleToken, String name) async {
+    return await _repository.googleSignUp(googleToken, name);
   }
 
   Future<MaeumgagymSignUpModel> kakaoSignUp(
