@@ -36,6 +36,31 @@ jobs:
           ls
           pwd
 
+      - name: Extract Version from README and Remove 'v'
+        id: extract-version
+        run: |
+          version_name=$(sed -n '2p' README.md | sed 's/v//')
+          echo "Extracted version name: $version_name"
+          echo "::set-output name=VERSION_NAME::$version_name"
+
+      - name: Update Version in pubspec.yaml
+        run: |
+          version_code=$(sed -n 's/version:.*+\([0-9]*\)/\1/p' pubspec.yaml)
+          echo "Current version code: $version_code"
+
+          new_version_code=$((version_code + 1))
+          echo "New version code: $new_version_code"
+
+          sed -i "s/version:.*+/version: ${steps.extract-version.outputs.VERSION_NAME}+$new_version_code/" pubspec.yaml
+
+      - name: Commit and Push Changes
+        run: |
+          git config --global user.email "azxcv1768@gmail.com"
+          git config --global user.name "HyunSu1768"
+          git add pubspec.yaml
+          git commit -m "Auto-update version to ${steps.extract-version.outputs.VERSION_NAME} with new version code"
+          git push
+
       - name: Install dependencies
         run: flutter pub get
 
