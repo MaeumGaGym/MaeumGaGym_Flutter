@@ -18,6 +18,14 @@ jobs:
         with:
           flutter-version: '3.16.9'
           channel: 'stable'
+          
+      - name: Secret File Settings
+        run: |
+          cd android
+          echo "${{ secrets.KEY_PROPERTIES }}" | base64 --decode > key.properties
+          cd app
+          echo "${{ secrets.MAEUMGAGYM_KEY }}" | base64 --decode > maeumgagym-key.jks
+          echo "${{ secrets.SERVICE_ACCOUNT }}" | base64 --decode > serviceAccount.json
 
       - name: Install dependencies
         run: flutter pub get
