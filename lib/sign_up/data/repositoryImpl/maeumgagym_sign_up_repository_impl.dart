@@ -14,7 +14,7 @@ class MaeumgagymSignUpRepositoryImpl implements MaeumgagymSignUpRepository {
 
   @override
   Future<MaeumgagymSignUpModel> kakaoSignUp(
-      String kakaoToken, String xsrfToken, String name) async {
-    return await _dataSource.kakaoSignUp(kakaoToken, xsrfToken, name);
+      String kakaoToken, String name) async {
+    return await _dataSource.kakaoSignUp(kakaoToken, name);
   }
 }
