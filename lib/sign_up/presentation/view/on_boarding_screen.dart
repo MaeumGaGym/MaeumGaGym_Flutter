@@ -7,6 +7,7 @@ import 'package:go_router/go_router.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/di/token_secure_storage_di.dart';
 import 'package:maeum_ga_gym_flutter/sign_up/presentation/provider/maeumgagym_login_provider.dart';
+import 'package:maeum_ga_gym_flutter/sign_up/presentation/provider/maeumgagym_re_issue_provider.dart';
 import 'package:maeum_ga_gym_flutter/sign_up/presentation/provider/social_login_provider.dart';
 import '../../../core/component/text/pretendard/ptd_text_widget.dart';
 
@@ -23,21 +24,39 @@ class OnBoardingScreen extends ConsumerStatefulWidget {
 class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
   @override
   Widget build(BuildContext context) {
+    late String? refreshToken;
+
     final socialLoginNotifier = ref.read(socialLoginController.notifier);
     final maeumgagymLoginNotifier =
         ref.read(maeumgagymLoginController.notifier);
 
     Future<void> clickLoginButton(LoginOption loginOption) async {
+      refreshToken = await TokenSecureStorageDi.readRefreshToken();
+
+      debugPrint("refreshToken : $refreshToken");
+
+      if (refreshToken != null) {
+        await ref
+            .read(maeumgagymReIssueController.notifier)
+            .getReIssue(refreshToken!);
+
+        debugPrint(
+            ref.watch(maeumgagymReIssueController).stateusCode.toString());
+
+        if (ref.watch(maeumgagymReIssueController).stateusCode == 200 &&
+            context.mounted) {
+          context.go('/home');
+        }
+      }
+
       /// Login Option을 google로 설정
       await socialLoginNotifier.setLoginOption(loginOption);
 
       /// socialLogin 시도
       try {
         await socialLoginNotifier.login();
-        debugPrint(
-            "socialLoginToken : ${ref.watch(socialLoginController).token}");
-        debugPrint(
-            "loginState : ${ref.watch(socialLoginController).isLogined}");
+        debugPrint(ref.watch(socialLoginController).token);
+        debugPrint(ref.watch(socialLoginController).isLogined.toString());
       } catch (err) {
         debugPrint("socialLoginNotifier : ${err.toString()}");
       }
@@ -63,7 +82,6 @@ class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
             debugPrint(err.toString());
           }
         }
-
         if (ref.watch(maeumgagymLoginController).stateusCode == 200 &&
             context.mounted) {
           context.go('/home');
