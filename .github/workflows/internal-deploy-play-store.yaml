@@ -39,7 +39,7 @@ jobs:
       - name: Extract Version from README and Remove 'v'
         id: extract-version
         run: |
-          version_name=$(sed -n '2p' README.md | sed 's/v//')
+          version_name=$(sed -n '3p' README.md | sed 's/v//')
           echo "Extracted version name: $version_name"
           echo "::set-output name=VERSION_NAME::$version_name"
 
