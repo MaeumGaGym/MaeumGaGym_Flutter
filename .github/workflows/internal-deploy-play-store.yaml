@@ -34,6 +34,7 @@ jobs:
           echo "${{ secrets.MAEUMGAGYM_KEY }}" | base64 --decode > maeumgagym-key.jks
           echo "${{ secrets.SERVICE_ACCOUNT }}" | base64 --decode > serviceAccount.json
           ls
+          pwd
 
       - name: Install dependencies
         run: flutter pub get
