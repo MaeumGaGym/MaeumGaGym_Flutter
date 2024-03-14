@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 
 /// Core
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
+import 'package:maeum_ga_gym_flutter/core/di/token_secure_storage_di.dart';
 import 'package:maeum_ga_gym_flutter/sign_up/presentation/provider/maeumgagym_login_provider.dart';
 import 'package:maeum_ga_gym_flutter/sign_up/presentation/provider/social_login_provider.dart';
 import '../../../core/component/text/pretendard/ptd_text_widget.dart';
@@ -22,48 +23,50 @@ class OnBoardingScreen extends ConsumerStatefulWidget {
 class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
   @override
   Widget build(BuildContext context) {
-    final socialLoginStateNotifier = ref.read(socialLoginController.notifier);
+    final socialLoginNotifier = ref.read(socialLoginController.notifier);
+    final maeumgagymLoginNotifier =
+        ref.read(maeumgagymLoginController.notifier);
 
     Future<void> clickLoginButton(LoginOption loginOption) async {
       /// Login Option을 google로 설정
-      await socialLoginStateNotifier.setLoginOption(loginOption);
+      await socialLoginNotifier.setLoginOption(loginOption);
 
+      /// socialLogin 시도
       try {
-        /// Social Login 시도
-        await socialLoginStateNotifier.login();
+        await socialLoginNotifier.login();
+        debugPrint(
+            "socialLoginToken : ${ref.watch(socialLoginController).token}");
+        debugPrint(
+            "loginState : ${ref.watch(socialLoginController).isLogined}");
+      } catch (err) {
+        debugPrint("socialLoginNotifier : ${err.toString()}");
+      }
 
-        /// 성공 했다면
-        if (ref.watch(socialLoginController).isLogined) {
-          debugPrint(ref.watch(socialLoginController).token);
-
+      /// socialLogin이 되었다면
+      if (ref.watch(socialLoginController).isLogined) {
+        try {
           switch (loginOption) {
             case LoginOption.google:
-              await ref
-                  .read(maeumgagymLoginController.notifier)
+              await maeumgagymLoginNotifier
                   .googleLogin(ref.watch(socialLoginController).token);
 
             case LoginOption.kakao:
-              await ref
-                  .read(maeumgagymLoginController.notifier)
+              await maeumgagymLoginNotifier
                   .kakaoLogin(ref.watch(socialLoginController).token);
           }
-
-          if (ref.watch(maeumgagymLoginController).stateusCode == 404 &&
-              context.mounted) {
+        } catch (err) {
+          if (context.mounted && err.toString().contains('404')) {
             await context.push('/signUpAgree');
 
-            await socialLoginStateNotifier.logout();
-          } else {}
-        } else {
-          debugPrint('socialLogin Fail');
+            await socialLoginNotifier.logout();
+          } else {
+            debugPrint(err.toString());
+          }
         }
-      } catch (err) {
-        if (context.mounted && err.toString().contains('404')) {
-          await context.push('/signUpAgree');
 
-          await socialLoginStateNotifier.logout();
-        } else {
-          debugPrint(err.toString());
+        if (ref.watch(maeumgagymLoginController).stateusCode == 200 &&
+            context.mounted) {
+          context.go('/home');
         }
       }
     }
@@ -115,6 +118,12 @@ class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
                 ),
               ),
             ),
+            MaterialButton(
+              onPressed: () {
+                socialLoginNotifier.logout();
+              },
+              child: Text('logout'),
+            )
           ],
         ),
       ),
