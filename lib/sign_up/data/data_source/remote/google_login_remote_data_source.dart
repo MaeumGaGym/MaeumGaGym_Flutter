@@ -1,26 +1,24 @@
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 class GoogleLoginRemoteDataSource {
-  late String _token;
+  late String? _token;
 
   Future<bool> login() async {
-    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+    const List<String> scopes = <String>[
+      'email',
+      'https://www.googleapis.com/auth/contacts.readonly',
+    ];
 
-    final GoogleSignInAuthentication? googleAuth =
-        await googleUser?.authentication;
-
-    final credential = GoogleAuthProvider.credential(
-      accessToken: googleAuth?.accessToken,
-      idToken: googleAuth?.idToken,
+    GoogleSignIn googleSignIn = GoogleSignIn(
+      scopes: scopes,
     );
 
-    UserCredential googleToken =
-        await FirebaseAuth.instance.signInWithCredential(credential);
+    final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
+    GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
 
-    _token = googleToken.credential!.accessToken.toString();
+    _token = googleAuth?.accessToken;
 
-    if (_token != 'null') {
+    if (_token != null) {
       return true;
     } else {
       return false;
@@ -28,7 +26,6 @@ class GoogleLoginRemoteDataSource {
   }
 
   Future<bool> logout() async {
-    await FirebaseAuth.instance.signOut();
     await GoogleSignIn().signOut();
 
     return false;
@@ -36,7 +33,7 @@ class GoogleLoginRemoteDataSource {
 
   Future<String> getToken() async {
     try {
-      return _token;
+      return _token ?? '';
     } catch (err) {
       return err.toString();
     }
