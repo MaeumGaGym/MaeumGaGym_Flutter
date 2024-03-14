@@ -1,0 +1,36 @@
+name: Flutter CI/CD Workflow
+
+on:
+  push:
+    branches:
+      - develop
+      - cicd-settings
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.20.0'
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Run Flutter tests
+        run: flutter test
+
+      - name: Setup Fastlane
+        run: |
+          sudo gem install fastlane
+          cd android
+          fastlane add_plugin firebase_app_distribution
+
+      - name: Deploy to Internal Track
+        run: |
+          cd android
+          fastlane internal
