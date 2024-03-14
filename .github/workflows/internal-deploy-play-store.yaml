@@ -39,9 +39,9 @@ jobs:
       - name: Extract Version from README and Remove 'v'
         id: extract-version
         run: |
-          version_name=$(sed -n '3p' README.md | sed 's/v//')
+          version_name=$(sed -n '2p' README.md | sed 's/v//')
           echo "Extracted version name: $version_name"
-          echo "::set-output name=VERSION_NAME::$version_name"
+          echo "VERSION_NAME=$version_name" >> $GITHUB_ENV
 
       - name: Update Version in pubspec.yaml
         run: |
@@ -51,7 +51,7 @@ jobs:
           new_version_code=$((version_code + 1))
           echo "New version code: $new_version_code"
 
-          sed -i "s/version:.*+/version: ${steps.extract-version.outputs.VERSION_NAME}+$new_version_code/" pubspec.yaml
+          sed -i "s/version:.*+/version: ${{ env.VERSION_NAME }}+$new_version_code/" pubspec.yaml
 
       - name: Commit and Push Changes
         run: |
