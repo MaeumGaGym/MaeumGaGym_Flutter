@@ -7,9 +7,6 @@ import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart';
 import 'package:maeum_ga_gym_flutter/config/router.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/view/self_care_camera_screen.dart';
 
-import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
-
 import 'package:hive_flutter/hive_flutter.dart';
 import 'home/domain/model/local_timer_model.dart';
 
@@ -24,11 +21,6 @@ void main() async {
 
   /// 다국어 설정을 위함
   await initializeDateFormatting();
-
-  /// Firebase Init
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
 
   /// KaKao Init
   KakaoSdk.init(
