@@ -58,7 +58,7 @@ jobs:
           git config --global user.email "azxcv1768@gmail.com"
           git config --global user.name "HyunSu1768"
           git add pubspec.yaml
-          git commit -m "Auto-update version to ${steps.extract-version.outputs.VERSION_NAME} with new version code"
+          git commit -m "Version up to ${{ env.VERSION_NAME }} pubspec.yaml"
           git push
 
       - name: Install dependencies
