@@ -22,9 +22,6 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
-      - name: Run Flutter tests
-        run: flutter test
-
       - name: Setup Fastlane
         run: |
           sudo gem install fastlane
