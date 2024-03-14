@@ -31,7 +31,7 @@ class MaeumgagymSignUpRemoteDataSource {
   }
 
   Future<MaeumgagymSignUpModel> kakaoSignUp(
-      String kakaoToken, String xsrfToken, String name) async {
+      String kakaoToken, String name) async {
     Map<String, String> data = {"nickname": name};
 
     final Map<String, dynamic> queryParam = {
@@ -40,12 +40,7 @@ class MaeumgagymSignUpRemoteDataSource {
 
     try {
       return await dio
-          .post('/kakao/signup',
-              queryParameters: queryParam,
-              data: data,
-              options: Options(
-                headers: {'X-XSRF-TOKEN': xsrfToken},
-              ))
+          .post('/kakao/signup', queryParameters: queryParam, data: data)
           .then((response) {
         debugPrint(response.statusCode.toString());
         return MaeumgagymSignUpModel.fromJson(
