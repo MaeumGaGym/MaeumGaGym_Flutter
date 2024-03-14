@@ -18,7 +18,13 @@ jobs:
         with:
           flutter-version: '3.16.9'
           channel: 'stable'
-          
+
+
+      - name: BaseURL File Settings
+        run: |
+          cd lib/core
+          echo "${{ secrets.ENCODED_BASE_URL_FILE }}" | base64 --decode > base_url.dart
+
       - name: Secret File Settings
         run: |
           cd android
@@ -26,6 +32,7 @@ jobs:
           cd app
           echo "${{ secrets.MAEUMGAGYM_KEY }}" | base64 --decode > maeumgagym-key.jks
           echo "${{ secrets.SERVICE_ACCOUNT }}" | base64 --decode > serviceAccount.json
+      
 
       - name: Install dependencies
         run: flutter pub get
