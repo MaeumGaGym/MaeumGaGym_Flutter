@@ -118,12 +118,6 @@ class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
                 ),
               ),
             ),
-            MaterialButton(
-              onPressed: () {
-                socialLoginNotifier.logout();
-              },
-              child: Text('logout'),
-            )
           ],
         ),
       ),
