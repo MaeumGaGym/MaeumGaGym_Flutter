@@ -28,7 +28,7 @@ def latest_googleplay_version_code
 end
 
 desc "Deploy to Google Play Internal Test"
-lane :beta do
+lane :internal do
   gradle(task: "assembleRelease")
   version_code = latest_googleplay_version_code
   upload_to_play_store(
