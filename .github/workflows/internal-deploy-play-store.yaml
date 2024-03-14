@@ -24,6 +24,7 @@ jobs:
         run: |
           cd lib/core
           echo "${{ secrets.ENCODED_BASE_URL_FILE }}" | base64 --decode > base_url.dart
+          ls
 
       - name: Secret File Settings
         run: |
@@ -32,6 +33,7 @@ jobs:
           cd app
           echo "${{ secrets.MAEUMGAGYM_KEY }}" | base64 --decode > maeumgagym-key.jks
           echo "${{ secrets.SERVICE_ACCOUNT }}" | base64 --decode > serviceAccount.json
+          ls
       
 
       - name: Install dependencies
