@@ -26,9 +26,8 @@ class MaeumgagymSignUpStateNotifier
   }
 
   Future<void> kakaoSignUp(String googleToken, String name) async {
-    String xsrfToken = '';
     MaeumgagymSignUpModel signUpXsrfToken =
-        await _useCase.kakaoSignUp(googleToken, xsrfToken, name);
+        await _useCase.kakaoSignUp(googleToken, name);
 
     state = MaeumgagymSignUpState(
       statusCode: signUpXsrfToken.statusCode,
