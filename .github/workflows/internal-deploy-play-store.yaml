@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - develop
-      - cicd-settings
 
 jobs:
   build-and-deploy:
