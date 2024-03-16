@@ -3,7 +3,7 @@
 
 <!---- Resolves: #(Isuue Number) -->
 
-## Screenshot
+## Screenshot 📸
 
 -
 
@@ -15,13 +15,13 @@
 
 <br>
 
-### 요약(Summary)
+### Summary 😌
 
 -
 
 <br>
 
-### 상세 내용(Describe your changes)
+### Describe your changes 💉
 
 -
 
