@@ -1,0 +1,17 @@
+name: "feedback"
+description: "이렇게 하는 것이 더 좋을 것 같아요 🙏"
+labels: 피드백
+body:
+
+  - type: textarea
+    attributes:
+      label: 설명
+      description: |
+        [Explain] 어떤 부분을 말씀하시는 것인가요? 😏
+      placeholder: |
+        생성자 패턴을 적용하면 코드가 더 예뻬질 것 같아요!! 😍
+  - type: textarea
+    attributes:
+      label: 추가사항
+      description: |
+        [추가사항] 더 할말 있으신가요? 피드백은 언제나 환영입니다 ^^
