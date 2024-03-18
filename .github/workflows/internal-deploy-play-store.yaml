@@ -54,6 +54,6 @@ jobs:
         with:
           title: 🔥 Internal Track Deploy
           description: "# 내부트랙에 앱이 배포되었습니다.️"
-          content: "<@&1153326597844238366>"
+          content: "<@&1219166341366288414>"
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
           color: FFFFFF
