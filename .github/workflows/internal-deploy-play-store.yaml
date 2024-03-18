@@ -1,0 +1,59 @@
+name: Flutter CI/CD Workflow
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.16.9'
+          channel: 'stable'
+
+      - name: BaseURL File Settings
+        run: |
+          cd lib/core
+          echo "${{ secrets.ENCODED_BASE_URL_FILE }}" | base64 --decode > base_url.dart
+          ls
+
+      - name: Secret File Settings
+        run: |
+          cd android
+          echo "${{ secrets.KEY_PROPERTIES }}" | base64 --decode > key.properties
+          cd app
+          echo "${{ secrets.MAEUMGAGYM_KEY }}" | base64 --decode > maeumgagym-key.jks
+          echo "${{ secrets.SERVICE_ACCOUNT }}" | base64 --decode > serviceAccount.json
+          ls
+          pwd
+          
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Setup Fastlane
+        run: |
+          sudo gem install fastlane
+
+      - name: Deploy to Internal Track
+        run: |
+          cd android
+          fastlane internal
+
+      - name: Discord Webhook Action
+        uses: sarisia/actions-status-discord@v1
+        if: ${{ ! startsWith(github.event.head_commit.message, '!!') }}
+        with:
+          title: 🔥 Internal Track Deploy
+          description: "# 내부트랙에 앱이 배포되었습니다.️"
+          content: "<@&1153326597844238366>"
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          color: FFFFFF
