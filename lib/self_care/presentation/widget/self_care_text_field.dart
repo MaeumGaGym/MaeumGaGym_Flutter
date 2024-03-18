@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
+import 'package:maeum_ga_gym_flutter/core/component/maeungagym_text_style.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
 
 class SelfCareTextField extends StatefulWidget {
@@ -37,11 +38,13 @@ class _SelfCareTextFieldState extends State<SelfCareTextField> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        PtdTextWidget.bodyMedium(
+        Text(
           widget.title,
-          widget.focusNode.hasFocus
-              ? MaeumgagymColor.blue500
-              : MaeumgagymColor.black,
+          style: MaeumGaGymTextStyle.bodyMedium(
+            widget.focusNode.hasFocus
+                ? MaeumgagymColor.blue500
+                : MaeumgagymColor.black,
+          ),
         ),
         const SizedBox(height: 8),
         Container(
@@ -65,46 +68,36 @@ class _SelfCareTextFieldState extends State<SelfCareTextField> {
             textInputAction: widget.inputAction,
             keyboardType: widget.keyboardType,
             maxLines: widget.maxLines,
+            onTap: () {
+              FocusScope.of(context).hasFocus
+                  ? FocusScope.of(context).unfocus()
+                  : FocusScope.of(context).hasFocus;
+            },
             onTapOutside: (event) {
               FocusScope.of(context).unfocus();
             },
-            style: TextStyle(
-              color: MaeumgagymColor.black,
-              fontSize: 20,
-              fontWeight: FontWeight.w400,
-              fontFamily: "Pretendard",
-              overflow: TextOverflow.visible,
-              decorationThickness: 0,
+            style: MaeumGaGymTextStyle.bodyLarge(
+              MaeumgagymColor.black,
             ),
             decoration: InputDecoration(
-              border: InputBorder.none,
-              isCollapsed: true,
+              border: const OutlineInputBorder(
+                borderSide: BorderSide.none,
+              ),
 
               /// TextField 커서가 위로 올라가요
-              contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+              contentPadding: const EdgeInsets.symmetric(horizontal: 12),
               suffixText: widget.suffixText,
               hintText: widget.hintText,
 
               /// 텍스트 필드 오른쪽에 뜨는 텍스트 (cm, kg),
               /// 근데 suffixText는 controller에 값이 있을 때만 뜨더라구요.. 고칠려했지만 고칠 수 없다.
-              suffixStyle: TextStyle(
-                color: MaeumgagymColor.gray600,
-                fontSize: 20,
-                fontWeight: FontWeight.w400,
-                fontFamily: pretendard,
-                overflow: TextOverflow.visible,
-                decorationThickness: 0,
+              suffixStyle: MaeumGaGymTextStyle.bodyLarge(
+                MaeumgagymColor.gray600,
               ),
-              hintStyle: TextStyle(
-                color: MaeumgagymColor.gray400,
-                fontSize: 20,
-                fontWeight: FontWeight.w400,
-                fontFamily: pretendard,
-                overflow: TextOverflow.visible,
-                decorationThickness: 0,
-              )
+              hintStyle: MaeumGaGymTextStyle.bodyLarge(
+                MaeumgagymColor.gray400,
+              ),
             ),
-
             cursorColor: MaeumgagymColor.blue600,
 
             /// 커서 색상 변경
