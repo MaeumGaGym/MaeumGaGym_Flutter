@@ -10,6 +10,7 @@ import 'package:maeum_ga_gym_flutter/sign_up/presentation/provider/maeumgagym_lo
 import 'package:maeum_ga_gym_flutter/sign_up/presentation/provider/maeumgagym_re_issue_provider.dart';
 import 'package:maeum_ga_gym_flutter/sign_up/presentation/provider/social_login_provider.dart';
 import '../../../core/component/text/pretendard/ptd_text_widget.dart';
+import '../../../core/di/login_option_di.dart';
 
 /// Widget
 import 'package:maeum_ga_gym_flutter/sign_up/presentation/widget/on_boarding_contents_widget.dart';
@@ -24,69 +25,177 @@ class OnBoardingScreen extends ConsumerStatefulWidget {
 class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
   @override
   Widget build(BuildContext context) {
+    AsyncValue<int?> getRefreshTokenState;
     late String? refreshToken;
 
     final socialLoginNotifier = ref.read(socialLoginController.notifier);
     final maeumgagymLoginNotifier =
         ref.read(maeumgagymLoginController.notifier);
+    final maeumgagymReIssueState = ref.read(maeumgagymReIssueController);
+    final maeumgagymReIssueNotifier =
+        ref.read(maeumgagymReIssueController.notifier);
 
-    Future<void> clickLoginButton(LoginOption loginOption) async {
-      refreshToken = await TokenSecureStorageDi.readRefreshToken();
-
-      debugPrint("refreshToken : $refreshToken");
+    Future<AsyncValue<int?>> getRefreshToken(LoginOption loginOption) async {
+      switch (loginOption) {
+        case LoginOption.google:
+          refreshToken =
+              await TokenSecureStorageDi.readGoogleLoginRefreshToken();
+          break;
+        case LoginOption.kakao:
+          refreshToken =
+              await TokenSecureStorageDi.readKaKaoLoginRefreshToken();
+          break;
+        case LoginOption.all:
+          break;
+      }
 
       if (refreshToken != null) {
-        await ref
-            .read(maeumgagymReIssueController.notifier)
-            .getReIssue(refreshToken!);
+        await maeumgagymReIssueNotifier.getReIssue(refreshToken!, loginOption);
 
-        debugPrint(
-            ref.watch(maeumgagymReIssueController).stateusCode.toString());
-
-        if (ref.watch(maeumgagymReIssueController).stateusCode == 200 &&
-            context.mounted) {
-          context.go('/home');
+        switch (loginOption) {
+          case LoginOption.google:
+            return maeumgagymReIssueState.googleAsyncValue;
+          case LoginOption.kakao:
+            return maeumgagymReIssueState.kakaoAsyncValue;
+          case LoginOption.all:
+            throw Exception('maeumgagymReIssueState : all');
         }
+      } else {
+        return const AsyncError('null', StackTrace.empty);
       }
+    }
 
-      /// Login Option을 google로 설정
-      await socialLoginNotifier.setLoginOption(loginOption);
+    Future<void> whenSuccessSocialLogin(LoginOption loginOption) async {
+      switch (loginOption) {
+        case LoginOption.google:
+          await maeumgagymLoginNotifier.googleLogin(
+            ref.watch(socialLoginController).token!,
+          );
+          ref.watch(maeumgagymLoginController).googleAsyncValue.when(
+                data: (data) async {
+                  if (data == 200) {
+                    context.go('/home');
+                  } else if (data == 404) {
+                    await context.push('/signUpAgree');
 
-      /// socialLogin 시도
-      try {
-        await socialLoginNotifier.login();
-        debugPrint(ref.watch(socialLoginController).token);
-        debugPrint(ref.watch(socialLoginController).isLogined.toString());
-      } catch (err) {
-        debugPrint("socialLoginNotifier : ${err.toString()}");
+                    await socialLoginNotifier.logout();
+                  }
+                },
+                error: (err, _) {
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        scrollable: true,
+                        title: const Text('1시간후 다시 시도 하거나, 다른 계정을 사용해주세요.'),
+                        content: Text(err.toString()),
+                        actions: [
+                          MaterialButton(
+                            onPressed: () async {
+                              await socialLoginNotifier.logout();
+                              context.mounted ? context.pop() : '';
+                            },
+                            child: const Text("확인"),
+                          )
+                        ],
+                      );
+                    },
+                  );
+                  ref.watch(maeumgagymLoginController).googleAsyncValue =
+                      const AsyncData(500);
+                },
+                loading: () {},
+              );
+          break;
+
+        case LoginOption.kakao:
+          await maeumgagymLoginNotifier.kakaoLogin(
+            ref.watch(socialLoginController).token!,
+          );
+          ref.watch(maeumgagymLoginController).kakaoAsyncValue.when(
+                data: (data) async {
+                  if (data == 200) {
+                    context.go('/home');
+                  } else if (data == 404) {
+                    await context.push('/signUpAgree');
+
+                    await socialLoginNotifier.logout();
+                  }
+                },
+                error: (err, _) {
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        scrollable: true,
+                        title: const Text('1시간후 다시 시도 하거나, 다른 계정을 사용해주세요.'),
+                        content: Text(err.toString()),
+                        actions: [
+                          MaterialButton(
+                            onPressed: () async {
+                              await socialLoginNotifier.logout();
+                              context.mounted ? context.pop() : '';
+                            },
+                            child: const Text("확인"),
+                          )
+                        ],
+                      );
+                    },
+                  );
+                  ref.watch(maeumgagymLoginController).kakaoAsyncValue =
+                      const AsyncData(500);
+                },
+                loading: () {},
+              );
+          break;
+        case LoginOption.all:
+          break;
       }
+    }
 
-      /// socialLogin이 되었다면
-      if (ref.watch(socialLoginController).isLogined) {
-        try {
+    Future<void> clickLoginButton(LoginOption loginOption) async {
+      ref.read(loginOptionController.notifier).state = loginOption;
+
+      getRefreshTokenState = await getRefreshToken(
+        ref.watch(loginOptionController),
+      );
+
+      getRefreshTokenState.when(
+        data: (data) => context.go('/home'),
+        loading: () {},
+        error: (_, __) async {
+          /// Login Option 설정
+          await socialLoginNotifier.setLoginOption(loginOption);
+
+          /// socialLogin 시도
+          try {
+            await socialLoginNotifier.login(loginOption);
+            debugPrint(ref.watch(socialLoginController).token);
+          } catch (err) {
+            debugPrint("socialLoginNotifier : ${err.toString()}");
+          }
+
+          /// socialLogin이 되었다면
           switch (loginOption) {
             case LoginOption.google:
-              await maeumgagymLoginNotifier
-                  .googleLogin(ref.watch(socialLoginController).token);
-
+              ref.read(socialLoginController).googleAsyncValue.when(
+                    data: (data) => whenSuccessSocialLogin(loginOption),
+                    error: (_, __) {},
+                    loading: () {},
+                  );
+              break;
             case LoginOption.kakao:
-              await maeumgagymLoginNotifier
-                  .kakaoLogin(ref.watch(socialLoginController).token);
+              ref.read(socialLoginController).kakaoAsyncValue.when(
+                    data: (data) => whenSuccessSocialLogin(loginOption),
+                    error: (_, __) {},
+                    loading: () {},
+                  );
+              break;
+            case LoginOption.all:
+              break;
           }
-        } catch (err) {
-          if (context.mounted && err.toString().contains('404')) {
-            await context.push('/signUpAgree');
-
-            await socialLoginNotifier.logout();
-          } else {
-            debugPrint(err.toString());
-          }
-        }
-        if (ref.watch(maeumgagymLoginController).stateusCode == 200 &&
-            context.mounted) {
-          context.go('/home');
-        }
-      }
+        },
+      );
     }
 
     return Scaffold(
@@ -118,9 +227,53 @@ class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
                 onTap: () async {
                   clickLoginButton(LoginOption.google);
                 },
-                child: const OnBoardingContentsWidget(
-                  image: 'assets/image/on_boarding_icon/google_logo.svg',
-                  title: '구글로 로그인',
+                child: Builder(
+                  builder: (context) {
+                    if (ref
+                            .watch(maeumgagymReIssueController)
+                            .googleAsyncValue
+                            .hasValue &&
+                        ref
+                            .watch(socialLoginController)
+                            .googleAsyncValue
+                            .hasValue &&
+                        ref
+                            .watch(maeumgagymLoginController)
+                            .googleAsyncValue
+                            .hasValue) {
+                      return const OnBoardingContentsWidget(
+                        image: 'assets/image/on_boarding_icon/google_logo.svg',
+                        title: '구글로 로그인',
+                      );
+                    } else if (ref
+                            .watch(maeumgagymReIssueController)
+                            .googleAsyncValue
+                            .hasError &&
+                        ref
+                            .watch(socialLoginController)
+                            .googleAsyncValue
+                            .hasError &&
+                        ref
+                            .watch(maeumgagymLoginController)
+                            .googleAsyncValue
+                            .hasError) {
+                      throw Exception('err');
+                    } else {
+                      return Container(
+                        width: MediaQuery.of(context).size.width - 32,
+                        height: 60,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          color: MaeumgagymColor.gray50,
+                        ),
+                        child: Center(
+                          child: CircularProgressIndicator(
+                            color: MaeumgagymColor.blue500,
+                          ),
+                        ),
+                      );
+                    }
+                  },
                 ),
               ),
             ),
@@ -130,9 +283,54 @@ class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
                 onTap: () async {
                   clickLoginButton(LoginOption.kakao);
                 },
-                child: const OnBoardingContentsWidget(
-                  image: 'assets/image/on_boarding_icon/kakao_talk_logo.svg',
-                  title: '카카오로 로그인',
+                child: Builder(
+                  builder: (context) {
+                    if (ref
+                            .watch(maeumgagymReIssueController)
+                            .kakaoAsyncValue
+                            .hasValue &&
+                        ref
+                            .watch(socialLoginController)
+                            .kakaoAsyncValue
+                            .hasValue &&
+                        ref
+                            .watch(maeumgagymLoginController)
+                            .kakaoAsyncValue
+                            .hasValue) {
+                      return const OnBoardingContentsWidget(
+                        image:
+                            'assets/image/on_boarding_icon/kakao_talk_logo.svg',
+                        title: '카카오로 로그인',
+                      );
+                    } else if (ref
+                            .watch(maeumgagymReIssueController)
+                            .kakaoAsyncValue
+                            .hasError &&
+                        ref
+                            .watch(socialLoginController)
+                            .kakaoAsyncValue
+                            .hasError &&
+                        ref
+                            .watch(maeumgagymLoginController)
+                            .kakaoAsyncValue
+                            .hasError) {
+                      throw Exception('err');
+                    } else {
+                      return Container(
+                        width: MediaQuery.of(context).size.width - 32,
+                        height: 60,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          color: MaeumgagymColor.gray50,
+                        ),
+                        child: Center(
+                          child: CircularProgressIndicator(
+                            color: MaeumgagymColor.blue500,
+                          ),
+                        ),
+                      );
+                    }
+                  },
                 ),
               ),
             ),
