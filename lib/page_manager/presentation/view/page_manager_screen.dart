@@ -34,6 +34,8 @@ class PageManagerScreen extends ConsumerWidget {
         child: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
           currentIndex: pageControllerIndex,
+          elevation: 0,
+          backgroundColor: MaeumgagymColor.white,
           onTap: (value) => pageControllerNotifier.setPage(value),
           selectedItemColor: MaeumgagymColor.black,
           unselectedItemColor: MaeumgagymColor.gray500,
