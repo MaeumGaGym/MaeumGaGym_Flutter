@@ -1,44 +1,35 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+
+import '../../../domain/model/social_login_model.dart';
 
 class GoogleLoginRemoteDataSource {
-  late String _token;
+  late String? _token;
 
-  Future<bool> login() async {
-    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+  Future<SocialLoginModel> login() async {
+    try {
+      GoogleSignIn googleSignIn = GoogleSignIn();
 
-    final GoogleSignInAuthentication? googleAuth =
-        await googleUser?.authentication;
+      final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
+      GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
 
-    final credential = GoogleAuthProvider.credential(
-      accessToken: googleAuth?.accessToken,
-      idToken: googleAuth?.idToken,
-    );
-
-    UserCredential googleToken =
-        await FirebaseAuth.instance.signInWithCredential(credential);
-
-    _token = googleToken.credential!.accessToken.toString();
-
-    if (_token != 'null') {
-      return true;
-    } else {
-      return false;
+      _token = googleAuth?.accessToken;
+      return SocialLoginModel.fromJson(const AsyncData(true), _token);
+    } catch (err) {
+      return SocialLoginModel.fromJson(
+        AsyncError(err, StackTrace.empty),
+        _token,
+      );
     }
   }
 
-  Future<bool> logout() async {
-    await FirebaseAuth.instance.signOut();
-    await GoogleSignIn().signOut();
-
-    return false;
-  }
-
-  Future<String> getToken() async {
+  Future<SocialLoginModel> logout() async {
     try {
-      return _token;
+      await GoogleSignIn().signOut();
+
+      return SocialLoginModel.fromJson(const AsyncData(false), null);
     } catch (err) {
-      return err.toString();
+      return SocialLoginModel.fromJson(AsyncError(err, StackTrace.empty), null);
     }
   }
 }

@@ -1,24 +1,24 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class MaeumgagymLoginModel {
-  final AsyncValue<int> statusCode;
+class MaeumgagymReIssueModel {
+  final AsyncValue<int> stateus;
   final String? accessToken;
   final String? refreshToken;
 
-  MaeumgagymLoginModel({
-    required this.statusCode,
+  MaeumgagymReIssueModel({
+    required this.stateus,
     required this.accessToken,
     required this.refreshToken,
   });
 
-  factory MaeumgagymLoginModel.fromJson(Headers json, int statusCode) {
+  factory MaeumgagymReIssueModel.fromJson(Headers json, int statusCode) {
     String jsonRFToken = json.map['set-cookie']![0];
 
-    return MaeumgagymLoginModel(
+    return MaeumgagymReIssueModel(
       accessToken: json.value('authorization').toString(),
       refreshToken: jsonRFToken.substring(9, jsonRFToken.indexOf(';')),
-      statusCode: AsyncData(statusCode),
+      stateus: AsyncData(statusCode),
     );
   }
 }

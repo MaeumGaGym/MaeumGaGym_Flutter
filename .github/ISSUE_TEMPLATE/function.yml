@@ -1,0 +1,23 @@
+name: "function"
+description: "이 기능을 추가할려고 합니다. 💪🏿"
+labels: 기능
+body:
+  - type: textarea
+    attributes:
+      label: UI
+      description: |
+        [이미지/영상 추가] 개발하고자 하는 기능을 더 잘 설명할 수 있도록 이미지나 영상을 첨부해주세요.📸🎥
+      placeholder: |
+        여기에 파일을 드래그하거나 클릭하여 업로드하세요.
+  - type: textarea
+    attributes:
+      label: 설명
+      description: |
+        [Explain] 어떤 기능을 말씀하시는 건가요? 🥴
+      placeholder: |
+        사용자에 편리성을 위해서 만보기 기능을 추가하겠습니다.
+  - type: textarea
+    attributes:
+      label: 추가사항
+      description: |
+        [추가사항] 조금 더 구체적으로 알려주시겠어요? 🏃🏿‍♂️

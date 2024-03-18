@@ -13,8 +13,8 @@ class SelfCareTodayExerciseTabBar extends ConsumerWidget {
     final exerciseTabBarState = ref.watch(exerciseTabBarNotifierProvider);
     final exerciseTabBarNotifier = ref.read(exerciseTabBarNotifierProvider.notifier);
     /// pageController 상태 관리 provider
-    final pageController = ref.read(exercisePageControllerProvider.notifier);
-    return SizedBox(
+    return Container(
+      color: MaeumgagymColor.white,
       height: 72,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -25,7 +25,6 @@ class SelfCareTodayExerciseTabBar extends ConsumerWidget {
               /// TabBar 상태 변경
               exerciseTabBarNotifier.changeCamera();
               /// 0번째 index 화면으로 화면 전환
-              pageController.state.jumpToPage(0);
             },
             child: Container(
               width: 83,
@@ -50,7 +49,6 @@ class SelfCareTodayExerciseTabBar extends ConsumerWidget {
           GestureDetector(
             onTap: () {
               exerciseTabBarNotifier.changeGallery();
-              pageController.state.jumpToPage(1);
             },
             child: Container(
               width: 83,

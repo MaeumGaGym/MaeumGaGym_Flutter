@@ -13,10 +13,10 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 # Available Actions
 
-### beta
+### internal
 
 ```sh
-[bundle exec] fastlane beta
+[bundle exec] fastlane internal
 ```
 
 Deploy to Google Play Internal Test
