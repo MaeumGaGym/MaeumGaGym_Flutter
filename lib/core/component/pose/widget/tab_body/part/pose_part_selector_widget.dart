@@ -50,7 +50,7 @@ class PosePartSelectorWidget extends ConsumerWidget {
 
           /// 기구
           GestureDetector(
-            onTap: () => posePartNotifier.clickCalisthenics(),
+            onTap: () => posePartNotifier.clickMachine(),
             child: Container(
               /// Tag가 선택시 blue500 아닐 시 gray50
               decoration: BoxDecoration(
