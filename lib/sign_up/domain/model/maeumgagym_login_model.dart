@@ -1,9 +1,10 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class MaeumgagymLoginModel {
-  final int statusCode;
-  final String accessToken;
-  final String refreshToken;
+  final AsyncValue<int> statusCode;
+  final String? accessToken;
+  final String? refreshToken;
 
   MaeumgagymLoginModel({
     required this.statusCode,
@@ -17,7 +18,7 @@ class MaeumgagymLoginModel {
     return MaeumgagymLoginModel(
       accessToken: json.value('authorization').toString(),
       refreshToken: jsonRFToken.substring(9, jsonRFToken.indexOf(';')),
-      statusCode: statusCode,
+      statusCode: AsyncData(statusCode),
     );
   }
 }

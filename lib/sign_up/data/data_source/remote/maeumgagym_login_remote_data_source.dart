@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../domain/model/maeumgagym_login_model.dart';
 
 import 'package:maeum_ga_gym_flutter/core/di/dio_di.dart';
@@ -12,11 +13,22 @@ class MaeumgagymLoginRemoteDataSource {
         debugPrint(response.statusCode.toString());
         return MaeumgagymLoginModel.fromJson(
           response.headers,
-          response.statusCode ?? 404,
+          response.statusCode!,
         );
       });
     } catch (err) {
-      throw Exception(err);
+      if (err.toString().contains('404')) {
+        return MaeumgagymLoginModel(
+          statusCode: const AsyncData(404),
+          accessToken: null,
+          refreshToken: null,
+        );
+      }
+      return MaeumgagymLoginModel(
+        statusCode: AsyncError(err, StackTrace.empty),
+        accessToken: null,
+        refreshToken: null,
+      );
     }
   }
 
@@ -32,7 +44,18 @@ class MaeumgagymLoginRemoteDataSource {
         );
       });
     } catch (err) {
-      throw Exception(err);
+      if (err.toString().contains('404')) {
+        return MaeumgagymLoginModel(
+          statusCode: const AsyncData(404),
+          accessToken: null,
+          refreshToken: null,
+        );
+      }
+      return MaeumgagymLoginModel(
+        statusCode: AsyncError(err, StackTrace.empty),
+        accessToken: null,
+        refreshToken: null,
+      );
     }
   }
 }

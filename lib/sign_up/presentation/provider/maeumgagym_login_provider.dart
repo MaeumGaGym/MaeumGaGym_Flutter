@@ -13,32 +13,58 @@ final maeumgagymLoginController =
 
 class MaeumgagymLoginStateNotifier extends StateNotifier<MaeumgagymLoginState> {
   MaeumgagymLoginStateNotifier()
-      : super(MaeumgagymLoginState(stateusCode: 404));
+      : super(MaeumgagymLoginState(
+          googleAsyncValue: const AsyncData(500),
+          kakaoAsyncValue: const AsyncData(500),
+        ));
 
-  final MaeumgagymLoginUseCase _useCase =
-      MaeumgagymLoginUseCase(MaeumgagymLoginRepositoryImpl());
+  final MaeumgagymLoginUseCase _useCase = MaeumgagymLoginUseCase(
+    MaeumgagymLoginRepositoryImpl(),
+  );
 
   Future<void> googleLogin(String googleToken) async {
+    state = state.copyWith(googleAsyncValue: const AsyncLoading());
     MaeumgagymLoginModel googleLoginToken =
         await _useCase.googleLogin(googleToken);
-    await TokenSecureStorageDi.writeAccessToken(googleLoginToken.accessToken);
-    await TokenSecureStorageDi.writeRefreshToken(googleLoginToken.refreshToken);
 
-    state = MaeumgagymLoginState(stateusCode: googleLoginToken.statusCode);
+    await TokenSecureStorageDi.writeGoogleLoginAccessToken(
+        googleLoginToken.accessToken);
+    await TokenSecureStorageDi.writeGoogleLoginRefreshToken(
+        googleLoginToken.refreshToken);
+
+    state = state.copyWith(googleAsyncValue: googleLoginToken.statusCode);
   }
 
   Future<void> kakaoLogin(String kakaoToken) async {
+    state = state.copyWith(kakaoAsyncValue: const AsyncLoading());
     MaeumgagymLoginModel kakaoLoginToken =
         await _useCase.kakaoLogin(kakaoToken);
-    await TokenSecureStorageDi.writeAccessToken(kakaoLoginToken.accessToken);
-    await TokenSecureStorageDi.writeRefreshToken(kakaoLoginToken.refreshToken);
 
-    state = MaeumgagymLoginState(stateusCode: kakaoLoginToken.statusCode);
+    await TokenSecureStorageDi.writeKaKaoLoginAccessToken(
+        kakaoLoginToken.accessToken);
+    await TokenSecureStorageDi.writeKaKaoLoginRefreshToken(
+        kakaoLoginToken.refreshToken);
+
+    state = state.copyWith(kakaoAsyncValue: kakaoLoginToken.statusCode);
   }
 }
 
 class MaeumgagymLoginState {
-  final int stateusCode;
+  AsyncValue<int> googleAsyncValue;
+  AsyncValue<int> kakaoAsyncValue;
 
-  MaeumgagymLoginState({required this.stateusCode});
+  MaeumgagymLoginState({
+    required this.googleAsyncValue,
+    required this.kakaoAsyncValue,
+  });
+
+  MaeumgagymLoginState copyWith({
+    AsyncValue<int>? googleAsyncValue,
+    AsyncValue<int>? kakaoAsyncValue,
+  }) {
+    return MaeumgagymLoginState(
+      googleAsyncValue: googleAsyncValue ?? this.googleAsyncValue,
+      kakaoAsyncValue: kakaoAsyncValue ?? this.kakaoAsyncValue,
+    );
+  }
 }

@@ -1,3 +1,4 @@
+import '../model/social_login_model.dart';
 import '../repository/social_login_repository.dart';
 
 class SocialLoginUseCase {
@@ -5,15 +6,11 @@ class SocialLoginUseCase {
 
   SocialLoginUseCase(this._repository);
 
-  Future<bool> login() async {
+  Future<SocialLoginModel> login() async {
     return await _repository.login();
   }
 
-  Future<bool> logout() async {
+  Future<SocialLoginModel> logout() async {
     return await _repository.logout();
-  }
-
-  Future<String> getToken() async {
-    return await _repository.getToken();
   }
 }

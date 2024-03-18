@@ -1,12 +1,13 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class MaeumgagymReIssueModel {
-  final int statusCode;
+  final AsyncValue<int> stateus;
   final String? accessToken;
   final String? refreshToken;
 
   MaeumgagymReIssueModel({
-    required this.statusCode,
+    required this.stateus,
     required this.accessToken,
     required this.refreshToken,
   });
@@ -17,7 +18,7 @@ class MaeumgagymReIssueModel {
     return MaeumgagymReIssueModel(
       accessToken: json.value('authorization').toString(),
       refreshToken: jsonRFToken.substring(9, jsonRFToken.indexOf(';')),
-      statusCode: statusCode,
+      stateus: AsyncData(statusCode),
     );
   }
 }

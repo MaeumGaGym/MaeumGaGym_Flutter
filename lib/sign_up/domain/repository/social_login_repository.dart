@@ -1,7 +1,7 @@
+import '../model/social_login_model.dart';
+
 abstract class SocialLoginRepository {
-  Future<bool> login();
+  Future<SocialLoginModel> login();
 
-  Future<bool> logout();
-
-  Future<String> getToken();
+  Future<SocialLoginModel> logout();
 }
