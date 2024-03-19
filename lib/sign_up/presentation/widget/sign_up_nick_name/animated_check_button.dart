@@ -34,37 +34,45 @@ class AnimatedCheckButton extends ConsumerWidget {
         /// 닉네임 검사
         await ref.read(nicknameCheckController.notifier).checkNickname(name);
 
-        /// 닉네임이 중복되지 않다면
-        if (ref.watch(nicknameCheckController).notDuplicating) {
-          /// 에러메시지 없애고
-          ref.read(buttonProvider.notifier).theError(false);
+        ref.watch(nicknameCheckController).when(
+              data: (data) async {
+                if (data) {
+                  ref.read(buttonProvider.notifier).theError(false);
 
-          /// 구글이면 구글 회원가입
-          switch (ref.watch(loginOptionController)) {
-            case LoginOption.google:
-              await ref.read(maeumgagymSignUpController.notifier).googleSignUp(
-                    ref.watch(socialLoginController).token!,
-                    name,
-                  );
-              break;
-            case LoginOption.kakao:
-              await ref.read(maeumgagymSignUpController.notifier).kakaoSignUp(
-                    ref.watch(socialLoginController).token!,
-                    name,
-                  );
-            case LoginOption.all:
-              break;
-          }
-
-          if (ref.watch(maeumgagymSignUpController).statusCode == 201 &&
-              context.mounted) {
-            context.go('/signUpSuccess');
-          }
-
-          /// 닉네임이 중복 된다면
-        } else {
-          ref.read(buttonProvider.notifier).theError(true);
-        }
+                  /// 구글이면 구글 회원가입
+                  switch (ref.watch(loginOptionController)) {
+                    case LoginOption.google:
+                      await ref
+                          .read(maeumgagymSignUpController.notifier)
+                          .googleSignUp(
+                            ref.watch(socialLoginController).token!,
+                            name,
+                          );
+                      break;
+                    case LoginOption.kakao:
+                      await ref
+                          .read(maeumgagymSignUpController.notifier)
+                          .kakaoSignUp(
+                            ref.watch(socialLoginController).token!,
+                            name,
+                          );
+                    case LoginOption.all:
+                      break;
+                  }
+                  ref.watch(maeumgagymSignUpController).when(
+                        data: (data) {
+                          context.go('/signUpSuccess');
+                        },
+                        error: (_, __) {},
+                        loading: () {},
+                      );
+                } else {
+                  ref.read(buttonProvider.notifier).theError(true);
+                }
+              },
+              error: (_, __) {},
+              loading: () {},
+            );
       },
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 100),
@@ -76,10 +84,25 @@ class AnimatedCheckButton extends ConsumerWidget {
           color: inText ? MaeumgagymColor.blue500 : MaeumgagymColor.gray400,
           borderRadius: BorderRadius.circular(onClicked ? 0 : 8),
         ),
-        child: Center(
-          child: inText
-              ? PtdTextWidget.labelLarge('회원가입', MaeumgagymColor.white)
-              : PtdTextWidget.labelLarge('회원가입', MaeumgagymColor.gray200),
+        child: Builder(
+          builder: (context) {
+            if (ref.watch(nicknameCheckController).hasValue &&
+                ref.watch(maeumgagymSignUpController).hasValue) {
+              return Center(
+                child: inText
+                    ? PtdTextWidget.labelLarge('회원가입', MaeumgagymColor.white)
+                    : PtdTextWidget.labelLarge('회원가입', MaeumgagymColor.gray200),
+              );
+            } else if (ref.watch(nicknameCheckController).hasError &&
+                ref.watch(maeumgagymSignUpController).hasError) {
+              throw Exception('회원가입 Error');
+            } else {
+              return Center(
+                  child: CircularProgressIndicator(
+                color: MaeumgagymColor.white,
+              ));
+            }
+          },
         ),
       ),
     );
