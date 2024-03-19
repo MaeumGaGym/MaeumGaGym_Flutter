@@ -53,35 +53,30 @@ class SelfCareGoalMainScreen extends StatelessWidget {
                     );
                   },
                 ),
-                const SizedBox(height: 98),
               ],
             ),
           ),
         ),
       ),
-      bottomSheet: Container(
-        color: MaeumgagymColor.white,
-        child: SafeArea(
-          child: GestureDetector(
-            onTap: () => Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) => const SelfCareGoalAddScreen(),
-              ),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-              child: SelfCareMyRoutineButton(
-                width: MediaQuery.of(context).size.width,
-                height: 58,
-                imageWidth: 24,
-                imageHeight: 24,
-                imagePath: "assets/image/self_care_icon/add_icon.svg",
-                imageColor: MaeumgagymColor.white,
-                title: "목표 추가하기",
-                textColor: MaeumgagymColor.white,
-                buttonColor: MaeumgagymColor.blue500,
-              ),
-            ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: GestureDetector(
+        onTap: () => Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => const SelfCareGoalAddScreen(),
+          ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+          child: SelfCareMyRoutineButton(
+            width: MediaQuery.of(context).size.width,
+            height: 58,
+            imageWidth: 24,
+            imageHeight: 24,
+            imagePath: "assets/image/self_care_icon/add_icon.svg",
+            imageColor: MaeumgagymColor.white,
+            title: "목표 추가하기",
+            textColor: MaeumgagymColor.white,
+            buttonColor: MaeumgagymColor.blue500,
           ),
         ),
       ),
