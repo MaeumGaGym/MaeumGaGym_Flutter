@@ -248,11 +248,11 @@ class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
                     } else if (ref
                             .watch(maeumgagymReIssueController)
                             .googleAsyncValue
-                            .hasError &&
+                            .hasError ||
                         ref
                             .watch(socialLoginController)
                             .googleAsyncValue
-                            .hasError &&
+                            .hasError ||
                         ref
                             .watch(maeumgagymLoginController)
                             .googleAsyncValue
@@ -305,11 +305,11 @@ class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
                     } else if (ref
                             .watch(maeumgagymReIssueController)
                             .kakaoAsyncValue
-                            .hasError &&
+                            .hasError ||
                         ref
                             .watch(socialLoginController)
                             .kakaoAsyncValue
-                            .hasError &&
+                            .hasError||
                         ref
                             .watch(maeumgagymLoginController)
                             .kakaoAsyncValue
