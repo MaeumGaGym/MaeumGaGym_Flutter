@@ -1,1 +1,9 @@
-{"installed":{"client_id":"9435200486-j2cq9592pku3dp7lkf3s5speqngo4fnd.apps.googleusercontent.com","project_id":"maeumgagym-405712","auth_uri":"https://accounts.google.com/o/oauth2/auth","token_uri":"https://oauth2.googleapis.com/token","auth_provider_x509_cert_url":"https://www.googleapis.com/oauth2/v1/certs"}}
+{
+  "installed":{
+    "client_id":"9435200486-j2cq9592pku3dp7lkf3s5speqngo4fnd.apps.googleusercontent.com",
+    "project_id":"maeumgagym-405712",
+    "auth_uri":"https://accounts.google.com/o/oauth2/auth",
+    "token_uri":"https://oauth2.googleapis.com/token",
+    "auth_provider_x509_cert_url":"https://www.googleapis.com/oauth2/v1/certs"
+  }
+}
