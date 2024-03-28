@@ -18,7 +18,7 @@ class GoogleLoginRemoteDataSource {
     } catch (err) {
       return SocialLoginModel.fromJson(
         AsyncError(err, StackTrace.empty),
-        _token,
+        null,
       );
     }
   }

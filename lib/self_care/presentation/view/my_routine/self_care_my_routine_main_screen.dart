@@ -74,32 +74,28 @@ class _SelfCareMyRoutineMainScreenState
           ),
         ),
       ),
-      bottomSheet: Container(
-        color: MaeumgagymColor.white,
-        child: SafeArea(
-          child: GestureDetector(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const SelfCareMyRoutineAddScreen(),
-                ),
-              );
-            },
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-              child: SelfCareMyRoutineButton(
-                width: MediaQuery.of(context).size.width,
-                height: 58,
-                imageWidth: 24,
-                imageHeight: 24,
-                imagePath: "assets/image/self_care_icon/add_icon.svg",
-                imageColor: MaeumgagymColor.white,
-                title: "루틴 추가하기",
-                textColor: MaeumgagymColor.white,
-                buttonColor: MaeumgagymColor.blue500,
-              ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: GestureDetector(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const SelfCareMyRoutineAddScreen(),
             ),
+          );
+        },
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+          child: SelfCareMyRoutineButton(
+            width: MediaQuery.of(context).size.width,
+            height: 58,
+            imageWidth: 24,
+            imageHeight: 24,
+            imagePath: "assets/image/self_care_icon/add_icon.svg",
+            imageColor: MaeumgagymColor.white,
+            title: "루틴 추가하기",
+            textColor: MaeumgagymColor.white,
+            buttonColor: MaeumgagymColor.blue500,
           ),
         ),
       ),

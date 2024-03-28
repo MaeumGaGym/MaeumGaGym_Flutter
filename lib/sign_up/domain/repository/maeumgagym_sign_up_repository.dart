@@ -1,7 +1,7 @@
-import '../model/maeumgagym_sign_up_model.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 abstract class MaeumgagymSignUpRepository {
-  Future<MaeumgagymSignUpModel> googleSignUp(String googleToken, String name);
+  Future<AsyncValue<int?>> googleSignUp(String googleToken, String name);
 
-  Future<MaeumgagymSignUpModel> kakaoSignUp(String kakaoToken, String name);
+  Future<AsyncValue<int?>> kakaoSignUp(String kakaoToken, String name);
 }
