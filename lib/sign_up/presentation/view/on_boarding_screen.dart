@@ -118,16 +118,13 @@ class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
           );
           ref.watch(maeumgagymLoginController).googleAsyncValue.when(
                 data: (data) async {
-                  if (data == 200) {
-                    context.go('/home');
-                  } else if (data == 404) {
-                    // await context.push('/signUpAgree');
-                    //
-                    // await socialLoginNotifier.logout();
+                  if (data == 404) {
                     whenMaeumgagymLoginIs404(
                       loginOption,
                       ref.watch(socialLoginController).token!,
                     );
+                  } else {
+                    context.go('/home');
                   }
                 },
                 error: (err, _) {
@@ -145,16 +142,13 @@ class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
           );
           ref.watch(maeumgagymLoginController).kakaoAsyncValue.when(
                 data: (data) async {
-                  if (data == 200) {
-                    context.go('/home');
-                  } else if (data == 404) {
-                    // await context.push('/signUpAgree');
-                    //
-                    // await socialLoginNotifier.logout();
-                    await whenMaeumgagymLoginIs404(
+                  if (data == 404) {
+                    whenMaeumgagymLoginIs404(
                       loginOption,
                       ref.watch(socialLoginController).token!,
                     );
+                  } else {
+                    context.go('/home');
                   }
                 },
                 error: (err, _) {
