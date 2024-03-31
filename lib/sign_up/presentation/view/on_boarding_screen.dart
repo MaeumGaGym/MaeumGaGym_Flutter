@@ -36,6 +36,19 @@ class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
     final maeumgagymReIssueNotifier =
         ref.read(maeumgagymReIssueController.notifier);
 
+    AlertDialog dialog(String title, String contents) {
+      return AlertDialog(
+        title: Text(title),
+        content: Text(contents),
+        actions: [
+          MaterialButton(
+            onPressed: () => Navigator.pop(context),
+            child: Text("확인"),
+          )
+        ],
+      );
+    }
+
     Future<AsyncValue<int?>> getRefreshToken(LoginOption loginOption) async {
       switch (loginOption) {
         case LoginOption.google:
@@ -84,7 +97,16 @@ class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
                   }
                 },
                 error: (err, _) {
-                  debugPrint(err.toString());
+                  // debugPrint(err.toString());
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return dialog(
+                        "Google Maeumgagym Recovery",
+                        err.toString(),
+                      );
+                    },
+                  );
                 },
                 loading: () {},
               );
@@ -100,7 +122,16 @@ class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
                   }
                 },
                 error: (err, _) {
-                  debugPrint(err.toString());
+                  // debugPrint(err.toString());
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return dialog(
+                        "KaKao Maeumgagym Recovery",
+                        err.toString(),
+                      );
+                    },
+                  );
                 },
                 loading: () {},
               );
@@ -128,7 +159,16 @@ class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
                   }
                 },
                 error: (err, _) {
-                  debugPrint(err.toString());
+                  // debugPrint(err.toString());
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return dialog(
+                        "Google Maeumgagym Login",
+                        err.toString(),
+                      );
+                    },
+                  );
                   ref.watch(maeumgagymLoginController).googleAsyncValue =
                       const AsyncData(500);
                 },
@@ -152,7 +192,16 @@ class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
                   }
                 },
                 error: (err, _) {
-                  debugPrint(err.toString());
+                  // debugPrint(err.toString());
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return dialog(
+                        "KaKao Maeumgagym Login",
+                        err.toString(),
+                      );
+                    },
+                  );
                   ref.watch(maeumgagymLoginController).kakaoAsyncValue =
                       const AsyncData(500);
                 },
@@ -183,7 +232,18 @@ class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
             await socialLoginNotifier.login(loginOption);
             debugPrint(ref.watch(socialLoginController).token);
           } catch (err) {
-            debugPrint("소셜 로그인 실패! : ${err.toString()}");
+            // debugPrint("소셜 로그인 실패! : ${err.toString()}");
+            if (context.mounted) {
+              showDialog(
+                context: context,
+                builder: (context) {
+                  return dialog(
+                    "Social Login Failed",
+                    err.toString(),
+                  );
+                },
+              );
+            }
           }
 
           /// socialLogin이 되었다면
