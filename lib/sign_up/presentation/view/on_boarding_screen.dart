@@ -251,14 +251,34 @@ class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
             case LoginOption.google:
               ref.read(socialLoginController).googleAsyncValue.when(
                     data: (data) => whenSuccessSocialLogin(loginOption),
-                    error: (_, __) {},
+                    error: (err, __) {
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return dialog(
+                            "Social Google Login Failed",
+                            err.toString(),
+                          );
+                        },
+                      );
+                    },
                     loading: () {},
                   );
               break;
             case LoginOption.kakao:
               ref.read(socialLoginController).kakaoAsyncValue.when(
                     data: (data) => whenSuccessSocialLogin(loginOption),
-                    error: (_, __) {},
+                    error: (err, __) {
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return dialog(
+                            "Social KaKao Login Failed",
+                            err.toString(),
+                          );
+                        },
+                      );
+                    },
                     loading: () {},
                   );
               break;
