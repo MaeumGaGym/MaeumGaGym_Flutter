@@ -28,6 +28,7 @@ class MaeumgagymRecoveryStateNotifier
         await googleRecovery(oauthToken);
         break;
       case LoginOption.kakao:
+        debugPrint("recovery KaKaoToken : $oauthToken");
         await kakaoRecovery(oauthToken);
         break;
       case LoginOption.all:
@@ -44,7 +45,7 @@ class MaeumgagymRecoveryStateNotifier
   Future<void> kakaoRecovery(String kakaoToken) async {
     state = state.copyWith(kakaoAsyncValue: const AsyncLoading());
     AsyncValue<int> status = await _useCase.kakaoRecovery(kakaoToken);
-    state = state.copyWith(googleAsyncValue: status);
+    state = state.copyWith(kakaoAsyncValue: status);
   }
 }
 

@@ -24,9 +24,14 @@ class MaeumgagymRecoveryRemoteDataSource {
   }
 
   Future<AsyncValue<int>> kakaoRecovery(String kakaoToken) async {
+    final Map<String, dynamic> queryParam = {
+      "access_token": kakaoToken,
+    };
+
     try {
-      return await dio.get('/kakao/recovery',
-          queryParameters: {'access_token': kakaoToken}).then((response) {
+      return await dio
+          .put('/kakao/recovery', queryParameters: queryParam)
+          .then((response) {
         return AsyncData(response.statusCode!);
       });
     } catch (err) {
