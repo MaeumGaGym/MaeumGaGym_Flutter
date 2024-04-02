@@ -26,57 +26,91 @@ class AnimatedCheckButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final maeumgagymSignUpNotifier =
+        ref.read(maeumgagymSignUpController.notifier);
+    final nicknameErrorControllerNotifier =
+        ref.read(nicknameErrorController.notifier);
+
     return GestureDetector(
       onTap: () async {
-        /// 현재 닉네임에 적힌 이름
-        String name = textController.text;
+        if (inText) {
+          /// 현재 닉네임에 적힌 이름
+          String name = textController.text;
 
-        /// 닉네임 검사
-        await ref.read(nicknameCheckController.notifier).checkNickname(name);
+          /// 닉네임 검사
+          await ref.read(nicknameCheckController.notifier).checkNickname(name);
 
-        ref.watch(nicknameCheckController).when(
-              data: (data) async {
-                if (data) {
-                  ref.read(buttonProvider.notifier).theError(false);
+          ref.watch(nicknameCheckController).when(
+                data: (data) async {
+                  if (data) {
+                    if (name.length < 2 ||
+                        name.length > 10 ||
+                        name.contains(' ')) {
+                      nicknameErrorControllerNotifier.state =
+                          '닉네임은 2~10자로 공백을 포함할 수 없어요.';
 
-                  /// 구글이면 구글 회원가입
-                  switch (ref.watch(loginOptionController)) {
-                    case LoginOption.google:
-                      await ref
-                          .read(maeumgagymSignUpController.notifier)
-                          .googleSignUp(
+                      ref.read(buttonProvider.notifier).theError(true);
+                    } else {
+                      ref.read(buttonProvider.notifier).theError(false);
+
+                      /// 구글이면 구글 회원가입
+                      switch (ref.watch(loginOptionController)) {
+                        case LoginOption.google:
+                          await maeumgagymSignUpNotifier.googleSignUp(
                             ref.watch(socialLoginController).token!,
                             name,
                           );
-                      break;
-                    case LoginOption.kakao:
-                      await ref
-                          .read(maeumgagymSignUpController.notifier)
-                          .kakaoSignUp(
+                          break;
+                        case LoginOption.kakao:
+                          await maeumgagymSignUpNotifier.kakaoSignUp(
                             ref.watch(socialLoginController).token!,
                             name,
                           );
-                    case LoginOption.all:
-                      break;
+                        case LoginOption.all:
+                          break;
+                      }
+
+                      ref.watch(maeumgagymSignUpController).when(
+                            data: (data) {
+                              context.go('/signUpSuccess');
+                            },
+                            error: (err, __) {
+                              showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return AlertDialog(
+                                    title:
+                                        const Text("Maeumgagym SignUp Error"),
+                                    content: Text(err.toString()),
+                                    actions: [
+                                      MaterialButton(
+                                        onPressed: () => Navigator.pop(context),
+                                        child: const Text("확인"),
+                                      )
+                                    ],
+                                  );
+                                },
+                              );
+                            },
+                            loading: () {},
+                          );
+                    }
+                  } else {
+                    nicknameErrorControllerNotifier.state = '이미 사용중인 닉네임이에요.';
+
+                    ref.read(buttonProvider.notifier).theError(true);
                   }
-                  ref.watch(maeumgagymSignUpController).when(
-                        data: (data) {
-                          context.go('/signUpSuccess');
-                        },
-                        error: (_, __) {},
-                        loading: () {},
-                      );
-                } else {
-                  ref.read(buttonProvider.notifier).theError(true);
-                }
-              },
-              error: (_, __) {},
-              loading: () {},
-            );
+                },
+                error: (_, __) {},
+                loading: () {},
+              );
+        }
       },
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 100),
-        width: onClicked ? 430 : 390,
+        width: onClicked
+            ? MediaQuery.of(context).size.width
+            : MediaQuery.of(context).size.width - 40,
         height: 58,
         margin: EdgeInsets.fromLTRB(
             onClicked ? 0 : 20, 0, onClicked ? 0 : 20, onClicked ? 0 : 20),
