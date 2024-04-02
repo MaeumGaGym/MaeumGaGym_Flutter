@@ -7,7 +7,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <!-- Vibration 패키지 사용 권한-->
-    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:label="maeumgagym_flutter"
@@ -27,7 +27,7 @@
                 <!-- "kakao${YOUR_NATIVE_APP_KEY}://oauth" 형식의 앱 실행 스킴 설정 -->
                 <!-- 카카오 로그인 Redirect URI -->
                 <data
-                    android:scheme="kakao1004d2c2e0f5e5d75974cff75a470391"
+                    android:scheme="kakaodcfcd3ab4a997c5a53e2ab26a8ec2a63"
                     android:host="oauth" />
             </intent-filter>
         </activity>
