@@ -7,10 +7,10 @@ class MaeumgagymRecoveryUseCase {
   MaeumgagymRecoveryUseCase(this._repository);
 
   Future<AsyncValue<int>> googleRecovery(String googleToken) async {
-    return _repository.googleRecovery(googleToken);
+    return await _repository.googleRecovery(googleToken);
   }
 
   Future<AsyncValue<int>> kakaoRecovery(String kakaoToken) async {
-    return _repository.kakaoRecovery(kakaoToken);
+    return await _repository.kakaoRecovery(kakaoToken);
   }
 }
