@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 
 /// Core
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
 import 'package:maeum_ga_gym_flutter/core/di/token_secure_storage_di.dart';
 import 'package:maeum_ga_gym_flutter/sign_up/presentation/provider/maeumgagym_login_provider.dart';
 import 'package:maeum_ga_gym_flutter/sign_up/presentation/provider/maeumgagym_re_issue_provider.dart';
@@ -35,6 +36,19 @@ class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
     final maeumgagymReIssueState = ref.read(maeumgagymReIssueController);
     final maeumgagymReIssueNotifier =
         ref.read(maeumgagymReIssueController.notifier);
+
+    AlertDialog dialog(String title, String contents) {
+      return AlertDialog(
+        title: Text(title),
+        content: Text(contents),
+        actions: [
+          MaterialButton(
+            onPressed: () => Navigator.pop(context),
+            child: Text("확인"),
+          )
+        ],
+      );
+    }
 
     Future<AsyncValue<int?>> getRefreshToken(LoginOption loginOption) async {
       switch (loginOption) {
@@ -84,7 +98,16 @@ class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
                   }
                 },
                 error: (err, _) {
-                  debugPrint(err.toString());
+                  // debugPrint(err.toString());
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return dialog(
+                        "Google Maeumgagym Recovery",
+                        err.toString(),
+                      );
+                    },
+                  );
                 },
                 loading: () {},
               );
@@ -100,7 +123,16 @@ class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
                   }
                 },
                 error: (err, _) {
-                  debugPrint(err.toString());
+                  // debugPrint(err.toString());
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return dialog(
+                        "KaKao Maeumgagym Recovery",
+                        err.toString(),
+                      );
+                    },
+                  );
                 },
                 loading: () {},
               );
@@ -118,20 +150,26 @@ class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
           );
           ref.watch(maeumgagymLoginController).googleAsyncValue.when(
                 data: (data) async {
-                  if (data == 200) {
-                    context.go('/home');
-                  } else if (data == 404) {
-                    // await context.push('/signUpAgree');
-                    //
-                    // await socialLoginNotifier.logout();
+                  if (data == 404) {
                     whenMaeumgagymLoginIs404(
                       loginOption,
                       ref.watch(socialLoginController).token!,
                     );
+                  } else {
+                    context.go('/home');
                   }
                 },
                 error: (err, _) {
-                  debugPrint(err.toString());
+                  // debugPrint(err.toString());
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return dialog(
+                        "Google Maeumgagym Login",
+                        err.toString(),
+                      );
+                    },
+                  );
                   ref.watch(maeumgagymLoginController).googleAsyncValue =
                       const AsyncData(500);
                 },
@@ -145,20 +183,26 @@ class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
           );
           ref.watch(maeumgagymLoginController).kakaoAsyncValue.when(
                 data: (data) async {
-                  if (data == 200) {
-                    context.go('/home');
-                  } else if (data == 404) {
-                    // await context.push('/signUpAgree');
-                    //
-                    // await socialLoginNotifier.logout();
-                    await whenMaeumgagymLoginIs404(
+                  if (data == 404) {
+                    whenMaeumgagymLoginIs404(
                       loginOption,
                       ref.watch(socialLoginController).token!,
                     );
+                  } else {
+                    context.go('/home');
                   }
                 },
                 error: (err, _) {
-                  debugPrint(err.toString());
+                  // debugPrint(err.toString());
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return dialog(
+                        "KaKao Maeumgagym Login",
+                        err.toString(),
+                      );
+                    },
+                  );
                   ref.watch(maeumgagymLoginController).kakaoAsyncValue =
                       const AsyncData(500);
                 },
@@ -189,7 +233,18 @@ class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
             await socialLoginNotifier.login(loginOption);
             debugPrint(ref.watch(socialLoginController).token);
           } catch (err) {
-            debugPrint("소셜 로그인 실패! : ${err.toString()}");
+            // debugPrint("소셜 로그인 실패! : ${err.toString()}");
+            if (context.mounted) {
+              showDialog(
+                context: context,
+                builder: (context) {
+                  return dialog(
+                    "Social Login Failed",
+                    err.toString(),
+                  );
+                },
+              );
+            }
           }
 
           /// socialLogin이 되었다면
@@ -197,14 +252,34 @@ class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
             case LoginOption.google:
               ref.read(socialLoginController).googleAsyncValue.when(
                     data: (data) => whenSuccessSocialLogin(loginOption),
-                    error: (_, __) {},
+                    error: (err, __) {
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return dialog(
+                            "Social Google Login Failed",
+                            err.toString(),
+                          );
+                        },
+                      );
+                    },
                     loading: () {},
                   );
               break;
             case LoginOption.kakao:
               ref.read(socialLoginController).kakaoAsyncValue.when(
                     data: (data) => whenSuccessSocialLogin(loginOption),
-                    error: (_, __) {},
+                    error: (err, __) {
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return dialog(
+                            "Social KaKao Login Failed",
+                            err.toString(),
+                          );
+                        },
+                      );
+                    },
                     loading: () {},
                   );
               break;
@@ -224,9 +299,14 @@ class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
               child: Container(
                 width: MediaQuery.of(context).size.width - 150,
                 height: MediaQuery.of(context).size.width - 150,
-                decoration: const BoxDecoration(
-                  color: Colors.grey,
+                decoration: BoxDecoration(
+                  color: MaeumgagymColor.gray50,
                   shape: BoxShape.circle,
+                ),
+                child: const ImageWidget(
+                  imageType: ImageType.svg,
+                  image:
+                      'assets/image/on_boarding_icon/on_boarding_circle_image.svg',
                 ),
               ),
             ),

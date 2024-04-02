@@ -21,3 +21,5 @@ class NicknameCheckStateNotifier extends StateNotifier<AsyncValue<bool>> {
     state = AsyncData(!nicknameState);
   }
 }
+
+final nicknameErrorController = StateProvider<String>((ref) => '');
