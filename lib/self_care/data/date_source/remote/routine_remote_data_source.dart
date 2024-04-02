@@ -29,7 +29,7 @@ class RoutineRemoteDataSource {
         options: Options(
           headers: {
             "Content-Type": "application/json",
-            "Authorization": "Bearer $accessToken",
+            "Authorization": accessToken,
           },
         ),
       )
@@ -51,7 +51,7 @@ class RoutineRemoteDataSource {
         options: Options(
           headers: {
             "Content-Type": "application/json",
-            "Authorization": "Bearer $accessToken",
+            "Authorization": accessToken,
           },
         ),
       )
@@ -84,7 +84,7 @@ class RoutineRemoteDataSource {
         options: Options(
           headers: {
             "Content-Type": "application/json",
-            "Authorization": "Bearer $accessToken",
+            "Authorization": accessToken,
           },
         ),
       )
@@ -120,7 +120,7 @@ class RoutineRemoteDataSource {
         options: Options(
           headers: {
             "Content-Type": "application/json",
-            "Authorization": "Bearer $accessToken",
+            "Authorization": accessToken,
           },
         ),
       )
@@ -142,7 +142,7 @@ class RoutineRemoteDataSource {
         options: Options(
           headers: {
             "Content-Type": "application/json",
-            "Authorization": "Bearer $accessToken",
+            "Authorization": accessToken,
           },
         ),
       )
@@ -165,7 +165,7 @@ class RoutineRemoteDataSource {
         options: Options(
           headers: {
             "Content-Type": "application/json",
-            "Authorization": "Bearer $accessToken",
+            "Authorization": accessToken,
           },
         ),
       )
