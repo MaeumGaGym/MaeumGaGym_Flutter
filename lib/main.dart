@@ -24,7 +24,7 @@ void main() async {
 
   /// KaKao Init
   KakaoSdk.init(
-    nativeAppKey: '1004d2c2e0f5e5d75974cff75a470391',
+    nativeAppKey: 'dcfcd3ab4a997c5a53e2ab26a8ec2a63',
   );
 
   runApp(const ProviderScope(child: MyApp()));
