@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:maeum_ga_gym_flutter/sign_up/presentation/provider/nickname_check_provider.dart';
 
 /// Core
 import '../../../core/component/text/pretendard/ptd_text_widget.dart';
@@ -68,15 +69,19 @@ class SignUpNickNameScreen extends StatelessWidget {
             ),
 
             /// 닉네임 TextField
-            Padding(
-              padding: const EdgeInsets.fromLTRB(20, 32, 20, 0),
-              child: MaeumgagymTextField(
-                controller: nicknameController,
-                text: '닉네임',
-                errorText: '이미 사용중인 닉네임이에요.',
-                textFieldProvider: nicknameTextFieldProvider,
-              ),
-            )
+            Consumer(
+              builder: (context, ref, child) {
+                return Padding(
+                  padding: const EdgeInsets.fromLTRB(20, 32, 20, 0),
+                  child: MaeumgagymTextField(
+                    controller: nicknameController,
+                    text: '닉네임',
+                    errorText: ref.watch(nicknameErrorController),
+                    textFieldProvider: nicknameTextFieldProvider,
+                  ),
+                );
+              },
+            ),
           ],
         ),
       ),
