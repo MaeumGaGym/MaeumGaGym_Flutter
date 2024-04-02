@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 
 /// Core
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
 import 'package:maeum_ga_gym_flutter/core/di/token_secure_storage_di.dart';
 import 'package:maeum_ga_gym_flutter/sign_up/presentation/provider/maeumgagym_login_provider.dart';
 import 'package:maeum_ga_gym_flutter/sign_up/presentation/provider/maeumgagym_re_issue_provider.dart';
@@ -298,9 +299,14 @@ class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
               child: Container(
                 width: MediaQuery.of(context).size.width - 150,
                 height: MediaQuery.of(context).size.width - 150,
-                decoration: const BoxDecoration(
-                  color: Colors.grey,
+                decoration: BoxDecoration(
+                  color: MaeumgagymColor.gray50,
                   shape: BoxShape.circle,
+                ),
+                child: const ImageWidget(
+                  imageType: ImageType.svg,
+                  image:
+                      'assets/image/on_boarding_icon/on_boarding_circle_image.svg',
                 ),
               ),
             ),
