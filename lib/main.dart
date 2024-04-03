@@ -1,6 +1,8 @@
 import 'package:camera/camera.dart';
+import 'package:datadog_flutter_plugin/datadog_flutter_plugin.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart';
 
@@ -27,7 +29,21 @@ void main() async {
     nativeAppKey: 'dcfcd3ab4a997c5a53e2ab26a8ec2a63',
   );
 
-  runApp(const ProviderScope(child: MyApp()));
+  final datadogConfiguration = DatadogConfiguration(
+    clientToken: 'pubd733ffe61ef04713ecd16f0570e3a714',
+    env: 'prod',
+    site: DatadogSite.us5,
+    nativeCrashReportEnabled: true,
+    loggingConfiguration: DatadogLoggingConfiguration(),
+    rumConfiguration: DatadogRumConfiguration(
+      applicationId: '2c899b8a-74b8-4495-8c4a-8ad95eff1b89',
+    ),
+  );
+
+  await DatadogSdk.runApp(datadogConfiguration, TrackingConsent.granted,
+      () async {
+    runApp(const ProviderScope(child: MyApp()));
+  });
 }
 
 class MyApp extends StatelessWidget {
@@ -36,10 +52,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
+      routerConfig: router,
       debugShowCheckedModeBanner: false,
-      routeInformationProvider: router.routeInformationProvider,
-      routeInformationParser: router.routeInformationParser,
-      routerDelegate: router.routerDelegate,
+      // routeInformationProvider: router.routeInformationProvider,
+      // routeInformationParser: router.routeInformationParser,
+      // routerDelegate: router.routerDelegate,
     );
   }
 }

@@ -311,7 +311,7 @@ class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
               ),
             ),
             const SizedBox(height: 30),
-            PtdTextWidget.titleMedium('이제 헬창이 되어보세요!', MaeumgagymColor.black),
+            PtdTextWidget.titleMedium('이제 운동을 시작해 보세요!', MaeumgagymColor.black),
             const SizedBox(height: 10),
             PtdTextWidget.onBoardingSubTitle(
               '저희의 좋은 서비스를 통해 즐거운 헬창 생활을\n즐겨보세요!',

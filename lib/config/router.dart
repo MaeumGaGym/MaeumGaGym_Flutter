@@ -1,4 +1,5 @@
 /// Package
+import 'package:datadog_flutter_plugin/datadog_flutter_plugin.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -59,5 +60,8 @@ final GoRouter router = GoRouter(
         const PageManagerScreen(),
       ),
     ),
+  ],
+  observers: [
+    DatadogNavigationObserver(datadogSdk: DatadogSdk.instance),
   ],
 );
