@@ -40,7 +40,8 @@ void main() async {
     ),
   );
 
-  await DatadogSdk.runApp(datadogConfiguration, TrackingConsent.granted, () async {
+  await DatadogSdk.runApp(datadogConfiguration, TrackingConsent.granted,
+      () async {
     runApp(const ProviderScope(child: MyApp()));
   });
 }
@@ -53,9 +54,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp.router(
       routerConfig: router,
       debugShowCheckedModeBanner: false,
-      routeInformationProvider: router.routeInformationProvider,
-      routeInformationParser: router.routeInformationParser,
-      routerDelegate: router.routerDelegate,
+      // routeInformationProvider: router.routeInformationProvider,
+      // routeInformationParser: router.routeInformationParser,
+      // routerDelegate: router.routerDelegate,
     );
   }
 }
