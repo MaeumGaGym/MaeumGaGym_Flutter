@@ -30,13 +30,13 @@ void main() async {
   );
 
   final datadogConfiguration = DatadogConfiguration(
-    clientToken: 'pubd733ffe61ef04713ecd16f0570e3a714',
+    clientToken: 'pub32b6d411d17d461c90046e46259be242',
     env: 'prod',
     site: DatadogSite.us5,
     nativeCrashReportEnabled: true,
     loggingConfiguration: DatadogLoggingConfiguration(),
     rumConfiguration: DatadogRumConfiguration(
-      applicationId: '2c899b8a-74b8-4495-8c4a-8ad95eff1b89',
+      applicationId: 'd3b74963-1b00-4b80-b79c-fcb76ff19e34',
     ),
   );
 
