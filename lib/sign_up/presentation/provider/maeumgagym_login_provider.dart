@@ -6,16 +6,17 @@ import 'package:maeum_ga_gym_flutter/sign_up/domain/usecase/maeumgagym_login_use
 import '../../domain/model/maeumgagym_login_model.dart';
 
 final maeumgagymLoginController =
-    StateNotifierProvider<MaeumgagymLoginStateNotifier, MaeumgagymLoginState>(
+    StateNotifierProvider<MaeumgagymLoginStateNotifier, MaeumgagymLoginModel>(
         (ref) {
   return MaeumgagymLoginStateNotifier();
 });
 
-class MaeumgagymLoginStateNotifier extends StateNotifier<MaeumgagymLoginState> {
+class MaeumgagymLoginStateNotifier extends StateNotifier<MaeumgagymLoginModel> {
   MaeumgagymLoginStateNotifier()
-      : super(MaeumgagymLoginState(
-          googleAsyncValue: const AsyncData(500),
-          kakaoAsyncValue: const AsyncData(500),
+      : super(MaeumgagymLoginModel(
+          statusCode: const AsyncData(500),
+          accessToken: null,
+          refreshToken: null,
         ));
 
   final MaeumgagymLoginUseCase _useCase = MaeumgagymLoginUseCase(
@@ -23,48 +24,28 @@ class MaeumgagymLoginStateNotifier extends StateNotifier<MaeumgagymLoginState> {
   );
 
   Future<void> googleLogin(String googleToken) async {
-    state = state.copyWith(googleAsyncValue: const AsyncLoading());
+    state = state.copyWith(statusCode: const AsyncLoading());
     MaeumgagymLoginModel googleLoginToken =
         await _useCase.googleLogin(googleToken);
 
-    await TokenSecureStorageDi.writeGoogleLoginAccessToken(
+    await TokenSecureStorageDi.writeLoginAccessToken(
         googleLoginToken.accessToken);
-    await TokenSecureStorageDi.writeGoogleLoginRefreshToken(
+    await TokenSecureStorageDi.writeLoginRefreshToken(
         googleLoginToken.refreshToken);
 
-    state = state.copyWith(googleAsyncValue: googleLoginToken.statusCode);
+    state = state.copyWith(statusCode: googleLoginToken.statusCode);
   }
 
   Future<void> kakaoLogin(String kakaoToken) async {
-    state = state.copyWith(kakaoAsyncValue: const AsyncLoading());
+    state = state.copyWith(statusCode: const AsyncLoading());
     MaeumgagymLoginModel kakaoLoginToken =
         await _useCase.kakaoLogin(kakaoToken);
 
-    await TokenSecureStorageDi.writeKaKaoLoginAccessToken(
+    await TokenSecureStorageDi.writeLoginAccessToken(
         kakaoLoginToken.accessToken);
-    await TokenSecureStorageDi.writeKaKaoLoginRefreshToken(
+    await TokenSecureStorageDi.writeLoginRefreshToken(
         kakaoLoginToken.refreshToken);
 
-    state = state.copyWith(kakaoAsyncValue: kakaoLoginToken.statusCode);
-  }
-}
-
-class MaeumgagymLoginState {
-  AsyncValue<int> googleAsyncValue;
-  AsyncValue<int> kakaoAsyncValue;
-
-  MaeumgagymLoginState({
-    required this.googleAsyncValue,
-    required this.kakaoAsyncValue,
-  });
-
-  MaeumgagymLoginState copyWith({
-    AsyncValue<int>? googleAsyncValue,
-    AsyncValue<int>? kakaoAsyncValue,
-  }) {
-    return MaeumgagymLoginState(
-      googleAsyncValue: googleAsyncValue ?? this.googleAsyncValue,
-      kakaoAsyncValue: kakaoAsyncValue ?? this.kakaoAsyncValue,
-    );
+    state = state.copyWith(statusCode: kakaoLoginToken.statusCode);
   }
 }

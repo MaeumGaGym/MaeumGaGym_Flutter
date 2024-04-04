@@ -4,18 +4,14 @@ import 'package:maeum_ga_gym_flutter/core/di/login_option_di.dart';
 import 'package:maeum_ga_gym_flutter/sign_up/data/repositoryImpl/maeumgagym_recovery_repository_impl.dart';
 import 'package:maeum_ga_gym_flutter/sign_up/domain/usecase/maeumgagym_recovery_usecase.dart';
 
-final maeumgagymRecoveryController = StateNotifierProvider<
-    MaeumgagymRecoveryStateNotifier, MaeumgagymRecoveryState>((ref) {
+final maeumgagymRecoveryController =
+    StateNotifierProvider<MaeumgagymRecoveryStateNotifier, AsyncValue<int>>(
+        (ref) {
   return MaeumgagymRecoveryStateNotifier();
 });
 
-class MaeumgagymRecoveryStateNotifier
-    extends StateNotifier<MaeumgagymRecoveryState> {
-  MaeumgagymRecoveryStateNotifier()
-      : super(MaeumgagymRecoveryState(
-          googleAsyncValue: const AsyncData(500),
-          kakaoAsyncValue: const AsyncData(500),
-        ));
+class MaeumgagymRecoveryStateNotifier extends StateNotifier<AsyncValue<int>> {
+  MaeumgagymRecoveryStateNotifier() : super(const AsyncData(500));
 
   final MaeumgagymRecoveryUseCase _useCase =
       MaeumgagymRecoveryUseCase(MaeumgagymRecoveryRepositoryImpl());
@@ -37,32 +33,14 @@ class MaeumgagymRecoveryStateNotifier
   }
 
   Future<void> googleRecovery(String googleToken) async {
-    state = state.copyWith(googleAsyncValue: const AsyncLoading());
+    state = const AsyncLoading();
     AsyncValue<int> status = await _useCase.googleRecovery(googleToken);
-    state = state.copyWith(googleAsyncValue: status);
+    state = status;
   }
 
   Future<void> kakaoRecovery(String kakaoToken) async {
-    state = state.copyWith(kakaoAsyncValue: const AsyncLoading());
+    state = const AsyncLoading();
     AsyncValue<int> status = await _useCase.kakaoRecovery(kakaoToken);
-    state = state.copyWith(kakaoAsyncValue: status);
+    state = status;
   }
-}
-
-class MaeumgagymRecoveryState {
-  AsyncValue<int> googleAsyncValue;
-  AsyncValue<int> kakaoAsyncValue;
-
-  MaeumgagymRecoveryState({
-    required this.googleAsyncValue,
-    required this.kakaoAsyncValue,
-  });
-
-  MaeumgagymRecoveryState copyWith(
-          {AsyncValue<int>? googleAsyncValue,
-          AsyncValue<int>? kakaoAsyncValue}) =>
-      MaeumgagymRecoveryState(
-        googleAsyncValue: googleAsyncValue ?? this.googleAsyncValue,
-        kakaoAsyncValue: kakaoAsyncValue ?? this.kakaoAsyncValue,
-      );
 }

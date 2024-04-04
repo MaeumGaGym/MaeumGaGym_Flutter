@@ -4,40 +4,22 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 const _storage = FlutterSecureStorage();
 
 class TokenSecureStorageDi {
-  static Future<void> writeGoogleLoginAccessToken(String? accessToken) async {
+  static Future<void> writeLoginAccessToken(String? accessToken) async {
     debugPrint('maeumgagymAccessToken : $accessToken');
-    await _storage.write(key: 'GoogleLoginAccessToken', value: accessToken);
+    await _storage.write(key: 'LoginAccessToken', value: accessToken);
   }
 
-  static Future<void> writeGoogleLoginRefreshToken(String? refreshToken) async {
+  static Future<void> writeLoginRefreshToken(String? refreshToken) async {
     debugPrint('maeumgagymReFreshToken : $refreshToken');
-    await _storage.write(key: 'GoogleLoginRefreshToken', value: refreshToken);
+    await _storage.write(key: 'LoginRefreshToken', value: refreshToken);
   }
 
-  static Future<void> writeKaKaoLoginAccessToken(String? accessToken) async {
-    debugPrint('maeumgagymAccessToken : $accessToken');
-    await _storage.write(key: 'KaKaoLoginAccessToken', value: accessToken);
+  static Future<String?> readLoginAccessToken() async {
+    return await _storage.read(key: 'LoginAccessToken');
   }
 
-  static Future<void> writeKaKaoLoginRefreshToken(String? refreshToken) async {
-    debugPrint('maeumgagymReFreshToken : $refreshToken');
-    await _storage.write(key: 'KaKaoLoginRefreshToken', value: refreshToken);
-  }
-
-  static Future<String?> readGoogleLoginAccessToken() async {
-    return await _storage.read(key: 'GoogleLoginAccessToken');
-  }
-
-  static Future<String?> readGoogleLoginRefreshToken() async {
-    return await _storage.read(key: 'GoogleLoginRefreshToken');
-  }
-
-  static Future<String?> readKaKaoLoginAccessToken() async {
-    return await _storage.read(key: 'KaKaoLoginAccessToken');
-  }
-
-  static Future<String?> readKaKaoLoginRefreshToken() async {
-    return await _storage.read(key: 'KaKaoLoginRefreshToken');
+  static Future<String?> readLoginRefreshToken() async {
+    return await _storage.read(key: 'LoginRefreshToken');
   }
 
   static Future<String?> readXSRFToken() async {
