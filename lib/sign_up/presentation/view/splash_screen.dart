@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
@@ -52,6 +53,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
+    FlutterNativeSplash.remove(); //지워줘야 다음 화면이 보임
     return Scaffold(
       backgroundColor: MaeumgagymColor.white,
       body: const Center(

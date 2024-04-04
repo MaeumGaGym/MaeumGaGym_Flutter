@@ -1,6 +1,7 @@
 import 'package:camera/camera.dart';
 import 'package:datadog_flutter_plugin/datadog_flutter_plugin.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -13,7 +14,9 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'home/domain/model/local_timer_model.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  // WidgetsFlutterBinding.ensureInitialized();
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   cameras = await availableCameras();
 
   /// Hive 설정
@@ -54,9 +57,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp.router(
       routerConfig: router,
       debugShowCheckedModeBanner: false,
-      // routeInformationProvider: router.routeInformationProvider,
-      // routeInformationParser: router.routeInformationParser,
-      // routerDelegate: router.routerDelegate,
     );
   }
 }
