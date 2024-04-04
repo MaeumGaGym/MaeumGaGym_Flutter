@@ -12,4 +12,11 @@ class SocialLoginModel {
       token: token,
     );
   }
+
+  SocialLoginModel copyWith({AsyncValue<bool>? status, String? token}) {
+    return SocialLoginModel(
+      stateus: stateus,
+      token: token ?? this.token,
+    );
+  }
 }
