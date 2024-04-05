@@ -20,21 +20,9 @@ class CheckBoxStateNotifier extends StateNotifier<CheckBoxState> {
         state.agreeConditionsOfUse &&
         state.moreThanAgeFourteen &&
         state.agreeMarketingInformation) {
-      state = CheckBoxState(
-        allAgree: true,
-        agreePersonInformation: state.agreePersonInformation,
-        agreeConditionsOfUse: state.agreeConditionsOfUse,
-        moreThanAgeFourteen: state.moreThanAgeFourteen,
-        agreeMarketingInformation: state.agreeMarketingInformation,
-      );
+      state = state.copyWith(allAgree: true);
     } else {
-      state = CheckBoxState(
-        allAgree: false,
-        agreePersonInformation: state.agreePersonInformation,
-        agreeConditionsOfUse: state.agreeConditionsOfUse,
-        moreThanAgeFourteen: state.moreThanAgeFourteen,
-        agreeMarketingInformation: state.agreeMarketingInformation,
-      );
+      state = state.copyWith(allAgree: false);
     }
   }
 
@@ -59,43 +47,21 @@ class CheckBoxStateNotifier extends StateNotifier<CheckBoxState> {
   }
 
   void clickAgreePersonInformation() async {
-    state = CheckBoxState(
-      allAgree: state.allAgree,
-      agreePersonInformation: !state.agreePersonInformation,
-      agreeConditionsOfUse: state.agreeConditionsOfUse,
-      moreThanAgeFourteen: state.moreThanAgeFourteen,
-      agreeMarketingInformation: state.agreeMarketingInformation,
-    );
+    state =
+        state.copyWith(agreePersonInformation: !state.agreePersonInformation);
   }
 
   void clickAgreeConditionsOfUse() {
-    state = CheckBoxState(
-      allAgree: state.allAgree,
-      agreePersonInformation: state.agreePersonInformation,
-      agreeConditionsOfUse: !state.agreeConditionsOfUse,
-      moreThanAgeFourteen: state.moreThanAgeFourteen,
-      agreeMarketingInformation: state.agreeMarketingInformation,
-    );
+    state = state.copyWith(agreeConditionsOfUse: !state.agreeConditionsOfUse);
   }
 
   void clickMoreThanAgeFourteen() {
-    state = CheckBoxState(
-      allAgree: state.allAgree,
-      agreePersonInformation: state.agreePersonInformation,
-      agreeConditionsOfUse: state.agreeConditionsOfUse,
-      moreThanAgeFourteen: !state.moreThanAgeFourteen,
-      agreeMarketingInformation: state.agreeMarketingInformation,
-    );
+    state = state.copyWith(moreThanAgeFourteen: !state.moreThanAgeFourteen);
   }
 
   void clickAgreeMarketingInformation() {
-    state = CheckBoxState(
-      allAgree: state.allAgree,
-      agreePersonInformation: state.agreePersonInformation,
-      agreeConditionsOfUse: state.agreeConditionsOfUse,
-      moreThanAgeFourteen: state.moreThanAgeFourteen,
-      agreeMarketingInformation: !state.agreeMarketingInformation,
-    );
+    state = state.copyWith(
+        agreeMarketingInformation: !state.agreeMarketingInformation);
   }
 }
 
@@ -113,4 +79,22 @@ class CheckBoxState {
     required this.moreThanAgeFourteen,
     required this.agreeMarketingInformation,
   });
+
+  CheckBoxState copyWith({
+    bool? allAgree,
+    bool? agreePersonInformation,
+    bool? agreeConditionsOfUse,
+    bool? moreThanAgeFourteen,
+    bool? agreeMarketingInformation,
+  }) {
+    return CheckBoxState(
+      allAgree: allAgree ?? this.allAgree,
+      agreePersonInformation:
+          agreePersonInformation ?? this.agreePersonInformation,
+      agreeConditionsOfUse: agreeConditionsOfUse ?? this.agreeConditionsOfUse,
+      moreThanAgeFourteen: moreThanAgeFourteen ?? this.moreThanAgeFourteen,
+      agreeMarketingInformation:
+          agreeMarketingInformation ?? this.agreeMarketingInformation,
+    );
+  }
 }

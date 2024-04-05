@@ -21,7 +21,8 @@ class SignUpAgreeScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(checkBoxProvider);
+    final checkBoxState = ref.watch(checkBoxProvider);
+    final checkBoxNotifier = ref.read(checkBoxProvider.notifier);
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -72,7 +73,7 @@ class SignUpAgreeScreen extends ConsumerWidget {
                     child: Row(
                       children: [
                         /// CheckBoxWidget ( allCheck )
-                        CheckBoxWidget(state: state.allAgree),
+                        CheckBoxWidget(state: checkBoxState.allAgree),
 
                         /// 모두 동의해요. 글자
                         Padding(
@@ -103,14 +104,13 @@ class SignUpAgreeScreen extends ConsumerWidget {
                       /// CheckBoxWidget ( agreePersonInformation )
                       GestureDetector(
                         onTap: () {
-                          ref
-                              .read(checkBoxProvider.notifier)
-                              .clickAgreePersonInformation();
-                          ref.read(checkBoxProvider.notifier).checkAllAgree();
+                          checkBoxNotifier.clickAgreePersonInformation();
+                          checkBoxNotifier.checkAllAgree();
                         },
                         child: Row(
                           children: [
-                            CheckBoxWidget(state: state.agreePersonInformation),
+                            CheckBoxWidget(
+                                state: checkBoxState.agreePersonInformation),
 
                             /// 개인정보 수집 이용 동의 글자
                             Padding(
@@ -152,14 +152,13 @@ class SignUpAgreeScreen extends ConsumerWidget {
                       /// CheckBoxWidget ( agreeConditionsOfUse )
                       GestureDetector(
                         onTap: () {
-                          ref
-                              .read(checkBoxProvider.notifier)
-                              .clickAgreeConditionsOfUse();
-                          ref.read(checkBoxProvider.notifier).checkAllAgree();
+                          checkBoxNotifier.clickAgreeConditionsOfUse();
+                          checkBoxNotifier.checkAllAgree();
                         },
                         child: Row(
                           children: [
-                            CheckBoxWidget(state: state.agreeConditionsOfUse),
+                            CheckBoxWidget(
+                                state: checkBoxState.agreeConditionsOfUse),
 
                             /// 이용 약관 동의 글자
                             Padding(
@@ -191,16 +190,15 @@ class SignUpAgreeScreen extends ConsumerWidget {
                   height: 44,
                   child: GestureDetector(
                     onTap: () {
-                      ref
-                          .read(checkBoxProvider.notifier)
-                          .clickMoreThanAgeFourteen();
-                      ref.read(checkBoxProvider.notifier).checkAllAgree();
+                      checkBoxNotifier.clickMoreThanAgeFourteen();
+                      checkBoxNotifier.checkAllAgree();
                     },
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         /// CheckBoxWidget ( moreThanAgeFourteen )
-                        CheckBoxWidget(state: state.moreThanAgeFourteen),
+                        CheckBoxWidget(
+                            state: checkBoxState.moreThanAgeFourteen),
 
                         /// 만 14세 이상 글자
                         Padding(
@@ -222,16 +220,15 @@ class SignUpAgreeScreen extends ConsumerWidget {
                   height: 44,
                   child: GestureDetector(
                     onTap: () {
-                      ref
-                          .read(checkBoxProvider.notifier)
-                          .clickAgreeMarketingInformation();
-                      ref.read(checkBoxProvider.notifier).checkAllAgree();
+                      checkBoxNotifier.clickAgreeMarketingInformation();
+                      checkBoxNotifier.checkAllAgree();
                     },
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         /// CheckBoxWidget ( agreeMarketingInformation )
-                        CheckBoxWidget(state: state.agreeMarketingInformation),
+                        CheckBoxWidget(
+                            state: checkBoxState.agreeMarketingInformation),
 
                         /// 마케팅 정보 수신 동의 글자
                         Padding(
@@ -248,12 +245,15 @@ class SignUpAgreeScreen extends ConsumerWidget {
                 ),
               ),
               const Spacer(),
-              state.agreePersonInformation &&
-                      state.agreeConditionsOfUse &&
-                      state.moreThanAgeFourteen
+              checkBoxState.agreePersonInformation &&
+                      checkBoxState.agreeConditionsOfUse &&
+                      checkBoxState.moreThanAgeFourteen
                   ? Padding(
                       padding: const EdgeInsets.only(bottom: 20),
                       child: MaeumgagymButton(
+                        onTap: () {
+                          context.push('/signUpNickName');
+                        },
                         text: '확인',
                         fontSize: 20,
                         fontColor: MaeumgagymColor.white,
@@ -261,14 +261,12 @@ class SignUpAgreeScreen extends ConsumerWidget {
                         height: 58,
                         color: MaeumgagymColor.blue500,
                         isCircular: true,
-                        route: '/signUpNickName',
-                        isGo: false,
-                        useRoute: true,
                       ),
                     )
                   : Padding(
                       padding: const EdgeInsets.only(bottom: 20),
                       child: MaeumgagymButton(
+                        onTap: () {},
                         text: '확인',
                         fontSize: 20,
                         fontColor: MaeumgagymColor.gray200,
@@ -276,9 +274,6 @@ class SignUpAgreeScreen extends ConsumerWidget {
                         height: 58,
                         color: MaeumgagymColor.gray400,
                         isCircular: true,
-                        route: '',
-                        isGo: false,
-                        useRoute: false,
                       ),
                     )
             ],
