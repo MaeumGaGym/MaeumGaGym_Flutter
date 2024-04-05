@@ -7,15 +7,14 @@ import '../../domain/model/social_login_model.dart';
 import '../../domain/usecase/social_login_usecase.dart';
 
 final socialLoginController =
-    StateNotifierProvider<SocialLoginStateNotifier, SocialLoginState>((ref) {
+    StateNotifierProvider<SocialLoginStateNotifier, SocialLoginModel>((ref) {
   return SocialLoginStateNotifier();
 });
 
-class SocialLoginStateNotifier extends StateNotifier<SocialLoginState> {
+class SocialLoginStateNotifier extends StateNotifier<SocialLoginModel> {
   SocialLoginStateNotifier()
-      : super(SocialLoginState(
-          googleAsyncValue: const AsyncData(false),
-          kakaoAsyncValue: const AsyncData(false),
+      : super(SocialLoginModel(
+          stateus: const AsyncData(false),
           token: null,
         ));
 
@@ -37,18 +36,18 @@ class SocialLoginStateNotifier extends StateNotifier<SocialLoginState> {
   Future<void> login(LoginOption option) async {
     switch (option) {
       case LoginOption.google:
-        state = state.copyWith(googleAsyncValue: const AsyncLoading());
+        state = state.copyWith(status: const AsyncLoading());
         SocialLoginModel loginState = await _useCase.login();
         state = state.copyWith(
-          googleAsyncValue: loginState.stateus,
+          status: loginState.stateus,
           token: loginState.token,
         );
         break;
       case LoginOption.kakao:
-        state = state.copyWith(kakaoAsyncValue: const AsyncLoading());
+        state = state.copyWith(status: const AsyncLoading());
         SocialLoginModel loginState = await _useCase.login();
         state = state.copyWith(
-          kakaoAsyncValue: loginState.stateus,
+          status: loginState.stateus,
           token: loginState.token,
         );
         break;
@@ -60,33 +59,9 @@ class SocialLoginStateNotifier extends StateNotifier<SocialLoginState> {
   Future<void> logout() async {
     SocialLoginModel loginState = await _useCase.logout();
 
-    SocialLoginState(
-      googleAsyncValue: loginState.stateus,
-      kakaoAsyncValue: loginState.stateus,
+    SocialLoginModel(
+      stateus: loginState.stateus,
       token: loginState.token,
-    );
-  }
-}
-
-class SocialLoginState {
-  final AsyncValue<bool> googleAsyncValue;
-  final AsyncValue<bool> kakaoAsyncValue;
-  final String? token;
-
-  SocialLoginState({
-    required this.googleAsyncValue,
-    required this.kakaoAsyncValue,
-    required this.token,
-  });
-
-  SocialLoginState copyWith(
-      {AsyncValue<bool>? googleAsyncValue,
-      AsyncValue<bool>? kakaoAsyncValue,
-      String? token}) {
-    return SocialLoginState(
-      googleAsyncValue: googleAsyncValue ?? this.googleAsyncValue,
-      kakaoAsyncValue: kakaoAsyncValue ?? this.kakaoAsyncValue,
-      token: token ?? this.token,
     );
   }
 }

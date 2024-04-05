@@ -39,7 +39,7 @@ lane :internal do
     skip_upload_screenshots: true,
     skip_upload_changelogs: true,
     skip_upload_apk: true,
-    release_status: 'draft'
+    release_status: 'completed'
   )
 end
 

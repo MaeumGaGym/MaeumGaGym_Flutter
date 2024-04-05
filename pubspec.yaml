@@ -3,7 +3,7 @@ description: A new Flutter project.
 
 publish_to: 'none'
 
-version: 0.6.1+21
+version: 0.7.1+33
 
 environment:
   sdk: '>=3.0.6 <4.0.0'
@@ -33,6 +33,8 @@ dependencies:
   hive: ^2.2.3
   hive_flutter: ^1.1.0
   hive_generator: ^2.0.1
+  datadog_flutter_plugin: ^2.4.0
+  flutter_native_splash: ^2.3.10
 
 dev_dependencies:
   flutter_test:
@@ -78,3 +80,11 @@ flutter:
           weight: 800
         - asset: assets/fonts/Pretendard-Black.otf
           weight: 900
+
+flutter_native_splash:
+  color: "#FFFFFF"
+  image: assets/image/core_icon/splash_logo.png
+
+  android_12:
+    color: "#FFFFFF"
+    image: assets/image/core_icon/splash_logo.png
