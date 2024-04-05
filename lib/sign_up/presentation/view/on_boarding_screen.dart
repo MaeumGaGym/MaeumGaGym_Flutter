@@ -10,6 +10,7 @@ import 'package:maeum_ga_gym_flutter/sign_up/presentation/provider/maeumgagym_lo
 import 'package:maeum_ga_gym_flutter/sign_up/presentation/provider/maeumgagym_re_issue_provider.dart';
 import 'package:maeum_ga_gym_flutter/sign_up/presentation/provider/maeumgagym_recovery_provider.dart';
 import 'package:maeum_ga_gym_flutter/sign_up/presentation/provider/social_login_provider.dart';
+import 'package:maeum_ga_gym_flutter/sign_up/presentation/widget/loading_widget.dart';
 import '../../../core/component/text/pretendard/ptd_text_widget.dart';
 import '../../../core/di/login_option_di.dart';
 
@@ -220,28 +221,10 @@ class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
                 ),
               ],
             ),
-            Builder(
-              builder: (context) {
-                if (ref.watch(maeumgagymRecoveryController).hasValue &&
-                    ref.watch(maeumgagymLoginController).statusCode.hasValue &&
-                    ref.watch(socialLoginController).stateus.hasValue) {
-                  return const SizedBox();
-                } else {
-                  return Opacity(
-                    opacity: 0.5,
-                    child: Container(
-                      width: MediaQuery.of(context).size.width,
-                      height: MediaQuery.of(context).size.height,
-                      color: MaeumgagymColor.gray400,
-                      child: Center(
-                        child: CircularProgressIndicator(
-                          color: MaeumgagymColor.blue500,
-                        ),
-                      ),
-                    ),
-                  );
-                }
-              },
+            LoadingWidget(
+              state: ref.watch(maeumgagymRecoveryController).hasValue &&
+                  ref.watch(maeumgagymLoginController).statusCode.hasValue &&
+                  ref.watch(socialLoginController).stateus.hasValue,
             )
           ],
         ),
