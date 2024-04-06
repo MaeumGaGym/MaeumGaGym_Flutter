@@ -1,7 +1,9 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:maeum_ga_gym_flutter/self_care/domain/model/exercise_info_model.dart';
+import 'package:maeum_ga_gym_flutter/self_care/domain/model/exercise_info_response_model.dart';
+import 'package:maeum_ga_gym_flutter/self_care/domain/model/routine_and_user_info_model.dart';
 import 'package:maeum_ga_gym_flutter/self_care/domain/model/routine_history_model.dart';
 import 'package:maeum_ga_gym_flutter/self_care/domain/model/routine_response_model.dart';
+import 'package:maeum_ga_gym_flutter/self_care/domain/model/user_info_model.dart';
 import 'package:maeum_ga_gym_flutter/self_care/domain/repository/routine_repository.dart';
 
 class RoutineUseCase {
@@ -14,7 +16,7 @@ class RoutineUseCase {
     required String routineName,
     required bool isArchived,
     required bool isShared,
-    required List<ExerciseInfoModel> exerciseInfoModelList,
+    required List<ExerciseInfoResponseModel> exerciseInfoModelList,
     List<String>? dayOfWeeks,
   }) async {
     return await _repository.createRoutine(
@@ -24,6 +26,14 @@ class RoutineUseCase {
       isShared: isShared,
       exerciseInfoModelList: exerciseInfoModelList,
       dayOfWeeks: dayOfWeeks,
+    );
+  }
+
+  Future<RoutineAndUserInfoModel> getRoutineAllMe({
+    required String accessToken,
+  }) async {
+    return await _repository.getRoutineAllMe(
+      accessToken: accessToken,
     );
   }
 
@@ -48,7 +58,7 @@ class RoutineUseCase {
     required String routineName,
     required bool isArchived,
     required bool isShared,
-    List<ExerciseInfoModel>? exerciseInfoModelList,
+    List<ExerciseInfoResponseModel>? exerciseInfoModelList,
     required int routineId,
     List<String>? dayOfWeeks,
   }) async {
