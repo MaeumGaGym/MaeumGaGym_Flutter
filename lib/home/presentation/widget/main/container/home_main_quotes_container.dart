@@ -13,25 +13,22 @@ class HomeMainQuotesContainer extends ConsumerWidget {
     return Builder(
       builder: (context) => ref.watch(homeQuotesController).statusCode.when(
         data: (data) {
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 12),
-                child: PtdTextWidget.titleMedium(
+          return Padding(
+            padding: const EdgeInsets.only(left: 12),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                PtdTextWidget.titleMedium(
                   ref.watch(homeQuotesController).message.toString(),
                   MaeumgagymColor.blue500,
                 ),
-              ),
-              const SizedBox(height: 8),
-              Padding(
-                padding: const EdgeInsets.only(left: 12),
-                child: PtdTextWidget.labelMedium(
+                const SizedBox(height: 8),
+                PtdTextWidget.labelMedium(
                   ref.watch(homeQuotesController).author.toString(),
                   MaeumgagymColor.gray500,
                 ),
-              ),
-            ],
+              ],
+            ),
           );
         },
         error: (err, _) {
