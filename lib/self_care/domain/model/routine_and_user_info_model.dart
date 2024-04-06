@@ -25,4 +25,16 @@ class RoutineAndUserInfoModel {
           .toList(),
     );
   }
+
+  RoutineAndUserInfoModel copyWith({
+    AsyncValue<int>? statusCode,
+    UserInfoModel? userInfo,
+    List<RoutineResponseModel>? routineList,
+  }) {
+    return RoutineAndUserInfoModel(
+      statusCode: statusCode ?? this.statusCode,
+      userInfo: userInfo ?? this.userInfo,
+      routineList: routineList ?? this.routineList,
+    );
+  }
 }
