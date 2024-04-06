@@ -1,6 +1,6 @@
 class RoutineStatusModel {
-  final bool isArchived;
-  final bool isShared;
+  final bool? isArchived;
+  final bool? isShared;
 
   RoutineStatusModel({
     required this.isArchived,
