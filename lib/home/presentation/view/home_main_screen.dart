@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
+import 'package:maeum_ga_gym_flutter/home/presentation/providers/home_quotes_provider.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/providers/local_timer_provider.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/providers/timer_state_provider.dart';
+import 'package:maeum_ga_gym_flutter/home/presentation/widget/main/container/home_main_quotes_container.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/widget/main/container/home_main_timer_and_metronome_container.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/widget/main/container/home_main_pedometer_container.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/widget/main/widget/home_main_app_bar.dart';
@@ -22,7 +24,14 @@ class _HomeMainScreenState extends ConsumerState<HomeMainScreen> {
   @override
   void initState() {
     super.initState();
-    ref.read(localTimerController.notifier).getTimers().then(
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      initFunction();
+    });
+  }
+
+  Future<void> initFunction() async {
+    await ref.read(localTimerController.notifier).getTimers().then(
       (value) {
         ref
             .read(timersProvider.notifier)
@@ -36,6 +45,8 @@ class _HomeMainScreenState extends ConsumerState<HomeMainScreen> {
         );
       },
     );
+
+    await ref.read(homeQuotesController.notifier).getQuotes();
   }
 
   @override
@@ -62,21 +73,7 @@ class _HomeMainScreenState extends ConsumerState<HomeMainScreen> {
               crossAxisAlignment: CrossAxisAlignment.start, // 위젯 왼쪽 정렬
               children: [
                 const SizedBox(height: 20),
-                Padding(
-                  padding: const EdgeInsets.only(left: 12),
-                  child: PtdTextWidget.titleMedium(
-                    "\"가능성은 한계를 넘는다.\"",
-                    MaeumgagymColor.blue500,
-                  ),
-                ),
-                const SizedBox(height: 8),
-                Padding(
-                  padding: const EdgeInsets.only(left: 12),
-                  child: PtdTextWidget.labelMedium(
-                    "Kimain",
-                    MaeumgagymColor.gray500,
-                  ),
-                ),
+                const HomeMainQuotesContainer(),
                 const SizedBox(height: 24),
                 const HomeMainWalkContainer(),
                 const SizedBox(height: 24),
