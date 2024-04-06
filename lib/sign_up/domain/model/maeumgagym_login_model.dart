@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class MaeumgagymLoginModel {
-  final AsyncValue<int> statusCode;
+  AsyncValue<int> statusCode;
   final String? accessToken;
   final String? refreshToken;
 
@@ -19,6 +19,18 @@ class MaeumgagymLoginModel {
       accessToken: json.value('authorization').toString(),
       refreshToken: jsonRFToken.substring(9, jsonRFToken.indexOf(';')),
       statusCode: AsyncData(statusCode),
+    );
+  }
+
+  MaeumgagymLoginModel copyWith({
+    AsyncValue<int>? statusCode,
+    final String? accessToken,
+    final String? refreshToken,
+  }) {
+    return MaeumgagymLoginModel(
+      statusCode: statusCode ?? this.statusCode,
+      accessToken: accessToken ?? accessToken,
+      refreshToken: refreshToken ?? refreshToken,
     );
   }
 }

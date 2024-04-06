@@ -4,10 +4,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:maeum_ga_gym_flutter/sign_up/presentation/provider/nickname_check_provider.dart';
+import 'package:maeum_ga_gym_flutter/sign_up/presentation/widget/loading_widget.dart';
 
 /// Core
 import '../../../core/component/text/pretendard/ptd_text_widget.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
+
+import '../provider/maeumgagym_sign_up_provider.dart';
 
 /// Widget
 import '../widget/sign_up_nick_name/animated_check_button.dart';
@@ -23,62 +26,71 @@ class SignUpNickNameScreen extends StatelessWidget {
 
     return Scaffold(
       body: SafeArea(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: Stack(
           children: [
-            /// pop 버튼
-            Consumer(
-              builder: (context, ref, child) {
-                return Padding(
-                  padding: const EdgeInsets.fromLTRB(20, 12, 20, 0),
-                  child: GestureDetector(
-                    onTap: () {
-                      context.pop();
-                      ref
-                          .read(nicknameTextFieldProvider.notifier)
-                          .clicked(false);
-                      ref
-                          .read(nicknameTextFieldProvider.notifier)
-                          .isText(false);
-                      ref
-                          .read(nicknameTextFieldProvider.notifier)
-                          .theError(false);
-                    },
-                    child: SvgPicture.asset(
-                      'assets/image/core_icon/left_arrow_icon.svg',
-                      width: 24,
-                      height: 24,
-                    ),
-                  ),
-                );
-              },
-            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                /// pop 버튼
+                Consumer(
+                  builder: (context, ref, child) {
+                    final nicknameTextFieldNotifier =
+                        ref.read(nicknameTextFieldProvider.notifier);
 
-            /// 닉네임 글자
-            Padding(
-              padding: const EdgeInsets.fromLTRB(20, 32, 20, 0),
-              child: PtdTextWidget.titleLarge('닉네임', MaeumgagymColor.black),
-            ),
+                    return Padding(
+                      padding: const EdgeInsets.fromLTRB(20, 12, 20, 0),
+                      child: GestureDetector(
+                        onTap: () {
+                          context.pop();
+                          nicknameTextFieldNotifier.clicked(false);
+                          nicknameTextFieldNotifier.isText(false);
+                          nicknameTextFieldNotifier.theError(false);
+                        },
+                        child: SvgPicture.asset(
+                          'assets/image/core_icon/left_arrow_icon.svg',
+                          width: 24,
+                          height: 24,
+                        ),
+                      ),
+                    );
+                  },
+                ),
 
-            /// 자신만의 닉네임을 입력해 주세요 글자
-            Padding(
-              padding: const EdgeInsets.fromLTRB(20, 8, 20, 0),
-              child: PtdTextWidget.bodyMedium(
-                  '자신만의 닉네임을 입력해 주세요', MaeumgagymColor.gray600),
-            ),
-
-            /// 닉네임 TextField
-            Consumer(
-              builder: (context, ref, child) {
-                return Padding(
+                /// 닉네임 글자
+                Padding(
                   padding: const EdgeInsets.fromLTRB(20, 32, 20, 0),
-                  child: MaeumgagymTextField(
-                    controller: nicknameController,
-                    text: '닉네임',
-                    errorText: ref.watch(nicknameErrorController),
-                    textFieldProvider: nicknameTextFieldProvider,
-                  ),
+                  child: PtdTextWidget.titleLarge('닉네임', MaeumgagymColor.black),
+                ),
+
+                /// 자신만의 닉네임을 입력해 주세요 글자
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(20, 8, 20, 0),
+                  child: PtdTextWidget.bodyMedium(
+                      '자신만의 닉네임을 입력해 주세요', MaeumgagymColor.gray600),
+                ),
+
+                /// 닉네임 TextField
+                Consumer(
+                  builder: (context, ref, child) {
+                    return Padding(
+                      padding: const EdgeInsets.fromLTRB(20, 32, 20, 0),
+                      child: MaeumgagymTextField(
+                        controller: nicknameController,
+                        text: '닉네임',
+                        errorText: ref.watch(nicknameErrorController),
+                        textFieldProvider: nicknameTextFieldProvider,
+                      ),
+                    );
+                  },
+                ),
+              ],
+            ),
+            Consumer(
+              builder: (context, ref, child) {
+                return LoadingWidget(
+                  state: ref.watch(nicknameCheckController).hasValue &&
+                      ref.watch(maeumgagymSignUpController).hasValue,
                 );
               },
             ),

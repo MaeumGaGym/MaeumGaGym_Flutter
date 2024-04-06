@@ -1,6 +1,9 @@
 import 'package:camera/camera.dart';
+import 'package:datadog_flutter_plugin/datadog_flutter_plugin.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart';
 
@@ -11,7 +14,9 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'home/domain/model/local_timer_model.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  // WidgetsFlutterBinding.ensureInitialized();
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   cameras = await availableCameras();
 
   /// Hive 설정
@@ -27,7 +32,21 @@ void main() async {
     nativeAppKey: 'dcfcd3ab4a997c5a53e2ab26a8ec2a63',
   );
 
-  runApp(const ProviderScope(child: MyApp()));
+  final datadogConfiguration = DatadogConfiguration(
+    clientToken: 'pub32b6d411d17d461c90046e46259be242',
+    env: 'prod',
+    site: DatadogSite.us5,
+    nativeCrashReportEnabled: true,
+    loggingConfiguration: DatadogLoggingConfiguration(),
+    rumConfiguration: DatadogRumConfiguration(
+      applicationId: 'd3b74963-1b00-4b80-b79c-fcb76ff19e34',
+    ),
+  );
+
+  await DatadogSdk.runApp(datadogConfiguration, TrackingConsent.granted,
+      () async {
+    runApp(const ProviderScope(child: MyApp()));
+  });
 }
 
 class MyApp extends StatelessWidget {
@@ -36,10 +55,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
+      routerConfig: router,
       debugShowCheckedModeBanner: false,
-      routeInformationProvider: router.routeInformationProvider,
-      routeInformationParser: router.routeInformationParser,
-      routerDelegate: router.routerDelegate,
     );
   }
 }

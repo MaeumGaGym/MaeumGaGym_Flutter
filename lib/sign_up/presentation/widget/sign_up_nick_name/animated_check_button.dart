@@ -118,25 +118,10 @@ class AnimatedCheckButton extends ConsumerWidget {
           color: inText ? MaeumgagymColor.blue500 : MaeumgagymColor.gray400,
           borderRadius: BorderRadius.circular(onClicked ? 0 : 8),
         ),
-        child: Builder(
-          builder: (context) {
-            if (ref.watch(nicknameCheckController).hasValue &&
-                ref.watch(maeumgagymSignUpController).hasValue) {
-              return Center(
-                child: inText
-                    ? PtdTextWidget.labelLarge('회원가입', MaeumgagymColor.white)
-                    : PtdTextWidget.labelLarge('회원가입', MaeumgagymColor.gray200),
-              );
-            } else if (ref.watch(nicknameCheckController).hasError &&
-                ref.watch(maeumgagymSignUpController).hasError) {
-              throw Exception('회원가입 Error');
-            } else {
-              return Center(
-                  child: CircularProgressIndicator(
-                color: MaeumgagymColor.white,
-              ));
-            }
-          },
+        child: Center(
+          child: inText
+              ? PtdTextWidget.labelLarge('회원가입', MaeumgagymColor.white)
+              : PtdTextWidget.labelLarge('회원가입', MaeumgagymColor.gray200),
         ),
       ),
     );

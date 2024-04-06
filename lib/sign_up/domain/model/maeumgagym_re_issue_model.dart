@@ -21,4 +21,15 @@ class MaeumgagymReIssueModel {
       stateus: AsyncData(statusCode),
     );
   }
+
+  MaeumgagymReIssueModel copyWith({
+    final AsyncValue<int>? stateus,
+    final String? accessToken,
+    final String? refreshToken,
+  }) =>
+      MaeumgagymReIssueModel(
+        stateus: stateus ?? this.stateus,
+        accessToken: accessToken ?? this.accessToken,
+        refreshToken: refreshToken ?? this.refreshToken,
+      );
 }
