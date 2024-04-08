@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
-import 'package:maeum_ga_gym_flutter/core/component/pose/provider/pose_tab_provider.dart';
 
-import '../../../../../../config/maeumgagym_color.dart';
-import '../../../../text/pretendard/ptd_text_widget.dart';
+import '../../../../../../../config/maeumgagym_color.dart';
+import '../../../../../text/pretendard/ptd_text_widget.dart';
+import '../../../provider/pose_tab_provider.dart';
 
 class PoseRecommendWidgetTop extends ConsumerWidget {
   final String titleImage, titleText;

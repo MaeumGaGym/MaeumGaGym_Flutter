@@ -1,8 +1,9 @@
 /// Package
 import 'package:flutter/material.dart';
 
+import '../../../../../../pose/presentation/widget/pose_data.dart';
+
 /// Widget
-import '../../../../../pose/presentation/widget/pose_data.dart';
 import 'recommend/pose_recommend_widget.dart';
 
 class PoseMainTabBodyRecommendScreen extends StatelessWidget {

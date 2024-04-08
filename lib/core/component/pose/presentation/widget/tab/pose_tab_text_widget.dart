@@ -2,8 +2,7 @@
 import 'package:flutter/material.dart';
 
 /// Core
-import '../../../../../config/maeumgagym_color.dart';
-import '../../../text/pretendard/ptd_text_widget.dart';
+import '../../../../text/pretendard/ptd_text_widget.dart';
 
 class PoseTabTextWidget extends StatelessWidget {
   final String text;

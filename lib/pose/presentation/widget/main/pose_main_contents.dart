@@ -1,8 +1,9 @@
 /// Package
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:maeum_ga_gym_flutter/core/component/pose/view/pose_main_tab_bar.dart';
-import 'package:maeum_ga_gym_flutter/core/component/pose/view/pose_main_tab_body.dart';
+
+import '../../../../core/component/pose/presentation/view/pose_main_tab_bar.dart';
+import '../../../../core/component/pose/presentation/view/pose_main_tab_body.dart';
 
 /// 자세(글씨)까지를 제외한 고정되는 Pose Contents들
 class PoseMainTabContents extends ConsumerWidget {

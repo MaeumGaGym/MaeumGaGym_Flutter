@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
 
-import '../../../../../../config/maeumgagym_color.dart';
-import '../../../../../../pose/presentation/view/pose_detail_screen.dart';
-import '../../../../text/pretendard/ptd_text_widget.dart';
+import '../../../../../../../config/maeumgagym_color.dart';
+import '../../../../../../../pose/presentation/view/pose_detail_screen.dart';
+import '../../../../../text/pretendard/ptd_text_widget.dart';
 
 class PoseRecommendWidgetBottom extends StatelessWidget {
   final String keyData;

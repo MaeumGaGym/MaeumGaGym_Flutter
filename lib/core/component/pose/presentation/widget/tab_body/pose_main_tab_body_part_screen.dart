@@ -1,13 +1,14 @@
 /// Package
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:maeum_ga_gym_flutter/core/component/pose/presentation/widget/tab_body/part/pose_part_selector_widget.dart';
+
+import '../../../../../../pose/presentation/widget/pose_data.dart';
 
 /// Provider
 import '../../provider/pose_part_selector_provider.dart';
 
 /// Widget
-import 'package:maeum_ga_gym_flutter/core/component/pose/widget/tab_body/part/pose_part_selector_widget.dart';
-import '../../../../../pose/presentation/widget/pose_data.dart';
 import 'part/pose_part_widget.dart';
 
 class PoseMainTabBodyPartScreen extends ConsumerWidget {

@@ -3,12 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
 
 /// core
-import '../../../../../../config/maeumgagym_color.dart';
-import '../../../../text/pretendard/ptd_text_widget.dart';
 
 /// Widget
 import 'package:maeum_ga_gym_flutter/pose/presentation/widget/pose_data.dart';
-import '../../../../../../pose/presentation/view/pose_detail_screen.dart';
+
+import '../../../../../../../config/maeumgagym_color.dart';
+import '../../../../../../../pose/presentation/view/pose_detail_screen.dart';
+import '../../../../../text/pretendard/ptd_text_widget.dart';
 
 class PosePartWidget extends StatelessWidget {
   final int index;

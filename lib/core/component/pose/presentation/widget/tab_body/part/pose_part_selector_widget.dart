@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../../../config/maeumgagym_color.dart';
-import '../../../../text/pretendard/ptd_text_widget.dart';
+import '../../../../../../../config/maeumgagym_color.dart';
+import '../../../../../text/pretendard/ptd_text_widget.dart';
 import '../../../provider/pose_part_selector_provider.dart';
 
 class PosePartSelectorWidget extends ConsumerWidget {
