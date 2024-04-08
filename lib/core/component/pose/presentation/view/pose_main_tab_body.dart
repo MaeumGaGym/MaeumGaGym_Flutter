@@ -10,7 +10,7 @@ import '../widget/tab_body/pose_main_tab_body_part_screen.dart';
 import '../widget/tab_body/pose_main_tab_body_recommend_screen.dart';
 
 class PoseMainTabBody extends ConsumerWidget {
-  final List<List<String>> tabBodyData;
+  final List<String> tabBodyData;
   final bool useNavigator;
 
   const PoseMainTabBody({
@@ -23,19 +23,9 @@ class PoseMainTabBody extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     /// Tab Contents
     return Expanded(
-      child: IndexedStack(
-        index: ref.watch(poseTabController),
-        children: [
-          /// 추천 운동 스크린
-          const PoseMainTabBodyRecommendScreen(),
-
-          /// 부위별 스크린
-          for (int i = 0; i < tabBodyData.length; i++)
-            PoseMainTabBodyPartScreen(
-              tabName: tabBodyData[i],
-              useNavigator: useNavigator,
-            )
-        ],
+      child: PoseMainTabBodyPartScreen(
+        tabName: tabBodyData[ref.watch(poseTabController)],
+        useNavigator: useNavigator,
       ),
     );
   }
