@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:maeum_ga_gym_flutter/core/component/pose/presentation/provider/pose_tag_list_provider.dart';
 import '../../../../../config/maeumgagym_color.dart';
 import '../provider/pose_part_selector_provider.dart';
 import '../provider/pose_tab_provider.dart';
@@ -7,9 +8,14 @@ import '../widget/tab/pose_tab_text_widget.dart';
 
 /// PoseMainScreen에 있는 TabBar
 class PoseMainTabBar extends ConsumerStatefulWidget {
+  final List<String> tabBodyData;
   final List<String> tabBarData;
 
-  const PoseMainTabBar({super.key, required this.tabBarData});
+  const PoseMainTabBar({
+    super.key,
+    required this.tabBarData,
+    required this.tabBodyData,
+  });
 
   @override
   ConsumerState<PoseMainTabBar> createState() => _PoseMainTabBarState();
@@ -54,6 +60,9 @@ class _PoseMainTabBarState extends ConsumerState<PoseMainTabBar>
                     onTap: () {
                       poseTabNotifier.state = index;
                       posePartNotifier.init(index);
+                      ref.read(poseTagListController.notifier).getTagList(
+                          tag:
+                              widget.tabBodyData[ref.watch(poseTabController)]);
                     },
                     child: Container(
                       decoration: BoxDecoration(

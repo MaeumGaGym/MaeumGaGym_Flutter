@@ -13,7 +13,7 @@ class PoseMainTabContents extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     /// TabBar 글씨를 나타낸 List
     final List<String> tabBarData = [
-      '추천',
+      // '추천',
       '가슴',
       '등',
       '어깨',
@@ -28,21 +28,21 @@ class PoseMainTabContents extends ConsumerWidget {
     /// ex) ['상체', '가슴']
     ///  - 상체 전체의 자극을 줄 수 있는 운동
     ///  - 가슴에 자극을 줄 수 있는 운동만 보여줌
-    List<List<String>> tabBodyData = [
-      ['상체', '가슴'],
-      ['상체', '등'],
-      ['상체', '어깨'],
-      ['상체', '팔'],
-      ['상체', '복근'],
-      ['하체', '앞 허벅지'],
-      ['하체', '뒷 허벅지'],
-      ['하체', '종아리'],
+    List<String> tabBodyData = [
+      '가슴',
+      '등',
+      '어깨',
+      '팔',
+      '복근',
+      '앞 허벅지',
+      '뒷 허벅지',
+      '종아리',
     ];
 
     return Column(
       children: [
         /// Tap Bar
-        PoseMainTabBar(tabBarData: tabBarData),
+        PoseMainTabBar(tabBarData: tabBarData, tabBodyData: tabBodyData),
 
         /// Tab Contents
         PoseMainTabBody(useNavigator: true, tabBodyData: tabBodyData),
