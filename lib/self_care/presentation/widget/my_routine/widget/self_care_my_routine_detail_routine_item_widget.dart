@@ -1,24 +1,40 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/my_routine/self_care_my_routine_all_me_routine_provider.dart';
 
-class SelfCareMyRoutineDetailRoutineItemWidget extends StatelessWidget {
-  const SelfCareMyRoutineDetailRoutineItemWidget({super.key});
+class SelfCareMyRoutineDetailRoutineItemWidget extends ConsumerWidget {
+  final int routineListIndex;
+  final int exerciseInfoListIndex;
+
+  const SelfCareMyRoutineDetailRoutineItemWidget({
+    super.key,
+    required this.routineListIndex,
+    required this.exerciseInfoListIndex,
+  });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final routineAllMeState = ref.watch(selfCareMyRoutineAllMeRoutineProvider);
+    final item = routineAllMeState.routineList[routineListIndex]
+        .exerciseInfoResponseList[exerciseInfoListIndex];
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Row(
           children: [
-            Container(
-              height: 80,
-              width: 80,
-              decoration: BoxDecoration(
-                color: MaeumgagymColor.gray25,
-                borderRadius: BorderRadius.circular(100),
+            ClipOval(
+              child: ImageWidget(
+                width: 80,
+                height: 80,
+                imageType: ImageType.pngNetwork,
+                image: item.pose!.thumbnail.toString(),
+                backgroundColor: MaeumgagymColor.gray25,
               ),
             ),
             const SizedBox(width: 18),
@@ -26,12 +42,12 @@ class SelfCareMyRoutineDetailRoutineItemWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 PtdTextWidget.bodyLarge(
-                  "푸시업",
+                  item.pose!.name.toString(),
                   MaeumgagymColor.black,
                 ),
                 const SizedBox(height: 2),
                 PtdTextWidget.bodyMedium(
-                  "10개 | 4세트",
+                  "${item.repetitions}개 | ${item.sets}세트",
                   MaeumgagymColor.gray400,
                 ),
               ],

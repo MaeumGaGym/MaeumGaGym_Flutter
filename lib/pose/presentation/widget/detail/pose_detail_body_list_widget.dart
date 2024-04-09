@@ -38,11 +38,12 @@ class PoseDetailBodyListWidget extends StatelessWidget {
               padding: const EdgeInsets.only(bottom: 16),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   /// 번호
                   SizedBox(
                     width: 52,
+                    height: 32,
                     child: PtdTextWidget.titleMedium(
                       (index + 1).toString().padLeft(2, '0'),
                       MaeumgagymColor.gray200,
@@ -53,7 +54,6 @@ class PoseDetailBodyListWidget extends StatelessWidget {
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const SizedBox(height: 7),
                       SizedBox(
                         width: MediaQuery.of(context).size.width - 92,
                         child: PtdTextWidget.bodyMedium(

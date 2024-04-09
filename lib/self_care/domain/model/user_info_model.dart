@@ -1,6 +1,6 @@
 class UserInfoModel {
-  final String nickname;
-  final String profileImage;
+  final String? nickname;
+  final String? profileImage;
 
   UserInfoModel({
     required this.nickname,
@@ -10,7 +10,7 @@ class UserInfoModel {
   factory UserInfoModel.fromJson(Map<String, dynamic> json) {
     return UserInfoModel(
       nickname: json['nickname'],
-      profileImage: json['profile_name'],
+      profileImage: json['profile_image'],
     );
   }
 }

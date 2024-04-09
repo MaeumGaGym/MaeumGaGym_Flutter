@@ -42,21 +42,21 @@ class PoseSearchBody extends ConsumerWidget {
                   return const SizedBox.shrink();
                 } else {
                   return GestureDetector(
-                    onTap: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => PoseDetailScreen(
-                          poseImages: data[index]['poseImages'],
-                          simpleName: data[index]['simpleName'],
-                          exactName: data[index]['exactName'],
-                          simplePart: data[index]['simplePart'],
-                          exactPart: data[index]['exactPart'],
-                          exerciseWay: data[index]['exerciseWay'],
-                          caution: data[index]['caution'],
-                          breatheWay: data[index]['breatheWay'],
-                        ),
-                      ),
-                    ),
+                    // onTap: () => Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(
+                    //     builder: (context) => PoseDetailScreen(
+                    //       poseImages: data[index]['poseImages'],
+                    //       simpleName: data[index]['simpleName'],
+                    //       exactName: data[index]['exactName'],
+                    //       simplePart: data[index]['simplePart'],
+                    //       exactPart: data[index]['exactPart'],
+                    //       exerciseWay: data[index]['exerciseWay'],
+                    //       caution: data[index]['caution'],
+                    //       breatheWay: data[index]['breatheWay'],
+                    //     ),
+                    //   ),
+                    // ),
                     child: Container(
                       width: MediaQuery.of(context).size.width - 40,
                       color: Colors.white,
