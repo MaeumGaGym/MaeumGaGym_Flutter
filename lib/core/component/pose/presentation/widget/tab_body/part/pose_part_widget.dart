@@ -1,12 +1,15 @@
 /// Package
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
 import 'package:maeum_ga_gym_flutter/core/component/pose/domain/model/pose_tag_list_model.dart';
+import 'package:maeum_ga_gym_flutter/pose/presentation/provider/pose_detail_provider.dart';
+import 'package:maeum_ga_gym_flutter/pose/presentation/view/pose_detail_screen.dart';
 
 import '../../../../../../../config/maeumgagym_color.dart';
 import '../../../../../text/pretendard/ptd_text_widget.dart';
 
-class PosePartWidget extends StatelessWidget {
+class PosePartWidget extends ConsumerWidget {
   final Responses data;
   final bool useNavigator;
 
@@ -17,28 +20,19 @@ class PosePartWidget extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     /// 눌렀을 때 PoseDetailScreen
     return GestureDetector(
       onTap: () {
         /// useNavigator 가 true 일때
         if (useNavigator) {
           /// PoseDetailScreen 으로 이동
-          // Navigator.push(
-          //   context,
-          //   MaterialPageRoute(
-          //     builder: (context) => PoseDetailScreen(
-          //       poseImages: data[index]['poseImages'],
-          //       simpleName: data[index]['simpleName'],
-          //       exactName: data[index]['exactName'],
-          //       simplePart: data[index]['simplePart'],
-          //       exactPart: data[index]['exactPart'],
-          //       exerciseWay: data[index]['exerciseWay'],
-          //       caution: data[index]['caution'],
-          //       breatheWay: data[index]['breatheWay'],
-          //     ),
-          //   ),
-          // );
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => PoseDetailScreen(id: data.id!),
+            ),
+          );
         }
       },
       child: Padding(
