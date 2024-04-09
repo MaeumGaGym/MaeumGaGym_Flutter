@@ -36,21 +36,21 @@ class PoseRecommendWidgetBottom extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 GestureDetector(
-                  onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => PoseDetailScreen(
-                        poseImages: data[index]['poseImages'],
-                        simpleName: data[index]['simpleName'],
-                        exactName: data[index]['exactName'],
-                        simplePart: data[index]['simplePart'],
-                        exactPart: data[index]['exactPart'],
-                        exerciseWay: data[index]['exerciseWay'],
-                        caution: data[index]['caution'],
-                        breatheWay: data[index]['breatheWay'],
-                      ),
-                    ),
-                  ),
+                  // onTap: () => Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(
+                  //     builder: (context) => PoseDetailScreen(
+                  //       poseImages: data[index]['poseImages'],
+                  //       simpleName: data[index]['simpleName'],
+                  //       exactName: data[index]['exactName'],
+                  //       simplePart: data[index]['simplePart'],
+                  //       exactPart: data[index]['exactPart'],
+                  //       exerciseWay: data[index]['exerciseWay'],
+                  //       caution: data[index]['caution'],
+                  //       breatheWay: data[index]['breatheWay'],
+                  //     ),
+                  //   ),
+                  // ),
                   child: Padding(
                     padding: const EdgeInsets.only(right: 12),
                     child: ImageWidget(
