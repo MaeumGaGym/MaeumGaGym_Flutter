@@ -1,10 +1,10 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/core/di/login_option_di.dart';
-import 'package:maeum_ga_gym_flutter/sign_up/data/repositoryImpl/maeumgagym_re_issue_repository_impl.dart';
-import 'package:maeum_ga_gym_flutter/sign_up/domain/model/maeumgagym_re_issue_model.dart';
-import 'package:maeum_ga_gym_flutter/sign_up/domain/usecase/maeumgagym_re_issue_usecase.dart';
+import 'package:maeum_ga_gym_flutter/core/re_issue/data/maeumgagym_re_issue_repository_impl.dart';
+import 'package:maeum_ga_gym_flutter/core/re_issue/domain/maeumgagym_re_issue_model.dart';
+import 'package:maeum_ga_gym_flutter/core/re_issue/domain/maeumgagym_re_issue_usecase.dart';
 
-import '../../../core/di/token_secure_storage_di.dart';
+import '../../di/token_secure_storage_di.dart';
 
 final maeumgagymReIssueController = StateNotifierProvider<
     MaeumgagymReIssueStateNotifier, MaeumgagymReIssueModel>((ref) {

@@ -7,7 +7,7 @@ import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
 
 import '../../../core/di/login_option_di.dart';
 import '../../../core/di/token_secure_storage_di.dart';
-import '../provider/maeumgagym_re_issue_provider.dart';
+import '../../../core/re_issue/presentation/maeumgagym_re_issue_provider.dart';
 
 class SplashScreen extends ConsumerStatefulWidget {
   const SplashScreen({super.key});

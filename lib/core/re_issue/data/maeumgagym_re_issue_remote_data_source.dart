@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/core/di/dio_di.dart';
 
-import '../../../domain/model/maeumgagym_re_issue_model.dart';
+import '../domain/maeumgagym_re_issue_model.dart';
 
 class MaeumgagymReIssueRemoteDataSource {
   Future<MaeumgagymReIssueModel> getReIssue(String refreshToken) async {
