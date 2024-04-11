@@ -13,7 +13,7 @@ class PoseMainTabContents extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     /// TabBar 글씨를 나타낸 List
     final List<String> tabBarData = [
-      // '추천',
+      '추천',
       '가슴',
       '등',
       '어깨',
@@ -29,6 +29,7 @@ class PoseMainTabContents extends ConsumerWidget {
     ///  - 상체 전체의 자극을 줄 수 있는 운동
     ///  - 가슴에 자극을 줄 수 있는 운동만 보여줌
     List<String> tabBodyData = [
+      '추천',
       '가슴',
       '등',
       '어깨',
