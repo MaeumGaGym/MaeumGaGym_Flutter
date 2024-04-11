@@ -38,7 +38,10 @@ class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
         content: Text(contents),
         actions: [
           MaterialButton(
-            onPressed: () => Navigator.pop(context),
+            onPressed: () {
+              socialLoginNotifier.logout();
+              Navigator.pop(context);
+            },
             child: const Text("확인"),
           )
         ],
@@ -57,7 +60,7 @@ class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
                 await context.push('/signUpAgree');
                 await socialLoginNotifier.logout();
               } else {
-                context.go('/home');
+                context.go('/');
               }
             },
             error: (err, _) {
@@ -100,7 +103,7 @@ class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
                   ref.watch(socialLoginController).token!,
                 );
               } else {
-                context.go('/home');
+                context.go('/');
               }
             },
             error: (err, _) {
