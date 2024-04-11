@@ -1,6 +1,7 @@
 /// Package
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:maeum_ga_gym_flutter/core/component/pose/presentation/widget/tab_body/recommend/pose_recommend_widget.dart';
 
 /// Provider
 import '../provider/pose_tab_provider.dart';
@@ -23,9 +24,17 @@ class PoseMainTabBody extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     /// Tab Contents
     return Expanded(
-      child: PoseMainTabBodyPartScreen(
-        tabName: tabBodyData[ref.watch(poseTabController)],
-        useNavigator: useNavigator,
+      child: Builder(
+        builder: (context) {
+          if (tabBodyData[ref.watch(poseTabController)] == "추천") {
+            return const PoseMainTabBodyRecommendScreen();
+          } else {
+            return PoseMainTabBodyPartScreen(
+              tabName: tabBodyData[ref.watch(poseTabController)],
+              useNavigator: useNavigator,
+            );
+          }
+        },
       ),
     );
   }
