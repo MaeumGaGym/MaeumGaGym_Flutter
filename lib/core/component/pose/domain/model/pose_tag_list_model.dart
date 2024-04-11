@@ -35,12 +35,14 @@ class Responses {
   final bool? needMachine;
   final String? name;
   final String? thumbnail;
+  final List<String> simplePart; //
 
   Responses({
     required this.id,
     required this.thumbnail,
     required this.name,
     required this.needMachine,
+    required this.simplePart,
   });
 
   factory Responses.fromJson(Map<String, dynamic> json) {
@@ -49,6 +51,7 @@ class Responses {
       thumbnail: json['thumbnail'],
       name: json['name'],
       needMachine: json['need_machine'],
+      simplePart: List<String>.from(json['simple_part']),
     );
   }
 }
