@@ -8,6 +8,8 @@ import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
 import '../../../core/di/login_option_di.dart';
 import '../../../core/di/token_secure_storage_di.dart';
 import '../../../core/re_issue/presentation/maeumgagym_re_issue_provider.dart';
+import '../../../home/presentation/providers/home_quotes_provider.dart';
+import '../../../home/presentation/providers/home_today_routines_provider.dart';
 
 class SplashScreen extends ConsumerStatefulWidget {
   const SplashScreen({super.key});
@@ -39,7 +41,13 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       getRefreshToken(LoginOption.google).then((value) {
         value.when(
-          data: (data) {
+          data: (data) async {
+            await ref.read(homeQuotesController.notifier).getQuotes();
+
+            await ref
+                .read(homeTodayRoutineController.notifier)
+                .getTodayRoutines();
+
             context.go('/home');
           },
           error: (err, _) {
