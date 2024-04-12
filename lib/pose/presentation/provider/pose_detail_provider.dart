@@ -22,7 +22,7 @@ class PoseTagListStateNotifier extends StateNotifier<PoseDetailModel> {
             exerciseWay: null,
             breatheWay: null,
             caution: null,
-            statusCode: const AsyncData(500),
+            statusCode: const AsyncLoading(),
           ),
         );
 

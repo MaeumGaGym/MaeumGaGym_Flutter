@@ -48,26 +48,30 @@ class _PoseMainTabBodyScreenState
               itemCount: poseAll.length,
               itemBuilder: (context, index) {
                 /// tabName으로 들어온 값이랑 exactPart가 맞지 않으면 SizedBox.shrink()
-                switch (posePartState) {
-                  case PartSelectorState.calisthenics:
-                    return !poseAll[index].needMachine!
-                        ? PosePartWidget(
-                            data: poseAll[index],
-                            useNavigator: widget.useNavigator,
-                          )
-                        : const SizedBox.shrink();
-                  case PartSelectorState.machine:
-                    return poseAll[index].needMachine!
-                        ? PosePartWidget(
-                            data: poseAll[index],
-                            useNavigator: widget.useNavigator,
-                          )
-                        : const SizedBox.shrink();
-                  case PartSelectorState.all:
-                    return PosePartWidget(
-                      data: poseAll[index],
-                      useNavigator: widget.useNavigator,
-                    );
+                if (!poseAll[index].simplePart.contains(widget.tabName)) {
+                  return const SizedBox.shrink();
+                } else {
+                  switch (posePartState) {
+                    case PartSelectorState.calisthenics:
+                      return !poseAll[index].needMachine!
+                          ? PosePartWidget(
+                              data: poseAll[index],
+                              useNavigator: widget.useNavigator,
+                            )
+                          : const SizedBox.shrink();
+                    case PartSelectorState.machine:
+                      return poseAll[index].needMachine!
+                          ? PosePartWidget(
+                              data: poseAll[index],
+                              useNavigator: widget.useNavigator,
+                            )
+                          : const SizedBox.shrink();
+                    case PartSelectorState.all:
+                      return PosePartWidget(
+                        data: poseAll[index],
+                        useNavigator: widget.useNavigator,
+                      );
+                  }
                 }
               },
             ),

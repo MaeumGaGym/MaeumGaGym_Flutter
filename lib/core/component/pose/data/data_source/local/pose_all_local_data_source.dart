@@ -24,6 +24,8 @@ class PoseAllLocalDataSource {
   Future<void> setPoseDataList(PoseDataListModel model) async {
     if (box == null) await init();
 
+    await box!.clear();
+
     for (int i = 0; i < model.response!.length; i++) {
       await box!.add(model.response![i]);
     }
