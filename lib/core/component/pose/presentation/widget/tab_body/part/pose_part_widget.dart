@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
-import 'package:maeum_ga_gym_flutter/core/component/pose/domain/model/pose_tag_list_model.dart';
+import 'package:maeum_ga_gym_flutter/core/component/pose/domain/model/pose_data_model.dart';
 import 'package:maeum_ga_gym_flutter/pose/presentation/provider/pose_detail_provider.dart';
 import 'package:maeum_ga_gym_flutter/pose/presentation/view/pose_detail_screen.dart';
 
@@ -10,7 +10,7 @@ import '../../../../../../../config/maeumgagym_color.dart';
 import '../../../../../text/pretendard/ptd_text_widget.dart';
 
 class PosePartWidget extends ConsumerWidget {
-  final Responses data;
+  final PoseDataModel data;
   final bool useNavigator;
 
   const PosePartWidget({
