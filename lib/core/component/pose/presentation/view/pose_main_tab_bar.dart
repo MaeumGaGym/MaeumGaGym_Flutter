@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:maeum_ga_gym_flutter/core/component/pose/presentation/provider/pose_tag_list_provider.dart';
+import 'package:maeum_ga_gym_flutter/core/component/pose/presentation/provider/pose_all_provider.dart';
 import '../../../../../config/maeumgagym_color.dart';
 import '../provider/pose_part_selector_provider.dart';
 import '../provider/pose_tab_provider.dart';
@@ -60,9 +60,6 @@ class _PoseMainTabBarState extends ConsumerState<PoseMainTabBar>
                     onTap: () {
                       poseTabNotifier.state = index;
                       posePartNotifier.init(index);
-                      ref.read(poseTagListController.notifier).getTagList(
-                          tag:
-                              widget.tabBodyData[ref.watch(poseTabController)]);
                     },
                     child: Container(
                       decoration: BoxDecoration(
