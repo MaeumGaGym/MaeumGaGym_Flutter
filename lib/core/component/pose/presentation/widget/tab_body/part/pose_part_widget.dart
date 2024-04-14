@@ -51,6 +51,7 @@ class PosePartWidget extends ConsumerWidget {
                 width: 64,
                 height: 64,
                 radiusCircular: 8,
+                imageHeight: 200,
                 backgroundColor: MaeumgagymColor.gray25,
               ),
               const SizedBox(width: 18),
