@@ -1,18 +1,17 @@
 /// Package
 import 'package:flutter/material.dart';
+import 'package:maeum_ga_gym_flutter/core/component/pose/domain/model/pose_recommend_model.dart';
 import 'package:maeum_ga_gym_flutter/core/component/pose/presentation/widget/tab_body/recommend/pose_recommend_widget_bottom.dart';
 import 'package:maeum_ga_gym_flutter/core/component/pose/presentation/widget/tab_body/recommend/pose_recommend_widget_top.dart';
 
 class PoseRecommendWidget extends StatelessWidget {
-  final List<Map<String, dynamic>> data;
-  final int index;
-  final String keyData, titleImage, titleText;
+  final List<PoseData> recommendPoseData;
+
+  final String titleImage, titleText;
 
   const PoseRecommendWidget({
-    required this.data,
-    required this.keyData,
+    required this.recommendPoseData,
     required this.titleImage,
-    required this.index,
     required this.titleText,
     super.key,
   });
@@ -30,11 +29,10 @@ class PoseRecommendWidget extends StatelessWidget {
           PoseRecommendWidgetTop(
             titleImage: titleImage,
             titleText: titleText,
-            index: index,
           ),
 
           /// ~ 운동 하단
-          PoseRecommendWidgetBottom(keyData: keyData, data: data),
+          PoseRecommendWidgetBottom(recommendPoseData: recommendPoseData),
         ],
       ),
     );
