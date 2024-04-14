@@ -35,6 +35,11 @@ dependencies:
   hive_generator: ^2.0.1
   datadog_flutter_plugin: ^2.4.0
   flutter_native_splash: ^2.3.10
+<<<<<<< Updated upstream
+=======
+  video_player: ^2.8.6
+  chewie: ^1.7.5
+>>>>>>> Stashed changes
 
 dev_dependencies:
   flutter_test:
