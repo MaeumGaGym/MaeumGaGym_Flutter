@@ -44,7 +44,7 @@ class PoseRecommendWidgetBottom extends StatelessWidget {
                     width: 148,
                     height: 148,
                     image: poseData.thumbnail,
-                    imageType: ImageType.png,
+                    imageType: ImageType.pngNetwork,
                   ),
                 ),
               ),
