@@ -53,7 +53,7 @@ class _PoseDetailScreenState extends ConsumerState<PoseDetailScreen> {
 
     _controller = ChewieController(
       videoPlayerController: VideoPlayerController.networkUrl(
-        Uri.parse(ref.watch(poseDetailController).poseImage![0]),
+        Uri.parse(ref.watch(poseDetailController).video!),
       ),
       aspectRatio: 16 / 9,
       autoPlay: true,
