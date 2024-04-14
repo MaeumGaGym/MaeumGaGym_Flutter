@@ -6,8 +6,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/pose/presentation/widget/search/pose_search_app_bar.dart';
 import 'package:maeum_ga_gym_flutter/pose/presentation/widget/search/pose_search_body.dart';
 
-import '../widget/pose_data.dart';
-
 class PoseSearchScreen extends ConsumerStatefulWidget {
   const PoseSearchScreen({super.key});
 
@@ -26,7 +24,6 @@ class _PoseSearchScreenState extends ConsumerState<PoseSearchScreen> {
       ),
       body: PoseSearchBody(
         textEditingController: textController,
-        data: data,
       ),
     );
   }
