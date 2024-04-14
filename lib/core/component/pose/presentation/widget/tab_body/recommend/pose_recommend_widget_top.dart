@@ -9,13 +9,11 @@ import '../../../provider/pose_tab_provider.dart';
 
 class PoseRecommendWidgetTop extends ConsumerWidget {
   final String titleImage, titleText;
-  final int index;
 
   const PoseRecommendWidgetTop({
     super.key,
     required this.titleImage,
     required this.titleText,
-    required this.index,
   });
 
   @override
@@ -47,7 +45,7 @@ class PoseRecommendWidgetTop extends ConsumerWidget {
           ],
         ),
         GestureDetector(
-          onTap: () => ref.read(poseTabController.notifier).state = index,
+          // onTap: () => ref.read(poseTabController.notifier).state = index,
           child: Row(
             children: [
               PtdTextWidget.bodyMedium('더보기', MaeumgagymColor.gray400),
