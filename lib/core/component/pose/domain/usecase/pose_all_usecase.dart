@@ -7,8 +7,7 @@ class PoseAllUseCase {
   PoseAllUseCase({required PoseAllRepository repository})
       : _repository = repository;
 
-  Future<List<PoseDataModel>> getPoseDataList(
-      {required String lastUpdated}) async {
-    return await _repository.getPoseDataList(lastUpdated: lastUpdated);
+  Future<List<PoseDataModel>> getPoseDataList() async {
+    return await _repository.getPoseDataList();
   }
 }
