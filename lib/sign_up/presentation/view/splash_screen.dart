@@ -4,10 +4,14 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
+import 'package:maeum_ga_gym_flutter/core/component/pose/presentation/provider/pose_all_provider.dart';
+import 'package:maeum_ga_gym_flutter/core/component/pose/presentation/provider/pose_recommend_provider.dart';
 
 import '../../../core/di/login_option_di.dart';
 import '../../../core/di/token_secure_storage_di.dart';
-import '../provider/maeumgagym_re_issue_provider.dart';
+import '../../../core/re_issue/presentation/maeumgagym_re_issue_provider.dart';
+import '../../../home/presentation/providers/home_quotes_provider.dart';
+import '../../../home/presentation/providers/home_today_routines_provider.dart';
 
 class SplashScreen extends ConsumerStatefulWidget {
   const SplashScreen({super.key});
@@ -25,7 +29,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
     if (refreshToken != null) {
       await ref
           .read(maeumgagymReIssueController.notifier)
-          .getReIssue(refreshToken, loginOption);
+          .getReIssue(refreshToken);
 
       return ref.watch(maeumgagymReIssueController).stateus;
     } else {
@@ -39,7 +43,17 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       getRefreshToken(LoginOption.google).then((value) {
         value.when(
-          data: (data) {
+          data: (data) async {
+            await ref.read(homeQuotesController.notifier).getQuotes();
+
+            await ref
+                .read(homeTodayRoutineController.notifier)
+                .getTodayRoutines();
+
+            await ref.read(poseAllController.notifier).getPoseDataList();
+
+            await ref.read(poseRecommendController.notifier).getRecommendPose();
+
             context.go('/home');
           },
           error: (err, _) {

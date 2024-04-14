@@ -50,6 +50,7 @@ class ImageWidget extends StatelessWidget {
                   color: color,
                   width: imageWidth,
                   height: imageHeight,
+                  fit: BoxFit.cover,
                 );
               case ImageType.pngNetwork:
                 return Image.network(
@@ -57,6 +58,7 @@ class ImageWidget extends StatelessWidget {
                   color: color,
                   width: imageWidth,
                   height: imageHeight,
+                  fit: BoxFit.cover,
                 );
               case ImageType.svg:
                 return SvgPicture.asset(
@@ -64,6 +66,7 @@ class ImageWidget extends StatelessWidget {
                   color: color,
                   width: imageWidth,
                   height: imageHeight,
+                  fit: BoxFit.cover,
                 );
               case ImageType.svgNetwork:
                 return SvgPicture.network(
@@ -71,6 +74,7 @@ class ImageWidget extends StatelessWidget {
                   color: color,
                   width: imageWidth,
                   height: imageHeight,
+                  fit: BoxFit.cover,
                 );
             }
           },
