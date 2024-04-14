@@ -6,7 +6,6 @@ import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
 import 'package:maeum_ga_gym_flutter/core/component/pose/presentation/provider/pose_all_provider.dart';
 import 'package:maeum_ga_gym_flutter/core/component/pose/presentation/provider/pose_recommend_provider.dart';
-import 'package:maeum_ga_gym_flutter/sign_up/presentation/provider/social_login_provider.dart';
 
 import '../../../core/di/login_option_di.dart';
 import '../../../core/di/token_secure_storage_di.dart';
@@ -51,9 +50,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
                 .read(homeTodayRoutineController.notifier)
                 .getTodayRoutines();
 
-            await ref
-                .read(poseAllController.notifier)
-                .getPoseDataList(lastUpdated: "2022-12-15T09:00");
+            await ref.read(poseAllController.notifier).getPoseDataList();
 
             await ref.read(poseRecommendController.notifier).getRecommendPose();
 
