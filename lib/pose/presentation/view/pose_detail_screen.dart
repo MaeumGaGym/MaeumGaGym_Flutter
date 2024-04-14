@@ -78,19 +78,10 @@ class _PoseDetailScreenState extends ConsumerState<PoseDetailScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 /// 사진
-                Container(
+                SizedBox(
                   width: MediaQuery.of(context).size.width,
                   height: 300,
-                  child: SizedBox(
-                    height: 214,
-                    child: PageView.builder(
-                      itemCount: poseDetail.poseImage!.length,
-                      itemBuilder: (context, index) {
-                        List<String> imageList = poseDetail.poseImage!;
-                        return Chewie(controller: _controller);
-                      },
-                    ),
-                  ),
+                  child: Chewie(controller: _controller),
                 ),
 
                 /// 기타 정보들
