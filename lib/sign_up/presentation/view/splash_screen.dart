@@ -6,6 +6,7 @@ import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
 import 'package:maeum_ga_gym_flutter/core/component/pose/presentation/provider/pose_all_provider.dart';
 import 'package:maeum_ga_gym_flutter/core/component/pose/presentation/provider/pose_recommend_provider.dart';
+import 'package:maeum_ga_gym_flutter/sign_up/presentation/provider/social_login_provider.dart';
 
 import '../../../core/di/login_option_di.dart';
 import '../../../core/di/token_secure_storage_di.dart';
@@ -29,7 +30,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
     if (refreshToken != null) {
       await ref
           .read(maeumgagymReIssueController.notifier)
-          .getReIssue(refreshToken, loginOption);
+          .getReIssue(refreshToken);
 
       return ref.watch(maeumgagymReIssueController).stateus;
     } else {

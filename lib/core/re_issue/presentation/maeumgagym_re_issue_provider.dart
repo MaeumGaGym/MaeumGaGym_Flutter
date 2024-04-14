@@ -23,7 +23,7 @@ class MaeumgagymReIssueStateNotifier
   final MaeumgagymReIssueUseCase _useCase =
       MaeumgagymReIssueUseCase(MaeumgagymReIssueRepositoryImpl());
 
-  Future<void> getReIssue(String refreshToken, LoginOption loginOption) async {
+  Future<void> getReIssue(String refreshToken) async {
     state = state.copyWith(stateus: const AsyncLoading());
 
     MaeumgagymReIssueModel reIssueToken =
