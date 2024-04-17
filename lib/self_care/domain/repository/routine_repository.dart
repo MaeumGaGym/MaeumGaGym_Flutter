@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:maeum_ga_gym_flutter/self_care/domain/model/exercise_info_request_model.dart';
 import 'package:maeum_ga_gym_flutter/self_care/domain/model/exercise_info_response_model.dart';
 import 'package:maeum_ga_gym_flutter/self_care/domain/model/routine_and_user_info_model.dart';
 import 'package:maeum_ga_gym_flutter/self_care/domain/model/routine_history_model.dart';
@@ -11,7 +12,7 @@ abstract class RoutineRepository {
     required String routineName,
     required bool isArchived,
     required bool isShared,
-    required List<ExerciseInfoResponseModel> exerciseInfoModelList,
+    required List<ExerciseInfoRequestModel> exerciseInfoModelList,
     List<String>? dayOfWeeks,
   });
 
@@ -33,7 +34,7 @@ abstract class RoutineRepository {
     required String routineName,
     required bool isArchived,
     required bool isShared,
-    List<ExerciseInfoResponseModel>? exerciseInfoModelList,
+    required List<ExerciseInfoRequestModel> exerciseInfoRequestList,
     required int routineId,
     List<String>? dayOfWeeks,
   });

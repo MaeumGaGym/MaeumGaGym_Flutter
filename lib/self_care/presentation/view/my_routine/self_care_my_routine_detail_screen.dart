@@ -51,7 +51,10 @@ class SelfCareMyRoutineDetailScreen extends ConsumerWidget {
 
                         /// 마지막 아이템일 경우 간격 x
                         SizedBox(
-                          height: index == item.exerciseInfoResponseList.length - 1 ? 0 : 12,
+                          height:
+                              index == item.exerciseInfoResponseList.length - 1
+                                  ? 0
+                                  : 12,
                         ),
                       ],
                     );
@@ -97,10 +100,12 @@ class SelfCareMyRoutineDetailScreen extends ConsumerWidget {
                     onTap: () => Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) =>
-
-                            /// 루틴 수정 페이지로 이동
-                            const SelfCareMyRoutineEditScreen(),
+                        builder: (context) {
+                          return SelfCareMyRoutineEditScreen(
+                            listIndex: listIndex,
+                            routineName: item.routineName.toString(),
+                          );
+                        },
                       ),
                     ),
                     child: SelfCareMyRoutineButton(
@@ -122,7 +127,9 @@ class SelfCareMyRoutineDetailScreen extends ConsumerWidget {
                       context: context,
                       barrierDismissible: true,
                       builder: (context) {
-                        return SelfCareMyRoutineDetailDialog(index: listIndex);
+                        return SelfCareMyRoutineDetailDialog(
+                          listIndex: listIndex,
+                        );
                       },
                     );
                   },

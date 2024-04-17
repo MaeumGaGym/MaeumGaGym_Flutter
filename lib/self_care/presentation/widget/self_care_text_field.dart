@@ -10,6 +10,7 @@ class SelfCareTextField extends StatefulWidget {
   final TextInputAction inputAction;
   final double? height;
   final int? maxLines;
+  final int? maxLengths;
   final TextInputType? keyboardType;
 
   final String? suffixText;
@@ -23,6 +24,7 @@ class SelfCareTextField extends StatefulWidget {
     required this.inputAction,
     this.keyboardType,
     this.maxLines,
+    this.maxLengths,
     this.height,
     this.suffixText,
     this.hintText,
@@ -68,6 +70,7 @@ class _SelfCareTextFieldState extends State<SelfCareTextField> {
             textInputAction: widget.inputAction,
             keyboardType: widget.keyboardType,
             maxLines: widget.maxLines,
+            maxLength: widget.maxLengths,
             onTap: () {
               FocusScope.of(context).hasFocus
                   ? FocusScope.of(context).unfocus()
@@ -83,6 +86,8 @@ class _SelfCareTextFieldState extends State<SelfCareTextField> {
               border: const OutlineInputBorder(
                 borderSide: BorderSide.none,
               ),
+
+              counterText: "",
 
               /// TextField 커서가 위로 올라가요
               contentPadding: const EdgeInsets.symmetric(horizontal: 12),

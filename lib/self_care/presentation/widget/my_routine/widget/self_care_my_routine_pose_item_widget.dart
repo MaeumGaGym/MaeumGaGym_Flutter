@@ -1,46 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
+import 'package:maeum_ga_gym_flutter/self_care/domain/model/exercise_info_edit_routine_pose_model.dart';
+import 'package:maeum_ga_gym_flutter/self_care/domain/model/exercise_info_response_model.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/my_routine/self_care_my_routine_pose_list_provider.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/widget/self_care_my_routine_item_count_widget.dart';
 
-class SelfCareMyRoutinePoseItemWidget extends StatefulWidget {
-  // final String title; // 나중에 기능 추가
-  // final String imagePath;
+class SelfCareMyRoutinePoseItemWidget extends ConsumerStatefulWidget {
+  final int listIndex;
+  final int poseIndex;
 
   const SelfCareMyRoutinePoseItemWidget({
     Key? key,
-    // required this.title,
-    // required this.imagePath,
+    required this.listIndex,
+    required this.poseIndex,
   }) : super(key: key);
 
   @override
-  State<SelfCareMyRoutinePoseItemWidget> createState() =>
+  ConsumerState<SelfCareMyRoutinePoseItemWidget> createState() =>
       _SelfCareMyRoutinePoseItemWidgetState();
 }
 
 class _SelfCareMyRoutinePoseItemWidgetState
-    extends State<SelfCareMyRoutinePoseItemWidget> {
-  late TextEditingController countController;
-  late TextEditingController setController;
-
-  @override
-  void initState() {
-    super.initState();
-    /// 기본값은 1
-    countController = TextEditingController(text: "1");
-    setController = TextEditingController(text: "1");
-  }
-
-  @override
-  void dispose() {
-    countController.dispose();
-    setController.dispose();
-    super.dispose();
-  }
+    extends ConsumerState<SelfCareMyRoutinePoseItemWidget> {
 
   @override
   Widget build(BuildContext context) {
+    List<ExerciseInfoEditRoutinePoseModel> editPoseListState = ref.watch(selfCareMyRoutineEditProvider);
+    final editPoseListNotifier = ref.read(selfCareMyRoutineEditProvider.notifier);
     return Column(
       children: [
         Row(
@@ -49,23 +39,28 @@ class _SelfCareMyRoutinePoseItemWidgetState
             Row(
               children: [
                 /// 아이템 사진
-                Container(
-                  width: 80,
-                  height: 80,
-                  decoration: BoxDecoration(
-                    color: MaeumgagymColor.gray25,
-                    borderRadius: BorderRadius.circular(100),
+                ClipOval(
+                  child: ImageWidget(
+                    width: 80,
+                    height: 80,
+                    imageType: ImageType.pngNetwork,
+                    image: editPoseListState[widget.poseIndex].poseModel!.pose!.thumbnail!.toString(),
+                    backgroundColor: MaeumgagymColor.gray25,
                   ),
                 ),
                 const SizedBox(width: 18),
+
                 /// 아이템 이름
                 PtdTextWidget.bodyLarge(
-                  "푸시업",
+                  editPoseListState[widget.poseIndex].poseModel!.pose!.name.toString(),
                   MaeumgagymColor.black,
                 ),
               ],
             ),
             GestureDetector(
+              onTap: () {
+                editPoseListNotifier.delete(widget.poseIndex);
+              },
               child: SvgPicture.asset(
                 "assets/image/self_care_icon/close_icon.svg",
               ),
@@ -75,12 +70,12 @@ class _SelfCareMyRoutinePoseItemWidgetState
         const SizedBox(height: 12),
         SelfCareMyRoutineItemCountWidget(
           title: "횟수",
-          controller: countController,
+          controller: editPoseListState[widget.poseIndex].repetitionsController,
         ),
         const SizedBox(height: 12),
         SelfCareMyRoutineItemCountWidget(
           title: "세트",
-          controller: setController,
+          controller: editPoseListState[widget.poseIndex].setsController,
         ),
       ],
     );

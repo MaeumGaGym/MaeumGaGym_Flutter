@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
@@ -21,22 +22,24 @@ class SelfCareMyRoutineDetailTitleContainer extends ConsumerWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            PtdTextWidget.titleLarge(
-              item.routineName.toString(),
-
-              /// 임의의 값
-              MaeumgagymColor.black,
-            ),
-            const SizedBox(height: 12),
-            if (!item.routineStatus!.isArchived!)
-              PtdTextWidget.bodyMedium(
-                "사용중 | ${item.dayOfWeeks.map((str) => str[0]).join(", ")}",
-                MaeumgagymColor.blue500,
-              )
-          ],
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              PtdTextWidget.titleLarge(
+                item.routineName.toString(),
+          
+                /// 임의의 값
+                MaeumgagymColor.black,
+              ),
+              const SizedBox(height: 12),
+              if (!item.routineStatus!.isArchived!)
+                PtdTextWidget.bodyMedium(
+                  item.dayOfWeeks.isEmpty ? "사용중" : "사용중 | ${item.dayOfWeeks.map((str) => str[0]).join(", ")}",
+                  MaeumgagymColor.blue500,
+                )
+            ],
+          ),
         ),
         if (item.routineStatus!.isShared!)
           SelfCareMyRoutineSharedWidget(color: MaeumgagymColor.blue50),

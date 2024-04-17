@@ -4,15 +4,18 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
+import 'package:maeum_ga_gym_flutter/self_care/domain/model/exercise_info_request_model.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/my_routine/self_care_my_routine_all_me_routine_provider.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/my_routine/self_care_my_routine_edit_routine_provider.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/self_care_routine_item_provider.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/widget/self_care_my_routine_toast_message.dart';
 
 class SelfCareMyRoutineDetailDialog extends ConsumerStatefulWidget {
-  final int index;
+  final int listIndex;
 
   const SelfCareMyRoutineDetailDialog({
     super.key,
-    required this.index,
+    required this.listIndex,
   });
 
   @override
@@ -38,11 +41,40 @@ class _SelfCareMyRoutineDetailDialogState extends ConsumerState<SelfCareMyRoutin
     Navigator.of(context).pop();
   }
 
+  Future<void> _updateState({
+    bool? changeArchived,
+    bool? changeShared,
+  }) async {
+    final routineAllMeState = ref.watch(selfCareMyRoutineAllMeRoutineProvider);
+    final editRoutineNotifier =
+    ref.read(selfCareMyRoutineEditRoutineProvider.notifier);
+    final routineAllMeNotifier =
+    ref.read(selfCareMyRoutineAllMeRoutineProvider.notifier);
+    final item = routineAllMeState.routineList[widget.listIndex];
+
+    await editRoutineNotifier.editRoutine(
+      routineName: item.routineName.toString(),
+      isArchived: changeArchived ?? item.routineStatus!.isArchived!,
+      isShared: changeShared ?? item.routineStatus!.isShared!,
+      exerciseInfoRequestList: List<ExerciseInfoRequestModel>.filled(
+        item.exerciseInfoResponseList.length,
+        ExerciseInfoRequestModel(
+          repetitions: item.exerciseInfoResponseList[widget.listIndex].repetitions,
+          sets: item.exerciseInfoResponseList[widget.listIndex].sets,
+          id: item.exerciseInfoResponseList[widget.listIndex].pose!.id,
+        ),
+      ),
+      routineId: item.id!,
+      dayOfWeeks: item.dayOfWeeks,
+    ).whenComplete(() async {
+      await routineAllMeNotifier.getRoutineAllMe();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    final routineItemNotifier = ref.watch(selfCareRoutineItemProvider.notifier);
-    final isKeptState = ref.watch(selfCareRoutineItemProvider)[widget.index].isKept;
-    final isSharedState = ref.watch(selfCareRoutineItemProvider)[widget.index].isShared;
+    final routineAllMeState = ref.watch(selfCareMyRoutineAllMeRoutineProvider);
+    final item = routineAllMeState.routineList[widget.listIndex];
     return Dialog(
       child: Container(
         width: MediaQuery.of(context).size.width,
@@ -64,11 +96,11 @@ class _SelfCareMyRoutineDetailDialogState extends ConsumerState<SelfCareMyRoutin
               GestureDetector(
                 behavior: HitTestBehavior.translucent,
                 onTap: () {
-                  if (isSharedState == true) {
-                    routineItemNotifier.cancelShareRoutineItem(widget.index);
+                  if (item.routineStatus!.isShared == true) {
+                    _updateState(changeShared: false);
                     _showToast("루틴 공유를 취소했어요.");
                   } else {
-                    routineItemNotifier.shareRoutineItem(widget.index);
+                    _updateState(changeShared: true);
                     _showToast("루틴을 공유했어요.");
                   }
                 },
@@ -81,7 +113,7 @@ class _SelfCareMyRoutineDetailDialogState extends ConsumerState<SelfCareMyRoutin
                       ),
                       const SizedBox(width: 12),
                       PtdTextWidget.bodyLarge(
-                        isSharedState ? "공유 취소" : "공유",
+                        item.routineStatus!.isShared! ? "공유 취소" : "공유",
                         MaeumgagymColor.black,
                       ),
                     ],
@@ -91,11 +123,11 @@ class _SelfCareMyRoutineDetailDialogState extends ConsumerState<SelfCareMyRoutin
               GestureDetector(
                 behavior: HitTestBehavior.translucent,
                 onTap: () {
-                  if (isKeptState == true) {
-                    routineItemNotifier.cancelKeepRoutineItem(widget.index);
+                  if (item.routineStatus!.isArchived == true) {
+                    _updateState(changeArchived: false);
                     _showToast("루틴 보관을 취소했어요.");
                   } else {
-                    routineItemNotifier.keepRoutineItem(widget.index);
+                    _updateState(changeArchived: true);
                     _showToast("루틴을 보관했어요.");
                   }
                 },
@@ -108,7 +140,7 @@ class _SelfCareMyRoutineDetailDialogState extends ConsumerState<SelfCareMyRoutin
                       ),
                       const SizedBox(width: 12),
                       PtdTextWidget.bodyLarge(
-                        isKeptState ? "보관 취소" : "보관",
+                        !item.routineStatus!.isShared! ? "보관 취소" : "보관",
                         MaeumgagymColor.black,
                       ),
                     ],
