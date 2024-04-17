@@ -6,8 +6,7 @@ class PoseAllRepositoryImpl implements PoseAllRepository {
   final PoseAllRemoteDataSource _dataSource = PoseAllRemoteDataSource();
 
   @override
-  Future<List<PoseDataModel>> getPoseDataList(
-      {required String lastUpdated}) async {
-    return await _dataSource.getPoseDataList(lastUpdated: lastUpdated);
+  Future<List<PoseDataModel>> getPoseDataList() async {
+    return await _dataSource.getPoseDataList();
   }
 }

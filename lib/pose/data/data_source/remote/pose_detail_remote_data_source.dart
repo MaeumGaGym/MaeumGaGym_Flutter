@@ -29,7 +29,7 @@ class PoseDetailRemoteDataSource {
         simpleName: null,
         exactName: null,
         thumbnail: null,
-        poseImage: null,
+        video: null,
         simplePart: null,
         exactPart: null,
         startPose: null,

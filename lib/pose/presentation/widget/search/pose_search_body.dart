@@ -13,12 +13,10 @@ import '../../../../core/component/text/pretendard/ptd_text_widget.dart';
 import '../../view/pose_detail_screen.dart';
 
 class PoseSearchBody extends ConsumerWidget {
-  final List<Map<String, dynamic>> data;
   final TextEditingController textEditingController;
 
   const PoseSearchBody({
     super.key,
-    required this.data,
     required this.textEditingController,
   });
 
@@ -35,7 +33,7 @@ class PoseSearchBody extends ConsumerWidget {
           /// 검색된 List들
           Expanded(
             child: ListView.builder(
-              itemCount: data.length,
+              itemCount: ref.read(poseAllController).length,
               itemBuilder: (BuildContext context, int index) {
                 final poseAll = ref.read(poseAllController);
 

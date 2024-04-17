@@ -15,7 +15,7 @@ class PoseTagListStateNotifier extends StateNotifier<List<PoseDataModel>> {
     repository: PoseAllRepositoryImpl(),
   );
 
-  Future<void> getPoseDataList({required String lastUpdated}) async {
-    state = await _useCase.getPoseDataList(lastUpdated: lastUpdated);
+  Future<void> getPoseDataList() async {
+    state = await _useCase.getPoseDataList();
   }
 }

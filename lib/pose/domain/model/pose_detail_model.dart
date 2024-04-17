@@ -1,8 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class PoseDetailModel {
-  final String? simpleName, exactName, thumbnail;
-  final List<String>? poseImage;
+  final String? simpleName, exactName, thumbnail, video;
   final List<String>? simplePart;
   final List<String>? exactPart;
   final List<String>? startPose;
@@ -15,7 +14,7 @@ class PoseDetailModel {
     required this.simpleName,
     required this.exactName,
     required this.thumbnail,
-    required this.poseImage,
+    required this.video,
     required this.simplePart,
     required this.exactPart,
     required this.startPose,
@@ -30,7 +29,7 @@ class PoseDetailModel {
       simpleName: json['simple_name'],
       exactName: json['exact_name'],
       thumbnail: json['thumbnail'],
-      poseImage: List<String>.from(json['pose_images']),
+      video: json['video'],
       simplePart: List<String>.from(json['simple_part']),
       exactPart: List<String>.from(json['exact_part']),
       startPose: List<String>.from(json['start_pose']),
@@ -45,7 +44,7 @@ class PoseDetailModel {
     String? simpleName,
     String? exactName,
     String? thumbnail,
-    List<String>? poseImage,
+    String? video,
     List<String>? simplePart,
     List<String>? exactPart,
     List<String>? startPose,
@@ -58,7 +57,7 @@ class PoseDetailModel {
       simpleName: simpleName ?? this.simpleName,
       exactName: exactName ?? this.exactName,
       thumbnail: thumbnail ?? this.thumbnail,
-      poseImage: poseImage ?? this.poseImage,
+      video: video ?? this.video,
       simplePart: simplePart ?? this.simplePart,
       exactPart: exactPart ?? this.exactPart,
       startPose: startPose ?? this.startPose,
