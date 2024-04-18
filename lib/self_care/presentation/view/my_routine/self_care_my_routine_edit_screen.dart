@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
+import 'package:maeum_ga_gym_flutter/core/component/pose/domain/model/pose_data_model.dart';
 import 'package:maeum_ga_gym_flutter/self_care/domain/model/exercise_info_edit_routine_pose_model.dart';
-import 'package:maeum_ga_gym_flutter/self_care/domain/model/exercise_info_response_model.dart';
+import 'package:maeum_ga_gym_flutter/self_care/domain/model/exercise_info_request_model.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/my_routine/self_care_my_routine_all_me_routine_provider.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/my_routine/self_care_my_routine_days_provider.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/my_routine/self_care_my_routine_edit_routine_provider.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/my_routine/self_care_my_routine_pose_list_provider.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/view/my_routine/self_care_my_routine_pose_add_screen.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/widget/self_care_my_routine_button.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/widget/self_care_my_routine_days_select_widget.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/widget/self_care_my_routine_pose_item_widget.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/widget/self_care_my_routine_toast_message.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/self_care_default_app_bar.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/self_care_text_field.dart';
 
@@ -32,12 +36,18 @@ class _SelfCareMyRoutineEditScreenState
     extends ConsumerState<SelfCareMyRoutineEditScreen> {
   late TextEditingController titleController;
   late FocusNode titleNode;
+  
+  late FToast fToast;
+
+  
 
   @override
   void initState() {
     super.initState();
     titleController = TextEditingController(text: widget.routineName);
     titleNode = FocusNode();
+    fToast = FToast();
+    fToast.init(context);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final routineAllMeState =
           ref.watch(selfCareMyRoutineAllMeRoutineProvider);
@@ -46,18 +56,49 @@ class _SelfCareMyRoutineEditScreenState
             List<ExerciseInfoEditRoutinePoseModel>.generate(
               item.exerciseInfoResponseList.length,
               (index) => ExerciseInfoEditRoutinePoseModel(
-                  poseModel: item.exerciseInfoResponseList[index],
-                repetitionsController: TextEditingController(text: item.exerciseInfoResponseList[index].repetitions.toString()),
-                setsController: TextEditingController(text: item.exerciseInfoResponseList[index].sets.toString()),
+                poseModel: PoseDataModel(
+                  id: item.exerciseInfoResponseList[index].pose!.id,
+                  thumbnail:
+                      item.exerciseInfoResponseList[index].pose!.thumbnail,
+                  name: item.exerciseInfoResponseList[index].pose!.name,
+                  needMachine:
+                      item.exerciseInfoResponseList[index].pose!.needMachine,
+                  simplePart:
+                      item.exerciseInfoResponseList[index].pose!.simplePart,
+                ),
+                repetitionsController: TextEditingController(
+                    text: item.exerciseInfoResponseList[index].repetitions
+                        .toString()),
+                setsController: TextEditingController(
+                    text: item.exerciseInfoResponseList[index].sets.toString()),
               ),
             ),
           );
     });
   }
+  
+  void _showToast(String title) {
+    fToast.showToast(
+      child: SelfCareMyRoutineToastMessage(title: title),
+      gravity: ToastGravity.TOP,
+      toastDuration: const Duration(milliseconds: 1600),
+    );
+    Navigator.of(context).pop();
+  }
 
   @override
   Widget build(BuildContext context) {
-    List<ExerciseInfoEditRoutinePoseModel> editPoseListState = ref.watch(selfCareMyRoutineEditProvider);
+    List<ExerciseInfoEditRoutinePoseModel> editPoseListState =
+        ref.watch(selfCareMyRoutineEditProvider);
+
+    final editPoseListNotifier =
+        ref.read(selfCareMyRoutineEditRoutineProvider.notifier);
+    
+    Map<String, bool> editRoutineDaysState = ref.watch(selfCareMyRoutineDaysProvider);
+
+    final routineAllMeState = ref.watch(selfCareMyRoutineAllMeRoutineProvider);
+    final routineAllMeNotifier = ref.read(selfCareMyRoutineAllMeRoutineProvider.notifier);
+    final item = routineAllMeState.routineList[widget.listIndex];
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -156,12 +197,42 @@ class _SelfCareMyRoutineEditScreenState
                 ),
                 const SizedBox(width: 8),
                 Expanded(
-                  child: SelfCareMyRoutineButton(
-                    width: MediaQuery.of(context).size.width,
-                    height: 58,
-                    title: "수정하기",
-                    buttonColor: MaeumgagymColor.blue500,
-                    textColor: MaeumgagymColor.white,
+                  child: GestureDetector(
+                    onTap: () {
+                      editPoseListNotifier.editRoutine(
+                        routineName: titleController.text,
+                        isArchived: item.routineStatus!.isArchived!,
+                        isShared: item.routineStatus!.isShared!,
+                        exerciseInfoRequestList:
+                            List<ExerciseInfoRequestModel>.generate(
+                          editPoseListState.length,
+                          (index) => ExerciseInfoRequestModel(
+                            id: editPoseListState[index].poseModel!.id,
+                            repetitions: int.parse(
+                              editPoseListState[index]
+                                  .repetitionsController
+                                  .text,
+                            ),
+                            sets: int.parse(
+                              editPoseListState[index].setsController.text,
+                            ),
+                          ),
+                        ),
+                        dayOfWeeks: editRoutineDaysState.entries.where((entry) => entry.value).map((entry) => '${entry.key}요일').toList(),
+                        routineId: item.id!,
+                      ).whenComplete(() {
+                        Navigator.of(context).pop();
+                        routineAllMeNotifier.getRoutineAllMe();
+                        _showToast("루틴을 수정했어요.");
+                      });
+                    },
+                    child: SelfCareMyRoutineButton(
+                      width: MediaQuery.of(context).size.width,
+                      height: 58,
+                      title: "수정하기",
+                      buttonColor: MaeumgagymColor.blue500,
+                      textColor: MaeumgagymColor.white,
+                    ),
                   ),
                 ),
               ],
