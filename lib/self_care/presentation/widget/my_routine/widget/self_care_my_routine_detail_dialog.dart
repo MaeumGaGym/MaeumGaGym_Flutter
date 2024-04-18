@@ -7,7 +7,6 @@ import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_wid
 import 'package:maeum_ga_gym_flutter/self_care/domain/model/exercise_info_request_model.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/my_routine/self_care_my_routine_all_me_routine_provider.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/my_routine/self_care_my_routine_edit_routine_provider.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/self_care_routine_item_provider.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/widget/self_care_my_routine_toast_message.dart';
 
 class SelfCareMyRoutineDetailDialog extends ConsumerStatefulWidget {
