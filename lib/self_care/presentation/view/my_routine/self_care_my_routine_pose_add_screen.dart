@@ -57,7 +57,7 @@ class _SelfCareMyRoutinePoseAddScreenState
           PoseMainTabBar(tabBarData: tabBarData, tabBodyData: tabBodyData),
 
           /// Tab Contents
-          PoseMainTabBody(useNavigator: true, tabBodyData: tabBodyData),
+          PoseMainTabBody(useNavigator: false, tabBodyData: tabBodyData),
         ],
       ),
     );
