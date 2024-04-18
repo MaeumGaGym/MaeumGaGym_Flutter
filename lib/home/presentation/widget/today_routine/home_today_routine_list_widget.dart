@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:maeum_ga_gym_flutter/pose/presentation/provider/pose_detail_provider.dart';
 
 import '../../../../config/maeumgagym_color.dart';
 import '../../../../core/component/image_widget.dart';
 import '../../../../core/component/text/pretendard/ptd_text_widget.dart';
 import '../../../../pose/presentation/view/pose_detail_screen.dart';
 
-class HomeTodayRoutineListWidget extends StatelessWidget {
+class HomeTodayRoutineListWidget extends ConsumerWidget {
   final int id, repetitions, sets;
   final String thumbnail, name;
 
@@ -19,18 +21,22 @@ class HomeTodayRoutineListWidget extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Column(
       children: [
         GestureDetector(
-          onTap: () => Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => PoseDetailScreen(
-                id: id,
+          onTap: () async {
+            await Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => PoseDetailScreen(
+                  id: id,
+                ),
               ),
-            ),
-          ),
+            );
+
+            ref.read(poseDetailController.notifier).setDetailData();
+          },
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [

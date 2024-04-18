@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
 import 'package:maeum_ga_gym_flutter/core/component/pose/presentation/provider/pose_all_provider.dart';
+import 'package:maeum_ga_gym_flutter/pose/presentation/provider/pose_detail_provider.dart';
 import 'package:maeum_ga_gym_flutter/pose/presentation/provider/pose_search_provider.dart';
 
 /// Core
@@ -47,14 +48,18 @@ class PoseSearchBody extends ConsumerWidget {
                   return const SizedBox.shrink();
                 } else {
                   return GestureDetector(
-                    onTap: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => PoseDetailScreen(
-                          id: poseAll[index].id!,
+                    onTap: () async {
+                      await Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => PoseDetailScreen(
+                            id: poseAll[index].id!,
+                          ),
                         ),
-                      ),
-                    ),
+                      );
+
+                      ref.read(poseDetailController.notifier).setDetailData();
+                    },
                     child: Container(
                       width: MediaQuery.of(context).size.width - 40,
                       color: Colors.white,
