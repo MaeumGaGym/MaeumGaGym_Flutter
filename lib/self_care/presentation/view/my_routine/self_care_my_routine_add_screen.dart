@@ -59,13 +59,14 @@ class _SelfCareMyRoutineAddScreenState
                   itemBuilder: (context, index) {
                     return Column(
                       children: [
-                        const SelfCareMyRoutinePoseItemWidget(),
+
                         /// 마지막 item이라면 간격 x
-                        SizedBox(height: index == 32 - 1 ? 0 : 40),
+                        SizedBox(height: index == 1 - 1 ? 0 : 40),
                       ],
                     );
                   },
                 ),
+
                 /// 디자인 보고 간격 넣었습니다.
                 /// 안 넣으니깐 아이템이 밑에 씹히더라구용
                 const SizedBox(height: 98),
@@ -77,6 +78,7 @@ class _SelfCareMyRoutineAddScreenState
       bottomSheet: Container(
         decoration: BoxDecoration(
           color: MaeumgagymColor.white,
+
           /// 디자인보면 위쪽에 색있음
           border: Border(
             top: BorderSide(
@@ -95,7 +97,8 @@ class _SelfCareMyRoutineAddScreenState
                     onTap: () => Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const SelfCareMyRoutinePoseAddScreen(),
+                        builder: (context) =>
+                            const SelfCareMyRoutinePoseAddScreen(),
                       ),
                     ),
                     child: SelfCareMyRoutineButton(

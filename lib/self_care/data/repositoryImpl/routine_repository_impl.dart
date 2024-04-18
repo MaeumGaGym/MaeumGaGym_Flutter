@@ -1,20 +1,29 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/self_care/data/date_source/remote/routine_remote_data_source.dart';
-import 'package:maeum_ga_gym_flutter/self_care/domain/model/exercise_info_model.dart';
+import 'package:maeum_ga_gym_flutter/self_care/domain/model/exercise_info_request_model.dart';
+import 'package:maeum_ga_gym_flutter/self_care/domain/model/exercise_info_response_model.dart';
+import 'package:maeum_ga_gym_flutter/self_care/domain/model/routine_and_user_info_model.dart';
 import 'package:maeum_ga_gym_flutter/self_care/domain/model/routine_history_model.dart';
 import 'package:maeum_ga_gym_flutter/self_care/domain/model/routine_response_model.dart';
 import 'package:maeum_ga_gym_flutter/self_care/domain/repository/routine_repository.dart';
-import 'package:riverpod/src/common.dart';
 
 class RoutineRepositoryImpl implements RoutineRepository {
-  final RoutineRemoteDataSource _remoteDataSource;
-
-  RoutineRepositoryImpl(this._remoteDataSource);
+  final RoutineRemoteDataSource _remoteDataSource = RoutineRemoteDataSource();
 
   @override
   Future<RoutineResponseModel> getTodayRoutine({
     required String accessToken,
   }) async {
     return await _remoteDataSource.getTodayRoutine(
+      accessToken: accessToken,
+    );
+  }
+
+  @override
+  Future<RoutineAndUserInfoModel> getRoutineAllMe({
+    required String accessToken,
+  }) async {
+    return await _remoteDataSource.getRoutineAllMe(
       accessToken: accessToken,
     );
   }
@@ -34,16 +43,17 @@ class RoutineRepositoryImpl implements RoutineRepository {
     required String routineName,
     required bool isArchived,
     required bool isShared,
-    required List<ExerciseInfoModel> exerciseInfoModelList,
+    required List<ExerciseInfoRequestModel> exerciseInfoModelList,
     List<String>? dayOfWeeks,
   }) async {
     return await _remoteDataSource.createRoutine(
-        accessToken: accessToken,
-        routineName: routineName,
-        isArchived: isArchived,
-        isShared: isShared,
-        exerciseInfoModelList: exerciseInfoModelList,
-        dayOfWeeks: dayOfWeeks);
+      accessToken: accessToken,
+      routineName: routineName,
+      isArchived: isArchived,
+      isShared: isShared,
+      exerciseInfoModelList: exerciseInfoModelList,
+      dayOfWeeks: dayOfWeeks,
+    );
   }
 
   @override
@@ -63,16 +73,16 @@ class RoutineRepositoryImpl implements RoutineRepository {
     required String routineName,
     required bool isArchived,
     required bool isShared,
-    List<ExerciseInfoModel>? exerciseInfoModelList,
+    required List<ExerciseInfoRequestModel> exerciseInfoRequestList,
     required int routineId,
-    List<String>? dayOfWeeks,
+    required List<String> dayOfWeeks,
   }) async {
     return await _remoteDataSource.editRoutine(
       accessToken: accessToken,
       routineName: routineName,
       isArchived: isArchived,
       isShared: isShared,
-      exerciseInfoModelList: exerciseInfoModelList,
+      exerciseInfoRequestList: exerciseInfoRequestList,
       routineId: routineId,
       dayOfWeeks: dayOfWeeks,
     );

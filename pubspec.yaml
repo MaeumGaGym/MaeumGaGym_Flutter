@@ -3,7 +3,7 @@ description: A new Flutter project.
 
 publish_to: 'none'
 
-version: 0.7.1+33
+version: 0.8.6+56
 
 environment:
   sdk: '>=3.0.6 <4.0.0'
@@ -35,6 +35,7 @@ dependencies:
   hive_generator: ^2.0.1
   datadog_flutter_plugin: ^2.4.0
   flutter_native_splash: ^2.3.10
+  video_player: ^2.8.6
 
 dev_dependencies:
   flutter_test:

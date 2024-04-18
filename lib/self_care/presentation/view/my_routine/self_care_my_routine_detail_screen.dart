@@ -1,23 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/my_routine/self_care_my_routine_all_me_routine_provider.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/view/my_routine/self_care_my_routine_edit_screen.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/container/self_care_my_routine_detail_title_container.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/widget/self_care_my_routine_detail_title_widget.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/widget/self_care_my_routine_button.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/widget/self_care_my_routine_detail_dialog.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/widget/self_care_my_routine_detail_routine_item_widget.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/self_care_default_app_bar.dart';
 
-class SelfCareMyRoutineDetailScreen extends StatelessWidget {
-  final int index;
+class SelfCareMyRoutineDetailScreen extends ConsumerWidget {
+  final int listIndex;
 
   const SelfCareMyRoutineDetailScreen({
     super.key,
-    required this.index,
+    required this.listIndex,
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final routineAllMeState = ref.watch(selfCareMyRoutineAllMeRoutineProvider);
+    final item = routineAllMeState.routineList[listIndex];
     return Scaffold(
       backgroundColor: MaeumgagymColor.white,
       appBar: const SelfCareDefaultAppBar(
@@ -31,19 +35,27 @@ class SelfCareMyRoutineDetailScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 /// 루틴 아이템을 식별하기 위한 index
-                SelfCareMyRoutineDetailTitleContainer(index: index),
+                SelfCareMyRoutineDetailTitleWidget(listIndex: listIndex),
                 const SizedBox(height: 32),
                 ListView.builder(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
-                  itemCount: 50,
+                  itemCount: item.exerciseInfoResponseList.length,
                   itemBuilder: (context, index) {
                     return Column(
                       children: [
-                        const SelfCareMyRoutineDetailRoutineItemWidget(),
+                        SelfCareMyRoutineDetailRoutineItemWidget(
+                          routineListIndex: listIndex,
+                          exerciseInfoListIndex: index,
+                        ),
 
                         /// 마지막 아이템일 경우 간격 x
-                        SizedBox(height: index == 50 - 1 ? 0 : 12),
+                        SizedBox(
+                          height:
+                              index == item.exerciseInfoResponseList.length - 1
+                                  ? 0
+                                  : 12,
+                        ),
                       ],
                     );
                   },
@@ -88,10 +100,12 @@ class SelfCareMyRoutineDetailScreen extends StatelessWidget {
                     onTap: () => Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) =>
-
-                            /// 루틴 수정 페이지로 이동
-                            const SelfCareMyRoutineEditScreen(),
+                        builder: (context) {
+                          return SelfCareMyRoutineEditScreen(
+                            listIndex: listIndex,
+                            routineName: item.routineName.toString(),
+                          );
+                        },
                       ),
                     ),
                     child: SelfCareMyRoutineButton(
@@ -113,7 +127,9 @@ class SelfCareMyRoutineDetailScreen extends StatelessWidget {
                       context: context,
                       barrierDismissible: true,
                       builder: (context) {
-                        return SelfCareMyRoutineDetailDialog(index: index);
+                        return SelfCareMyRoutineDetailDialog(
+                          listIndex: listIndex,
+                        );
                       },
                     );
                   },

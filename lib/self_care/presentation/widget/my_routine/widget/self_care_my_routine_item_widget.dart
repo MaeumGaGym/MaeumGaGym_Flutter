@@ -1,21 +1,19 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/self_care_routine_item_provider.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/my_routine/self_care_my_routine_all_me_routine_provider.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/widget/self_care_my_routine_manage_bottom_sheet.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/widget/self_care_my_routine_shared_widget.dart';
 
-
 class SelfCareMyRoutineItemWidget extends ConsumerStatefulWidget {
-  final String title;
-  final int index;
+  final int listIndex;
 
   const SelfCareMyRoutineItemWidget({
+    required this.listIndex,
     Key? key,
-    required this.title,
-    required this.index,
   }) : super(key: key);
 
   @override
@@ -23,11 +21,12 @@ class SelfCareMyRoutineItemWidget extends ConsumerStatefulWidget {
       _SelfCareGoalRoutineItemWidgetState();
 }
 
-class _SelfCareGoalRoutineItemWidgetState extends ConsumerState<SelfCareMyRoutineItemWidget> {
+class _SelfCareGoalRoutineItemWidgetState
+    extends ConsumerState<SelfCareMyRoutineItemWidget> {
   @override
   Widget build(BuildContext context) {
-    final isKeptState = ref.watch(selfCareRoutineItemProvider)[widget.index].isKept;
-    final isSharedState = ref.watch(selfCareRoutineItemProvider)[widget.index].isShared;
+    final routineAllMeState = ref.watch(selfCareMyRoutineAllMeRoutineProvider);
+    final item = routineAllMeState.routineList[widget.listIndex];
     return Container(
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
@@ -39,25 +38,26 @@ class _SelfCareGoalRoutineItemWidgetState extends ConsumerState<SelfCareMyRoutin
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                PtdTextWidget.labelLarge(
-                  widget.title,
-                  MaeumgagymColor.black,
-                ),
-                const SizedBox(height: 4),
-                PtdTextWidget.bodySmall(
-                  isKeptState ? "보관중" : "사용중",
-                  isKeptState
-                      ? MaeumgagymColor.gray400
-                      : MaeumgagymColor.blue500,
-                ),
-              ],
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  PtdTextWidget.labelLarge(
+                    item.routineName.toString(),
+                    MaeumgagymColor.black,
+                  ),
+                  const SizedBox(height: 4),
+                  PtdTextWidget.bodySmall(
+                    (item.routineStatus!.isArchived! ? "보관중" : "사용중") +
+                        (item.dayOfWeeks.isNotEmpty ? " | ${item.dayOfWeeks.map((str) => str[0]).join(", ")}" : ""),
+                    item.routineStatus!.isArchived! ? MaeumgagymColor.gray400 : MaeumgagymColor.blue500,
+                  ),
+                ],
+              ),
             ),
             Row(
               children: [
-                isSharedState
+                item.routineStatus!.isShared!
                     ? const SelfCareMyRoutineSharedWidget()
                     : const SizedBox(),
                 const SizedBox(width: 12),
@@ -67,7 +67,7 @@ class _SelfCareGoalRoutineItemWidgetState extends ConsumerState<SelfCareMyRoutin
                       context: context,
                       builder: (context) {
                         return SelfCareMyRoutineManageBottomSheet(
-                          index: widget.index,
+                          listIndex: widget.listIndex,
                         );
                       },
                     );
