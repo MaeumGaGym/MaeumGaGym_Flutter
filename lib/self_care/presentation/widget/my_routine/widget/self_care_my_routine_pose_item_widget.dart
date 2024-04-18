@@ -44,7 +44,7 @@ class _SelfCareMyRoutinePoseItemWidgetState
                     width: 80,
                     height: 80,
                     imageType: ImageType.pngNetwork,
-                    image: editPoseListState[widget.poseIndex].poseModel!.pose!.thumbnail!.toString(),
+                    image: editPoseListState[widget.poseIndex].poseModel!.thumbnail.toString(),
                     backgroundColor: MaeumgagymColor.gray25,
                   ),
                 ),
@@ -52,14 +52,16 @@ class _SelfCareMyRoutinePoseItemWidgetState
 
                 /// 아이템 이름
                 PtdTextWidget.bodyLarge(
-                  editPoseListState[widget.poseIndex].poseModel!.pose!.name.toString(),
+                  editPoseListState[widget.poseIndex].poseModel!.name.toString(),
                   MaeumgagymColor.black,
                 ),
               ],
             ),
             GestureDetector(
               onTap: () {
-                editPoseListNotifier.delete(widget.poseIndex);
+                if (editPoseListState.length != 1) {
+                  editPoseListNotifier.delete(widget.poseIndex);
+                }
               },
               child: SvgPicture.asset(
                 "assets/image/self_care_icon/close_icon.svg",
