@@ -27,7 +27,7 @@ class PosePartWidget extends ConsumerWidget {
         if (useNavigator) {
           if (context.mounted) {
             /// 눌렀을 때 PoseDetailScreen
-            Navigator.push(
+            await Navigator.push(
               context,
               MaterialPageRoute(
                 builder: (context) => PoseDetailScreen(id: data.id!),
@@ -35,6 +35,8 @@ class PosePartWidget extends ConsumerWidget {
             );
           }
         }
+        debugPrint('out');
+        ref.read(poseDetailController.notifier).setDetailData();
       },
       child: Padding(
         padding: const EdgeInsets.all(12),

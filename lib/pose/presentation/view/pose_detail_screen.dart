@@ -1,8 +1,6 @@
-import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
-import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
 import 'package:maeum_ga_gym_flutter/core/di/token_secure_storage_di.dart';
 import 'package:maeum_ga_gym_flutter/core/re_issue/presentation/maeumgagym_re_issue_provider.dart';
 import 'package:maeum_ga_gym_flutter/pose/presentation/provider/pose_detail_provider.dart';
@@ -22,7 +20,7 @@ class PoseDetailScreen extends ConsumerStatefulWidget {
 }
 
 class _PoseDetailScreenState extends ConsumerState<PoseDetailScreen> {
-  late ChewieController _controller;
+  late VideoPlayerController _controller;
 
   @override
   void initState() {
@@ -30,6 +28,12 @@ class _PoseDetailScreenState extends ConsumerState<PoseDetailScreen> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       initFunction();
     });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _controller.dispose();
   }
 
   Future<void> initFunction() async {
@@ -51,15 +55,13 @@ class _PoseDetailScreenState extends ConsumerState<PoseDetailScreen> {
           .getDetailData(id: widget.id);
     }
 
-    _controller = ChewieController(
-      videoPlayerController: VideoPlayerController.networkUrl(
-        Uri.parse(ref.watch(poseDetailController).video!),
-      ),
-      aspectRatio: 16 / 9,
-      autoPlay: true,
-      looping: true,
-      showControls: false,
-    );
+    _controller = VideoPlayerController.networkUrl(
+      Uri.parse(ref.watch(poseDetailController).video!),
+    )..initialize();
+
+    _controller.setLooping(true);
+
+    _controller.play();
   }
 
   @override
@@ -81,7 +83,7 @@ class _PoseDetailScreenState extends ConsumerState<PoseDetailScreen> {
                 SizedBox(
                   width: MediaQuery.of(context).size.width,
                   height: 300,
-                  child: Chewie(controller: _controller),
+                  child: VideoPlayer(_controller),
                 ),
 
                 /// 기타 정보들
