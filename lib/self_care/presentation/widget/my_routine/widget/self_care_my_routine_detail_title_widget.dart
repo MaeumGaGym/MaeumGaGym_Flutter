@@ -4,13 +4,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/my_routine/self_care_my_routine_all_me_routine_provider.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/self_care_routine_item_provider.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/widget/self_care_my_routine_shared_widget.dart';
 
-class SelfCareMyRoutineDetailTitleContainer extends ConsumerWidget {
+class SelfCareMyRoutineDetailTitleWidget extends ConsumerWidget {
   final int listIndex;
 
-  const SelfCareMyRoutineDetailTitleContainer({
+  const SelfCareMyRoutineDetailTitleWidget({
     super.key,
     required this.listIndex,
   });
