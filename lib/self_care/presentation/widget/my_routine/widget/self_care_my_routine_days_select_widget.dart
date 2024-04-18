@@ -25,15 +25,23 @@ class _SelfCareMyRoutineDaysSelectWidgetState
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      final routineAllState = ref.watch(selfCareMyRoutineAllMeRoutineProvider);
-      ref
-          .read(selfCareMyRoutineDaysProvider.notifier)
-          .init(routineAllState.routineList[widget.listIndex].dayOfWeeks);
+      final routineAllMeState = ref.watch(selfCareMyRoutineAllMeRoutineProvider);
+      ref.read(selfCareMyRoutineDaysProvider.notifier).init(routineAllMeState.routineList[widget.listIndex].dayOfWeeks);
+      final selectedDaysNotifier = ref.read(selfCareMyRoutineSelectedDaysProvider.notifier);
+      /// 사용자의 모든 루틴을 검사
+      for (int j = 0; j < routineAllMeState.routineList.length; j++) {
+        /// 수정하려는 루틴은 제외
+        if (j != widget.listIndex) {
+          /// 수정하려는 루틴을 제외한 모든 루틴이 사용되는 요일을 저장
+          selectedDaysNotifier.state += routineAllMeState.routineList[j].dayOfWeeks;
+        }
+      }
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    final selectedDaysState = ref.watch(selfCareMyRoutineSelectedDaysProvider);
     final daysState = ref.watch(selfCareMyRoutineDaysProvider);
     final daysNotifier = ref.read(selfCareMyRoutineDaysProvider.notifier);
     return Column(
@@ -50,7 +58,7 @@ class _SelfCareMyRoutineDaysSelectWidgetState
                 for (int i = 0; i < 7; i++)
                   GestureDetector(
                     onTap: () {
-                      daysNotifier.changeDays(i);
+                      daysNotifier.changeDays(i, selectedDaysState);
                     },
                     child: Padding(
                       padding: EdgeInsets.only(right: i == 6 ? 0 : 4),

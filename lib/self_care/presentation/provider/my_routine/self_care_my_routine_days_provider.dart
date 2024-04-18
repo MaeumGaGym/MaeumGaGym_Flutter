@@ -6,6 +6,8 @@ final selfCareMyRoutineDaysProvider = StateNotifierProvider.autoDispose<
   (ref) => SelfCareMyRoutineDaysStateNotifier(),
 );
 
+final selfCareMyRoutineSelectedDaysProvider = StateProvider.autoDispose<List<String>>((ref) => []);
+
 class SelfCareMyRoutineDaysStateNotifier extends StateNotifier<Map<String, bool>> {
   SelfCareMyRoutineDaysStateNotifier()
       : super({
@@ -22,8 +24,11 @@ class SelfCareMyRoutineDaysStateNotifier extends StateNotifier<Map<String, bool>
     state = Map.fromEntries(state.entries.map((entry) => MapEntry(entry.key, daysOfWeek.contains(entry.key))));
   }
 
-  void changeDays(int index) {
+  void changeDays(int index, List<String> selectedDays) {
     final day = state.keys.elementAt(index);
-    state = Map.from(state)..[day] = !state[day]!;
+    /// 다른 루틴들에서 사용중인 날짜는 선택 불가.
+    if (!selectedDays.contains(day)) {
+      state = Map.from(state)..[day] = !state[day]!;
+    }
   }
 }
