@@ -20,6 +20,7 @@ class SelfCareMyRoutineDaysStateNotifier extends StateNotifier<Map<String, bool>
           "토": false,
         });
 
+  /// 날짜를 서버에서 받아와서, List 안에 있는 요일은 true로 설정
   void init(List<String> daysOfWeek) {
     state = Map.fromEntries(state.entries.map((entry) => MapEntry(entry.key, daysOfWeek.contains(entry.key))));
   }

@@ -36,18 +36,22 @@ class _SelfCareMyRoutineEditScreenState
     extends ConsumerState<SelfCareMyRoutineEditScreen> {
   late TextEditingController titleController;
   late FocusNode titleNode;
-  
-  late FToast fToast;
 
-  
+  late FToast fToast;
 
   @override
   void initState() {
     super.initState();
+
+    /// 제목 컨트롤러 init
     titleController = TextEditingController(text: widget.routineName);
     titleNode = FocusNode();
+
+    /// 토스트 메시지 init
     fToast = FToast();
     fToast.init(context);
+
+    /// 화면이 빌드되었을 때 init
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final routineAllMeState =
           ref.watch(selfCareMyRoutineAllMeRoutineProvider);
@@ -76,7 +80,7 @@ class _SelfCareMyRoutineEditScreenState
           );
     });
   }
-  
+
   void _showToast(String title) {
     fToast.showToast(
       child: SelfCareMyRoutineToastMessage(title: title),
@@ -93,11 +97,13 @@ class _SelfCareMyRoutineEditScreenState
 
     final editPoseListNotifier =
         ref.read(selfCareMyRoutineEditRoutineProvider.notifier);
-    
-    Map<String, bool> editRoutineDaysState = ref.watch(selfCareMyRoutineDaysProvider);
+
+    Map<String, bool> editRoutineDaysState =
+        ref.watch(selfCareMyRoutineDaysProvider);
 
     final routineAllMeState = ref.watch(selfCareMyRoutineAllMeRoutineProvider);
-    final routineAllMeNotifier = ref.read(selfCareMyRoutineAllMeRoutineProvider.notifier);
+    final routineAllMeNotifier =
+        ref.read(selfCareMyRoutineAllMeRoutineProvider.notifier);
     final item = routineAllMeState.routineList[widget.listIndex];
 
     return Scaffold(
@@ -199,7 +205,8 @@ class _SelfCareMyRoutineEditScreenState
                 Expanded(
                   child: GestureDetector(
                     onTap: () {
-                      editPoseListNotifier.editRoutine(
+                      editPoseListNotifier
+                          .editRoutine(
                         routineName: titleController.text,
                         isArchived: item.routineStatus!.isArchived!,
                         isShared: item.routineStatus!.isShared!,
@@ -208,19 +215,27 @@ class _SelfCareMyRoutineEditScreenState
                           editPoseListState.length,
                           (index) => ExerciseInfoRequestModel(
                             id: editPoseListState[index].poseModel!.id,
+
+                            /// TextEditingController >> int
                             repetitions: int.parse(
                               editPoseListState[index]
                                   .repetitionsController
                                   .text,
                             ),
+
+                            /// TextEditingController >> int
                             sets: int.parse(
                               editPoseListState[index].setsController.text,
                             ),
                           ),
                         ),
-                        dayOfWeeks: editRoutineDaysState.entries.where((entry) => entry.value).map((entry) => '${entry.key}요일').toList(),
+                        dayOfWeeks: editRoutineDaysState.entries
+                            .where((entry) => entry.value)
+                            .map((entry) => '${entry.key}요일')
+                            .toList(),
                         routineId: item.id!,
-                      ).whenComplete(() {
+                      )
+                          .whenComplete(() {
                         Navigator.of(context).pop();
                         routineAllMeNotifier.getRoutineAllMe();
                         _showToast("루틴을 수정했어요.");
