@@ -59,7 +59,7 @@ class RoutineRepositoryImpl implements RoutineRepository {
   @override
   Future<AsyncValue<int?>> deleteRoutine({
     required String accessToken,
-    required String routineId,
+    required int routineId,
   }) async {
     return await _remoteDataSource.deleteRoutine(
       accessToken: accessToken,

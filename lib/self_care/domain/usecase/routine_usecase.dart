@@ -47,10 +47,12 @@ class RoutineUseCase {
 
   Future<AsyncValue<int?>> deleteRoutine({
     required String accessToken,
-    required String routineId,
+    required int routineId,
   }) async {
     return await _repository.deleteRoutine(
-        accessToken: accessToken, routineId: routineId);
+      accessToken: accessToken,
+      routineId: routineId,
+    );
   }
 
   Future<AsyncValue<int?>> editRoutine({

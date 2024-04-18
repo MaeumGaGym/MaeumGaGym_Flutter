@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/my_routine/self_care_my_routine_all_me_routine_provider.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/my_routine/self_care_my_routine_delete_routine_provider.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/view/my_routine/self_care_my_routine_edit_screen.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/widget/self_care_my_routine_detail_title_widget.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/widget/self_care_my_routine_button.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/widget/self_care_my_routine_detail_dialog.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/widget/self_care_my_routine_detail_routine_item_widget.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/widget/self_care_my_routine_toast_message.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/self_care_default_app_bar.dart';
 
-class SelfCareMyRoutineDetailScreen extends ConsumerWidget {
+class SelfCareMyRoutineDetailScreen extends ConsumerStatefulWidget {
   final int listIndex;
 
   const SelfCareMyRoutineDetailScreen({
@@ -19,9 +22,37 @@ class SelfCareMyRoutineDetailScreen extends ConsumerWidget {
   });
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<SelfCareMyRoutineDetailScreen> createState() =>
+      _SelfCareMyRoutineDetailScreenState();
+}
+
+class _SelfCareMyRoutineDetailScreenState
+    extends ConsumerState<SelfCareMyRoutineDetailScreen> {
+  late FToast fToast;
+
+  @override
+  void initState() {
+    super.initState();
+    fToast = FToast();
+    fToast.init(context);
+  }
+
+  void _showToast(String title) {
+    fToast.showToast(
+      child: SelfCareMyRoutineToastMessage(title: title),
+      gravity: ToastGravity.TOP,
+      toastDuration: const Duration(milliseconds: 1600),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final routineAllMeState = ref.watch(selfCareMyRoutineAllMeRoutineProvider);
-    final item = routineAllMeState.routineList[listIndex];
+    final routineAllMeNotifier =
+        ref.read(selfCareMyRoutineAllMeRoutineProvider.notifier);
+    final deleteRoutineNotifier =
+        ref.read(selfCareMyRoutineDeleteRoutineProvider.notifier);
+    final item = routineAllMeState.routineList[widget.listIndex];
     return Scaffold(
       backgroundColor: MaeumgagymColor.white,
       appBar: const SelfCareDefaultAppBar(
@@ -35,7 +66,7 @@ class SelfCareMyRoutineDetailScreen extends ConsumerWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 /// 루틴 아이템을 식별하기 위한 index
-                SelfCareMyRoutineDetailTitleWidget(listIndex: listIndex),
+                SelfCareMyRoutineDetailTitleWidget(listIndex: widget.listIndex),
                 const SizedBox(height: 32),
                 ListView.builder(
                   shrinkWrap: true,
@@ -45,7 +76,7 @@ class SelfCareMyRoutineDetailScreen extends ConsumerWidget {
                     return Column(
                       children: [
                         SelfCareMyRoutineDetailRoutineItemWidget(
-                          routineListIndex: listIndex,
+                          routineListIndex: widget.listIndex,
                           exerciseInfoListIndex: index,
                         ),
 
@@ -84,14 +115,24 @@ class SelfCareMyRoutineDetailScreen extends ConsumerWidget {
             child: Row(
               children: [
                 Expanded(
-                  child: SelfCareMyRoutineButton(
-                    width: MediaQuery.of(context).size.width,
-                    height: 58,
-                    title: "루틴 삭제",
-                    imagePath:
-                        "assets/image/self_care_icon/edit_trash_icon.svg",
-                    buttonColor: MaeumgagymColor.gray50,
-                    textColor: MaeumgagymColor.gray800,
+                  child: GestureDetector(
+                    behavior: HitTestBehavior.translucent,
+                    onTap: () {
+                      deleteRoutineNotifier.deleteRoutine(routineId: item.id!).whenComplete(() async {
+                        Navigator.of(context).pop();
+                        _showToast("루틴을 삭제했어요.");
+                        await routineAllMeNotifier.getRoutineAllMe();
+                      });
+                    },
+                    child: SelfCareMyRoutineButton(
+                      width: MediaQuery.of(context).size.width,
+                      height: 58,
+                      title: "루틴 삭제",
+                      imagePath:
+                          "assets/image/self_care_icon/edit_trash_icon.svg",
+                      buttonColor: MaeumgagymColor.gray50,
+                      textColor: MaeumgagymColor.gray800,
+                    ),
                   ),
                 ),
                 const SizedBox(width: 8),
@@ -102,7 +143,7 @@ class SelfCareMyRoutineDetailScreen extends ConsumerWidget {
                       MaterialPageRoute(
                         builder: (context) {
                           return SelfCareMyRoutineEditScreen(
-                            listIndex: listIndex,
+                            listIndex: widget.listIndex,
                             routineName: item.routineName.toString(),
                           );
                         },
@@ -128,7 +169,7 @@ class SelfCareMyRoutineDetailScreen extends ConsumerWidget {
                       barrierDismissible: true,
                       builder: (context) {
                         return SelfCareMyRoutineDetailDialog(
-                          listIndex: listIndex,
+                          listIndex: widget.listIndex,
                         );
                       },
                     );

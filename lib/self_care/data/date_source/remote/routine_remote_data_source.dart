@@ -107,7 +107,7 @@ class RoutineRemoteDataSource {
 
   Future<AsyncValue<int?>> deleteRoutine({
     required String accessToken,
-    required String routineId,
+    required int routineId,
   }) async {
     try {
       return await dio
