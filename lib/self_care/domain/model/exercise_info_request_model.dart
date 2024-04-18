@@ -8,12 +8,4 @@ class ExerciseInfoRequestModel {
     required this.repetitions,
     required this.sets,
   });
-
-  Map<String, dynamic> toJson() {
-    return {
-      "id" : id,
-      "repetitions" : repetitions,
-      "sets" : sets,
-    };
-  }
 }
