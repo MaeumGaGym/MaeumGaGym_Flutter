@@ -5,6 +5,8 @@ import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
 import 'package:maeum_ga_gym_flutter/core/component/pose/domain/model/pose_data_model.dart';
 import 'package:maeum_ga_gym_flutter/pose/presentation/provider/pose_detail_provider.dart';
 import 'package:maeum_ga_gym_flutter/pose/presentation/view/pose_detail_screen.dart';
+import 'package:maeum_ga_gym_flutter/self_care/domain/model/exercise_info_edit_routine_pose_model.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/my_routine/self_care_my_routine_pose_list_provider.dart';
 
 import '../../../../../../../config/maeumgagym_color.dart';
 import '../../../../../text/pretendard/ptd_text_widget.dart';
@@ -34,6 +36,21 @@ class PosePartWidget extends ConsumerWidget {
               ),
             );
           }
+        } else {
+          ref.read(selfCareMyRoutineEditProvider.notifier).insert(
+                ExerciseInfoEditRoutinePoseModel(
+                  poseModel: PoseDataModel(
+                    id: data.id,
+                    thumbnail: data.thumbnail,
+                    name: data.name,
+                    needMachine: data.needMachine,
+                    simplePart: data.simplePart,
+                  ),
+                  repetitionsController: TextEditingController(text: "10"),
+                  setsController: TextEditingController(text: "1"),
+                ),
+              );
+          Navigator.pop(context);
         }
       },
       child: Padding(
