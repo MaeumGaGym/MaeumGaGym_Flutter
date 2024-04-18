@@ -4,7 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/my_routine/self_care_my_routine_all_me_routine_provider.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/view/my_routine/self_care_my_routine_edit_screen.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/container/self_care_my_routine_detail_title_container.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/widget/self_care_my_routine_detail_title_widget.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/widget/self_care_my_routine_button.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/widget/self_care_my_routine_detail_dialog.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/widget/self_care_my_routine_detail_routine_item_widget.dart';
@@ -35,7 +35,7 @@ class SelfCareMyRoutineDetailScreen extends ConsumerWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 /// 루틴 아이템을 식별하기 위한 index
-                SelfCareMyRoutineDetailTitleContainer(listIndex: listIndex),
+                SelfCareMyRoutineDetailTitleWidget(listIndex: listIndex),
                 const SizedBox(height: 32),
                 ListView.builder(
                   shrinkWrap: true,
