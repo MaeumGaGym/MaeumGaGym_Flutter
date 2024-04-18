@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/core/di/dio_di.dart';
 
@@ -23,15 +24,48 @@ class HomeTodayRoutinesRemoteDataSource {
             ),
           );
     } catch (err) {
-      return HomeTodayRoutinesModel(
-        id: null,
-        routineName: null,
-        exerciseInfoResponseList: null,
-        dayOfWeeks: null,
-        routineStatus: null,
-        isCompleted: null,
-        statusCode: AsyncError(err, StackTrace.empty),
-      );
+      if (err.toString().contains('401')) {
+        return HomeTodayRoutinesModel(
+          id: null,
+          routineName: null,
+          exerciseInfoResponseList: null,
+          dayOfWeeks: null,
+          routineStatus: null,
+          isCompleted: null,
+          statusCode: const AsyncError("401 TodayRoutine", StackTrace.empty),
+        );
+      } else {
+        return HomeTodayRoutinesModel(
+          id: null,
+          routineName: null,
+          exerciseInfoResponseList: null,
+          dayOfWeeks: null,
+          routineStatus: null,
+          isCompleted: null,
+          statusCode: AsyncError(err, StackTrace.empty),
+        );
+      }
+    }
+  }
+
+  Future<AsyncValue<int>> completeTodayRoutines() async {
+    final accessToken = await TokenSecureStorageDi.readLoginAccessToken();
+    Map<String, dynamic> headers = {
+      'Content-Type': 'application/json',
+      'Authorization': accessToken,
+    };
+
+    try {
+      return await dio
+          .put('/routines/today/complete', options: Options(headers: headers))
+          .then((response) => AsyncData(response.statusCode!));
+    } catch (err) {
+      debugPrint("todayRoutineCompleted : $err");
+      if (err.toString().contains('401')) {
+        return const AsyncError('401 Complete', StackTrace.empty);
+      } else {
+        return AsyncError(err, StackTrace.empty);
+      }
     }
   }
 }
