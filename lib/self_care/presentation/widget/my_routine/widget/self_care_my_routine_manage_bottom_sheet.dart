@@ -1,9 +1,11 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/self_care/domain/model/exercise_info_request_model.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/my_routine/self_care_my_routine_all_me_routine_provider.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/my_routine/self_care_my_routine_delete_routine_provider.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/my_routine/self_care_my_routine_edit_routine_provider.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/view/my_routine/self_care_my_routine_edit_screen.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/self_care_default_manage_item_widget.dart';
@@ -76,7 +78,9 @@ class _SelfCareMyRoutineManageBottomSheetState
   @override
   Widget build(BuildContext context) {
     final routineAllMeState = ref.watch(selfCareMyRoutineAllMeRoutineProvider);
+    final routineAllMeNotifier = ref.read(selfCareMyRoutineAllMeRoutineProvider.notifier);
     final item = routineAllMeState.routineList[widget.listIndex];
+    final deleteRoutineNotifier = ref.read(selfCareMyRoutineDeleteRoutineProvider.notifier);
     return Container(
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
@@ -152,9 +156,18 @@ class _SelfCareMyRoutineManageBottomSheetState
                   iconPath: "assets/image/self_care_icon/earth_icon.svg",
                 ),
               ),
-              const SelfCareDefaultManageItemWidget(
-                title: "삭제",
-                iconPath: "assets/image/self_care_icon/edit_trash_icon.svg",
+              GestureDetector(
+                behavior: HitTestBehavior.translucent,
+                onTap: () {
+                  deleteRoutineNotifier.deleteRoutine(routineId: item.id!).whenComplete(() {
+                    _showToast("루틴을 삭제했어요.");
+                    routineAllMeNotifier.getRoutineAllMe();
+                  });
+                },
+                child: SelfCareDefaultManageItemWidget(
+                  title: "삭제",
+                  iconPath: "assets/image/self_care_icon/edit_trash_icon.svg",
+                ),
               ),
             ],
           ),
