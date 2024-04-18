@@ -75,7 +75,7 @@ class RoutineRepositoryImpl implements RoutineRepository {
     required bool isShared,
     required List<ExerciseInfoRequestModel> exerciseInfoRequestList,
     required int routineId,
-    List<String>? dayOfWeeks,
+    required List<String> dayOfWeeks,
   }) async {
     return await _remoteDataSource.editRoutine(
       accessToken: accessToken,

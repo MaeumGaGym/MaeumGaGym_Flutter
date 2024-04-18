@@ -136,18 +136,17 @@ class RoutineRemoteDataSource {
     required bool isShared,
     required List<ExerciseInfoRequestModel> exerciseInfoRequestList,
     required int routineId,
-    List<String>? dayOfWeeks,
+    required List<String> dayOfWeeks,
   }) async {
     Map<String, dynamic> data = {
       "routine_name": routineName,
       "is_archived": isArchived,
       "is_shared": isShared,
       "exercise_info_request_list": exerciseInfoRequestList,
-      "day_of_weeks": dayOfWeeks ?? [],
+      "day_of_weeks": dayOfWeeks,
     };
 
     try {
-      print(data);
       return await dio.put(
         "/routines/$routineId",
         data: data,

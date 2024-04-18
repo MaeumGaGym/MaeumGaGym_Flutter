@@ -36,7 +36,7 @@ abstract class RoutineRepository {
     required bool isShared,
     required List<ExerciseInfoRequestModel> exerciseInfoRequestList,
     required int routineId,
-    List<String>? dayOfWeeks,
+    required List<String> dayOfWeeks,
   });
 
   Future<AsyncValue<int?>> completeTodayRoutines({

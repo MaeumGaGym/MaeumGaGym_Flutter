@@ -23,7 +23,7 @@ class SelfCareMyRoutineEditRoutineStateNotifier
     required bool isShared,
     required List<ExerciseInfoRequestModel> exerciseInfoRequestList,
     required int routineId,
-    List<String>? dayOfWeeks,
+    required List<String> dayOfWeeks,
   }) async {
     try {
       state = const AsyncLoading();
@@ -39,7 +39,6 @@ class SelfCareMyRoutineEditRoutineStateNotifier
         dayOfWeeks: dayOfWeeks,
       );
       state = response;
-      print(response);
     } catch (err) {
       throw Exception(err.toString());
     }

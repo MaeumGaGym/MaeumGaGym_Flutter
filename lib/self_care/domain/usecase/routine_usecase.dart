@@ -60,7 +60,7 @@ class RoutineUseCase {
     required bool isShared,
     required List<ExerciseInfoRequestModel> exerciseInfoRequestList,
     required int routineId,
-    List<String>? dayOfWeeks,
+    required List<String> dayOfWeeks,
   }) async {
     return await _repository.editRoutine(
       accessToken: accessToken,
