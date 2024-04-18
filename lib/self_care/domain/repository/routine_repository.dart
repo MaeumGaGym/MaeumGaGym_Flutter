@@ -26,7 +26,7 @@ abstract class RoutineRepository {
 
   Future<AsyncValue<int?>> deleteRoutine({
     required String accessToken,
-    required String routineId,
+    required int routineId,
   });
 
   Future<AsyncValue<int?>> editRoutine({
