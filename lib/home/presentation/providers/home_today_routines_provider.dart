@@ -31,4 +31,12 @@ class HomeTodayRoutineStateNotifier
     state = state.copyWith(statusCode: const AsyncLoading());
     state = await _useCase.getTodayRoutines();
   }
+
+  Future<void> completeTodayRoutines() async {
+    state = state.copyWith(statusCode: const AsyncLoading());
+
+    AsyncValue<int> statusCode = await _useCase.completeTodayRoutines();
+
+    state = state.copyWith(statusCode: statusCode);
+  }
 }
