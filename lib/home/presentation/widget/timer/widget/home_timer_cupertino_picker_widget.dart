@@ -27,9 +27,8 @@ class _HomeTimerCupertinoPickerWidgetState
   Widget build(BuildContext context) {
     final durationNotifier = ref.read(homeTimerAddDurationProvider.notifier);
     final durationState = ref.read(homeTimerAddDurationProvider);
-
     return SizedBox(
-      width: 77,
+      width: 85,
       height: 330,
       child: Column(
         children: [
@@ -43,52 +42,55 @@ class _HomeTimerCupertinoPickerWidgetState
           SizedBox(
             width: 77,
             height: 225,
-            child: CupertinoPicker(
-              itemExtent: 100,
-              looping: true,
-              // magnification: 0.0000001,
-              useMagnifier: false,
-              diameterRatio: 20,
-              onSelectedItemChanged: (value) {
-                switch (widget.type) {
-                  case TimerType.hour:
-                    durationNotifier.hourNotifier(value);
-                    break;
-                  case TimerType.minute:
-                    durationNotifier.minuteNotifier(value);
-                    break;
-                  case TimerType.seconds:
-                    durationNotifier.secondsNotifier(value);
-                    break;
-                }
-                setState(() {});
-              },
-              children: List.generate(widget.listLength, (index) {
-                switch (widget.type) {
-                  case TimerType.hour:
-                    return PtdTextWidget.timerPickerNumber(
-                      formatPickerNumber(index),
-                      durationState.hour == index
-                          ? MaeumgagymColor.black
-                          : MaeumgagymColor.gray100,
-                    );
+            child: DefaultTextStyle(
+              style: CupertinoTheme.of(context).textTheme.pickerTextStyle,
+              child: ListWheelScrollView.useDelegate(
+                itemExtent: 100,
+                physics: const FixedExtentScrollPhysics(),
+                squeeze: 1.2,
+                onSelectedItemChanged: (value) {
+                  switch (widget.type) {
+                    case TimerType.hour:
+                      durationNotifier.hourNotifier(value);
+                      break;
+                    case TimerType.minute:
+                      durationNotifier.minuteNotifier(value);
+                      break;
+                    case TimerType.seconds:
+                      durationNotifier.secondsNotifier(value);
+                      break;
+                  }
+                  setState(() {});
+                },
+                childDelegate: ListWheelChildLoopingListDelegate(
+                  children: List.generate(widget.listLength, (index) {
+                    switch (widget.type) {
+                      case TimerType.hour:
+                        return PtdTextWidget.timerPickerNumber(
+                          formatPickerNumber(index),
+                          durationState.hour == index
+                              ? MaeumgagymColor.black
+                              : MaeumgagymColor.gray100,
+                        );
 
-                  case TimerType.minute:
-                    return PtdTextWidget.timerPickerNumber(
-                      formatPickerNumber(index),
-                      durationState.minute == index
-                          ? MaeumgagymColor.black
-                          : MaeumgagymColor.gray100,
-                    );
-                  case TimerType.seconds:
-                    return PtdTextWidget.timerPickerNumber(
-                      formatPickerNumber(index),
-                      durationState.seconds == index
-                          ? MaeumgagymColor.black
-                          : MaeumgagymColor.gray100,
-                    );
-                }
-              }),
+                      case TimerType.minute:
+                        return PtdTextWidget.timerPickerNumber(
+                          formatPickerNumber(index),
+                          durationState.minute == index
+                              ? MaeumgagymColor.black
+                              : MaeumgagymColor.gray100,
+                        );
+                      case TimerType.seconds:
+                        return PtdTextWidget.timerPickerNumber(
+                          formatPickerNumber(index),
+                          durationState.seconds == index
+                              ? MaeumgagymColor.black
+                              : MaeumgagymColor.gray100,
+                        );
+                    }
+                  }),
+                ),
+              ),
             ),
           ),
         ],

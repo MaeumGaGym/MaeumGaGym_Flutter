@@ -22,9 +22,7 @@ class _HomeTimerTimePickerWidgetState
   @override
   Widget build(BuildContext context) {
     final homeTimerDurationState = ref.watch(homeTimerAddDurationProvider);
-    final timersState = ref.watch(timersProvider);
     final timersNotifier = ref.watch(timersProvider.notifier);
-    final localTimerState = ref.watch(localTimerController);
     final localTimerNotifier = ref.read(localTimerController.notifier);
 
     return Scaffold(
@@ -94,44 +92,30 @@ class _HomeTimerTimePickerWidgetState
               GestureDetector(
                 behavior: HitTestBehavior.translucent,
                 onTap: () async {
-                  await localTimerNotifier.addTimers(
-                    timerId: timersState[timersState.length - 1].timerId + 1,
+                  int timerId = ref
+                      .watch(
+                          timersProvider)[ref.watch(timersProvider).length - 1]
+                      .timerId;
+
+                  await timersNotifier.addTimer(
+                    timerId: timerId + 1,
                     hours: homeTimerDurationState.hour,
                     minutes: homeTimerDurationState.minute,
                     seconds: homeTimerDurationState.seconds,
                   );
 
-                  await localTimerNotifier.getTimers();
+                  await localTimerNotifier.addTimers(
+                    timerId: timerId + 1,
+                    hours: homeTimerDurationState.hour,
+                    minutes: homeTimerDurationState.minute,
+                    seconds: homeTimerDurationState.seconds,
+                  );
 
-                  await timersNotifier.initAddTimer(localTimerState);
-
-                  timersNotifier
-                      .onReset(timersState[timersState.length - 1].timerId);
+                  timersNotifier.onReset(timerId + 1);
 
                   if (context.mounted) {
                     Navigator.pop(context);
                   }
-                  // await ref.read(localTimerController.notifier).addTimers(
-                  //       timerId:
-                  //           timersState[timersState.length - 1].timerId + 1,
-                  //       hours: homeTimerDurationState.hour,
-                  //       minutes: homeTimerDurationState.minute,
-                  //       seconds: homeTimerDurationState.seconds,
-                  //     );
-                  //
-                  // await timersNotifier.addTimer(
-                  //   Duration(
-                  //     hours: homeTimerDurationState.hour,
-                  //     minutes: homeTimerDurationState.minute,
-                  //     seconds: homeTimerDurationState.seconds,
-                  //   ),
-                  // );
-                  // timersNotifier
-                  //     .onReset(timersState[timersState.length - 1].timerId);
-                  //
-                  // if (context.mounted) {
-                  //   Navigator.pop(context);
-                  // }
                 },
                 child: const HomeTimerPickerBottomButtonWidget(title: '확인'),
               ),
