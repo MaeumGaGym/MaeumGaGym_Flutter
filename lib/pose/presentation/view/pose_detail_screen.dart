@@ -1,6 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hive/hive.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
 import 'package:maeum_ga_gym_flutter/core/di/token_secure_storage_di.dart';
 import 'package:maeum_ga_gym_flutter/core/re_issue/presentation/maeumgagym_re_issue_provider.dart';
 import 'package:maeum_ga_gym_flutter/pose/presentation/provider/pose_detail_provider.dart';
@@ -80,10 +84,26 @@ class _PoseDetailScreenState extends ConsumerState<PoseDetailScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 /// 사진
-                SizedBox(
+                Container(
                   width: MediaQuery.of(context).size.width,
                   height: 300,
-                  child: VideoPlayer(_controller),
+                  alignment: Alignment.center,
+                  color: MaeumgagymColor.gray25,
+                  child: Stack(
+                    children: [
+                      AspectRatio(
+                        aspectRatio: 16 / 9,
+                        child: ImageWidget(
+                          image: poseDetail.thumbnail!,
+                          imageType: ImageType.pngNetwork,
+                        ),
+                      ),
+                      AspectRatio(
+                        aspectRatio: 16 / 9,
+                        child: VideoPlayer(_controller),
+                      ),
+                    ],
+                  ),
                 ),
 
                 /// 기타 정보들
