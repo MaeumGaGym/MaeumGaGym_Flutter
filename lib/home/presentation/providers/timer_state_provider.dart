@@ -73,6 +73,8 @@ class TimersNotifier extends StateNotifier<List<Timers>> {
         ),
       ),
     );
+
+    _subscriptions.add(null);
   }
 
   Future<void> delTimer({required int timerIndex}) async {
