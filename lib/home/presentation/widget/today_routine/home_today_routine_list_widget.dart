@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:maeum_ga_gym_flutter/pose/presentation/provider/pose_detail_provider.dart';
 
 import '../../../../config/maeumgagym_color.dart';
 import '../../../../core/component/image_widget.dart';
@@ -25,18 +24,14 @@ class HomeTodayRoutineListWidget extends ConsumerWidget {
     return Column(
       children: [
         GestureDetector(
-          onTap: () async {
-            await Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => PoseDetailScreen(
-                  id: id,
-                ),
+          onTap: () => Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => PoseDetailScreen(
+                id: id,
               ),
-            );
-
-            ref.read(poseDetailController.notifier).setDetailData();
-          },
+            ),
+          ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [

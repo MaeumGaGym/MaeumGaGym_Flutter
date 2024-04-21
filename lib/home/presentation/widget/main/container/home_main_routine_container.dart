@@ -7,7 +7,6 @@ import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_wid
 import 'package:maeum_ga_gym_flutter/home/presentation/providers/home_today_routines_provider.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/view/home_today_routine_screen.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/widget/main/widget/home_main_container_title.dart';
-import 'package:maeum_ga_gym_flutter/pose/presentation/provider/pose_detail_provider.dart';
 import 'package:maeum_ga_gym_flutter/pose/presentation/view/pose_detail_screen.dart';
 
 class HomeMainRoutineContainer extends ConsumerWidget {
@@ -44,8 +43,6 @@ class HomeMainRoutineContainer extends ConsumerWidget {
                         builder: (context) => const HomeTodayRoutineScreen(),
                       ),
                     );
-
-                    ref.read(poseDetailController.notifier).setDetailData();
                   }
                 },
                 child: const HomeMainContainerTitle(title: "오늘의 루틴"),

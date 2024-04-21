@@ -1,10 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:hive/hive.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
-import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
 import 'package:maeum_ga_gym_flutter/core/di/token_secure_storage_di.dart';
 import 'package:maeum_ga_gym_flutter/core/re_issue/presentation/maeumgagym_re_issue_provider.dart';
 import 'package:maeum_ga_gym_flutter/pose/presentation/provider/pose_detail_provider.dart';
@@ -24,7 +20,7 @@ class PoseDetailScreen extends ConsumerStatefulWidget {
 }
 
 class _PoseDetailScreenState extends ConsumerState<PoseDetailScreen> {
-  late VideoPlayerController _controller;
+  late VideoPlayerController _controller = VideoPlayerController.asset('');
 
   @override
   void initState() {
@@ -61,10 +57,9 @@ class _PoseDetailScreenState extends ConsumerState<PoseDetailScreen> {
 
     _controller = VideoPlayerController.networkUrl(
       Uri.parse(ref.watch(poseDetailController).video!),
-    )..initialize();
-
+    );
+    _controller.initialize().then((_) => setState(() {}));
     _controller.setLooping(true);
-
     _controller.play();
   }
 
@@ -76,7 +71,8 @@ class _PoseDetailScreenState extends ConsumerState<PoseDetailScreen> {
       backgroundColor: MaeumgagymColor.white,
       appBar: const PoseDetailAppBar(),
       body: SafeArea(child: Builder(builder: (context) {
-        if (ref.watch(poseDetailController).statusCode.hasValue &&
+        if (_controller.value.isInitialized &&
+            ref.watch(poseDetailController).statusCode.hasValue &&
             ref.watch(maeumgagymReIssueController).stateus.hasValue) {
           return SingleChildScrollView(
             child: Column(
@@ -89,20 +85,9 @@ class _PoseDetailScreenState extends ConsumerState<PoseDetailScreen> {
                   height: 300,
                   alignment: Alignment.center,
                   color: MaeumgagymColor.gray25,
-                  child: Stack(
-                    children: [
-                      AspectRatio(
-                        aspectRatio: 16 / 9,
-                        child: ImageWidget(
-                          image: poseDetail.thumbnail!,
-                          imageType: ImageType.pngNetwork,
-                        ),
-                      ),
-                      AspectRatio(
-                        aspectRatio: 16 / 9,
-                        child: VideoPlayer(_controller),
-                      ),
-                    ],
+                  child: AspectRatio(
+                    aspectRatio: 16 / 9,
+                    child: VideoPlayer(_controller),
                   ),
                 ),
 
