@@ -30,18 +30,14 @@ class PoseRecommendWidgetBottom extends ConsumerWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               GestureDetector(
-                onTap: () async {
-                  await Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => PoseDetailScreen(
-                        id: poseData.id,
-                      ),
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => PoseDetailScreen(
+                      id: poseData.id,
                     ),
-                  );
-
-                  ref.read(poseDetailController.notifier).setDetailData();
-                },
+                  ),
+                ),
                 child: Padding(
                   padding: const EdgeInsets.only(right: 12),
                   child: ImageWidget(

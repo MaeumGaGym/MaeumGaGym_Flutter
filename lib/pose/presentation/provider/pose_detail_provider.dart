@@ -34,8 +34,4 @@ class PoseTagListStateNotifier extends StateNotifier<PoseDetailModel> {
 
     state = await _useCase.getDetailData(id: id);
   }
-
-  Future<void> setDetailData() async {
-    state = state.copyWith(statusCode: const AsyncLoading());
-  }
 }
