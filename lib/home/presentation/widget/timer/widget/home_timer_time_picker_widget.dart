@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/providers/home_timer_add_duration_provider.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/providers/local_timer_provider.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/providers/timer_state_provider.dart';
@@ -19,6 +20,15 @@ class HomeTimerTimePickerWidget extends ConsumerStatefulWidget {
 
 class _HomeTimerTimePickerWidgetState
     extends ConsumerState<HomeTimerTimePickerWidget> {
+  late FToast fToast;
+
+  @override
+  void initState() {
+    super.initState();
+    fToast = FToast();
+    fToast.init(context);
+  }
+
   @override
   Widget build(BuildContext context) {
     final homeTimerDurationState = ref.watch(homeTimerAddDurationProvider);
@@ -85,34 +95,59 @@ class _HomeTimerTimePickerWidgetState
             children: [
               GestureDetector(
                 behavior: HitTestBehavior.translucent,
-                onTap: () {},
+                onTap: () => Navigator.pop(context),
                 child: const HomeTimerPickerBottomButtonWidget(title: '취소'),
               ),
               Container(width: 1, height: 24, color: MaeumgagymColor.gray100),
               GestureDetector(
                 behavior: HitTestBehavior.translucent,
                 onTap: () async {
-                  int timerId = ref
-                      .watch(
-                          timersProvider)[ref.watch(timersProvider).length - 1]
-                      .timerId;
+                  if (!(homeTimerDurationState.hour == 0 &&
+                      homeTimerDurationState.minute == 0 &&
+                      homeTimerDurationState.seconds == 0)) {
+                    int timerId = ref
+                        .watch(timersProvider)[
+                            ref.watch(timersProvider).length - 1]
+                        .timerId;
 
-                  await timersNotifier.addTimer(
-                    timerId: timerId + 1,
-                    hours: homeTimerDurationState.hour,
-                    minutes: homeTimerDurationState.minute,
-                    seconds: homeTimerDurationState.seconds,
-                  );
+                    await timersNotifier.addTimer(
+                      timerId: timerId + 1,
+                      hours: homeTimerDurationState.hour,
+                      minutes: homeTimerDurationState.minute,
+                      seconds: homeTimerDurationState.seconds,
+                    );
 
-                  await localTimerNotifier.addTimers(
-                    timerId: timerId + 1,
-                    hours: homeTimerDurationState.hour,
-                    minutes: homeTimerDurationState.minute,
-                    seconds: homeTimerDurationState.seconds,
-                  );
+                    await localTimerNotifier.addTimers(
+                      timerId: timerId + 1,
+                      hours: homeTimerDurationState.hour,
+                      minutes: homeTimerDurationState.minute,
+                      seconds: homeTimerDurationState.seconds,
+                    );
 
-                  timersNotifier.onReset(timerId + 1);
-
+                    timersNotifier.onReset(timerId + 1);
+                  } else {
+                    fToast.showToast(
+                      gravity: ToastGravity.TOP,
+                      child: Container(
+                        width: 390,
+                        height: 52,
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 24,
+                          vertical: 16,
+                        ),
+                        decoration: BoxDecoration(
+                          color: MaeumgagymColor.gray100,
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: Center(
+                          child: PtdTextWidget.labelMedium(
+                            '0초인 타이머는 만들 수 없어요',
+                            MaeumgagymColor.black,
+                          ),
+                        ),
+                      ),
+                    );
+                  }
                   if (context.mounted) {
                     Navigator.pop(context);
                   }
