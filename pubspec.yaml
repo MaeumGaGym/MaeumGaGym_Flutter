@@ -60,6 +60,7 @@ flutter:
     - assets/image/self_care_icon/
     - assets/image/on_boarding_icon/
     - assets/sounds/metronome/
+    - assets/sounds/timer/
 
   fonts:
     - family: Pretendard
