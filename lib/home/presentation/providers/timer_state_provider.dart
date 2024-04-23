@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/models/timers.dart';
 
@@ -16,6 +17,7 @@ final timersProvider =
 
 class TimersNotifier extends StateNotifier<List<Timers>> {
   final List<StreamSubscription<int>?> _subscriptions = [null, null];
+  final _audioPlayer = AudioPlayer();
 
   // 이거 나중ㅇ ㅔ고쳐야됨
 
@@ -97,6 +99,7 @@ class TimersNotifier extends StateNotifier<List<Timers>> {
             currentTime: timer.currentTime - const Duration(milliseconds: 20),
           );
         } else {
+          _audioPlayer.play(AssetSource('sounds/timer/timer_end_sound.wav'));
           _subscriptions[timerId - 1]?.cancel();
           return timer.copyWith(
             currentTime: timer.initialTime,
