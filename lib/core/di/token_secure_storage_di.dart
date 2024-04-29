@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
-const _storage = FlutterSecureStorage();
+const _storage = FlutterSecureStorage(
+  aOptions: AndroidOptions(encryptedSharedPreferences: true),
+);
 
 class TokenSecureStorageDi {
   static Future<void> writeLoginAccessToken(String? accessToken) async {
