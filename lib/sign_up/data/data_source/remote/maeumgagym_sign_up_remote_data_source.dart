@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/core/di/dio_di.dart';
@@ -9,13 +10,11 @@ class MaeumgagymSignUpRemoteDataSource {
 
     Map<String, String> data = {"nickname": name};
 
-    final Map<String, dynamic> queryParam = {
-      "access_token": googleToken,
-    };
+    Map<String, dynamic> header = {"OAUTH-TOKEN": googleToken};
 
     try {
       return await dio
-          .post('/google/signup', queryParameters: queryParam, data: data)
+          .post('/google/signup', options: Options(headers: header), data: data)
           .then((response) {
         debugPrint(response.statusCode.toString());
         return AsyncData(response.statusCode);
@@ -28,13 +27,11 @@ class MaeumgagymSignUpRemoteDataSource {
   Future<AsyncValue<int?>> kakaoSignUp(String kakaoToken, String name) async {
     Map<String, String> data = {"nickname": name};
 
-    final Map<String, dynamic> queryParam = {
-      "access_token": kakaoToken,
-    };
+    Map<String, dynamic> header = {"OAUTH-TOKEN": kakaoToken};
 
     try {
       return await dio
-          .post('/kakao/signup', queryParameters: queryParam, data: data)
+          .post('/kakao/signup', options: Options(headers: header), data: data)
           .then((response) {
         debugPrint(response.statusCode.toString());
         return AsyncData(response.statusCode);
