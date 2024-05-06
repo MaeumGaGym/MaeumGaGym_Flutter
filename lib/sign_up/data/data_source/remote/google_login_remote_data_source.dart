@@ -14,7 +14,15 @@ class GoogleLoginRemoteDataSource {
       GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
 
       _token = googleAuth?.accessToken;
-      return SocialLoginModel.fromJson(const AsyncData(true), _token);
+
+      if (_token == null) {
+        return SocialLoginModel.fromJson(
+          const AsyncError("Token is Null", StackTrace.empty),
+          null,
+        );
+      } else {
+        return SocialLoginModel.fromJson(const AsyncData(true), _token);
+      }
     } catch (err) {
       return SocialLoginModel.fromJson(
         AsyncError(err, StackTrace.empty),
