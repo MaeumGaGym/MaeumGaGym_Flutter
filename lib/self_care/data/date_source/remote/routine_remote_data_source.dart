@@ -2,10 +2,10 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/core/di/dio_di.dart';
-import 'package:maeum_ga_gym_flutter/self_care/domain/model/exercise_info_request_model.dart';
-import 'package:maeum_ga_gym_flutter/self_care/domain/model/routine_and_user_info_model.dart';
-import 'package:maeum_ga_gym_flutter/self_care/domain/model/routine_history_model.dart';
-import 'package:maeum_ga_gym_flutter/self_care/domain/model/routine_response_model.dart';
+import 'package:maeum_ga_gym_flutter/self_care/domain/model/my_routine/exercise_info_request_model.dart';
+import 'package:maeum_ga_gym_flutter/self_care/domain/model/my_routine/routine_and_user_info_model.dart';
+import 'package:maeum_ga_gym_flutter/self_care/domain/model/my_routine/routine_history_model.dart';
+import 'package:maeum_ga_gym_flutter/self_care/domain/model/my_routine/routine_response_model.dart';
 
 class RoutineRemoteDataSource {
   Future<AsyncValue<int?>> createRoutine({
