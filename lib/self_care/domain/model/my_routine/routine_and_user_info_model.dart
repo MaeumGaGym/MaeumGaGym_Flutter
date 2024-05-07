@@ -1,10 +1,10 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:maeum_ga_gym_flutter/self_care/domain/model/routine_response_model.dart';
-import 'package:maeum_ga_gym_flutter/self_care/domain/model/user_info_model.dart';
+import 'package:maeum_ga_gym_flutter/self_care/domain/model/my_routine/routine_response_model.dart';
+import 'package:maeum_ga_gym_flutter/self_care/domain/model/my_routine/routine_user_info_model.dart';
 
 class RoutineAndUserInfoModel {
   final AsyncValue<int> statusCode;
-  final UserInfoModel? userInfo;
+  final RoutineUserInfoModel? userInfo;
   List<RoutineResponseModel> routineList = [];
 
   RoutineAndUserInfoModel({
@@ -19,7 +19,7 @@ class RoutineAndUserInfoModel {
       ) {
     return RoutineAndUserInfoModel(
       statusCode: AsyncData(statusCode),
-      userInfo: UserInfoModel.fromJson(json['user_info']),
+      userInfo: RoutineUserInfoModel.fromJson(json['user_info']),
       routineList: (json['routine_list'] as List)
           .map((routineJson) => RoutineResponseModel.fromJson(routineJson, statusCode))
           .toList(),
@@ -28,7 +28,7 @@ class RoutineAndUserInfoModel {
 
   RoutineAndUserInfoModel copyWith({
     AsyncValue<int>? statusCode,
-    UserInfoModel? userInfo,
+    RoutineUserInfoModel? userInfo,
     List<RoutineResponseModel>? routineList,
   }) {
     return RoutineAndUserInfoModel(

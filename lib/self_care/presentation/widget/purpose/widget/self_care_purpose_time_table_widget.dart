@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
 
-class SelfCareGoalTimeTableWidget extends StatelessWidget {
+class SelfCarePurposeTimeTableWidget extends StatelessWidget {
   final String title;
   final String date;
 
-  const SelfCareGoalTimeTableWidget({
+  const SelfCarePurposeTimeTableWidget({
     super.key,
     required this.title,
     required this.date,

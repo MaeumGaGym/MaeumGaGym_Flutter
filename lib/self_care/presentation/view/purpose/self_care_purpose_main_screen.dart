@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/view/goal/self_care_goal_add_screen.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/view/goal/self_care_goal_detail_screen.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/goal/widget/self_care_goal_item_widget.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/view/purpose/self_care_purpose_add_screen.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/view/purpose/self_care_purpose_detail_screen.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/widget/self_care_my_routine_button.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/purpose/widget/self_care_purpose_item_widget.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/self_care_default_app_bar.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/self_care_default_title_container.dart';
 
-class SelfCareGoalMainScreen extends StatelessWidget {
-  const SelfCareGoalMainScreen({super.key});
+class SelfCarePurposeMainScreen extends StatelessWidget {
+  const SelfCarePurposeMainScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -40,10 +40,10 @@ class SelfCareGoalMainScreen extends StatelessWidget {
                           onTap: () => Navigator.of(context).push(
                             MaterialPageRoute(
                               builder: (context) =>
-                                  const SelfCareGoalDetailScreen(),
+                                  const SelfCarePurposeDetailScreen(),
                             ),
                           ),
-                          child: const SelfCareGoalItemWidget(
+                          child: const SelfCarePurposeItemWidget(
                             title: "디자인 완성하기",
                             subTitle: "12월 26일 ~ 12월 27일",
                           ),
@@ -53,6 +53,7 @@ class SelfCareGoalMainScreen extends StatelessWidget {
                     );
                   },
                 ),
+                const SizedBox(height: 98),
               ],
             ),
           ),
@@ -62,7 +63,7 @@ class SelfCareGoalMainScreen extends StatelessWidget {
       floatingActionButton: GestureDetector(
         onTap: () => Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (context) => const SelfCareGoalAddScreen(),
+            builder: (context) => const SelfCarePurposeAddScreen(),
           ),
         ),
         child: Padding(

@@ -1,5 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:maeum_ga_gym_flutter/self_care/domain/model/routine_pose_model.dart';
+import 'package:maeum_ga_gym_flutter/self_care/domain/model/my_routine/routine_pose_model.dart';
 
 class ExerciseInfoResponseModel {
   final AsyncValue<int> statusCode;
