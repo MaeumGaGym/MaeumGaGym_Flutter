@@ -84,6 +84,17 @@ class SignUpNickNameScreen extends StatelessWidget {
                     );
                   },
                 ),
+                const Spacer(),
+                Consumer(
+                  builder: (context, ref, child) {
+                    return AnimatedCheckButton(
+                      textController: nicknameController,
+                      inText: ref.watch(nicknameTextFieldProvider).inText,
+                      onClicked: ref.watch(nicknameTextFieldProvider).onClicked,
+                      buttonProvider: nicknameTextFieldProvider,
+                    );
+                  },
+                ),
               ],
             ),
             Consumer(
@@ -95,18 +106,6 @@ class SignUpNickNameScreen extends StatelessWidget {
               },
             ),
           ],
-        ),
-      ),
-      bottomSheet: SafeArea(
-        child: Consumer(
-          builder: (context, ref, child) {
-            return AnimatedCheckButton(
-              textController: nicknameController,
-              inText: ref.watch(nicknameTextFieldProvider).inText,
-              onClicked: ref.watch(nicknameTextFieldProvider).onClicked,
-              buttonProvider: nicknameTextFieldProvider,
-            );
-          },
         ),
       ),
     );

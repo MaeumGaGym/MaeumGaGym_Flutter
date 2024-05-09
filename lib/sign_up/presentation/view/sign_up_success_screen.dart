@@ -72,7 +72,7 @@ class SignUpSuccessScreen extends ConsumerWidget {
 
                           ref.watch(maeumgagymLoginController).statusCode.when(
                                 data: (data) {
-                                  context.go('/home');
+                                  context.go('/');
                                 },
                                 error: (err, _) {
                                   context.go('/onBoarding');
