@@ -1,13 +1,12 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/home/domain/repository/home_today_routines_repository.dart';
 
+import '../../../core/di/init.dart';
 import '../model/home_today_routines_model.dart';
 
 class HomeTodayRoutinesUseCase {
-  final HomeTodayRoutinesRepository _repository;
-
-  HomeTodayRoutinesUseCase({required HomeTodayRoutinesRepository repository})
-      : _repository = repository;
+  final HomeTodayRoutinesRepository _repository =
+      locator<HomeTodayRoutinesRepository>();
 
   Future<HomeTodayRoutinesModel> getTodayRoutines() async {
     return await _repository.getTodayRoutines();

@@ -26,8 +26,7 @@ class PoseTagListStateNotifier extends StateNotifier<PoseDetailModel> {
           ),
         );
 
-  final PoseDetailUseCase _useCase =
-      PoseDetailUseCase(repository: PoseDetailRepositoryImpl());
+  final PoseDetailUseCase _useCase = PoseDetailUseCase();
 
   Future<void> getDetailData({required int id}) async {
     state = state.copyWith(statusCode: const AsyncLoading());

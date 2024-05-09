@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:maeum_ga_gym_flutter/core/di/dio_di.dart';
 
 class NicknameCheckRemoteDataSource {
