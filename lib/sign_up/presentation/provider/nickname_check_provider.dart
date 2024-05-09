@@ -10,9 +10,7 @@ final nicknameCheckController =
 class NicknameCheckStateNotifier extends StateNotifier<AsyncValue<bool>> {
   NicknameCheckStateNotifier() : super(const AsyncData(false));
 
-  final NicknameCheckUseCase _useCase = NicknameCheckUseCase(
-    repository: NicknameCheckRepositoryImpl(),
-  );
+  final NicknameCheckUseCase _useCase = NicknameCheckUseCase();
 
   Future<void> checkNickname(String name) async {
     state = const AsyncLoading();

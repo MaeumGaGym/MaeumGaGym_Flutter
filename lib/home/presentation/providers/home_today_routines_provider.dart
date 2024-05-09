@@ -23,9 +23,7 @@ class HomeTodayRoutineStateNotifier
           ),
         );
 
-  final HomeTodayRoutinesUseCase _useCase = HomeTodayRoutinesUseCase(
-    repository: HomeTodayRoutinesRepositoryImpl(),
-  );
+  final HomeTodayRoutinesUseCase _useCase = HomeTodayRoutinesUseCase();
 
   Future<void> getTodayRoutines() async {
     state = state.copyWith(statusCode: const AsyncLoading());

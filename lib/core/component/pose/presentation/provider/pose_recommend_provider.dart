@@ -16,9 +16,7 @@ class PoseRecommendStateNotifier extends StateNotifier<PoseRecommendModel> {
           statusCode: const AsyncData(500),
         ));
 
-  final PoseRecommendUseCase _useCase = PoseRecommendUseCase(
-    repository: PoseRecommendRepositoryImpl(),
-  );
+  final PoseRecommendUseCase _useCase = PoseRecommendUseCase();
 
   Future<void> getRecommendPose() async {
     state = PoseRecommendModel(
