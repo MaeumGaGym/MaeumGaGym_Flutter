@@ -17,8 +17,8 @@ class PurposeBaseModel {
     return PurposeBaseModel(
       title: json['title'],
       content: json['content'],
-      startDate: json['startDate'],
-      endDate: json['endDate'],
+      startDate: json['start_date'],
+      endDate: json['end_date'],
     );
   }
 }
