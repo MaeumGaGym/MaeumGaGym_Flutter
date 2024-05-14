@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/goal/widget/self_care_goal_manage_bottom_sheet.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/purpose/widget/self_care_purpose_manage_bottom_sheet.dart';
 
-class SelfCareGoalItemWidget extends StatelessWidget {
+class SelfCarePurposeItemWidget extends StatelessWidget {
   final String title;
   final String subTitle;
 
   /// 나중에 수정 필요
 
-  const SelfCareGoalItemWidget({
+  const SelfCarePurposeItemWidget({
     super.key,
     required this.title,
     required this.subTitle,
@@ -48,7 +48,7 @@ class SelfCareGoalItemWidget extends StatelessWidget {
                 showModalBottomSheet(
                   context: context,
                   builder: (context) {
-                    return const SelfCareGoalManageBottomSheet();
+                    return const SelfCarePurposeManageBottomSheet();
                   },
                 );
               },

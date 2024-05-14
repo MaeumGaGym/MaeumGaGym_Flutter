@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/goal/widget/self_care_goal_time_table_widget.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/purpose/widget/self_care_purpose_time_table_widget.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/self_care_default_app_bar.dart';
 
-class SelfCareGoalDetailScreen extends StatelessWidget {
-  const SelfCareGoalDetailScreen({super.key});
+class SelfCarePurposeDetailScreen extends StatelessWidget {
+  const SelfCarePurposeDetailScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,14 +26,14 @@ class SelfCareGoalDetailScreen extends StatelessWidget {
                 MaeumgagymColor.black,
               ),
               const SizedBox(height: 12),
-              const SelfCareGoalTimeTableWidget(
+              const SelfCarePurposeTimeTableWidget(
                 title: "시작",
                 date: "12월 25일 (화) 오전 8:00",
               ),
               const SizedBox(height: 12),
 
               /// 패딩은 보기가 안좋아서 SizedBox 쓸게요
-              const SelfCareGoalTimeTableWidget(
+              const SelfCarePurposeTimeTableWidget(
                 title: "마감",
                 date: "2024년 01월 01알 (화) 오전 8:00",
               ),

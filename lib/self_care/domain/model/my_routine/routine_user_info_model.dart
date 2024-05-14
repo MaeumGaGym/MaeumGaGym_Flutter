@@ -1,14 +1,14 @@
-class UserInfoModel {
+class RoutineUserInfoModel {
   final String? nickname;
   final String? profileImage;
 
-  UserInfoModel({
+  RoutineUserInfoModel({
     required this.nickname,
     required this.profileImage,
   });
 
-  factory UserInfoModel.fromJson(Map<String, dynamic> json) {
-    return UserInfoModel(
+  factory RoutineUserInfoModel.fromJson(Map<String, dynamic> json) {
+    return RoutineUserInfoModel(
       nickname: json['nickname'],
       profileImage: json['profile_image'],
     );

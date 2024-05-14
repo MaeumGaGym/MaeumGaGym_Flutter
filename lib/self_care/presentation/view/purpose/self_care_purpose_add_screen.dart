@@ -2,15 +2,45 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/self_care_text_field_provider.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/goal/container/self_care_goal_text_field_container.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/purpose/container/self_care_purpose_text_field_container.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/self_care_animated_button.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/self_care_default_app_bar.dart';
 
-class SelfCareGoalAddScreen extends ConsumerWidget {
-  const SelfCareGoalAddScreen({super.key});
+class SelfCarePurposeAddScreen extends ConsumerStatefulWidget {
+  const SelfCarePurposeAddScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<SelfCarePurposeAddScreen> createState() =>
+      _SelfCarePurposeAddScreenState();
+}
+
+class _SelfCarePurposeAddScreenState
+    extends ConsumerState<SelfCarePurposeAddScreen> {
+  late TextEditingController titleController;
+  late TextEditingController startDateController;
+  late TextEditingController endDateController;
+  late TextEditingController contentController;
+
+  @override
+  void initState() {
+    super.initState();
+    titleController = TextEditingController();
+    startDateController = TextEditingController();
+    endDateController = TextEditingController();
+    contentController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    titleController.dispose();
+    startDateController.dispose();
+    endDateController.dispose();
+    contentController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: MaeumgagymColor.white,
       appBar: const SelfCareDefaultAppBar(
@@ -24,7 +54,12 @@ class SelfCareGoalAddScreen extends ConsumerWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SelfCareGoalTextFieldContainer(),
+                SelfCarePurposeTextFieldContainer(
+                  titleController: titleController,
+                  startDateController: startDateController,
+                  endDateController: endDateController,
+                  contentController: contentController,
+                ),
                 SizedBox(height: MediaQuery.of(context).viewInsets.bottom),
               ],
             ),

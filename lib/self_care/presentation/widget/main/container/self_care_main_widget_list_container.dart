@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/view/goal/self_care_goal_main_screen.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/view/my_routine/self_care_my_routine_main_screen.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/view/purpose/self_care_purpose_main_screen.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/view/today_exercise/self_care_today_exercise_main_screen.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/main/widget/self_care_item_widget.dart';
 
@@ -40,7 +40,7 @@ class SelfCareMainWidgetListContainer extends StatelessWidget {
             behavior: HitTestBehavior.translucent,
             onTap: () => Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (context) => const SelfCareGoalMainScreen(),
+                builder: (context) => const SelfCarePurposeMainScreen(),
               ),
             ),
             child: const SelfCareItemWidget(

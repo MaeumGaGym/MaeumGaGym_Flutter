@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/view/goal/self_care_goal_edit_screen.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/view/purpose/self_care_purpose_edit_screen.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/self_care_default_manage_item_widget.dart';
 
-class SelfCareGoalManageBottomSheet extends StatelessWidget {
-  const SelfCareGoalManageBottomSheet({super.key});
+class SelfCarePurposeManageBottomSheet extends StatelessWidget {
+  const SelfCarePurposeManageBottomSheet({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +34,7 @@ class SelfCareGoalManageBottomSheet extends StatelessWidget {
                   Navigator.of(context).pop();
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context) => SelfCareGoalEditScreen(),
+                      builder: (context) => const SelfCarePurposeEditScreen(),
                     ),
                   );
                 },
