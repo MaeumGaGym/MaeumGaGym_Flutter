@@ -6,11 +6,39 @@ import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/purpose/conta
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/self_care_animated_button.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/self_care_default_app_bar.dart';
 
-class SelfCarePurposeEditScreen extends ConsumerWidget {
+class SelfCarePurposeEditScreen extends ConsumerStatefulWidget {
   const SelfCarePurposeEditScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<SelfCarePurposeEditScreen> createState() => _SelfCarePurposeEditScreenState();
+}
+
+class _SelfCarePurposeEditScreenState extends ConsumerState<SelfCarePurposeEditScreen> {
+  late TextEditingController titleController;
+  late TextEditingController startDateController;
+  late TextEditingController endDateController;
+  late TextEditingController contentController;
+
+  @override
+  void initState() {
+    super.initState();
+    titleController = TextEditingController();
+    startDateController = TextEditingController();
+    endDateController = TextEditingController();
+    contentController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    titleController.dispose();
+    startDateController.dispose();
+    endDateController.dispose();
+    contentController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: MaeumgagymColor.white,
       appBar: const SelfCareDefaultAppBar(
@@ -24,7 +52,12 @@ class SelfCarePurposeEditScreen extends ConsumerWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SelfCarePurposeTextFieldContainer(),
+                SelfCarePurposeTextFieldContainer(
+                  titleController: titleController,
+                  startDateController: startDateController,
+                  endDateController: endDateController,
+                  contentController: contentController,
+                ),
                 SizedBox(height: MediaQuery.of(context).viewInsets.bottom),
               ],
             ),
