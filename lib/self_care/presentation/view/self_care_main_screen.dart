@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
@@ -9,14 +10,14 @@ import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/main/containe
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/calendar/container/self_care_timeline_container.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/self_care_default_title_container.dart';
 
-class SelfCareMainScreen extends StatefulWidget {
+class SelfCareMainScreen extends ConsumerStatefulWidget {
   const SelfCareMainScreen({Key? key}) : super(key: key);
 
   @override
-  State<SelfCareMainScreen> createState() => _SelfCareMainScreenState();
+  ConsumerState<SelfCareMainScreen> createState() => _SelfCareMainScreenState();
 }
 
-class _SelfCareMainScreenState extends State<SelfCareMainScreen> {
+class _SelfCareMainScreenState extends ConsumerState<SelfCareMainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
