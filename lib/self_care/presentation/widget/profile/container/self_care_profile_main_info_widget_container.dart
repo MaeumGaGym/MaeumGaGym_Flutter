@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
+import 'package:maeum_ga_gym_flutter/core/component/maeungagym_text_style.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/user/self_care_user_get_profile_provider.dart';
 
-class SelfCareProfileMainInfoWidgetContainer extends StatelessWidget {
+class SelfCareProfileMainInfoWidgetContainer extends ConsumerWidget {
   const SelfCareProfileMainInfoWidgetContainer({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final profileState = ref.watch(selfCareUserGetProfileProvider);
     return SafeArea(
       child: Container(
-        // 이거 디자인 확정안됬다고 해서 나중에 다시 추가함
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
@@ -44,10 +47,22 @@ class SelfCareProfileMainInfoWidgetContainer extends StatelessWidget {
                 MaeumgagymColor.black,
               ),
               const SizedBox(height: 6),
-              /// 나중에 폰트 설정 리팩토링 할 거기 때문에 이렇게 구현했습니다.
-              PtdTextWidget.bodyMedium(
-                "총 124시간 운동하셨어요!",
-                MaeumgagymColor.gray600,
+              RichText(
+                text: TextSpan(
+                  style: MaeumGaGymTextStyle.bodyMedium(MaeumgagymColor.gray600),
+                  children: [
+                    const TextSpan(
+                      text: "총 ",
+                    ),
+                    TextSpan(
+                      style: MaeumGaGymTextStyle.bodyMedium(MaeumgagymColor.blue500),
+                      text: profileState.totalWakatime.toString(),
+                    ),
+                    const TextSpan(
+                      text: "시간 운동하셨어요!",
+                    ),
+                  ],
+                ),
               ),
               const SizedBox(height: 7),
             ],
