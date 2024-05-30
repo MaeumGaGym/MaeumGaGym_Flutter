@@ -1,23 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
-import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/purpose/widget/self_care_purpose_manage_bottom_sheet.dart';
 
-class SelfCareDefaultAppBar extends StatelessWidget
+class SelfCarePurposeDetailAppBar extends StatelessWidget
     implements PreferredSizeWidget {
-  final String? title;
-  final String iconPath;
+  final int purposeId;
 
-  final Color? backgroundColor;
-  final Color? color;
-
-  const SelfCareDefaultAppBar({
+  const SelfCarePurposeDetailAppBar({
     Key? key,
-    this.title,
-    this.backgroundColor,
-    this.color,
-    required this.iconPath,
+    required this.purposeId,
   }) : super(key: key);
 
   @override
@@ -28,7 +20,7 @@ class SelfCareDefaultAppBar extends StatelessWidget
         child: AppBar(
           automaticallyImplyLeading: false,
           scrolledUnderElevation: 0,
-          backgroundColor: backgroundColor ?? MaeumgagymColor.white,
+          backgroundColor: MaeumgagymColor.white,
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -40,21 +32,30 @@ class SelfCareDefaultAppBar extends StatelessWidget
                     child: Container(
                       alignment: Alignment.center,
                       child: SvgPicture.asset(
-                        iconPath,
+                        "assets/image/core_icon/left_arrow_icon.svg",
                         width: 28,
                         height: 28,
-                        color: color ?? MaeumgagymColor.black,
+                        color: MaeumgagymColor.black,
                       ),
                     ),
                   ),
-                  const SizedBox(width: 24),
-                  PtdTextWidget.labelLarge(
-                    title ?? "",
-
-                    /// title이 null이라면 공백처리
-                    color ?? MaeumgagymColor.black,
-                  ),
                 ],
+              ),
+              GestureDetector(
+                onTap: () {
+                  showModalBottomSheet(
+                    context: context,
+                    builder: (context) {
+                      return SelfCarePurposeManageBottomSheet(purposeId: purposeId, inDetail: true);
+                    },
+                  );
+                },
+                child: SvgPicture.asset(
+                  "assets/image/core_icon/dots_vertical_icon.svg",
+                  width: 28,
+                  height: 28,
+                  color: MaeumgagymColor.black,
+                ),
               ),
             ],
           ),

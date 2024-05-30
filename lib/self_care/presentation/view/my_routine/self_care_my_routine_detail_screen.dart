@@ -10,7 +10,7 @@ import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/wi
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/widget/self_care_my_routine_button.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/widget/self_care_my_routine_detail_dialog.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/widget/self_care_my_routine_detail_routine_item_widget.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/widget/self_care_my_routine_toast_message.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/self_care_default_toast_message.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/self_care_default_app_bar.dart';
 
 class SelfCareMyRoutineDetailScreen extends ConsumerStatefulWidget {
@@ -39,7 +39,7 @@ class _SelfCareMyRoutineDetailScreenState
 
   void _showToast(String title) {
     fToast.showToast(
-      child: SelfCareMyRoutineToastMessage(title: title),
+      child: SelfCareDefaultToastMessage(title: title),
       gravity: ToastGravity.TOP,
       toastDuration: const Duration(milliseconds: 1600),
     );

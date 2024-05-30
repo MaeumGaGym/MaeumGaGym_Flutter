@@ -5,6 +5,7 @@ import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_wid
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/purpose/widget/self_care_purpose_manage_bottom_sheet.dart';
 
 class SelfCarePurposeItemWidget extends StatelessWidget {
+  final int purposeId;
   final String title;
   final String subTitle;
 
@@ -12,6 +13,7 @@ class SelfCarePurposeItemWidget extends StatelessWidget {
 
   const SelfCarePurposeItemWidget({
     super.key,
+    required this.purposeId,
     required this.title,
     required this.subTitle,
   });
@@ -29,26 +31,28 @@ class SelfCarePurposeItemWidget extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                PtdTextWidget.labelLarge(
-                  title,
-                  MaeumgagymColor.black,
-                ),
-                const SizedBox(height: 4),
-                PtdTextWidget.bodySmall(
-                  subTitle,
-                  MaeumgagymColor.gray400,
-                ),
-              ],
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  PtdTextWidget.labelLarge(
+                    title,
+                    MaeumgagymColor.black,
+                  ),
+                  const SizedBox(height: 4),
+                  PtdTextWidget.bodySmall(
+                    subTitle,
+                    MaeumgagymColor.gray400,
+                  ),
+                ],
+              ),
             ),
             GestureDetector(
               onTap: () {
                 showModalBottomSheet(
                   context: context,
                   builder: (context) {
-                    return const SelfCarePurposeManageBottomSheet();
+                    return SelfCarePurposeManageBottomSheet(purposeId: purposeId, inDetail: false);
                   },
                 );
               },
