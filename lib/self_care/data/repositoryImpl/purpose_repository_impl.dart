@@ -27,7 +27,7 @@ class PurposeRepositoryImpl implements PurposeRepository {
   @override
   Future<AsyncValue<int?>> deletePurpose({
     required String accessToken,
-    required String purposeId,
+    required int purposeId,
   }) async {
     return await _remoteDataSource.deletePurpose(
       accessToken: accessToken,
@@ -55,11 +55,11 @@ class PurposeRepositoryImpl implements PurposeRepository {
   }
 
   @override
-  Future<PurposeListResponseModel> getAllPurpose({
+  Future<PurposeListResponseModel> getMyPurpose({
     required String accessToken,
     required int index,
   }) async {
-    return await _remoteDataSource.getAllPurpose(
+    return await _remoteDataSource.getMyPurpose(
       accessToken: accessToken,
       index: index,
     );
@@ -77,11 +77,11 @@ class PurposeRepositoryImpl implements PurposeRepository {
   }
 
   @override
-  Future<PurposeResponseModel> getPurpose({
+  Future<PurposeResponseModel> getDetailPurpose({
     required String accessToken,
-    required String purposeId,
+    required int purposeId,
   }) async {
-    return await _remoteDataSource.getPurpose(
+    return await _remoteDataSource.getDetailPurpose(
       accessToken: accessToken,
       purposeId: purposeId,
     );

@@ -11,7 +11,7 @@ abstract class PurposeRepository {
     required String endDate,
   });
 
-  Future<PurposeListResponseModel> getAllPurpose({
+  Future<PurposeListResponseModel> getMyPurpose({
     required String accessToken,
     required int index,
   });
@@ -21,9 +21,9 @@ abstract class PurposeRepository {
     required String date,
   });
 
-  Future<PurposeResponseModel> getPurpose({
+  Future<PurposeResponseModel> getDetailPurpose({
     required String accessToken,
-    required String purposeId,
+    required int purposeId,
   });
 
   Future<AsyncValue<int?>> editPurpose({
@@ -37,6 +37,6 @@ abstract class PurposeRepository {
 
   Future<AsyncValue<int?>> deletePurpose({
     required String accessToken,
-    required String purposeId,
+    required int purposeId,
   });
 }

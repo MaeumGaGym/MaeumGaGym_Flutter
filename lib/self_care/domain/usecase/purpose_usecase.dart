@@ -26,7 +26,7 @@ class PurposeUseCase {
 
   Future<AsyncValue<int?>> deletePurpose({
     required String accessToken,
-    required String purposeId,
+    required int purposeId,
   }) async {
     return await _repository.deletePurpose(
       accessToken: accessToken,
@@ -52,11 +52,11 @@ class PurposeUseCase {
     );
   }
 
-  Future<PurposeListResponseModel> getAllPurpose({
+  Future<PurposeListResponseModel> getMyPurpose({
     required String accessToken,
     required int index,
   }) async {
-    return await _repository.getAllPurpose(
+    return await _repository.getMyPurpose(
       accessToken: accessToken,
       index: index,
     );
@@ -72,11 +72,11 @@ class PurposeUseCase {
     );
   }
 
-  Future<PurposeResponseModel> getPurpose({
+  Future<PurposeResponseModel> getDetailPurpose({
     required String accessToken,
-    required String purposeId,
+    required int purposeId,
   }) async {
-    return await _repository.getPurpose(
+    return await _repository.getDetailPurpose(
       accessToken: accessToken,
       purposeId: purposeId,
     );
