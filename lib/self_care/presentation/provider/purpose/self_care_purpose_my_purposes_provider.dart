@@ -4,11 +4,11 @@ import 'package:maeum_ga_gym_flutter/self_care/data/repositoryImpl/purpose_repos
 import 'package:maeum_ga_gym_flutter/self_care/domain/model/purpose/purpose_list_response_model.dart';
 import 'package:maeum_ga_gym_flutter/self_care/domain/usecase/purpose_usecase.dart';
 
-final selfCarePurposeAllPurposesProvider = StateNotifierProvider<SelfCarePurposeAllPurposesStateNotifier, PurposeListResponseModel>((ref) => SelfCarePurposeAllPurposesStateNotifier());
+final selfCarePurposeMyPurposesProvider = StateNotifierProvider<SelfCarePurposeMyPurposesStateNotifier, PurposeListResponseModel>((ref) => SelfCarePurposeMyPurposesStateNotifier());
 
-class SelfCarePurposeAllPurposesStateNotifier
+class SelfCarePurposeMyPurposesStateNotifier
     extends StateNotifier<PurposeListResponseModel> {
-  SelfCarePurposeAllPurposesStateNotifier()
+  SelfCarePurposeMyPurposesStateNotifier()
       : super(
           PurposeListResponseModel(
             statusCode: const AsyncData(500),
@@ -21,12 +21,12 @@ class SelfCarePurposeAllPurposesStateNotifier
 
   String? accessToken;
 
-  Future<void> getAllPurpose({required int index}) async {
+  Future<void> getMyPurpose({required int index}) async {
     try {
       state = state.copyWith(statusCode: const AsyncLoading());
       accessToken = await TokenSecureStorageDi.readLoginAccessToken();
 
-      final response = await _purposeUseCase.getAllPurpose(
+      final response = await _purposeUseCase.getMyPurpose(
         accessToken: accessToken!,
         index: index,
       );
