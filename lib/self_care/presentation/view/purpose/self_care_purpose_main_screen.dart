@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
-import 'package:maeum_ga_gym_flutter/self_care/domain/model/purpose/purpose_base_model.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/purpose/self_care_purpose_all_purposes_provider.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/purpose/self_care_purpose_my_purposes_provider.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/view/purpose/self_care_purpose_add_screen.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/view/purpose/self_care_purpose_detail_screen.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/widget/self_care_my_routine_button.dart';
@@ -18,7 +17,6 @@ class SelfCarePurposeMainScreen extends ConsumerStatefulWidget {
 }
 
 class _SelfCarePurposeMainScreenState extends ConsumerState<SelfCarePurposeMainScreen> {
-  late ScrollController paginationController;
 
   @override
   void initState() {
@@ -26,20 +24,14 @@ class _SelfCarePurposeMainScreenState extends ConsumerState<SelfCarePurposeMainS
     Future.delayed(
       Duration.zero,
           () => ref
-          .read(selfCarePurposeAllPurposesProvider.notifier)
-          .getAllPurpose(index: 0),
+          .read(selfCarePurposeMyPurposesProvider.notifier)
+          .getMyPurpose(index: 0),
     );
-    paginationController = ScrollController()..addListener(() {
-      if (paginationController.position.pixels == paginationController.position.maxScrollExtent) {
-        ref.read(selfCarePurposeAllPurposesProvider.notifier).getAllPurpose(index: ref.watch(selfCarePurposeAllPurposesProvider).purposeList.length);
-      }
-    });
   }
 
-  
   @override
   Widget build(BuildContext context) {
-    final purposeAllState = ref.watch(selfCarePurposeAllPurposesProvider);
+    final myPurposesState = ref.watch(selfCarePurposeMyPurposesProvider);
     return Scaffold(
       backgroundColor: MaeumgagymColor.white,
       appBar: const SelfCareDefaultAppBar(
@@ -47,7 +39,6 @@ class _SelfCarePurposeMainScreenState extends ConsumerState<SelfCarePurposeMainS
       ),
       body: SafeArea(
         child: SingleChildScrollView(
-          controller: paginationController,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
             child: Column(
@@ -61,7 +52,7 @@ class _SelfCarePurposeMainScreenState extends ConsumerState<SelfCarePurposeMainS
                 ListView.builder(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
-                  itemCount: purposeAllState.purposeList.length, // 임의로 넣은 아이템 갯수
+                  itemCount: myPurposesState.purposeList.length, // 임의로 넣은 아이템 갯수
                   itemBuilder: (context, index) {
                     return Column(
                       children: [
@@ -69,12 +60,13 @@ class _SelfCarePurposeMainScreenState extends ConsumerState<SelfCarePurposeMainS
                           onTap: () => Navigator.of(context).push(
                             MaterialPageRoute(
                               builder: (context) =>
-                                  const SelfCarePurposeDetailScreen(),
+                                  SelfCarePurposeDetailScreen(purposeId: myPurposesState.purposeList[index].id!),
                             ),
                           ),
                           child: SelfCarePurposeItemWidget(
-                            title: purposeAllState.purposeList[index].title.toString(),
-                            subTitle: purposeAllState.purposeList[index].startDate.toString(),
+                            purposeId: myPurposesState.purposeList[index].id!,
+                            title: myPurposesState.purposeList[index].title.toString(),
+                            subTitle: myPurposesState.purposeList[index].startDate.toString(),
                           ),
                         ),
                         SizedBox(height: index == 30 - 1 ? 0 : 12),
