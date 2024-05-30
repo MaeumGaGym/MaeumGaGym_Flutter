@@ -39,14 +39,7 @@ class SelfCarePurposeDetailPurposesStateNotifier
         purposeId: purposeId,
       );
 
-      state = state.copyWith(
-        statusCode: response.statusCode,
-        id: response.id,
-        title: response.title,
-        content: response.content,
-        startDate: response.startDate,
-        endDate: response.endDate,
-      );
+      state = response;
     } catch (err) {
       throw Exception(err.toString());
     }
