@@ -39,7 +39,7 @@ class PurposeRemoteDataSource {
     }
   }
 
-  Future<PurposeListResponseModel> getAllPurpose({
+  Future<PurposeListResponseModel> getMyPurpose({
     required String accessToken,
     required int index,
   }) async {
@@ -100,14 +100,13 @@ class PurposeRemoteDataSource {
     }
   }
 
-  Future<PurposeResponseModel> getPurpose({
+  Future<PurposeResponseModel> getDetailPurpose({
     required String accessToken,
-    required String purposeId,
+    required int purposeId,
   }) async {
     try {
-      return await dio
-          .get(
-        "purposes/$purposeId",
+      return await dio.get(
+        "/purposes/$purposeId",
         options: Options(
           headers: {
             "Content-Type": "application/json",
@@ -124,6 +123,7 @@ class PurposeRemoteDataSource {
     } catch (err) {
       return PurposeResponseModel(
         statusCode: AsyncError(err, StackTrace.empty),
+        id: null,
         title: null,
         content: null,
         startDate: null,
@@ -149,7 +149,7 @@ class PurposeRemoteDataSource {
     try {
       return await dio
           .put(
-        "purposes/$purposeId",
+        "/purposes/$purposeId",
         data: data,
         options: Options(
           headers: {
@@ -168,12 +168,12 @@ class PurposeRemoteDataSource {
 
   Future<AsyncValue<int?>> deletePurpose({
     required String accessToken,
-    required String purposeId,
+    required int purposeId,
   }) async {
     try {
       return await dio
           .delete(
-        "purposes/$purposeId",
+        "/purposes/$purposeId",
         options: Options(
           headers: {
             "Content-Type": "application/json",
