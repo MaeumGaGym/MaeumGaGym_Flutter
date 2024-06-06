@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:maeum_ga_gym_flutter/core/di/token_secure_storage_di.dart';
-import 'package:maeum_ga_gym_flutter/core/re_issue/presentation/maeumgagym_re_issue_provider.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/providers/home_today_routines_provider.dart';
 
 import '../../../../config/maeumgagym_color.dart';
 import '../../../../core/component/text/pretendard/ptd_text_widget.dart';
 
 class HomeTodayRoutineButton extends ConsumerWidget {
+  final int routineId;
   final bool isCompleted;
 
-  const HomeTodayRoutineButton({super.key, required this.isCompleted});
+  const HomeTodayRoutineButton({super.key, required this.isCompleted, required this.routineId});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -19,20 +18,7 @@ class HomeTodayRoutineButton extends ConsumerWidget {
         if (!ref.watch(homeTodayRoutineController).statusCode.isLoading) {
           await ref
               .read(homeTodayRoutineController.notifier)
-              .completeTodayRoutines();
-
-          if (ref.watch(homeTodayRoutineController).statusCode.hasError) {
-            String? refreshToken =
-                await TokenSecureStorageDi.readLoginRefreshToken();
-
-            await ref
-                .read(maeumgagymReIssueController.notifier)
-                .getReIssue(refreshToken!);
-
-            await ref
-                .read(homeTodayRoutineController.notifier)
-                .completeTodayRoutines();
-          }
+              .completeTodayRoutines(routineId);
 
           await ref
               .read(homeTodayRoutineController.notifier)
