@@ -3,7 +3,7 @@ name: Flutter CI/CD Workflow
 on:
   push:
     branches:
-      - develop
+      - main
 
 jobs:
   build-and-deploy:
@@ -23,7 +23,7 @@ jobs:
       - name: BaseURL File Settings
         run: |
           cd lib/core
-          echo "${{ secrets.ENCODED_BASE_URL_FILE }}" | base64 --decode > base_url.dart
+          echo "${{ secrets.PROD_ENCODED_BASE_URL_FILE }}" | base64 --decode > base_url.dart
           ls
 
       - name: Secret File Settings
@@ -43,14 +43,14 @@ jobs:
       - name: Deploy to Internal Track
         run: |
           cd android
-          fastlane internal
+          fastlane production
 
       - name: Discord Webhook Action
         uses: sarisia/actions-status-discord@v1
         if: ${{ ! startsWith(github.event.head_commit.message, '!!') }}
         with:
-          title: 🔥 Internal Track Deploy
-          description: "# 내부트랙에 앱이 배포되었습니다.️"
+          title: 🔥 Production Track Deploy
+          description: "# Production 에 앱이 배포되었습니다.️"
           content: "<@&1219166341366288414>"
           webhook: ${{ secrets.DISCORD_WEBHOOK_DEPLOYMENT }}
           color: FFFFFF
