@@ -8,11 +8,11 @@ class HomeTodayRoutinesUseCase {
   final HomeTodayRoutinesRepository _repository =
       locator<HomeTodayRoutinesRepository>();
 
-  Future<HomeTodayRoutinesModel> getTodayRoutines() async {
+  Future<HomeTodayRoutineListModel> getTodayRoutines() async {
     return await _repository.getTodayRoutines();
   }
 
-  Future<AsyncValue<int>> completeTodayRoutines() async {
-    return await _repository.completeTodayRoutines();
+  Future<AsyncValue<int>> completeTodayRoutines(int id) async {
+    return await _repository.completeTodayRoutines(id);
   }
 }
