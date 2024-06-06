@@ -8,12 +8,12 @@ class HomeTodayRoutinesRepositoryImpl implements HomeTodayRoutinesRepository {
       HomeTodayRoutinesRemoteDataSource();
 
   @override
-  Future<HomeTodayRoutinesModel> getTodayRoutines() async {
+  Future<HomeTodayRoutineListModel> getTodayRoutines() async {
     return await _dataSource.getTodayRoutines();
   }
 
   @override
-  Future<AsyncValue<int>> completeTodayRoutines() async {
-    return await _dataSource.completeTodayRoutines();
+  Future<AsyncValue<int>> completeTodayRoutines(int id) async {
+    return await _dataSource.completeTodayRoutines(id);
   }
 }

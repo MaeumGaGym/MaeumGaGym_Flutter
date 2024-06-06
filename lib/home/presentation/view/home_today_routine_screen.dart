@@ -10,11 +10,14 @@ import 'package:maeum_ga_gym_flutter/home/presentation/widget/today_routine/home
 import '../../../core/component/image_widget.dart';
 
 class HomeTodayRoutineScreen extends ConsumerWidget {
-  const HomeTodayRoutineScreen({super.key});
+  final int routineListIndex;
+
+  const HomeTodayRoutineScreen({super.key, required this.routineListIndex});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final todayRoutine = ref.read(homeTodayRoutineController);
+    final todayRoutine =
+        ref.read(homeTodayRoutineController).routineList[routineListIndex];
 
     final routineDayOfWeek = todayRoutine.dayOfWeeks
         .toString()
@@ -102,21 +105,19 @@ class HomeTodayRoutineScreen extends ConsumerWidget {
             );
           },
           error: (err, _) {
-            if (err.toString().contains("401 Complete") ||
-                err.toString().contains("401 TodayRoutine") ||
-                err.toString().contains("409")) {
-              return const Center(child: CircularProgressIndicator());
-            } else {
-              return Text(err.toString());
-            }
+            return Text(err.toString());
           },
           loading: () {
-            return const Center(child: CircularProgressIndicator());
+            return Center(
+                child: CircularProgressIndicator(
+              color: MaeumgagymColor.blue500,
+            ));
           },
         ),
       ),
       bottomSheet: HomeTodayRoutineButton(
         isCompleted: todayRoutine.isCompleted!,
+        routineId: todayRoutine.id!,
       ),
     );
   }
