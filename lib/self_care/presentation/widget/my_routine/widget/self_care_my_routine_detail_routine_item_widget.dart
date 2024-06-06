@@ -6,7 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/my_routine/self_care_my_routine_all_me_routine_provider.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/my_routine/self_care_my_routine_my_routine_provider.dart';
 
 class SelfCareMyRoutineDetailRoutineItemWidget extends ConsumerWidget {
   final int routineListIndex;
@@ -20,8 +20,8 @@ class SelfCareMyRoutineDetailRoutineItemWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final routineAllMeState = ref.watch(selfCareMyRoutineAllMeRoutineProvider);
-    final item = routineAllMeState.routineList[routineListIndex]
+    final myRoutineState = ref.watch(selfCareMyRoutineMyRoutinesProvider);
+    final item = myRoutineState.routineList[routineListIndex]
         .exerciseInfoResponseList[exerciseInfoListIndex];
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -4,14 +4,14 @@ import 'package:maeum_ga_gym_flutter/self_care/data/repositoryImpl/routine_repos
 import 'package:maeum_ga_gym_flutter/self_care/domain/model/my_routine/routine_and_user_info_model.dart';
 import 'package:maeum_ga_gym_flutter/self_care/domain/usecase/routine_usecase.dart';
 
-final selfCareMyRoutineAllMeRoutineProvider = StateNotifierProvider.autoDispose<
-    SelfCareMyRoutineAllMeRoutineStateNotifier, RoutineAndUserInfoModel>((ref) {
-  return SelfCareMyRoutineAllMeRoutineStateNotifier();
+final selfCareMyRoutineMyRoutinesProvider = StateNotifierProvider<
+    SelfCareMyRoutineMyRoutinesStateNotifier, RoutineAndUserInfoModel>((ref) {
+  return SelfCareMyRoutineMyRoutinesStateNotifier();
 });
 
-class SelfCareMyRoutineAllMeRoutineStateNotifier
+class SelfCareMyRoutineMyRoutinesStateNotifier
     extends StateNotifier<RoutineAndUserInfoModel> {
-  SelfCareMyRoutineAllMeRoutineStateNotifier()
+  SelfCareMyRoutineMyRoutinesStateNotifier()
       : super(RoutineAndUserInfoModel(
           statusCode: const AsyncData(500),
           userInfo: null,
@@ -23,18 +23,35 @@ class SelfCareMyRoutineAllMeRoutineStateNotifier
 
   String? accessToken;
 
-  Future<void> getRoutineAllMe() async {
+  Future<void> getMyRoutineInit() async {
     try {
       state = state.copyWith(statusCode: const AsyncLoading());
       accessToken = await TokenSecureStorageDi.readLoginAccessToken();
-      final response = await _routineUseCase.getRoutineAllMe(
+      final response = await _routineUseCase.getMyRoutine(
         accessToken: accessToken!,
+        index: 0,
       );
       state = state.copyWith(
         statusCode: response.statusCode,
         userInfo: response.userInfo,
         routineList: response.routineList,
       );
+      print(state.routineList.length);
+    } catch (err) {
+      throw Exception(err.toString());
+    }
+  }
+
+  Future<void> getMyRoutine({required int index}) async {
+    try {
+      state = state.copyWith(statusCode: const AsyncLoading());
+      accessToken = await TokenSecureStorageDi.readLoginAccessToken();
+      final response = await _routineUseCase.getMyRoutine(
+        accessToken: accessToken!,
+        index: index,
+      );
+      state.routineList.addAll(response.routineList);
+      print(state.routineList.length);
     } catch (err) {
       throw Exception(err.toString());
     }

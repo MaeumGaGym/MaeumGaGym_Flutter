@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/my_routine/self_care_my_routine_all_me_routine_provider.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/my_routine/self_care_my_routine_my_routine_provider.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/view/my_routine/self_care_my_routine_add_screen.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/view/my_routine/self_care_my_routine_detail_screen.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/widget/self_care_my_routine_button.dart';
@@ -19,20 +19,21 @@ class SelfCareMyRoutineMainScreen extends ConsumerStatefulWidget {
 
 class _SelfCareMyRoutineMainScreenState
     extends ConsumerState<SelfCareMyRoutineMainScreen> {
+
   @override
   void initState() {
     super.initState();
     Future.delayed(
       Duration.zero,
       () => ref
-          .watch(selfCareMyRoutineAllMeRoutineProvider.notifier)
-          .getRoutineAllMe(),
+          .read(selfCareMyRoutineMyRoutinesProvider.notifier)
+          .getMyRoutineInit(),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    final routineAllMeState = ref.watch(selfCareMyRoutineAllMeRoutineProvider);
+    final myRoutineState = ref.watch(selfCareMyRoutineMyRoutinesProvider);
     return Scaffold(
       backgroundColor: MaeumgagymColor.white,
       appBar: const SelfCareDefaultAppBar(
@@ -42,7 +43,9 @@ class _SelfCareMyRoutineMainScreenState
         child: RefreshIndicator(
           color: MaeumgagymColor.blue500,
           onRefresh: () async {
-            ref.read(selfCareMyRoutineAllMeRoutineProvider.notifier).getRoutineAllMe();
+            ref
+                .read(selfCareMyRoutineMyRoutinesProvider.notifier)
+                .getMyRoutineInit();
           },
           child: SingleChildScrollView(
             child: Padding(
@@ -55,7 +58,7 @@ class _SelfCareMyRoutineMainScreenState
                     subTitle: "나만의 루틴을 구성하여\n규칙적인 운동을 해보세요.",
                   ),
                   const SizedBox(height: 32),
-                  routineAllMeState.statusCode.when(
+                  myRoutineState.statusCode.when(
                     data: (data) {
                       if (data == 200) {
                         return ListView.builder(
@@ -63,13 +66,14 @@ class _SelfCareMyRoutineMainScreenState
                           physics: const NeverScrollableScrollPhysics(),
 
                           /// Notifier에 입력된 Model 개수만큼
-                          itemCount: routineAllMeState.routineList.length,
+                          itemCount: myRoutineState.routineList.length,
                           itemBuilder: (context, index) {
                             /// 공통된 변수
                             return Padding(
                               padding: EdgeInsets.only(
                                   bottom: index ==
-                                          routineAllMeState.routineList.length - 1
+                                          myRoutineState.routineList.length -
+                                              1
                                       ? 0
                                       : 12),
                               child: GestureDetector(
@@ -95,7 +99,7 @@ class _SelfCareMyRoutineMainScreenState
                         );
                       } else {
                         return Text(
-                          "${routineAllMeState.statusCode}",
+                          "${myRoutineState.statusCode}",
                         );
                       }
                     },
