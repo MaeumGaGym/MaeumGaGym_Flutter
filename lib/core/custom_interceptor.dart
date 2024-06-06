@@ -36,7 +36,8 @@ class CustomInterceptor extends Interceptor {
   @override
   void onError(err, ErrorInterceptorHandler handler) async {
     debugPrint(
-      '[ERR] [${err.requestOptions.method}] ${err.requestOptions.uri}',
+      '[ERR] [${err.requestOptions.method}] ${err.requestOptions.uri} \n'
+      '[Error Message] ${err.message}',
     );
 
     if (err.response?.statusCode == 401) {
