@@ -13,6 +13,7 @@ import 'package:maeum_ga_gym_flutter/core/di/init.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/view/self_care_camera_screen.dart';
 
 import 'package:hive_flutter/hive_flutter.dart';
+import 'core/di/dio_di.dart';
 import 'home/domain/model/local_timer_model.dart';
 
 void main() async {
@@ -52,6 +53,9 @@ void main() async {
       () async {
     runApp(const ProviderScope(child: MyApp()));
   });
+
+  // dio interceptor 추가
+  addInterceptor();
 }
 
 class MyApp extends StatelessWidget {
