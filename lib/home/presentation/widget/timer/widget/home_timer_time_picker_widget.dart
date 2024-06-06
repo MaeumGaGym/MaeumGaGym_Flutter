@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+import 'package:maeum_ga_gym_flutter/core/component/maeumgagym_toast_message.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/providers/home_timer_add_duration_provider.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/providers/local_timer_provider.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/providers/timer_state_provider.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/widget/timer/widget/home_timer_picker_bottom_button_widget.dart';
+import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 import '../../../../../config/maeumgagym_color.dart';
 import '../../../../../core/component/text/pretendard/ptd_text_widget.dart';
@@ -20,13 +21,12 @@ class HomeTimerTimePickerWidget extends ConsumerStatefulWidget {
 
 class _HomeTimerTimePickerWidgetState
     extends ConsumerState<HomeTimerTimePickerWidget> {
-  late FToast fToast;
 
-  @override
-  void initState() {
-    super.initState();
-    fToast = FToast();
-    fToast.init(context);
+  void _showToast({required String message}) {
+    showTopSnackBar(
+      Overlay.of(context),
+      MaeumGaGymToastMessage(title: message),
+    );
   }
 
   @override
@@ -126,27 +126,7 @@ class _HomeTimerTimePickerWidgetState
 
                     timersNotifier.onReset(timerId + 1);
                   } else {
-                    fToast.showToast(
-                      gravity: ToastGravity.TOP,
-                      child: Container(
-                        width: 390,
-                        height: 52,
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 24,
-                          vertical: 16,
-                        ),
-                        decoration: BoxDecoration(
-                          color: MaeumgagymColor.gray100,
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: Center(
-                          child: PtdTextWidget.labelMedium(
-                            '0초인 타이머는 만들 수 없어요',
-                            MaeumgagymColor.black,
-                          ),
-                        ),
-                      ),
-                    );
+                    _showToast(message: "0초인 타이머는 만들 수 없어요.");
                   }
                   if (context.mounted) {
                     Navigator.pop(context);

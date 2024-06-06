@@ -1,15 +1,14 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
+import 'package:maeum_ga_gym_flutter/core/component/maeumgagym_toast_message.dart';
 import 'package:maeum_ga_gym_flutter/self_care/domain/model/my_routine/exercise_info_request_model.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/my_routine/self_care_my_routine_all_me_routine_provider.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/my_routine/self_care_my_routine_my_routine_provider.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/my_routine/self_care_my_routine_delete_routine_provider.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/my_routine/self_care_my_routine_edit_routine_provider.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/view/my_routine/self_care_my_routine_edit_screen.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/self_care_default_manage_item_widget.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/self_care_default_toast_message.dart';
+import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 class SelfCareMyRoutineManageBottomSheet extends ConsumerStatefulWidget {
   final int listIndex;
@@ -24,22 +23,12 @@ class SelfCareMyRoutineManageBottomSheet extends ConsumerStatefulWidget {
       _SelfCareMyRoutineManageBottomSheetState();
 }
 
-class _SelfCareMyRoutineManageBottomSheetState
-    extends ConsumerState<SelfCareMyRoutineManageBottomSheet> {
-  late FToast fToast;
+class _SelfCareMyRoutineManageBottomSheetState extends ConsumerState<SelfCareMyRoutineManageBottomSheet> {
 
-  @override
-  void initState() {
-    super.initState();
-    fToast = FToast();
-    fToast.init(context);
-  }
-
-  void _showToast(String title) {
-    fToast.showToast(
-      child: SelfCareDefaultToastMessage(title: title),
-      gravity: ToastGravity.TOP,
-      toastDuration: const Duration(milliseconds: 1600),
+  void _showToast({required String message}) {
+    showTopSnackBar(
+      Overlay.of(context),
+      MaeumGaGymToastMessage(title: message),
     );
     Navigator.of(context).pop();
   }
@@ -48,12 +37,10 @@ class _SelfCareMyRoutineManageBottomSheetState
     bool? changeArchived,
     bool? changeShared,
   }) async {
-    final routineAllMeState = ref.watch(selfCareMyRoutineAllMeRoutineProvider);
+    final myRoutineState = ref.watch(selfCareMyRoutineMyRoutinesProvider);
     final editRoutineNotifier =
         ref.read(selfCareMyRoutineEditRoutineProvider.notifier);
-    final routineAllMeNotifier =
-        ref.read(selfCareMyRoutineAllMeRoutineProvider.notifier);
-    final item = routineAllMeState.routineList[widget.listIndex];
+    final item = myRoutineState.routineList[widget.listIndex];
 
     await editRoutineNotifier.editRoutine(
       routineName: item.routineName.toString(),
@@ -69,18 +56,26 @@ class _SelfCareMyRoutineManageBottomSheetState
       ),
       routineId: item.id!,
       dayOfWeeks: item.dayOfWeeks,
-    )
-        .whenComplete(() async {
-      await routineAllMeNotifier.getRoutineAllMe();
-    });
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    final routineAllMeState = ref.watch(selfCareMyRoutineAllMeRoutineProvider);
-    final routineAllMeNotifier = ref.read(selfCareMyRoutineAllMeRoutineProvider.notifier);
-    final item = routineAllMeState.routineList[widget.listIndex];
+    final myRoutineState = ref.watch(selfCareMyRoutineMyRoutinesProvider);
+    final myRoutineNotifier = ref.read(selfCareMyRoutineMyRoutinesProvider.notifier);
+    final item = myRoutineState.routineList[widget.listIndex];
     final deleteRoutineNotifier = ref.read(selfCareMyRoutineDeleteRoutineProvider.notifier);
+    ref.listen(selfCareMyRoutineEditRoutineProvider.select((value) => value), (previous, next) {
+      if (next == const AsyncData<int?>(200)) {
+        myRoutineNotifier.getMyRoutineInit();
+      }
+    });
+    ref.listen(selfCareMyRoutineDeleteRoutineProvider.select((value) => value), (previous, next) {
+      if (next == const AsyncData<int?>(204)) {
+        _showToast(message: "루틴을 삭제했어요.");
+        myRoutineNotifier.getMyRoutineInit();
+      }
+    });
     return Container(
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
@@ -129,10 +124,10 @@ class _SelfCareMyRoutineManageBottomSheetState
                 onTap: () async {
                   if (item.routineStatus!.isArchived == true) {
                     _updateState(changeArchived: false);
-                    _showToast("루틴 보관을 취소했어요.");
+                    _showToast(message: "루틴 보관을 취소했어요.");
                   } else {
                     _updateState(changeArchived: true);
-                    _showToast("루틴을 보관했어요.");
+                    _showToast(message: "루틴을 보관했어요.");
                   }
                 },
                 child: SelfCareDefaultManageItemWidget(
@@ -145,10 +140,10 @@ class _SelfCareMyRoutineManageBottomSheetState
                 onTap: () {
                   if (item.routineStatus!.isShared == true) {
                     _updateState(changeShared: false);
-                    _showToast("루틴 공유를 취소했어요.");
+                    _showToast(message: "루틴 공유를 취소했어요.");
                   } else {
                     _updateState(changeShared: true);
-                    _showToast("루틴을 공유했어요.");
+                    _showToast(message: "루틴을 공유했어요.");
                   }
                 },
                 child: SelfCareDefaultManageItemWidget(
@@ -159,12 +154,9 @@ class _SelfCareMyRoutineManageBottomSheetState
               GestureDetector(
                 behavior: HitTestBehavior.translucent,
                 onTap: () {
-                  deleteRoutineNotifier.deleteRoutine(routineId: item.id!).whenComplete(() {
-                    _showToast("루틴을 삭제했어요.");
-                    routineAllMeNotifier.getRoutineAllMe();
-                  });
+                  deleteRoutineNotifier.deleteRoutine(routineId: item.id!);
                 },
-                child: SelfCareDefaultManageItemWidget(
+                child: const SelfCareDefaultManageItemWidget(
                   title: "삭제",
                   iconPath: "assets/image/self_care_icon/edit_trash_icon.svg",
                 ),
