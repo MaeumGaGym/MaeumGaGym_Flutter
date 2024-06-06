@@ -34,7 +34,7 @@ class PosePartWidget extends ConsumerWidget {
             ),
           );
         } else {
-          ref.read(selfCareMyRoutineEditProvider.notifier).insert(
+          ref.read(selfCareMyRoutinePostListProvider.notifier).insert(
                 ExerciseInfoEditRoutinePoseModel(
                   poseModel: PoseDataModel(
                     id: data.id,
