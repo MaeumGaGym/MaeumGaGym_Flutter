@@ -3,15 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/my_routine/self_care_my_routine_all_me_routine_provider.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/my_routine/self_care_my_routine_days_provider.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/my_routine/self_care_my_routine_my_routine_provider.dart';
 
 class SelfCareMyRoutineDaysSelectWidget extends ConsumerStatefulWidget {
-  final int listIndex;
+  final bool isAdd;
+  final int? listIndex;
 
   const SelfCareMyRoutineDaysSelectWidget({
     super.key,
-    required this.listIndex,
+    required this.isAdd,
+    this.listIndex,
   });
 
   @override
@@ -21,22 +23,16 @@ class SelfCareMyRoutineDaysSelectWidget extends ConsumerStatefulWidget {
 
 class _SelfCareMyRoutineDaysSelectWidgetState
     extends ConsumerState<SelfCareMyRoutineDaysSelectWidget> {
+
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      final routineAllMeState = ref.watch(selfCareMyRoutineAllMeRoutineProvider);
-      ref.read(selfCareMyRoutineDaysProvider.notifier).init(routineAllMeState.routineList[widget.listIndex].dayOfWeeks);
-      final selectedDaysNotifier = ref.read(selfCareMyRoutineSelectedDaysProvider.notifier);
-      /// 사용자의 모든 루틴을 검사
-      for (int j = 0; j < routineAllMeState.routineList.length; j++) {
-        /// 수정하려는 루틴은 제외
-        if (j != widget.listIndex) {
-          /// 수정하려는 루틴을 제외한 모든 루틴이 사용되는 요일을 저장
-          selectedDaysNotifier.state += routineAllMeState.routineList[j].dayOfWeeks;
-        }
-      }
-    });
+    if (widget.isAdd == false) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        final myRoutineState = ref.watch(selfCareMyRoutineMyRoutinesProvider);
+        ref.read(selfCareMyRoutineDaysProvider.notifier).init(myRoutineState.routineList[widget.listIndex!].dayOfWeeks);
+      });
+    }
   }
 
   @override

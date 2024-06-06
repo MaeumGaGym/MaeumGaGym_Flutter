@@ -20,11 +20,13 @@ class RoutineRepositoryImpl implements RoutineRepository {
   }
 
   @override
-  Future<RoutineAndUserInfoModel> getRoutineAllMe({
+  Future<RoutineAndUserInfoModel> getMyRoutine({
     required String accessToken,
+    required int index,
   }) async {
-    return await _remoteDataSource.getRoutineAllMe(
+    return await _remoteDataSource.getMyRoutine(
       accessToken: accessToken,
+      index: index,
     );
   }
 
@@ -38,20 +40,20 @@ class RoutineRepositoryImpl implements RoutineRepository {
   }
 
   @override
-  Future<AsyncValue<int?>> createRoutine({
+  Future<AsyncValue<int?>> addRoutine({
     required String accessToken,
     required String routineName,
     required bool isArchived,
     required bool isShared,
-    required List<ExerciseInfoRequestModel> exerciseInfoModelList,
+    required List<ExerciseInfoRequestModel> exerciseInfoRequestList,
     List<String>? dayOfWeeks,
   }) async {
-    return await _remoteDataSource.createRoutine(
+    return await _remoteDataSource.addRoutine(
       accessToken: accessToken,
       routineName: routineName,
       isArchived: isArchived,
       isShared: isShared,
-      exerciseInfoModelList: exerciseInfoModelList,
+      exerciseInfoRequestList: exerciseInfoRequestList,
       dayOfWeeks: dayOfWeeks,
     );
   }

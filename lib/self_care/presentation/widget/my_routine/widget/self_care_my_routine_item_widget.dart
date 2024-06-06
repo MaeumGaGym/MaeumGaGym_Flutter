@@ -1,10 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/my_routine/self_care_my_routine_all_me_routine_provider.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/my_routine/self_care_my_routine_my_routine_provider.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/widget/self_care_my_routine_manage_bottom_sheet.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/widget/self_care_my_routine_shared_widget.dart';
 
@@ -25,8 +24,8 @@ class _SelfCareGoalRoutineItemWidgetState
     extends ConsumerState<SelfCareMyRoutineItemWidget> {
   @override
   Widget build(BuildContext context) {
-    final routineAllMeState = ref.watch(selfCareMyRoutineAllMeRoutineProvider);
-    final item = routineAllMeState.routineList[widget.listIndex];
+    final myRoutineState = ref.watch(selfCareMyRoutineMyRoutinesProvider);
+    final item = myRoutineState.routineList[widget.listIndex];
     return Container(
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(

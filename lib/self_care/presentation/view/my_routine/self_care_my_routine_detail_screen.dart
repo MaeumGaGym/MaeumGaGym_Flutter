@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/my_routine/self_care_my_routine_all_me_routine_provider.dart';
+import 'package:maeum_ga_gym_flutter/core/component/maeumgagym_toast_message.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/my_routine/self_care_my_routine_my_routine_provider.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/my_routine/self_care_my_routine_delete_routine_provider.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/view/my_routine/self_care_my_routine_edit_screen.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/widget/self_care_my_routine_detail_title_widget.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/widget/self_care_my_routine_button.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/widget/self_care_my_routine_detail_dialog.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/widget/self_care_my_routine_detail_routine_item_widget.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/self_care_default_toast_message.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/self_care_default_app_bar.dart';
+import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 class SelfCareMyRoutineDetailScreen extends ConsumerStatefulWidget {
   final int listIndex;
@@ -28,31 +28,28 @@ class SelfCareMyRoutineDetailScreen extends ConsumerStatefulWidget {
 
 class _SelfCareMyRoutineDetailScreenState
     extends ConsumerState<SelfCareMyRoutineDetailScreen> {
-  late FToast fToast;
-
-  @override
-  void initState() {
-    super.initState();
-    fToast = FToast();
-    fToast.init(context);
-  }
-
-  void _showToast(String title) {
-    fToast.showToast(
-      child: SelfCareDefaultToastMessage(title: title),
-      gravity: ToastGravity.TOP,
-      toastDuration: const Duration(milliseconds: 1600),
+  void _showToast({required String message}) {
+    showTopSnackBar(
+      Overlay.of(context),
+      MaeumGaGymToastMessage(title: message),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    final routineAllMeState = ref.watch(selfCareMyRoutineAllMeRoutineProvider);
-    final routineAllMeNotifier =
-        ref.read(selfCareMyRoutineAllMeRoutineProvider.notifier);
+    final myRoutineState = ref.watch(selfCareMyRoutineMyRoutinesProvider);
+    final myRoutineNotifier =
+        ref.read(selfCareMyRoutineMyRoutinesProvider.notifier);
     final deleteRoutineNotifier =
         ref.read(selfCareMyRoutineDeleteRoutineProvider.notifier);
-    final item = routineAllMeState.routineList[widget.listIndex];
+    final item = myRoutineState.routineList[widget.listIndex];
+    ref.listen(selfCareMyRoutineDeleteRoutineProvider.select((value) => value), (previous, next) {
+      if (next == const AsyncData<int?>(204)) {
+        myRoutineNotifier.getMyRoutineInit();
+        Navigator.of(context).pop();
+        _showToast(message: "루틴을 삭제했어요.");
+      }
+    });
     return Scaffold(
       backgroundColor: MaeumgagymColor.white,
       appBar: const SelfCareDefaultAppBar(
@@ -118,11 +115,7 @@ class _SelfCareMyRoutineDetailScreenState
                   child: GestureDetector(
                     behavior: HitTestBehavior.translucent,
                     onTap: () {
-                      deleteRoutineNotifier.deleteRoutine(routineId: item.id!).whenComplete(() async {
-                        Navigator.of(context).pop();
-                        _showToast("루틴을 삭제했어요.");
-                        await routineAllMeNotifier.getRoutineAllMe();
-                      });
+                      deleteRoutineNotifier.deleteRoutine(routineId: item.id!);
                     },
                     child: SelfCareMyRoutineButton(
                       width: MediaQuery.of(context).size.width,

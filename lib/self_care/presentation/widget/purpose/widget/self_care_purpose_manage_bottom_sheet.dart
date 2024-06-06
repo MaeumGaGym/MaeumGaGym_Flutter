@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
+import 'package:maeum_ga_gym_flutter/core/component/maeumgagym_toast_message.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/purpose/self_care_purpose_delete_purposes_provider.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/purpose/self_care_purpose_my_purposes_provider.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/view/purpose/self_care_purpose_edit_screen.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/self_care_default_manage_item_widget.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/self_care_default_toast_message.dart';
+import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 class SelfCarePurposeManageBottomSheet extends ConsumerStatefulWidget {
   final int purposeId;
@@ -25,22 +25,12 @@ class SelfCarePurposeManageBottomSheet extends ConsumerStatefulWidget {
 
 class _SelfCarePurposeManageBottomSheetState
     extends ConsumerState<SelfCarePurposeManageBottomSheet> {
-  late FToast fToast;
 
-  @override
-  void initState() {
-    super.initState();
-    fToast = FToast();
-    fToast.init(context);
-  }
-
-  void _showToast(String title) {
-    fToast.showToast(
-      child: SelfCareDefaultToastMessage(title: title),
-      gravity: ToastGravity.TOP,
-      toastDuration: const Duration(milliseconds: 1600),
+  void _showToast({required String message}) {
+    showTopSnackBar(
+      Overlay.of(context),
+      MaeumGaGymToastMessage(title: message),
     );
-    Navigator.of(context).pop();
   }
 
   @override
@@ -48,6 +38,13 @@ class _SelfCarePurposeManageBottomSheetState
     final myPurposesNotifier = ref.read(selfCarePurposeMyPurposesProvider.notifier);
     final deletePurposesNotifier =
         ref.read(selfCarePurposeDeletePurposesProvider.notifier);
+    ref.listen(selfCarePurposeDeletePurposesProvider.select((value) => value), (previous, next) {
+      if (next == const AsyncData<int?>(200)) {
+        myPurposesNotifier.getMyPurpose(index: 0);
+        if (widget.inDetail) Navigator.of(context).pop();
+        _showToast(message: "목표를 삭제했어요.");
+      }
+    });
     return Container(
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
@@ -94,9 +91,6 @@ class _SelfCarePurposeManageBottomSheetState
                 behavior: HitTestBehavior.translucent,
                 onTap: () {
                   deletePurposesNotifier.deletePurpose(purposeId: widget.purposeId);
-                  myPurposesNotifier.getMyPurpose(index: 0);
-                  if (widget.inDetail) Navigator.of(context).pop();
-                  _showToast("목표를 삭제했어요.");
                 },
                 child: const SelfCareDefaultManageItemWidget(
                   title: "삭제",

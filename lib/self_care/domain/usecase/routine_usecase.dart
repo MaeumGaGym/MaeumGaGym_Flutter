@@ -10,29 +10,31 @@ class RoutineUseCase {
 
   RoutineUseCase(this._repository);
 
-  Future<AsyncValue<int?>> createRoutine({
+  Future<AsyncValue<int?>> addRoutine({
     required String accessToken,
     required String routineName,
     required bool isArchived,
     required bool isShared,
-    required List<ExerciseInfoRequestModel> exerciseInfoModelList,
+    required List<ExerciseInfoRequestModel> exerciseInfoRequestList,
     List<String>? dayOfWeeks,
   }) async {
-    return await _repository.createRoutine(
+    return await _repository.addRoutine(
       accessToken: accessToken,
       routineName: routineName,
       isArchived: isArchived,
       isShared: isShared,
-      exerciseInfoModelList: exerciseInfoModelList,
+      exerciseInfoRequestList: exerciseInfoRequestList,
       dayOfWeeks: dayOfWeeks,
     );
   }
 
-  Future<RoutineAndUserInfoModel> getRoutineAllMe({
+  Future<RoutineAndUserInfoModel> getMyRoutine({
     required String accessToken,
+    required int index,
   }) async {
-    return await _repository.getRoutineAllMe(
+    return await _repository.getMyRoutine(
       accessToken: accessToken,
+      index: index,
     );
   }
 

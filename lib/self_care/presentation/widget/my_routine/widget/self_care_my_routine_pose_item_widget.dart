@@ -9,12 +9,12 @@ import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/my_routine/
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/widget/self_care_my_routine_item_count_widget.dart';
 
 class SelfCareMyRoutinePoseItemWidget extends ConsumerStatefulWidget {
-  final int listIndex;
+  final int? listIndex;
   final int poseIndex;
 
   const SelfCareMyRoutinePoseItemWidget({
     Key? key,
-    required this.listIndex,
+    this.listIndex,
     required this.poseIndex,
   }) : super(key: key);
 
@@ -28,8 +28,8 @@ class _SelfCareMyRoutinePoseItemWidgetState
 
   @override
   Widget build(BuildContext context) {
-    List<ExerciseInfoEditRoutinePoseModel> editPoseListState = ref.watch(selfCareMyRoutineEditProvider);
-    final editPoseListNotifier = ref.read(selfCareMyRoutineEditProvider.notifier);
+    List<ExerciseInfoEditRoutinePoseModel> editPoseListState = ref.watch(selfCareMyRoutinePostListProvider);
+    final editPoseListNotifier = ref.read(selfCareMyRoutinePostListProvider.notifier);
     return Column(
       children: [
         Row(

@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/my_routine/self_care_my_routine_all_me_routine_provider.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/my_routine/self_care_my_routine_my_routine_provider.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/waka/self_care_waka_total_waka_provider.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/view/profile/self_care_profile_main_screen.dart';
 
@@ -21,14 +21,14 @@ class _SelfCareMainProfileContainerState
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.read(selfCareMyRoutineAllMeRoutineProvider.notifier).getRoutineAllMe(index: 0);
+      ref.read(selfCareMyRoutineMyRoutinesProvider.notifier).getMyRoutineInit();
       ref.read(selfCareWakaTotalWakaProvider.notifier).totalWaka();
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    final routineAllMeState = ref.watch(selfCareMyRoutineAllMeRoutineProvider);
+    final routineAllMeState = ref.watch(selfCareMyRoutineMyRoutinesProvider);
     final totalWakaState = ref.watch(selfCareWakaTotalWakaProvider);
     return GestureDetector(
       behavior: HitTestBehavior.translucent,
@@ -98,7 +98,7 @@ class _SelfCareMainProfileContainerState
             }
           },
           error: (error, stack) {
-            return const Text("에러");
+            return Text(routineAllMeState.statusCode.toString());
           },
           loading: () {
             return Center(
