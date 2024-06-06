@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
-import 'package:maeum_ga_gym_flutter/home/presentation/providers/home_quotes_provider.dart';
-import 'package:maeum_ga_gym_flutter/home/presentation/providers/home_today_routines_provider.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/providers/local_timer_provider.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/providers/timer_state_provider.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/widget/main/container/home_main_quotes_container.dart';
@@ -11,8 +9,6 @@ import 'package:maeum_ga_gym_flutter/home/presentation/widget/main/container/hom
 import 'package:maeum_ga_gym_flutter/home/presentation/widget/main/container/home_main_pedometer_container.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/widget/main/widget/home_main_app_bar.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/widget/main/container/home_main_routine_container.dart';
-import 'package:maeum_ga_gym_flutter/home/presentation/widget/main/container/home_main_today_meal_container.dart';
-import 'package:maeum_ga_gym_flutter/home/presentation/widget/main/container/home_main_content_list_container.dart';
 
 class HomeMainScreen extends ConsumerStatefulWidget {
   const HomeMainScreen({Key? key}) : super(key: key);
