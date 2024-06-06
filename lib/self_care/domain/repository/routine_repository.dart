@@ -7,17 +7,18 @@ import 'package:maeum_ga_gym_flutter/self_care/domain/model/my_routine/routine_r
 import 'package:maeum_ga_gym_flutter/self_care/domain/model/my_routine/routine_user_info_model.dart';
 
 abstract class RoutineRepository {
-  Future<AsyncValue<int?>> createRoutine({
+  Future<AsyncValue<int?>> addRoutine({
     required String accessToken,
     required String routineName,
     required bool isArchived,
     required bool isShared,
-    required List<ExerciseInfoRequestModel> exerciseInfoModelList,
+    required List<ExerciseInfoRequestModel> exerciseInfoRequestList,
     List<String>? dayOfWeeks,
   });
 
-  Future<RoutineAndUserInfoModel> getRoutineAllMe({
+  Future<RoutineAndUserInfoModel> getMyRoutine({
     required String accessToken,
+    required int index,
   });
 
   Future<RoutineResponseModel> getTodayRoutine({

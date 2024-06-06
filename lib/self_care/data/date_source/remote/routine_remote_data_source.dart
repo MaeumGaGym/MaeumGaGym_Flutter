@@ -8,19 +8,19 @@ import 'package:maeum_ga_gym_flutter/self_care/domain/model/my_routine/routine_h
 import 'package:maeum_ga_gym_flutter/self_care/domain/model/my_routine/routine_response_model.dart';
 
 class RoutineRemoteDataSource {
-  Future<AsyncValue<int?>> createRoutine({
+  Future<AsyncValue<int?>> addRoutine({
     required String accessToken,
     required String routineName,
     required bool isArchived,
     required bool isShared,
-    required List<ExerciseInfoRequestModel> exerciseInfoModelList,
+    required List<ExerciseInfoRequestModel> exerciseInfoRequestList,
     List<String>? dayOfWeeks,
   }) async {
     Map<String, dynamic> data = {
       "routine_name": routineName,
       "is_archived": isArchived,
       "is_shared": isShared,
-      "exercise_info_model_list": exerciseInfoModelList,
+      "exercise_info_request_list": exerciseInfoRequestList,
       "day_of_weeks": dayOfWeeks,
     };
     try {
@@ -43,13 +43,15 @@ class RoutineRemoteDataSource {
     }
   }
 
-  Future<RoutineAndUserInfoModel> getRoutineAllMe({
+  Future<RoutineAndUserInfoModel> getMyRoutine({
     required String accessToken,
+    required int index,
   }) async {
     try {
       return await dio
           .get(
-        "/routines/me/all",
+        "/routines/my",
+        queryParameters: {"index" : index},
         options: Options(
           headers: {
             "Content-Type": "application/json",
