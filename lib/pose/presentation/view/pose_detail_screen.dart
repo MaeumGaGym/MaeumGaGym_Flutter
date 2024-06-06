@@ -39,22 +39,6 @@ class _PoseDetailScreenState extends ConsumerState<PoseDetailScreen> {
   Future<void> initFunction() async {
     await ref.read(poseDetailController.notifier).getDetailData(id: widget.id);
 
-    if (ref
-        .read(poseDetailController)
-        .statusCode
-        .error
-        .toString()
-        .contains('401')) {
-      String? refreshToken = await TokenSecureStorageDi.readLoginRefreshToken();
-
-      await ref
-          .read(maeumgagymReIssueController.notifier)
-          .getReIssue(refreshToken!);
-      await ref
-          .read(poseDetailController.notifier)
-          .getDetailData(id: widget.id);
-    }
-
     _controller = VideoPlayerController.networkUrl(
       Uri.parse(ref.watch(poseDetailController).video!),
     );
