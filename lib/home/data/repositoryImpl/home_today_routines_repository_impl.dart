@@ -16,4 +16,9 @@ class HomeTodayRoutinesRepositoryImpl implements HomeTodayRoutinesRepository {
   Future<AsyncValue<int>> completeTodayRoutines(int id) async {
     return await _dataSource.completeTodayRoutines(id);
   }
+
+  @override
+  Future<AsyncValue<int>> incompleteTodayRoutines(int id) async {
+    return await _dataSource.incompleteTodayRoutines(id);
+  }
 }
