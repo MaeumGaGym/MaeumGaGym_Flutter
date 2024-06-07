@@ -16,9 +16,17 @@ class HomeTodayRoutineButton extends ConsumerWidget {
     return GestureDetector(
       onTap: () async {
         if (!ref.watch(homeTodayRoutineController).statusCode.isLoading) {
-          await ref
-              .read(homeTodayRoutineController.notifier)
-              .completeTodayRoutines(routineId);
+          if(isCompleted){
+            await ref
+                .read(homeTodayRoutineController.notifier)
+                .incompleteTodayRoutines(routineId);
+          }
+
+          if(!isCompleted){
+            await ref
+                .read(homeTodayRoutineController.notifier)
+                .completeTodayRoutines(routineId);
+          }
 
           await ref
               .read(homeTodayRoutineController.notifier)
