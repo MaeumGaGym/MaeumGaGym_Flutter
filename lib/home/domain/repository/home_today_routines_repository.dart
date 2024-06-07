@@ -5,4 +5,6 @@ abstract class HomeTodayRoutinesRepository {
   Future<HomeTodayRoutineListModel> getTodayRoutines();
 
   Future<AsyncValue<int>> completeTodayRoutines(int id);
+
+  Future<AsyncValue<int>> incompleteTodayRoutines(int id);
 }
