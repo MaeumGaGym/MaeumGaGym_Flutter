@@ -30,4 +30,12 @@ class HomeTodayRoutineStateNotifier
 
     state = state.copyWith(statusCode: statusCode);
   }
+
+  Future<void> incompleteTodayRoutines(int id) async {
+    state = state.copyWith(statusCode: const AsyncLoading());
+
+    AsyncValue<int> statusCode = await _useCase.incompleteTodayRoutines(id);
+
+    state = state.copyWith(statusCode: statusCode);
+  }
 }
