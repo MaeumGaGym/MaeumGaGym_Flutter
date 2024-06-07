@@ -15,4 +15,8 @@ class HomeTodayRoutinesUseCase {
   Future<AsyncValue<int>> completeTodayRoutines(int id) async {
     return await _repository.completeTodayRoutines(id);
   }
+
+  Future<AsyncValue<int>> incompleteTodayRoutines(int id) async {
+    return await _repository.incompleteTodayRoutines(id);
+  }
 }
