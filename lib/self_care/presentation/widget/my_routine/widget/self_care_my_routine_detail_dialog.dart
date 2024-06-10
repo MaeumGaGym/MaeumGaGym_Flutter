@@ -91,7 +91,7 @@ class _SelfCareMyRoutineDetailDialogState extends ConsumerState<SelfCareMyRoutin
                 onTap: () {
                   if (item.routineStatus!.isShared == true) {
                     _updateState(changeShared: false);
-                    _showToast(message: "루틴을 공유를 취소했어요.");
+                    _showToast(message: "루틴 공유를 취소했어요.");
                   } else {
                     _updateState(changeShared: true);
                     _showToast(message: "루틴을 공유했어요.");
@@ -133,7 +133,7 @@ class _SelfCareMyRoutineDetailDialogState extends ConsumerState<SelfCareMyRoutin
                       ),
                       const SizedBox(width: 12),
                       PtdTextWidget.bodyLarge(
-                        !item.routineStatus!.isShared! ? "보관 취소" : "보관",
+                        !item.routineStatus!.isArchived! ? "보관 취소" : "보관",
                         MaeumgagymColor.black,
                       ),
                     ],

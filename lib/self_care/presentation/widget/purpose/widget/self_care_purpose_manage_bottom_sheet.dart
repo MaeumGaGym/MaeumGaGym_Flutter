@@ -25,7 +25,6 @@ class SelfCarePurposeManageBottomSheet extends ConsumerStatefulWidget {
 
 class _SelfCarePurposeManageBottomSheetState
     extends ConsumerState<SelfCarePurposeManageBottomSheet> {
-
   void _showToast({required String message}) {
     showTopSnackBar(
       Overlay.of(context),
@@ -35,13 +34,18 @@ class _SelfCarePurposeManageBottomSheetState
 
   @override
   Widget build(BuildContext context) {
-    final myPurposesNotifier = ref.read(selfCarePurposeMyPurposesProvider.notifier);
+    final myPurposeNotifier =
+        ref.read(selfCarePurposeMyPurposesProvider.notifier);
     final deletePurposesNotifier =
         ref.read(selfCarePurposeDeletePurposesProvider.notifier);
-    ref.listen(selfCarePurposeDeletePurposesProvider.select((value) => value), (previous, next) {
-      if (next == const AsyncData<int?>(200)) {
-        myPurposesNotifier.getMyPurpose(index: 0);
-        if (widget.inDetail) Navigator.of(context).pop();
+    ref.listen(selfCarePurposeDeletePurposesProvider.select((value) => value),
+        (previous, next) {
+      if (next == const AsyncData<int?>(204)) {
+        myPurposeNotifier.getMyPurposeInit();
+        if (widget.inDetail) {
+          Navigator.of(context).pop();
+        }
+        Navigator.of(context).pop();
         _showToast(message: "목표를 삭제했어요.");
       }
     });
@@ -90,7 +94,8 @@ class _SelfCarePurposeManageBottomSheetState
               GestureDetector(
                 behavior: HitTestBehavior.translucent,
                 onTap: () {
-                  deletePurposesNotifier.deletePurpose(purposeId: widget.purposeId);
+                  deletePurposesNotifier.deletePurpose(
+                      purposeId: widget.purposeId);
                 },
                 child: const SelfCareDefaultManageItemWidget(
                   title: "삭제",
