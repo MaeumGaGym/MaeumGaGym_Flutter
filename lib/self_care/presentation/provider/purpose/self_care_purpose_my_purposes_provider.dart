@@ -21,6 +21,25 @@ class SelfCarePurposeMyPurposesStateNotifier
 
   String? accessToken;
 
+  Future<void> getMyPurposeInit() async {
+    try {
+      state = state.copyWith(statusCode: const AsyncLoading());
+      accessToken = await TokenSecureStorageDi.readLoginAccessToken();
+
+      final response = await _purposeUseCase.getMyPurpose(
+        accessToken: accessToken!,
+        index: 0,
+      );
+
+      state = state.copyWith(
+        statusCode: response.statusCode,
+        purposeList: response.purposeList,
+      );
+    } catch (err) {
+      throw Exception(err.toString());
+    }
+  }
+
   Future<void> getMyPurpose({required int index}) async {
     try {
       state = state.copyWith(statusCode: const AsyncLoading());
@@ -31,10 +50,9 @@ class SelfCarePurposeMyPurposesStateNotifier
         index: index,
       );
 
-      state = state.copyWith(
-        statusCode: response.statusCode,
-        purposeList: response.purposeList,
-      );
+      state.purposeList += response.purposeList;
+      state = state.copyWith(statusCode: response.statusCode);
+
     } catch (err) {
       throw Exception(err.toString());
     }

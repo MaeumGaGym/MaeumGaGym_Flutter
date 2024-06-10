@@ -27,16 +27,18 @@ class SelfCareMyRoutineMyRoutinesStateNotifier
     try {
       state = state.copyWith(statusCode: const AsyncLoading());
       accessToken = await TokenSecureStorageDi.readLoginAccessToken();
+
       final response = await _routineUseCase.getMyRoutine(
         accessToken: accessToken!,
         index: 0,
       );
+
       state = state.copyWith(
         statusCode: response.statusCode,
         userInfo: response.userInfo,
         routineList: response.routineList,
       );
-      print(state.routineList.length);
+
     } catch (err) {
       throw Exception(err.toString());
     }
@@ -46,12 +48,15 @@ class SelfCareMyRoutineMyRoutinesStateNotifier
     try {
       state = state.copyWith(statusCode: const AsyncLoading());
       accessToken = await TokenSecureStorageDi.readLoginAccessToken();
+
       final response = await _routineUseCase.getMyRoutine(
         accessToken: accessToken!,
         index: index,
       );
-      state.routineList.addAll(response.routineList);
-      print(state.routineList.length);
+
+      state.routineList += response.routineList;
+      state = state.copyWith(statusCode: response.statusCode);
+
     } catch (err) {
       throw Exception(err.toString());
     }
