@@ -40,13 +40,15 @@ class _SelfCarePurposeMainScreenState extends ConsumerState<SelfCarePurposeMainS
   void listener() {
     final myPurposeState = ref.watch(selfCarePurposeMyPurposesProvider);
     int pageIndex = myPurposeState.purposeList.length ~/ 10;
+    bool hasMore = myPurposeState.purposeList.length % 10 != 0 ? false : true;
 
     /// 화면 스크롤 컨트롤러의 위치가 최대 스크롤 위치이면서 API가 로딩 중이 아닐 때 (API가 실행 중이 아닐 때)
     /// => 중복 요청 방지
     if (scrollController.position.pixels == scrollController.position.maxScrollExtent && !myPurposeState.statusCode.isLoading) {
-      ref
-          .read(selfCarePurposeMyPurposesProvider.notifier)
-          .getMyPurpose(index: pageIndex);
+      /// 리스트의 데이터 갯수를 10으로 나눈 나머지가 0이 아닐 때, 즉 데이터가 10으로 나눠떨어지지 않을 때 계속해서 값이 호출되고, 리스트에 추가되는 경우를 방지
+      if (hasMore) {
+        ref.read(selfCarePurposeMyPurposesProvider.notifier).getMyPurpose(index: pageIndex);
+      }
     }
   }
 
@@ -91,7 +93,7 @@ class _SelfCarePurposeMainScreenState extends ConsumerState<SelfCarePurposeMainS
                             subTitle: myPurposeState.purposeList[index].startDate.toString(),
                           ),
                         ),
-                        SizedBox(height: index == 30 - 1 ? 0 : 12),
+                        SizedBox(height: index == myPurposeState.purposeList.length - 1 ? 0 : 12),
                       ],
                     );
                   },

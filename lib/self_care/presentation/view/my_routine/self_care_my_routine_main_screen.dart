@@ -17,7 +17,8 @@ class SelfCareMyRoutineMainScreen extends ConsumerStatefulWidget {
       _SelfCareMyRoutineMainScreenState();
 }
 
-class _SelfCareMyRoutineMainScreenState extends ConsumerState<SelfCareMyRoutineMainScreen> {
+class _SelfCareMyRoutineMainScreenState
+    extends ConsumerState<SelfCareMyRoutineMainScreen> {
   late ScrollController scrollController;
 
   @override
@@ -43,15 +44,19 @@ class _SelfCareMyRoutineMainScreenState extends ConsumerState<SelfCareMyRoutineM
 
     /// ~/ => 나눈 몫을 정수형으로 반환
     int pageIndex = myRoutineState.routineList.length ~/ 10;
+    bool hasMore = myRoutineState.routineList.length % 10 != 0 ? false : true;
 
     /// 화면 스크롤 컨트롤러의 위치가 최대 스크롤 위치이면서 API가 로딩 중이 아닐 때 (API가 실행 중이 아닐 때)
     /// => 중복 요청 방지
     if (scrollController.position.pixels ==
             scrollController.position.maxScrollExtent &&
         !myRoutineState.statusCode.isLoading) {
-      ref
-          .read(selfCareMyRoutineMyRoutinesProvider.notifier)
-          .getMyRoutine(index: pageIndex);
+      /// 리스트의 데이터 갯수를 10으로 나눈 나머지가 0이 아닐 때, 즉 데이터가 10으로 나눠떨어지지 않을 때 계속해서 값이 호출되고, 리스트에 추가되는 경우를 방지
+      if (hasMore) {
+        ref
+            .read(selfCareMyRoutineMyRoutinesProvider.notifier)
+            .getMyRoutine(index: pageIndex);
+      }
     }
   }
 
