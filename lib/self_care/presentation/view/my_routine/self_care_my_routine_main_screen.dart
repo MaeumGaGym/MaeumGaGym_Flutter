@@ -17,18 +17,38 @@ class SelfCareMyRoutineMainScreen extends ConsumerStatefulWidget {
       _SelfCareMyRoutineMainScreenState();
 }
 
-class _SelfCareMyRoutineMainScreenState
-    extends ConsumerState<SelfCareMyRoutineMainScreen> {
+class _SelfCareMyRoutineMainScreenState extends ConsumerState<SelfCareMyRoutineMainScreen> {
+  late ScrollController scrollController;
 
   @override
   void initState() {
     super.initState();
+    scrollController = ScrollController()..addListener(listener);
     Future.delayed(
       Duration.zero,
       () => ref
           .read(selfCareMyRoutineMyRoutinesProvider.notifier)
           .getMyRoutineInit(),
     );
+  }
+
+  @override
+  void dispose() {
+    scrollController.dispose();
+    super.dispose();
+  }
+
+  void listener() {
+    final myRoutineState = ref.watch(selfCareMyRoutineMyRoutinesProvider);
+    int pageIndex = myRoutineState.routineList.length ~/ 10;
+
+    if (scrollController.position.pixels ==
+            scrollController.position.maxScrollExtent &&
+        !myRoutineState.statusCode.isLoading) {
+      ref
+          .read(selfCareMyRoutineMyRoutinesProvider.notifier)
+          .getMyRoutine(index: pageIndex);
+    }
   }
 
   @override
@@ -40,82 +60,49 @@ class _SelfCareMyRoutineMainScreenState
         iconPath: "assets/image/core_icon/left_arrow_icon.svg",
       ),
       body: SafeArea(
-        child: RefreshIndicator(
-          color: MaeumgagymColor.blue500,
-          onRefresh: () async {
-            ref
-                .read(selfCareMyRoutineMyRoutinesProvider.notifier)
-                .getMyRoutineInit();
-          },
-          child: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const SelfCareDefaultTitleContainer(
-                    title: "내 루틴",
-                    subTitle: "나만의 루틴을 구성하여\n규칙적인 운동을 해보세요.",
-                  ),
-                  const SizedBox(height: 32),
-                  myRoutineState.statusCode.when(
-                    data: (data) {
-                      if (data == 200) {
-                        return ListView.builder(
-                          shrinkWrap: true,
-                          physics: const NeverScrollableScrollPhysics(),
+        child: SingleChildScrollView(
+          controller: scrollController,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SelfCareDefaultTitleContainer(
+                  title: "내 루틴",
+                  subTitle: "나만의 루틴을 구성하여\n규칙적인 운동을 해보세요.",
+                ),
+                const SizedBox(height: 32),
+                ListView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
 
-                          /// Notifier에 입력된 Model 개수만큼
-                          itemCount: myRoutineState.routineList.length,
-                          itemBuilder: (context, index) {
-                            /// 공통된 변수
-                            return Padding(
-                              padding: EdgeInsets.only(
-                                  bottom: index ==
-                                          myRoutineState.routineList.length -
-                                              1
-                                      ? 0
-                                      : 12),
-                              child: GestureDetector(
-                                onTap: () => Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) =>
-                                        SelfCareMyRoutineDetailScreen(
-                                      listIndex: index,
-                                    ),
-                                  ),
-                                ),
-                                child: SelfCareMyRoutineItemWidget(
-                                  listIndex: index,
-                                ),
-                              ),
-                            );
-                          },
-                        );
-                      } else if (data == 204) {
-                        return const Text(
-                          '루틴이 없습니다 ㅎㅎ',
-                        );
-                      } else {
-                        return Text(
-                          "${myRoutineState.statusCode}",
-                        );
-                      }
-                    },
-                    error: (error, stack) {
-                      return Text('에러가 발생했습니다: $error');
-                    },
-                    loading: () {
-                      return Center(
-                          child: CircularProgressIndicator(
-                        color: MaeumgagymColor.blue500,
-                      ));
-                    },
-                  ),
-                  const SizedBox(height: 98),
-                ],
-              ),
+                  /// Notifier에 입력된 Model 개수만큼
+                  itemCount: myRoutineState.routineList.length,
+                  itemBuilder: (context, index) {
+                    /// 공통된 변수
+                    return Padding(
+                      padding: EdgeInsets.only(
+                          bottom: index == myRoutineState.routineList.length - 1
+                              ? 0
+                              : 12),
+                      child: GestureDetector(
+                        onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => SelfCareMyRoutineDetailScreen(
+                              listIndex: index,
+                            ),
+                          ),
+                        ),
+                        child: SelfCareMyRoutineItemWidget(
+                          listIndex: index,
+                        ),
+                      ),
+                    );
+                  },
+                ),
+                const SizedBox(height: 98),
+              ],
             ),
           ),
         ),

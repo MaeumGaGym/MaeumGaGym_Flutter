@@ -17,21 +17,42 @@ class SelfCarePurposeMainScreen extends ConsumerStatefulWidget {
 }
 
 class _SelfCarePurposeMainScreenState extends ConsumerState<SelfCarePurposeMainScreen> {
+  late ScrollController scrollController;
 
   @override
   void initState() {
     super.initState();
+    scrollController = ScrollController()..addListener(listener);
     Future.delayed(
       Duration.zero,
           () => ref
           .read(selfCarePurposeMyPurposesProvider.notifier)
-          .getMyPurpose(index: 0),
+          .getMyPurposeInit(),
     );
   }
 
   @override
+  void dispose() {
+    scrollController.dispose();
+    super.dispose();
+  }
+
+  void listener() {
+    final myPurposeState = ref.watch(selfCarePurposeMyPurposesProvider);
+    int pageIndex = myPurposeState.purposeList.length ~/ 10;
+
+    if (scrollController.position.pixels ==
+        scrollController.position.maxScrollExtent &&
+        !myPurposeState.statusCode.isLoading) {
+      ref
+          .read(selfCarePurposeMyPurposesProvider.notifier)
+          .getMyPurpose(index: pageIndex);
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final myPurposesState = ref.watch(selfCarePurposeMyPurposesProvider);
+    final myPurposeState = ref.watch(selfCarePurposeMyPurposesProvider);
     return Scaffold(
       backgroundColor: MaeumgagymColor.white,
       appBar: const SelfCareDefaultAppBar(
@@ -39,6 +60,7 @@ class _SelfCarePurposeMainScreenState extends ConsumerState<SelfCarePurposeMainS
       ),
       body: SafeArea(
         child: SingleChildScrollView(
+          controller: scrollController,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
             child: Column(
@@ -52,7 +74,7 @@ class _SelfCarePurposeMainScreenState extends ConsumerState<SelfCarePurposeMainS
                 ListView.builder(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
-                  itemCount: myPurposesState.purposeList.length, // 임의로 넣은 아이템 갯수
+                  itemCount: myPurposeState.purposeList.length, // 임의로 넣은 아이템 갯수
                   itemBuilder: (context, index) {
                     return Column(
                       children: [
@@ -60,13 +82,13 @@ class _SelfCarePurposeMainScreenState extends ConsumerState<SelfCarePurposeMainS
                           onTap: () => Navigator.of(context).push(
                             MaterialPageRoute(
                               builder: (context) =>
-                                  SelfCarePurposeDetailScreen(purposeId: myPurposesState.purposeList[index].id!),
+                                  SelfCarePurposeDetailScreen(purposeId: myPurposeState.purposeList[index].id!),
                             ),
                           ),
                           child: SelfCarePurposeItemWidget(
-                            purposeId: myPurposesState.purposeList[index].id!,
-                            title: myPurposesState.purposeList[index].title.toString(),
-                            subTitle: myPurposesState.purposeList[index].startDate.toString(),
+                            purposeId: myPurposeState.purposeList[index].id!,
+                            title: myPurposeState.purposeList[index].title.toString(),
+                            subTitle: myPurposeState.purposeList[index].startDate.toString(),
                           ),
                         ),
                         SizedBox(height: index == 30 - 1 ? 0 : 12),
