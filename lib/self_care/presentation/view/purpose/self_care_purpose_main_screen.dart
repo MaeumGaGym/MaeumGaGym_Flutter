@@ -41,9 +41,9 @@ class _SelfCarePurposeMainScreenState extends ConsumerState<SelfCarePurposeMainS
     final myPurposeState = ref.watch(selfCarePurposeMyPurposesProvider);
     int pageIndex = myPurposeState.purposeList.length ~/ 10;
 
-    if (scrollController.position.pixels ==
-        scrollController.position.maxScrollExtent &&
-        !myPurposeState.statusCode.isLoading) {
+    /// 화면 스크롤 컨트롤러의 위치가 최대 스크롤 위치이면서 API가 로딩 중이 아닐 때 (API가 실행 중이 아닐 때)
+    /// => 중복 요청 방지
+    if (scrollController.position.pixels == scrollController.position.maxScrollExtent && !myPurposeState.statusCode.isLoading) {
       ref
           .read(selfCarePurposeMyPurposesProvider.notifier)
           .getMyPurpose(index: pageIndex);
