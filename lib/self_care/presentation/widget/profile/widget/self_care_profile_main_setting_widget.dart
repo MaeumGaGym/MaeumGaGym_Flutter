@@ -3,10 +3,11 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/view/profile/self_care_profile_edit_screen.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/profile/widget/dialog/self_care_profile_logout_dialog.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/profile/widget/dialog/self_care_profile_quit_dialog.dart';
 
-class SelfCareProfileMainSettingContainer extends StatelessWidget {
-  const SelfCareProfileMainSettingContainer({Key? key}) : super(key: key);
+class SelfCareProfileMainSettingWidget extends StatelessWidget {
+  const SelfCareProfileMainSettingWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -40,23 +41,37 @@ class SelfCareProfileMainSettingContainer extends StatelessWidget {
                         "내 정보 변경",
                         MaeumgagymColor.black,
                       ),
-                      SvgPicture.asset("assets/image/core_icon/right_arrow_icon.svg"),
+                      SvgPicture.asset(
+                          "assets/image/core_icon/right_arrow_icon.svg"),
                     ],
                   ),
                 ),
               ),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    PtdTextWidget.bodyLarge(
-                      "로그아웃",
-                      MaeumgagymColor.black,
-                    ),
-                    SvgPicture.asset("assets/image/core_icon/right_arrow_icon.svg"),
-                  ],
+              GestureDetector(
+                behavior: HitTestBehavior.translucent,
+                onTap: () {
+                  showDialog(
+                    context: context,
+                    barrierDismissible: true,
+                    builder: (context) {
+                      return const SelfCareProfileLogoutDialog();
+                    },
+                  );
+                },
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      PtdTextWidget.bodyLarge(
+                        "로그아웃",
+                        MaeumgagymColor.black,
+                      ),
+                      SvgPicture.asset(
+                          "assets/image/core_icon/right_arrow_icon.svg"),
+                    ],
+                  ),
                 ),
               ),
               GestureDetector(
@@ -82,7 +97,8 @@ class SelfCareProfileMainSettingContainer extends StatelessWidget {
                         "회원탈퇴",
                         MaeumgagymColor.black,
                       ),
-                      SvgPicture.asset("assets/image/core_icon/right_arrow_icon.svg"),
+                      SvgPicture.asset(
+                          "assets/image/core_icon/right_arrow_icon.svg"),
                     ],
                   ),
                 ),

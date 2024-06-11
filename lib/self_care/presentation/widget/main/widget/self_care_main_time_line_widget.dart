@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class SelfCareMainTimerLineContainer extends StatelessWidget {
-  const SelfCareMainTimerLineContainer({Key? key}) : super(key: key);
+class SelfCareMainTimerLineWidget extends StatelessWidget {
+  const SelfCareMainTimerLineWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -4,16 +4,16 @@ import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/self_care_calendar_provider.dart';
 
-class SelfCareCalendarContainer extends ConsumerStatefulWidget {
-  const SelfCareCalendarContainer({Key? key}) : super(key: key);
+class SelfCareCalendarWidget extends ConsumerStatefulWidget {
+  const SelfCareCalendarWidget({Key? key}) : super(key: key);
 
   @override
-  ConsumerState<SelfCareCalendarContainer> createState() =>
+  ConsumerState<SelfCareCalendarWidget> createState() =>
       _SelfCareCalendarContainerState();
 }
 
 class _SelfCareCalendarContainerState
-    extends ConsumerState<SelfCareCalendarContainer> {
+    extends ConsumerState<SelfCareCalendarWidget> {
   final DateTime _now = DateTime.now();
 
   @override

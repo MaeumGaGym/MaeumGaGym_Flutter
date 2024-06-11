@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/self_care_text_field_provider.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/profile/container/self_care_profile_edit_text_field_container.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/profile/widget/self_care_profile_edit_text_field_list_widget.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/profile/widget/self_care_profile_sex_select_widget.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/self_care_animated_button.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/self_care_default_app_bar.dart';
 
@@ -24,7 +25,9 @@ class SelfCareProfileEditScreen extends ConsumerWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SelfCareProfileEditTextFieldContainer(),
+                const SelfCareProfileEditTextFieldListWidget(),
+                const SizedBox(height: 32),
+                const SelfCareProfileSexSelectWidget(),
 
                 /// 키보드가 활성화 될 때 높이만큼 여백을 추가
                 /// >> 마지막 TextField가 키보드에 가려지지 않고 스크롤 잘됨 ^^ 이거 ㄹㅇ 개 꿀팁 미쳤음..

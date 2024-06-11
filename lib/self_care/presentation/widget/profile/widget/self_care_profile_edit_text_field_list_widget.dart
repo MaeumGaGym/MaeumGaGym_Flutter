@@ -3,16 +3,16 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/self_care_text_field_provider.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/self_care_text_field.dart';
 
-class SelfCareProfileEditTextFieldContainer extends ConsumerStatefulWidget {
-  const SelfCareProfileEditTextFieldContainer({Key? key}) : super(key: key);
+class SelfCareProfileEditTextFieldListWidget extends ConsumerStatefulWidget {
+  const SelfCareProfileEditTextFieldListWidget({Key? key}) : super(key: key);
 
   @override
-  ConsumerState<SelfCareProfileEditTextFieldContainer> createState() =>
+  ConsumerState<SelfCareProfileEditTextFieldListWidget> createState() =>
       _SelfCareProfileEditTextFiledContainerState();
 }
 
 class _SelfCareProfileEditTextFiledContainerState
-    extends ConsumerState<SelfCareProfileEditTextFieldContainer> {
+    extends ConsumerState<SelfCareProfileEditTextFieldListWidget> {
   /// initState에서 초기화해주려고 late로 지정해줬습니다.
   /// 이름
   late TextEditingController _nameController;
@@ -26,10 +26,6 @@ class _SelfCareProfileEditTextFiledContainerState
   late TextEditingController _weightController;
   late FocusNode _weightNode;
 
-  /// 성별
-  late TextEditingController _sexController;
-  late FocusNode _sexNode;
-
   @override
   void initState() {
     super.initState();
@@ -40,8 +36,6 @@ class _SelfCareProfileEditTextFiledContainerState
     _heightNode = FocusNode()..addListener(focusCheck);
     _weightController = TextEditingController();
     _weightNode = FocusNode()..addListener(focusCheck);
-    _sexController = TextEditingController();
-    _sexNode = FocusNode()..addListener(focusCheck);
   }
 
   @override
@@ -53,16 +47,13 @@ class _SelfCareProfileEditTextFiledContainerState
     _heightNode.dispose();
     _weightController.dispose();
     _weightNode.dispose();
-    _sexController.dispose();
-    _sexNode.dispose();
     super.dispose();
   }
 
   void focusCheck() { /// 각각의 FocusNode들이 Focus 되었는지 확인하는 함수
     ref.read(selfCareTextFieldProvider.notifier).state = _nameNode.hasFocus ||
         _heightNode.hasFocus ||
-        _weightNode.hasFocus ||
-        _sexNode.hasFocus;
+        _weightNode.hasFocus;
   }
 
   @override
@@ -75,6 +66,7 @@ class _SelfCareProfileEditTextFiledContainerState
           focusNode: _nameNode,
           controller: _nameController,
           inputAction: TextInputAction.next,
+          hintText: "이름",
         ),
         const SizedBox(height: 32),
         SelfCareTextField(
@@ -82,7 +74,9 @@ class _SelfCareProfileEditTextFiledContainerState
           focusNode: _heightNode,
           controller: _heightController,
           inputAction: TextInputAction.next,
+          keyboardType: TextInputType.number,
           suffixText: "cm",
+          hintText: "키",
         ),
         const SizedBox(height: 32),
         SelfCareTextField(
@@ -90,14 +84,9 @@ class _SelfCareProfileEditTextFiledContainerState
           focusNode: _weightNode,
           controller: _weightController,
           inputAction: TextInputAction.next,
+          keyboardType: TextInputType.number,
           suffixText: "kg",
-        ),
-        const SizedBox(height: 32),
-        SelfCareTextField(
-          title: "성별",
-          focusNode: _sexNode,
-          controller: _sexController,
-          inputAction: TextInputAction.done,
+          hintText: "몸무게",
         ),
       ],
     );

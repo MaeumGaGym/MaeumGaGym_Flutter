@@ -3,9 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/user/self_care_user_get_profile_provider.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/profile/container/self_care_profile_main_info_widget_container.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/profile/container/self_care_profile_main_setting_container.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/profile/self_care_profile_get_profile_provider.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/profile/widget/self_care_profile_main_info_widget.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/profile/widget/self_care_profile_main_setting_widget.dart';
 
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/self_care_default_app_bar.dart';
 
@@ -29,14 +29,14 @@ class _SelfCareProfileMainScreenState
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       ref
-          .read(selfCareUserGetProfileProvider.notifier)
+          .read(selfCareProfileGetProfileProvider.notifier)
           .getUserProfile(nickname: widget.nickname);
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    final profileState = ref.watch(selfCareUserGetProfileProvider);
+    final profileState = ref.watch(selfCareProfileGetProfileProvider);
     return Scaffold(
       backgroundColor: MaeumgagymColor.white,
       appBar: const SelfCareDefaultAppBar(
@@ -70,9 +70,9 @@ class _SelfCareProfileMainScreenState
                           MaeumgagymColor.black,
                         ),
                         const SizedBox(height: 32),
-                        const SelfCareProfileMainInfoWidgetContainer(),
+                        const SelfCareProfileMainInfoWidget(),
                         const SizedBox(height: 32),
-                        const SelfCareProfileMainSettingContainer(),
+                        const SelfCareProfileMainSettingWidget(),
                         const SizedBox(height: 31),
                       ],
                     );

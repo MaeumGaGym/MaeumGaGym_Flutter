@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/self_care_text_field_provider.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/purpose/container/self_care_purpose_text_field_container.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/purpose/widget/self_care_purpose_text_field_list_widget.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/self_care_animated_button.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/self_care_default_app_bar.dart';
 
@@ -52,7 +52,7 @@ class _SelfCarePurposeEditScreenState extends ConsumerState<SelfCarePurposeEditS
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SelfCarePurposeTextFieldContainer(
+                SelfCarePurposeTextFieldListWidget(
                   titleController: titleController,
                   startDateController: startDateController,
                   endDateController: endDateController,
