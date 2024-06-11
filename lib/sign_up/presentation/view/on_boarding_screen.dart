@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 /// Core
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
+import 'package:maeum_ga_gym_flutter/core/logout/presentation/maeumgagym_logout_provider.dart';
 import 'package:maeum_ga_gym_flutter/sign_up/presentation/provider/maeumgagym_login_provider.dart';
 import 'package:maeum_ga_gym_flutter/core/re_issue/presentation/maeumgagym_re_issue_provider.dart';
 import 'package:maeum_ga_gym_flutter/sign_up/presentation/provider/maeumgagym_recovery_provider.dart';
@@ -28,6 +29,7 @@ class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
   @override
   Widget build(BuildContext context) {
     final socialLoginNotifier = ref.read(socialLoginController.notifier);
+    final logoutNotifier = ref.read(maeumgagymLogoutProvider.notifier);
     ref.read(maeumgagymReIssueController.notifier);
     final maeumgagymLoginNotifier =
         ref.read(maeumgagymLoginController.notifier);
@@ -39,7 +41,7 @@ class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
         actions: [
           MaterialButton(
             onPressed: () {
-              socialLoginNotifier.logout();
+              logoutNotifier.logout();
               Navigator.pop(context);
             },
             child: const Text("확인"),
@@ -58,7 +60,7 @@ class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
             data: (data) async {
               if (data == 404) {
                 await context.push('/signUpAgree');
-                await socialLoginNotifier.logout();
+                await logoutNotifier.logout();
               } else {
                 context.go('/');
               }
