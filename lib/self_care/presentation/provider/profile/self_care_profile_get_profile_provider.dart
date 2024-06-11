@@ -1,19 +1,19 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/core/di/token_secure_storage_di.dart';
-import 'package:maeum_ga_gym_flutter/self_care/data/repositoryImpl/user_repository_impl.dart';
-import 'package:maeum_ga_gym_flutter/self_care/domain/model/user/user_profile_response_model.dart';
-import 'package:maeum_ga_gym_flutter/self_care/domain/usecase/user_usecase.dart';
+import 'package:maeum_ga_gym_flutter/self_care/data/repositoryImpl/profile_repository_impl.dart';
+import 'package:maeum_ga_gym_flutter/self_care/domain/model/profile/profile_response_model.dart';
+import 'package:maeum_ga_gym_flutter/self_care/domain/usecase/profile_usecase.dart';
 
-final selfCareUserGetProfileProvider = StateNotifierProvider<
-    SelfCareUserGetProfileStateNotifier, UserProfileResponseModel>(
+final selfCareProfileGetProfileProvider = StateNotifierProvider<
+    SelfCareUserGetProfileStateNotifier, ProfileResponseModel>(
   (ref) => SelfCareUserGetProfileStateNotifier(),
 );
 
 class SelfCareUserGetProfileStateNotifier
-    extends StateNotifier<UserProfileResponseModel> {
+    extends StateNotifier<ProfileResponseModel> {
   SelfCareUserGetProfileStateNotifier()
       : super(
-          UserProfileResponseModel(
+        ProfileResponseModel(
             statusCode: const AsyncData(500),
             nickname: null,
             profileImage: null,
@@ -22,7 +22,7 @@ class SelfCareUserGetProfileStateNotifier
           ),
         );
 
-  final UserUseCase _userUseCase = UserUseCase(UserRepositoryImpl());
+  final ProfileUseCase _userUseCase = ProfileUseCase(ProfileRepositoryImpl());
 
   String? accessToken;
 

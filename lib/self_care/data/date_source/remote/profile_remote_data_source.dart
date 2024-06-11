@@ -1,9 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:maeum_ga_gym_flutter/core/di/dio_di.dart';
-import 'package:maeum_ga_gym_flutter/self_care/domain/model/user/user_profile_response_model.dart';
+import 'package:maeum_ga_gym_flutter/self_care/domain/model/profile/profile_response_model.dart';
 
-class UserRemoteDataSource {
-  Future<UserProfileResponseModel> getUserProfile({
+class ProfileRemoteDataSource {
+  Future<ProfileResponseModel> getUserProfile({
     required String accessToken,
     required String nickname,
   }) async {
@@ -19,7 +19,7 @@ class UserRemoteDataSource {
         ),
       )
           .then((response) {
-        return UserProfileResponseModel.fromJson(
+        return ProfileResponseModel.fromJson(
           response.data,
           response.statusCode!,
         );

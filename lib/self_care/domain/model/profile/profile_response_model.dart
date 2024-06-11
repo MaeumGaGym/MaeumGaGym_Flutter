@@ -1,13 +1,13 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class UserProfileResponseModel {
+class ProfileResponseModel {
   final AsyncValue<int> statusCode;
   final String? nickname;
   final String? profileImage;
   final int? level;
   final int? totalWakatime;
 
-  UserProfileResponseModel({
+  ProfileResponseModel({
     required this.statusCode,
     required this.nickname,
     required this.profileImage,
@@ -15,11 +15,11 @@ class UserProfileResponseModel {
     required this.totalWakatime,
   });
 
-  factory UserProfileResponseModel.fromJson(
+  factory ProfileResponseModel.fromJson(
     Map<String, dynamic> json,
     int statusCode,
   ) {
-    return UserProfileResponseModel(
+    return ProfileResponseModel(
       statusCode: AsyncData(statusCode),
       nickname: json["nickname"],
       profileImage: json["profile_image"],
@@ -28,14 +28,14 @@ class UserProfileResponseModel {
     );
   }
 
-  UserProfileResponseModel copyWith({
+  ProfileResponseModel copyWith({
     AsyncValue<int>? statusCode,
     String? nickname,
     String? profileImage,
     int? level,
     int? totalWakatime,
   }) {
-    return UserProfileResponseModel(
+    return ProfileResponseModel(
       statusCode: statusCode ?? this.statusCode,
       nickname: nickname ?? this.nickname,
       profileImage: profileImage ?? this.profileImage,
