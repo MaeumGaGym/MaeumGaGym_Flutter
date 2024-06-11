@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-import '../../../domain/model/social_login_model.dart';
+import '../../../../core/model/social_login_model.dart';
 
 class GoogleLoginRemoteDataSource {
   late String? _token;
@@ -28,16 +28,6 @@ class GoogleLoginRemoteDataSource {
         AsyncError(err, StackTrace.empty),
         null,
       );
-    }
-  }
-
-  Future<SocialLoginModel> logout() async {
-    try {
-      await GoogleSignIn().signOut();
-
-      return SocialLoginModel.fromJson(const AsyncData(false), null);
-    } catch (err) {
-      return SocialLoginModel.fromJson(AsyncError(err, StackTrace.empty), null);
     }
   }
 }
