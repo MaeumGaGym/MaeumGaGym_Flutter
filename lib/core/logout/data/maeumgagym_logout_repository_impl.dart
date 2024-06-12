@@ -3,10 +3,16 @@ import 'package:maeum_ga_gym_flutter/core/logout/domain/maeumgagym_logout_reposi
 import 'package:maeum_ga_gym_flutter/core/model/social_login_model.dart';
 
 class MaeumgagymLogoutRepositoryImpl implements MaeumgagymLogoutRepository {
-  final MaeumgagymLogoutRemoteDataSource _dataSource = MaeumgagymLogoutRemoteDataSource();
+  final MaeumgagymLogoutRemoteDataSource _dataSource =
+      MaeumgagymLogoutRemoteDataSource();
 
   @override
-  Future<SocialLoginModel> logout() async {
-    return await _dataSource.logout();
+  Future<SocialLoginModel> googleLogout() async {
+    return await _dataSource.googleLogout();
+  }
+
+  @override
+  Future<SocialLoginModel> kakaoLogout() async {
+    return await _dataSource.kakaoLogout();
   }
 }
