@@ -30,9 +30,9 @@ class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
   Widget build(BuildContext context) {
     final socialLoginNotifier = ref.read(socialLoginController.notifier);
     final logoutNotifier = ref.read(maeumgagymLogoutProvider.notifier);
+    final loginOption = ref.watch(loginOptionController);
     ref.read(maeumgagymReIssueController.notifier);
-    final maeumgagymLoginNotifier =
-        ref.read(maeumgagymLoginController.notifier);
+    final maeumgagymLoginNotifier = ref.read(maeumgagymLoginController.notifier);
 
     AlertDialog dialog(String title, String contents) {
       return AlertDialog(
@@ -41,7 +41,7 @@ class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
         actions: [
           MaterialButton(
             onPressed: () {
-              logoutNotifier.logout();
+              logoutNotifier.logout(loginOption: loginOption);
               Navigator.pop(context);
             },
             child: const Text("확인"),
@@ -60,7 +60,7 @@ class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
             data: (data) async {
               if (data == 404) {
                 await context.push('/signUpAgree');
-                await logoutNotifier.logout();
+                await logoutNotifier.logout(loginOption: loginOption);
               } else {
                 context.go('/');
               }

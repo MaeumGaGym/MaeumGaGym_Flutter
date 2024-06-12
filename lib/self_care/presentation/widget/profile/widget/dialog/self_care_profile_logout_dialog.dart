@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
+import 'package:maeum_ga_gym_flutter/core/di/login_option_di.dart';
 import 'package:maeum_ga_gym_flutter/core/logout/presentation/maeumgagym_logout_provider.dart';
 import 'package:maeum_ga_gym_flutter/sign_up/presentation/view/on_boarding_screen.dart';
 
@@ -11,15 +13,11 @@ class SelfCareProfileLogoutDialog extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final logoutNotifier = ref.read(maeumgagymLogoutProvider.notifier);
+    final loginOption = ref.watch(loginOptionController);
     ref.listen(maeumgagymLogoutProvider.select((value) => value),
         (previous, next) {
       if (next.stateus == const AsyncData(false)) {
-        Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(
-            builder: (context) => const OnBoardingScreen(),
-          ),
-          (route) => false,
-        );
+        context.go('/onBoarding');
       }
     });
     return Dialog(
@@ -76,7 +74,7 @@ class SelfCareProfileLogoutDialog extends ConsumerWidget {
                     /// 구분선을 제외한 Row 사이즈의 반 만큼
                     child: GestureDetector(
                       onTap: () {
-                        logoutNotifier.logout();
+                        logoutNotifier.logout(loginOption: loginOption);
                       },
                       child: Container(
                         height: 48,
