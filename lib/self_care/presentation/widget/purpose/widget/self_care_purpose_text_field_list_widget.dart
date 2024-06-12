@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/self_care_text_field_provider.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/purpose/widget/self_care_purpose_day_indicator.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/self_care_text_field.dart';
 
-class SelfCarePurposeTextFieldContainer extends ConsumerStatefulWidget {
+class SelfCarePurposeTextFieldListWidget extends ConsumerStatefulWidget {
   final TextEditingController titleController;
   final TextEditingController startDateController;
   final TextEditingController endDateController;
   final TextEditingController contentController;
 
-  const SelfCarePurposeTextFieldContainer({
+  const SelfCarePurposeTextFieldListWidget({
     super.key,
     required this.titleController,
     required this.startDateController,
@@ -19,12 +18,12 @@ class SelfCarePurposeTextFieldContainer extends ConsumerStatefulWidget {
   });
 
   @override
-  ConsumerState<SelfCarePurposeTextFieldContainer> createState() =>
+  ConsumerState<SelfCarePurposeTextFieldListWidget> createState() =>
       _SelfCareGoalEditTextFieldContainerState();
 }
 
 class _SelfCareGoalEditTextFieldContainerState
-    extends ConsumerState<SelfCarePurposeTextFieldContainer> {
+    extends ConsumerState<SelfCarePurposeTextFieldListWidget> {
   /// 제목
   late FocusNode _titleNode;
 

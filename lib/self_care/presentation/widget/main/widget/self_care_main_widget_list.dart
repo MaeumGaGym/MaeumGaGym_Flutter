@@ -6,8 +6,8 @@ import 'package:maeum_ga_gym_flutter/self_care/presentation/view/purpose/self_ca
 import 'package:maeum_ga_gym_flutter/self_care/presentation/view/today_exercise/self_care_today_exercise_main_screen.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/main/widget/self_care_item_widget.dart';
 
-class SelfCareMainWidgetListContainer extends StatelessWidget {
-  const SelfCareMainWidgetListContainer({Key? key}) : super(key: key);
+class SelfCareMainWidgetList extends StatelessWidget {
+  const SelfCareMainWidgetList({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

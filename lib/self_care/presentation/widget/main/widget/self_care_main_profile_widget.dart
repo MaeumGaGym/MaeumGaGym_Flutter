@@ -7,16 +7,16 @@ import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/my_routine/
 import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/waka/self_care_waka_total_waka_provider.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/view/profile/self_care_profile_main_screen.dart';
 
-class SelfCareMainProfileContainer extends ConsumerStatefulWidget {
-  const SelfCareMainProfileContainer({Key? key}) : super(key: key);
+class SelfCareMainProfileWidget extends ConsumerStatefulWidget {
+  const SelfCareMainProfileWidget({Key? key}) : super(key: key);
 
   @override
-  ConsumerState<SelfCareMainProfileContainer> createState() =>
+  ConsumerState<SelfCareMainProfileWidget> createState() =>
       _SelfCareMainProfileContainerState();
 }
 
 class _SelfCareMainProfileContainerState
-    extends ConsumerState<SelfCareMainProfileContainer> {
+    extends ConsumerState<SelfCareMainProfileWidget> {
   @override
   void initState() {
     super.initState();

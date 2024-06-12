@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/calendar/container/self_care_calendar_container.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/calendar/widget/self_care_calendar_widget.dart';
 
-class SelfCareTimelineContainer extends StatelessWidget {
-  const SelfCareTimelineContainer({super.key});
+class SelfCareTimelineWidget extends StatelessWidget {
+  const SelfCareTimelineWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,7 @@ class SelfCareTimelineContainer extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 24),
-          const SelfCareCalendarContainer(),
+          const SelfCareCalendarWidget(),
         ],
       ),
     );

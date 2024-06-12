@@ -7,7 +7,7 @@ import 'package:maeum_ga_gym_flutter/self_care/presentation/view/purpose/self_ca
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/widget/self_care_my_routine_button.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/purpose/widget/self_care_purpose_item_widget.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/self_care_default_app_bar.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/self_care_default_title_container.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/self_care_default_title_widget.dart';
 
 class SelfCarePurposeMainScreen extends ConsumerStatefulWidget {
   const SelfCarePurposeMainScreen({super.key});

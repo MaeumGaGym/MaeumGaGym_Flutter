@@ -3,14 +3,14 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/maeungagym_text_style.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/user/self_care_user_get_profile_provider.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/profile/self_care_profile_get_profile_provider.dart';
 
-class SelfCareProfileMainInfoWidgetContainer extends ConsumerWidget {
-  const SelfCareProfileMainInfoWidgetContainer({Key? key}) : super(key: key);
+class SelfCareProfileMainInfoWidget extends ConsumerWidget {
+  const SelfCareProfileMainInfoWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final profileState = ref.watch(selfCareUserGetProfileProvider);
+    final profileState = ref.watch(selfCareProfileGetProfileProvider);
     return SafeArea(
       child: Container(
         width: MediaQuery.of(context).size.width,

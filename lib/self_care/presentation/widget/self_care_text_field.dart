@@ -99,7 +99,7 @@ class _SelfCareTextFieldState extends State<SelfCareTextField> {
                 MaeumgagymColor.gray600,
               ),
               hintStyle: MaeumGaGymTextStyle.bodyLarge(
-                MaeumgagymColor.gray400,
+                MaeumgagymColor.gray200,
               ),
             ),
             cursorColor: MaeumgagymColor.blue600,
