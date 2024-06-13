@@ -5,7 +5,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/providers/timer_state_provider.dart';
+import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
+import '../../../../../core/component/maeumgagym_toast_message.dart';
 import '../../../providers/local_timer_provider.dart';
 
 class HomeTimerFuncButtonListContainer extends ConsumerWidget {
@@ -43,6 +45,11 @@ class HomeTimerFuncButtonListContainer extends ConsumerWidget {
                 timerNotifier.onPaused(timerState[timerIndex].timerId);
                 timerNotifier.onStarted(timerState[timerIndex].timerId);
               }
+            } else {
+              showTopSnackBar(
+                Overlay.of(context),
+                const MaeumGaGymToastMessage(title: "타이머 최소 개수는 1개 입니다."),
+              );
             }
           },
           child: Container(
