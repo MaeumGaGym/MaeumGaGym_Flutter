@@ -19,25 +19,22 @@ class SelfCareAnimatedButton extends ConsumerWidget {
     final focusState = ref.watch(selfCareTextFieldProvider);
 
     /// textfield 클래스에서 변경해주던 그 provider
-    return GestureDetector(
-      onTap: () {},
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: focusState ? 0 : 20),
-        child: AnimatedContainer(
-          duration: const Duration(milliseconds: 100),
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: focusState ? 0 : 20),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 100),
 
-          /// signup 버튼 가져와서 좀 많이 수정함
-          width: MediaQuery.of(context).size.width,
-          height: 58,
-          decoration: BoxDecoration(
-            color: MaeumgagymColor.blue500,
-            borderRadius: BorderRadius.circular(focusState ? 0 : 8),
-          ),
-          child: Center(
-            child: PtdTextWidget.labelLarge(
-              focusState ? buttonAnimatedTitle : buttonTitle,
-              MaeumgagymColor.white,
-            ),
+        /// signup 버튼 가져와서 좀 많이 수정함
+        width: MediaQuery.of(context).size.width,
+        height: 58,
+        decoration: BoxDecoration(
+          color: MaeumgagymColor.blue500,
+          borderRadius: BorderRadius.circular(focusState ? 0 : 8),
+        ),
+        child: Center(
+          child: PtdTextWidget.labelLarge(
+            focusState ? buttonAnimatedTitle : buttonTitle,
+            MaeumgagymColor.white,
           ),
         ),
       ),
