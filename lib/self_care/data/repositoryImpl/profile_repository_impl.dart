@@ -33,4 +33,11 @@ class ProfileRepositoryImpl implements ProfileRepository {
       gender: gender,
     );
   }
+
+  @override
+  Future<AsyncValue<int?>> deleteUser({required String accessToken}) async {
+    return await _remoteDataSource.deleteUser(
+      accessToken: accessToken,
+    );
+  }
 }

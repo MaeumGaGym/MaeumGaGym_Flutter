@@ -32,4 +32,12 @@ class ProfileUseCase {
       gender: gender,
     );
   }
+
+  Future<AsyncValue<int?>> deleteUser({
+    required String accessToken,
+  }) async {
+    return await _repository.deleteUser(
+      accessToken: accessToken,
+    );
+  }
 }

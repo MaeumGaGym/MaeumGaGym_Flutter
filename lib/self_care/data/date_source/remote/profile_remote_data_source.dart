@@ -38,16 +38,39 @@ class ProfileRemoteDataSource {
     required String gender,
   }) async {
     Map<String, dynamic> data = {
-      "nickname" : nickname,
-      "weight" : weight,
-      "height" : height,
-      "gender" : gender,
+      "nickname": nickname,
+      "weight": weight,
+      "height": height,
+      "gender": gender,
     };
 
     try {
-      return dio.put(
+      return dio
+          .put(
         "/user",
         data: data,
+        options: Options(
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": accessToken,
+          },
+        ),
+      )
+          .then((response) {
+        return AsyncData(response.statusCode);
+      });
+    } catch (err) {
+      return AsyncError(err, StackTrace.empty);
+    }
+  }
+
+  Future<AsyncValue<int?>> deleteUser({
+    required String accessToken,
+  }) async {
+    try {
+      return dio
+          .delete(
+        "/auth",
         options: Options(
           headers: {
             "Content-Type": "application/json",
