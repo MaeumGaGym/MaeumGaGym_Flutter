@@ -21,9 +21,12 @@ class _HomeMetronomeBeatContainerState
     return SizedBox(
       height: 177.5,
       width: MediaQuery.of(context).size.width,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: _buildRows(metronomeState, metronomeState.initialBeat),
+      child: FittedBox(
+        fit: BoxFit.contain,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: _buildRows(metronomeState, metronomeState.initialBeat),
+        ),
       ),
     );
   }
