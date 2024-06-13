@@ -14,4 +14,8 @@ abstract class ProfileRepository {
     required double height,
     required String gender,
   });
+
+  Future<AsyncValue<int?>> deleteUser({
+    required String accessToken,
+  });
 }
