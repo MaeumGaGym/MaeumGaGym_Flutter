@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/maeumgagym_toast_message.dart';
+import 'package:maeum_ga_gym_flutter/home/presentation/providers/home_today_routines_provider.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/my_routine/self_care_my_routine_my_routine_provider.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/my_routine/self_care_my_routine_delete_routine_provider.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/view/my_routine/self_care_my_routine_edit_screen.dart';
@@ -114,8 +115,9 @@ class _SelfCareMyRoutineDetailScreenState
                 Expanded(
                   child: GestureDetector(
                     behavior: HitTestBehavior.translucent,
-                    onTap: () {
-                      deleteRoutineNotifier.deleteRoutine(routineId: item.id!);
+                    onTap: () async {
+                      await deleteRoutineNotifier.deleteRoutine(routineId: item.id!);
+                      await ref.read(homeTodayRoutineController.notifier).getTodayRoutines();
                     },
                     child: SelfCareMyRoutineButton(
                       width: MediaQuery.of(context).size.width,

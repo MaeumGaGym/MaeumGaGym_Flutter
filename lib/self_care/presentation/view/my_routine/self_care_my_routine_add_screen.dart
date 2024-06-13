@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/maeumgagym_toast_message.dart';
+import 'package:maeum_ga_gym_flutter/home/presentation/providers/home_today_routines_provider.dart';
 import 'package:maeum_ga_gym_flutter/self_care/domain/model/my_routine/exercise_info_edit_routine_pose_model.dart';
 import 'package:maeum_ga_gym_flutter/self_care/domain/model/my_routine/exercise_info_request_model.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/my_routine/self_care_my_routine_add_routine_provider.dart';
@@ -154,10 +155,10 @@ class _SelfCareMyRoutineAddScreenState
                 const SizedBox(width: 8),
                 Expanded(
                   child: GestureDetector(
-                    onTap: () {
+                    onTap: () async {
                       if (titleController.text.isNotEmpty &&
                           addPoseListState.isNotEmpty) {
-                        addRoutineNotifier
+                        await addRoutineNotifier
                             .addRoutine(
                           routineName: titleController.text,
                           isArchived: false,
@@ -188,6 +189,8 @@ class _SelfCareMyRoutineAddScreenState
 
                           /// entry.value 값이 true (참) 이라면 key 값으로 List 생성
                         );
+
+                        await ref.read(homeTodayRoutineController.notifier).getTodayRoutines();
                       }
                     },
                     child: SelfCareMyRoutineButton(
