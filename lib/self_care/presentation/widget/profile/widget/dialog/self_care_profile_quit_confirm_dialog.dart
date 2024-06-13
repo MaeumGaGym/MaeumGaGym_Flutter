@@ -1,13 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/profile/widget/dialog/self_care_profile_quit_confirm_dialog.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/profile/self_care_profile_delete_user_provider.dart';
 
-  class SelfCareProfileQuitDialog extends StatelessWidget {
-  const SelfCareProfileQuitDialog({Key? key}) : super(key: key);
+class SelfCareProfileQuitConfirmDialog extends ConsumerWidget {
+  const SelfCareProfileQuitConfirmDialog({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final deleteUserNotifier = ref.read(selfCareProfileDeleteUserProvider.notifier);
+    ref.listen(selfCareProfileDeleteUserProvider.select((value) => value), (previous, next) {
+      if (next == const AsyncData<int?>(200)) {
+        context.go('/onBoarding');
+      }
+    });
     return Dialog( /// AlertDialog 보다 크기 조절이 좋음
       child: Container(
         width: MediaQuery.of(context).size.width,
@@ -22,12 +30,12 @@ import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/profile/widge
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               PtdTextWidget.titleMedium(
-                "회원탈퇴",
+                "회원탈퇴 확인",
                 MaeumgagymColor.black,
               ),
               const SizedBox(height: 8),
               PtdTextWidget.labelMedium(
-                "정말 탈퇴하실건가요?\n30일 뒤에 활동이 모두 삭제돼요.",
+                "정말 탈퇴하실건가요?",
                 MaeumgagymColor.gray700,
               ),
               const SizedBox(height: 20),
@@ -58,16 +66,7 @@ import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/profile/widge
                   Expanded( /// 구분선을 제외한 Row 사이즈의 반 만큼
                     child: GestureDetector(
                       onTap: () {
-                        Navigator.of(context).pop();
-                        showDialog(
-                          context: context,
-                          barrierDismissible: true,
-
-                          /// dialog가 열렸을 때 빈 화면을 클릭해도 dialog가 꺼지도록 설정
-                          builder: (context) {
-                            return const SelfCareProfileQuitConfirmDialog();
-                          },
-                        );
+                        deleteUserNotifier.deleteUser();
                       },
                       child: Container(
                         height: 48,
