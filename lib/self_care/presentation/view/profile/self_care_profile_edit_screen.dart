@@ -6,6 +6,7 @@ import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/my_routine/
 import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/profile/self_care_profile_edit_profile_provider.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/profile/self_care_profile_sex_select_provider.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/self_care_text_field_provider.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/view/profile/self_care_profile_main_screen.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/profile/widget/self_care_profile_sex_select_widget.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/self_care_animated_button.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/self_care_default_app_bar.dart';
@@ -22,8 +23,8 @@ class SelfCareProfileEditScreen extends ConsumerStatefulWidget {
 class _SelfCareProfileEditScreenState
     extends ConsumerState<SelfCareProfileEditScreen> {
   Map<String, String> sex = {
-    "남성" : "MAN",
-    "여성" : "WOMAN",
+    "남성": "MAN",
+    "여성": "WOMAN",
   };
 
   OverlayEntry? _overlayEntry;
@@ -58,6 +59,7 @@ class _SelfCareProfileEditScreenState
   void initState() {
     super.initState();
     _nameController = TextEditingController();
+
     /// addListener >> 변경이 감지될 때마다 로직 실행
     _nameNode = FocusNode()..addListener(focusCheck);
     _heightController = TextEditingController();
@@ -78,10 +80,10 @@ class _SelfCareProfileEditScreenState
     super.dispose();
   }
 
-  void focusCheck() { /// 각각의 FocusNode들이 Focus 되었는지 확인하는 함수
-    ref.read(selfCareTextFieldProvider.notifier).state = _nameNode.hasFocus ||
-        _heightNode.hasFocus ||
-        _weightNode.hasFocus;
+  void focusCheck() {
+    /// 각각의 FocusNode들이 Focus 되었는지 확인하는 함수
+    ref.read(selfCareTextFieldProvider.notifier).state =
+        _nameNode.hasFocus || _heightNode.hasFocus || _weightNode.hasFocus;
   }
 
   @override
@@ -90,8 +92,10 @@ class _SelfCareProfileEditScreenState
     final editUserProfileNotifier =
         ref.read(selfCareProfileEditProfileProvider.notifier);
     final sexSelectorState = ref.watch(sexSelectProvider);
-    ref.listen(selfCareProfileEditProfileProvider.select((value) => value), (previous, next) {
+    ref.listen(selfCareProfileEditProfileProvider.select((value) => value),
+        (previous, next) {
       if (next == const AsyncData<int?>(204)) {
+        Navigator.of(context).popUntil((route) => route.isFirst);
         ref.read(selfCareMyRoutineMyRoutinesProvider.notifier).getMyRoutineInit();
       }
     });
@@ -178,12 +182,17 @@ class _SelfCareProfileEditScreenState
             child: SafeArea(
               child: GestureDetector(
                 onTap: () {
-                  if (_nameController.text.isNotEmpty && _heightController.text.isNotEmpty && _weightController.text.isNotEmpty) {
+                  if (!_nameController.text.contains(" ") &&
+                      _nameController.text.isNotEmpty &&
+                      _heightController.text.isNotEmpty &&
+                      _weightController.text.isNotEmpty) {
                     editUserProfileNotifier.editUserProfile(
                       nickname: _nameController.text,
                       weight: double.tryParse(_weightController.text)!,
                       height: double.tryParse(_heightController.text)!,
-                      gender: sex.containsKey(sexSelectorState) ? sex[sexSelectorState].toString() : "NONE",
+                      gender: sex.containsKey(sexSelectorState)
+                          ? sex[sexSelectorState].toString()
+                          : "NONE",
                     );
                   }
                 },
@@ -201,6 +210,7 @@ class _SelfCareProfileEditScreenState
 
   OverlayEntry _customDropdown() {
     final sexSelectNotifier = ref.read(sexSelectProvider.notifier);
+    final dragAndDropNotifier = ref.read(dragAndDropCheckProvider.notifier);
     return OverlayEntry(
       maintainState: true,
       builder: (context) => Positioned(
@@ -227,6 +237,8 @@ class _SelfCareProfileEditScreenState
                       behavior: HitTestBehavior.translucent,
                       onTap: () {
                         sexSelectNotifier.state = sex.keys.elementAt(index);
+                        _removeOverlay();
+                        dragAndDropNotifier.state = false;
                       },
                       child: Padding(
                         padding: const EdgeInsets.all(12),
