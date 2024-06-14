@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
 
 import '../../../../../../../config/maeumgagym_color.dart';
 import '../../../../../text/pretendard/ptd_text_widget.dart';
 import '../../../provider/pose_tab_provider.dart';
 
 class PoseRecommendWidgetTop extends ConsumerWidget {
-  final String titleImage, titleText;
+  final String titleText;
 
   const PoseRecommendWidgetTop({
     super.key,
-    required this.titleImage,
     required this.titleText,
   });
 
@@ -26,14 +24,6 @@ class PoseRecommendWidgetTop extends ConsumerWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            /// Image
-            ImageWidget(
-              image: titleImage,
-              imageType: ImageType.png,
-              width: 40,
-              height: 40,
-            ),
-
             /// 맨몸 운동 글씨
             Padding(
               padding: const EdgeInsets.only(top: 8),
@@ -45,7 +35,7 @@ class PoseRecommendWidgetTop extends ConsumerWidget {
           ],
         ),
         GestureDetector(
-          // onTap: () => ref.read(poseTabController.notifier).state = index,
+          onTap: () => ref.read(poseTabController.notifier).setTabStateToName(titleText),
           child: Row(
             children: [
               PtdTextWidget.bodyMedium('더보기', MaeumgagymColor.gray400),
