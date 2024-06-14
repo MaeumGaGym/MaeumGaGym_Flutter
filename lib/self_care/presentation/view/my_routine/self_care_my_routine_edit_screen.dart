@@ -11,9 +11,9 @@ import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/my_routine/
 import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/my_routine/self_care_my_routine_edit_routine_provider.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/my_routine/self_care_my_routine_pose_list_provider.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/view/my_routine/self_care_my_routine_pose_add_screen.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/widget/self_care_my_routine_button.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/widget/self_care_my_routine_days_select_widget.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/widget/self_care_my_routine_pose_item_widget.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/self_care_my_routine_button.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/self_care_my_routine_days_select_widget.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/self_care_my_routine_pose_item_widget.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/self_care_default_app_bar.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/self_care_text_field.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';

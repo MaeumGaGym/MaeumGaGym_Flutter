@@ -4,8 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/profile/self_care_profile_get_profile_provider.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/profile/widget/self_care_profile_main_info_widget.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/profile/widget/self_care_profile_main_setting_widget.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/profile/self_care_profile_main_info_widget.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/profile/self_care_profile_main_setting_widget.dart';
 
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/self_care_default_app_bar.dart';
 

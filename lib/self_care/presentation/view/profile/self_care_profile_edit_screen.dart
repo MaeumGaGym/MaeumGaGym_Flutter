@@ -7,7 +7,7 @@ import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/profile/sel
 import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/profile/self_care_profile_sex_select_provider.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/self_care_text_field_provider.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/view/profile/self_care_profile_main_screen.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/profile/widget/self_care_profile_sex_select_widget.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/profile/self_care_profile_sex_select_widget.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/self_care_animated_button.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/self_care_default_app_bar.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/self_care_text_field.dart';
@@ -88,7 +88,7 @@ class _SelfCareProfileEditScreenState
 
   @override
   Widget build(BuildContext context) {
-    final dragAndDropNotifier = ref.read(dragAndDropCheckProvider.notifier);
+    final dropDownNotifier = ref.read(dropDownCheckProvider.notifier);
     final editUserProfileNotifier =
         ref.read(selfCareProfileEditProfileProvider.notifier);
     final sexSelectorState = ref.watch(sexSelectProvider);
@@ -103,7 +103,7 @@ class _SelfCareProfileEditScreenState
       behavior: HitTestBehavior.translucent,
       onTap: () {
         _removeOverlay();
-        dragAndDropNotifier.state = false;
+        dropDownNotifier.state = false;
       },
       child: Scaffold(
         backgroundColor: MaeumgagymColor.white,
@@ -150,10 +150,10 @@ class _SelfCareProfileEditScreenState
                     onTap: () {
                       if (_overlayEntry != null) {
                         _removeOverlay();
-                        dragAndDropNotifier.state = false;
+                        dropDownNotifier.state = false;
                       } else {
                         _createOverlay();
-                        dragAndDropNotifier.state = true;
+                        dropDownNotifier.state = true;
                       }
                     },
                     child: CompositedTransformTarget(
@@ -210,7 +210,7 @@ class _SelfCareProfileEditScreenState
 
   OverlayEntry _customDropdown() {
     final sexSelectNotifier = ref.read(sexSelectProvider.notifier);
-    final dragAndDropNotifier = ref.read(dragAndDropCheckProvider.notifier);
+    final dropDownNotifier = ref.read(dropDownCheckProvider.notifier);
     return OverlayEntry(
       maintainState: true,
       builder: (context) => Positioned(
@@ -238,7 +238,7 @@ class _SelfCareProfileEditScreenState
                       onTap: () {
                         sexSelectNotifier.state = sex.keys.elementAt(index);
                         _removeOverlay();
-                        dragAndDropNotifier.state = false;
+                        dropDownNotifier.state = false;
                       },
                       child: Padding(
                         padding: const EdgeInsets.all(12),

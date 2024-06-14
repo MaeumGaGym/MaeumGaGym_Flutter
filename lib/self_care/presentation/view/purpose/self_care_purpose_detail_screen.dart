@@ -4,8 +4,8 @@ import 'package:intl/intl.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/purpose/self_care_purpose_detail_purposes_provider.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/purpose/widget/self_care_purpose_detail_app_bar.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/purpose/widget/self_care_purpose_time_table_widget.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/purpose/self_care_purpose_detail_app_bar.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/purpose/self_care_purpose_time_table_widget.dart';
 
 class SelfCarePurposeDetailScreen extends ConsumerStatefulWidget {
   final int purposeId;
