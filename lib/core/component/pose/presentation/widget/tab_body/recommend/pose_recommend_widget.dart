@@ -7,11 +7,10 @@ import 'package:maeum_ga_gym_flutter/core/component/pose/presentation/widget/tab
 class PoseRecommendWidget extends StatelessWidget {
   final List<PoseData> recommendPoseData;
 
-  final String titleImage, titleText;
+  final String titleText;
 
   const PoseRecommendWidget({
     required this.recommendPoseData,
-    required this.titleImage,
     required this.titleText,
     super.key,
   });
@@ -27,7 +26,6 @@ class PoseRecommendWidget extends StatelessWidget {
 
           /// ~~ 운동 상단
           PoseRecommendWidgetTop(
-            titleImage: titleImage,
             titleText: titleText,
           ),
 
