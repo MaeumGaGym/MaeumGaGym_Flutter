@@ -10,7 +10,7 @@ class SelfCareProfileSexSelectWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final dragAndDropState = ref.watch(dragAndDropCheckProvider);
+    final dropDownState = ref.watch(dropDownCheckProvider);
     final sexSelectState = ref.watch(sexSelectProvider);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -46,7 +46,7 @@ class SelfCareProfileSexSelectWidget extends ConsumerWidget {
                 ),
                 ImageWidget(
                   image:
-                      "assets/image/self_care_icon/${dragAndDropState ? "top" : "bottom"}_arrow_icon.svg",
+                      "assets/image/self_care_icon/${dropDownState ? "top" : "bottom"}_arrow_icon.svg",
                   imageType: ImageType.svg,
                 ),
               ],

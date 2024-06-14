@@ -2,7 +2,7 @@ import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/camera/self_care_camera_container_widget.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/camera/self_care_camera_widget.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/self_care_default_app_bar.dart';
 
 /// 카메라 정보 저장 ex 전면, 후면 카메라
@@ -57,11 +57,11 @@ class _SelfCareCameraScreenState extends State<SelfCareCameraScreen> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const SelfCareCameraContainerWidget(iconPath: "assets/image/self_care_icon/image_icon.svg"),
+                  const SelfCareCameraWidget(iconPath: "assets/image/self_care_icon/image_icon.svg"),
                   SvgPicture.asset(
                     "assets/image/self_care_icon/camera_button_icon.svg",
                   ),
-                  const SelfCareCameraContainerWidget(iconPath: "assets/image/self_care_icon/turn_icon.svg"),
+                  const SelfCareCameraWidget(iconPath: "assets/image/self_care_icon/turn_icon.svg"),
                 ],
               ),
             ),

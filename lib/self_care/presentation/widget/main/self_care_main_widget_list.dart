@@ -4,7 +4,7 @@ import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_wid
 import 'package:maeum_ga_gym_flutter/self_care/presentation/view/my_routine/self_care_my_routine_main_screen.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/view/purpose/self_care_purpose_main_screen.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/view/today_exercise/self_care_today_exercise_main_screen.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/main/widget/self_care_item_widget.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/main/self_care_item_widget.dart';
 
 class SelfCareMainWidgetList extends StatelessWidget {
   const SelfCareMainWidgetList({Key? key}) : super(key: key);
