@@ -6,23 +6,23 @@ import '../../../providers/home_timer_add_duration_provider.dart';
 
 enum TimerType { hour, minute, seconds }
 
-class HomeTimerCupertinoPickerWidget extends ConsumerStatefulWidget {
+class HomeTimerPickerWidget extends ConsumerStatefulWidget {
   final int listLength;
   final TimerType type;
 
-  const HomeTimerCupertinoPickerWidget({
+  const HomeTimerPickerWidget({
     super.key,
     required this.listLength,
     required this.type,
   });
 
   @override
-  ConsumerState<HomeTimerCupertinoPickerWidget> createState() =>
+  ConsumerState<HomeTimerPickerWidget> createState() =>
       _HomeTimerCupertinoPickerWidgetState();
 }
 
 class _HomeTimerCupertinoPickerWidgetState
-    extends ConsumerState<HomeTimerCupertinoPickerWidget> {
+    extends ConsumerState<HomeTimerPickerWidget> {
   @override
   Widget build(BuildContext context) {
     final durationNotifier = ref.read(homeTimerAddDurationProvider.notifier);

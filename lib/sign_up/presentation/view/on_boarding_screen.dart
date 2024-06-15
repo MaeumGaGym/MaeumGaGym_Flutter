@@ -31,7 +31,6 @@ class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
     final socialLoginNotifier = ref.read(socialLoginController.notifier);
     final logoutNotifier = ref.read(maeumgagymLogoutProvider.notifier);
     final loginOption = ref.watch(loginOptionController);
-    ref.read(maeumgagymReIssueController.notifier);
     final maeumgagymLoginNotifier = ref.read(maeumgagymLoginController.notifier);
 
     void dialog(String title, String contents) {
@@ -131,7 +130,6 @@ class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
 
     void saveLoginOption(LoginOption loginOption) async {
       ref.read(loginOptionController.notifier).state = loginOption;
-
       /// Login Option 설정
       await socialLoginNotifier.setLoginOption(loginOption);
     }

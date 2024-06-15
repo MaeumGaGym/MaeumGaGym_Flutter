@@ -9,7 +9,7 @@ import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 import '../../../../../config/maeumgagym_color.dart';
 import '../../../../../core/component/text/pretendard/ptd_text_widget.dart';
-import 'home_timer_cupertino_picker_widget.dart';
+import 'home_timer_picker_widget.dart';
 
 class HomeTimerTimePickerWidget extends ConsumerStatefulWidget {
   const HomeTimerTimePickerWidget({super.key});
@@ -21,7 +21,6 @@ class HomeTimerTimePickerWidget extends ConsumerStatefulWidget {
 
 class _HomeTimerTimePickerWidgetState
     extends ConsumerState<HomeTimerTimePickerWidget> {
-
   void _showToast({required String message}) {
     showTopSnackBar(
       Overlay.of(context),
@@ -57,7 +56,7 @@ class _HomeTimerTimePickerWidgetState
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const HomeTimerCupertinoPickerWidget(
+                  const HomeTimerPickerWidget(
                     listLength: 24,
                     type: TimerType.hour,
                   ),
@@ -66,7 +65,7 @@ class _HomeTimerTimePickerWidgetState
                     child: PtdTextWidget.timerPickerNumber(
                         ':', MaeumgagymColor.black),
                   ),
-                  const HomeTimerCupertinoPickerWidget(
+                  const HomeTimerPickerWidget(
                     listLength: 60,
                     type: TimerType.minute,
                   ),
@@ -75,7 +74,7 @@ class _HomeTimerTimePickerWidgetState
                     child: PtdTextWidget.timerPickerNumber(
                         ':', MaeumgagymColor.black),
                   ),
-                  const HomeTimerCupertinoPickerWidget(
+                  const HomeTimerPickerWidget(
                     listLength: 60,
                     type: TimerType.seconds,
                   ),

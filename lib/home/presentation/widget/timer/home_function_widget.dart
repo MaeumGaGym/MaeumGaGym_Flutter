@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
 
 class HomeFunctionWidget extends StatelessWidget {
   final double size;
@@ -31,10 +31,11 @@ class HomeFunctionWidget extends StatelessWidget {
       ),
       child: Padding(
         padding: EdgeInsets.all(padding),
-        child: SvgPicture.asset(
-          iconPath,
-          width: size,
-          height: size,
+        child: ImageWidget(
+          imageType: ImageType.svg,
+          image: iconPath,
+          imageWidth: size,
+          imageHeight: size,
           color: iconColor,
         ),
       ),

@@ -1,10 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
-import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/providers/timer_state_provider.dart';
+import 'package:maeum_ga_gym_flutter/home/presentation/widget/timer/home_function_widget.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 import '../../../../../core/component/maeumgagym_toast_message.dart';
@@ -15,9 +14,7 @@ class HomeTimerFuncButtonListContainer extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // final timerIndex = ref.watch(selectedTimerProvider);
     final timerIndexNotifier = ref.watch(selectedTimerProvider.notifier);
-    // final timerState = ref.watch(timersProvider);
     final timerNotifier = ref.read(timersProvider.notifier);
     final localTimerNotifier = ref.read(localTimerController.notifier);
     return Row(
@@ -52,22 +49,12 @@ class HomeTimerFuncButtonListContainer extends ConsumerWidget {
               );
             }
           },
-          child: Container(
-            decoration: BoxDecoration(
-              color: MaeumgagymColor.white,
-              shape: BoxShape.circle,
-              border: Border.all(color: MaeumgagymColor.blue400, width: 1),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(22),
-              child: ImageWidget(
-                image: "assets/image/self_care_icon/close_icon.svg",
-                imageType: ImageType.svg,
-                width: 24,
-                height: 24,
-                color: MaeumgagymColor.blue400,
-              ),
-            ),
+          child: HomeFunctionWidget(
+            size: 24,
+            backgroundColor: MaeumgagymColor.white,
+            padding: 22,
+            iconColor: MaeumgagymColor.blue400,
+            iconPath: "assets/image/self_care_icon/close_icon.svg",
           ),
         ),
         // start parse
@@ -84,27 +71,18 @@ class HomeTimerFuncButtonListContainer extends ConsumerWidget {
                 timerNotifier.onPaused(timerState[timerIndex].timerId);
               }
             },
-            child: Container(
-              decoration: BoxDecoration(
-                color: MaeumgagymColor.blue400,
-                shape: BoxShape.circle,
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(20),
-                child: ImageWidget(
-                  image: ref
-                              .watch(timersProvider)[
-                                  ref.watch(selectedTimerProvider)]
-                              .timerState ==
-                          TimerState.started
-                      ? "assets/image/home_icon/pause_icon.svg"
-                      : "assets/image/home_icon/play_filled_icon.svg",
-                  imageType: ImageType.svg,
-                  imageWidth: 40,
-                  imageHeight: 40,
-                  color: MaeumgagymColor.white,
-                ),
-              ),
+            child: HomeFunctionWidget(
+              size: 40,
+              backgroundColor: MaeumgagymColor.blue400,
+              padding: 20,
+              iconColor: MaeumgagymColor.white,
+              iconPath: ref
+                          .watch(
+                              timersProvider)[ref.watch(selectedTimerProvider)]
+                          .timerState ==
+                      TimerState.started
+                  ? "assets/image/home_icon/pause_icon.svg"
+                  : "assets/image/home_icon/play_filled_icon.svg",
             ),
           ),
         ),
@@ -117,21 +95,12 @@ class HomeTimerFuncButtonListContainer extends ConsumerWidget {
                   .timerId,
             );
           },
-          child: Container(
-            decoration: BoxDecoration(
-              color: MaeumgagymColor.white,
-              shape: BoxShape.circle,
-              border: Border.all(color: MaeumgagymColor.blue400, width: 1),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(22),
-              child: SvgPicture.asset(
-                "assets/image/home_icon/edit_redo_icon.svg",
-                width: 24,
-                height: 24,
-                color: MaeumgagymColor.blue400,
-              ),
-            ),
+          child: HomeFunctionWidget(
+            size: 24,
+            backgroundColor: MaeumgagymColor.white,
+            padding: 22,
+            iconColor: MaeumgagymColor.blue400,
+            iconPath: "assets/image/home_icon/edit_redo_icon.svg",
           ),
         ),
       ],
