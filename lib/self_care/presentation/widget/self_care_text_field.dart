@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/maeungagym_text_style.dart';
-import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
 
 class SelfCareTextField extends StatefulWidget {
   final String title;
@@ -100,7 +99,7 @@ class _SelfCareTextFieldState extends State<SelfCareTextField> {
                 MaeumgagymColor.gray600,
               ),
               hintStyle: MaeumGaGymTextStyle.bodyLarge(
-                MaeumgagymColor.gray400,
+                MaeumgagymColor.gray200,
               ),
             ),
             cursorColor: MaeumgagymColor.blue600,

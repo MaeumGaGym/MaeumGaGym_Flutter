@@ -11,8 +11,7 @@ final maeumgagymSignUpController =
 class MaeumgagymSignUpStateNotifier extends StateNotifier<AsyncValue<int?>> {
   MaeumgagymSignUpStateNotifier() : super(const AsyncData(500));
 
-  final MaeumgagymSignUpUseCase _useCase =
-      MaeumgagymSignUpUseCase(MaeumgagymSignUpRepositoryImpl());
+  final MaeumgagymSignUpUseCase _useCase = MaeumgagymSignUpUseCase();
 
   Future<void> googleSignUp(String googleToken, String name) async {
     state = const AsyncLoading();

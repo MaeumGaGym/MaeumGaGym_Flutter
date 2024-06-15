@@ -1,6 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/core/di/token_secure_storage_di.dart';
-import 'package:maeum_ga_gym_flutter/sign_up/data/repositoryImpl/maeumgagym_login_repository_impl.dart';
 import 'package:maeum_ga_gym_flutter/sign_up/domain/usecase/maeumgagym_login_usecase.dart';
 
 import '../../domain/model/maeumgagym_login_model.dart';
@@ -19,9 +18,7 @@ class MaeumgagymLoginStateNotifier extends StateNotifier<MaeumgagymLoginModel> {
           refreshToken: null,
         ));
 
-  final MaeumgagymLoginUseCase _useCase = MaeumgagymLoginUseCase(
-    MaeumgagymLoginRepositoryImpl(),
-  );
+  final MaeumgagymLoginUseCase _useCase = MaeumgagymLoginUseCase();
 
   Future<void> googleLogin(String googleToken) async {
     state = state.copyWith(statusCode: const AsyncLoading());

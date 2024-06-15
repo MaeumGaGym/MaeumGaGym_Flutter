@@ -1,5 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:maeum_ga_gym_flutter/home/presentation/widget/timer/widget/home_timer_cupertino_picker_widget.dart';
+import 'package:maeum_ga_gym_flutter/home/presentation/widget/timer/widget/home_timer_picker_widget.dart';
 
 final homeTimerAddDurationProvider =
     StateNotifierProvider<DurationStateNotifier, DurationState>((ref) {

@@ -1,27 +1,55 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class HomeTodayRoutinesModel {
+class HomeTodayRoutineListModel {
+  final List<HomeTodayRoutineModel> routineList;
+  final AsyncValue<int> statusCode;
+
+  HomeTodayRoutineListModel({
+    required this.routineList,
+    required this.statusCode,
+  });
+
+  factory HomeTodayRoutineListModel.fromJson(
+      Map<String, dynamic> json, int? statusCode) {
+    return HomeTodayRoutineListModel(
+      routineList: json['routine_list']
+          .map<HomeTodayRoutineModel>(
+              (data) => HomeTodayRoutineModel.fromJson(data))
+          .toList(),
+      statusCode: AsyncData(statusCode!),
+    );
+  }
+
+  HomeTodayRoutineListModel copyWith({
+    List<HomeTodayRoutineModel>? routineList,
+    AsyncValue<int>? statusCode,
+  }) {
+    return HomeTodayRoutineListModel(
+      routineList: routineList ?? this.routineList,
+      statusCode: statusCode ?? this.statusCode,
+    );
+  }
+}
+
+class HomeTodayRoutineModel {
   final int? id;
   final String? routineName;
   final List<ExerciseInfoList>? exerciseInfoResponseList;
   final List<String>? dayOfWeeks;
   final RoutineStatus? routineStatus;
   final bool? isCompleted;
-  final AsyncValue<int> statusCode;
 
-  HomeTodayRoutinesModel({
+  HomeTodayRoutineModel({
     required this.id,
     required this.routineName,
     required this.exerciseInfoResponseList,
     required this.dayOfWeeks,
     required this.routineStatus,
     required this.isCompleted,
-    required this.statusCode,
   });
 
-  factory HomeTodayRoutinesModel.fromJson(
-      Map<String, dynamic> json, int? statusCode) {
-    return HomeTodayRoutinesModel(
+  factory HomeTodayRoutineModel.fromJson(Map<String, dynamic> json) {
+    return HomeTodayRoutineModel(
       id: json['id'],
       routineName: json['routine_name'],
       exerciseInfoResponseList: json['exercise_info_response_list']
@@ -30,11 +58,10 @@ class HomeTodayRoutinesModel {
       dayOfWeeks: List<String>.from(json['day_of_weeks']),
       routineStatus: RoutineStatus.fromJson(json['routine_status']),
       isCompleted: json['is_completed'],
-      statusCode: AsyncData(statusCode!),
     );
   }
 
-  HomeTodayRoutinesModel copyWith({
+  HomeTodayRoutineModel copyWith({
     int? id,
     String? routineName,
     List<ExerciseInfoList>? exerciseInfoResponseList,
@@ -43,7 +70,7 @@ class HomeTodayRoutinesModel {
     bool? isCompleted,
     AsyncValue<int>? statusCode,
   }) {
-    return HomeTodayRoutinesModel(
+    return HomeTodayRoutineModel(
       id: id ?? this.id,
       routineName: routineName ?? this.routineName,
       exerciseInfoResponseList:
@@ -51,7 +78,6 @@ class HomeTodayRoutinesModel {
       dayOfWeeks: dayOfWeeks ?? this.dayOfWeeks,
       routineStatus: routineStatus ?? this.routineStatus,
       isCompleted: isCompleted ?? this.isCompleted,
-      statusCode: statusCode ?? this.statusCode,
     );
   }
 }

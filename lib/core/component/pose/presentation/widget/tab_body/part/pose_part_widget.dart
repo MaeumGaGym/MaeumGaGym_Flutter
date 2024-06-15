@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
 import 'package:maeum_ga_gym_flutter/core/component/pose/domain/model/pose_data_model.dart';
-import 'package:maeum_ga_gym_flutter/pose/presentation/provider/pose_detail_provider.dart';
 import 'package:maeum_ga_gym_flutter/pose/presentation/view/pose_detail_screen.dart';
-import 'package:maeum_ga_gym_flutter/self_care/domain/model/exercise_info_edit_routine_pose_model.dart';
+import 'package:maeum_ga_gym_flutter/self_care/domain/model/my_routine/exercise_info_edit_routine_pose_model.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/my_routine/self_care_my_routine_pose_list_provider.dart';
 
 import '../../../../../../../config/maeumgagym_color.dart';
@@ -24,20 +23,18 @@ class PosePartWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return GestureDetector(
-      onTap: () async {
+      onTap: () {
         /// useNavigator 가 true 일때
         if (useNavigator) {
-          if (context.mounted) {
-            /// 눌렀을 때 PoseDetailScreen
-            await Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => PoseDetailScreen(id: data.id!),
-              ),
-            );
-          }
+          /// 눌렀을때 PoseDetailScreen
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => PoseDetailScreen(id: data.id!),
+            ),
+          );
         } else {
-          ref.read(selfCareMyRoutineEditProvider.notifier).insert(
+          ref.read(selfCareMyRoutinePostListProvider.notifier).insert(
                 ExerciseInfoEditRoutinePoseModel(
                   poseModel: PoseDataModel(
                     id: data.id,
@@ -52,8 +49,6 @@ class PosePartWidget extends ConsumerWidget {
               );
           Navigator.pop(context);
         }
-        debugPrint('out');
-        ref.read(poseDetailController.notifier).setDetailData();
       },
       child: Padding(
         padding: const EdgeInsets.all(12),

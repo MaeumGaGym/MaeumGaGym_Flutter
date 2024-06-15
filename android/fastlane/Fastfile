@@ -43,6 +43,22 @@ lane :internal do
   )
 end
 
+desc "Deploy to Google Play Production"
+lane :production do
+  gradle(task: "assembleRelease")
+  version_code = latest_googleplay_version_code
+  upload_to_play_store(
+    track: 'production',
+    aab: '../build/app/outputs/bundle/release/app-release.aab',
+    skip_upload_metadata: false,
+    skip_upload_images: false,
+    skip_upload_screenshots: false,
+    skip_upload_changelogs: false,
+    skip_upload_apk: true,
+    release_status: 'completed'
+  )
+end
+
 before_all do
   sh "flutter pub get"
   sh "flutter build appbundle"

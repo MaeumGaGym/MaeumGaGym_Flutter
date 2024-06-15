@@ -16,9 +16,7 @@ class HomeQuotesStateNotifier extends StateNotifier<HomeQuotesModel> {
           author: null,
         ));
 
-  final HomeQuotesUseCase _useCase = HomeQuotesUseCase(
-    HomeQuotesRepositoryImpl(),
-  );
+  final HomeQuotesUseCase _useCase = HomeQuotesUseCase();
 
   Future<void> getQuotes() async {
     state = state.copyWith(statusCode: const AsyncLoading());

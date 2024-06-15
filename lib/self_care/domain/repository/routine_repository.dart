@@ -1,23 +1,24 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:maeum_ga_gym_flutter/self_care/domain/model/exercise_info_request_model.dart';
-import 'package:maeum_ga_gym_flutter/self_care/domain/model/exercise_info_response_model.dart';
-import 'package:maeum_ga_gym_flutter/self_care/domain/model/routine_and_user_info_model.dart';
-import 'package:maeum_ga_gym_flutter/self_care/domain/model/routine_history_model.dart';
-import 'package:maeum_ga_gym_flutter/self_care/domain/model/routine_response_model.dart';
-import 'package:maeum_ga_gym_flutter/self_care/domain/model/user_info_model.dart';
+import 'package:maeum_ga_gym_flutter/self_care/domain/model/my_routine/exercise_info_request_model.dart';
+import 'package:maeum_ga_gym_flutter/self_care/domain/model/my_routine/exercise_info_response_model.dart';
+import 'package:maeum_ga_gym_flutter/self_care/domain/model/my_routine/routine_and_user_info_model.dart';
+import 'package:maeum_ga_gym_flutter/self_care/domain/model/my_routine/routine_history_model.dart';
+import 'package:maeum_ga_gym_flutter/self_care/domain/model/my_routine/routine_response_model.dart';
+import 'package:maeum_ga_gym_flutter/self_care/domain/model/my_routine/routine_user_info_model.dart';
 
 abstract class RoutineRepository {
-  Future<AsyncValue<int?>> createRoutine({
+  Future<AsyncValue<int?>> addRoutine({
     required String accessToken,
     required String routineName,
     required bool isArchived,
     required bool isShared,
-    required List<ExerciseInfoRequestModel> exerciseInfoModelList,
+    required List<ExerciseInfoRequestModel> exerciseInfoRequestList,
     List<String>? dayOfWeeks,
   });
 
-  Future<RoutineAndUserInfoModel> getRoutineAllMe({
+  Future<RoutineAndUserInfoModel> getMyRoutine({
     required String accessToken,
+    required int index,
   });
 
   Future<RoutineResponseModel> getTodayRoutine({

@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 
-import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/main/widget/dividing_line_widget.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/main/container/self_care_main_profile_container.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/main/container/self_care_main_widget_list_container.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/calendar/container/self_care_timeline_container.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/self_care_default_title_container.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/main/dividing_line_widget.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/calendar/self_care_timeline_widget.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/main/self_care_main_profile_widget.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/main/self_care_main_widget_list.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/self_care_default_title_widget.dart';
 
-class SelfCareMainScreen extends StatefulWidget {
+class SelfCareMainScreen extends ConsumerStatefulWidget {
   const SelfCareMainScreen({Key? key}) : super(key: key);
 
   @override
-  State<SelfCareMainScreen> createState() => _SelfCareMainScreenState();
+  ConsumerState<SelfCareMainScreen> createState() => _SelfCareMainScreenState();
 }
 
-class _SelfCareMainScreenState extends State<SelfCareMainScreen> {
+class _SelfCareMainScreenState extends ConsumerState<SelfCareMainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,11 +50,11 @@ class _SelfCareMainScreenState extends State<SelfCareMainScreen> {
                 ),
               ),
               const DividingLineWidget(), // 구분선
-              const SelfCareMainProfileContainer(),
+              const SelfCareMainProfileWidget(),
               const DividingLineWidget(),
-              const SelfCareMainWidgetListContainer(),
+              const SelfCareMainWidgetList(),
               const DividingLineWidget(),
-              const SelfCareTimelineContainer(),
+              const SelfCareTimelineWidget(),
             ],
           ),
         ),

@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 /// Core
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
+import 'package:maeum_ga_gym_flutter/core/logout/presentation/maeumgagym_logout_provider.dart';
 import 'package:maeum_ga_gym_flutter/sign_up/presentation/provider/maeumgagym_login_provider.dart';
 import 'package:maeum_ga_gym_flutter/core/re_issue/presentation/maeumgagym_re_issue_provider.dart';
 import 'package:maeum_ga_gym_flutter/sign_up/presentation/provider/maeumgagym_recovery_provider.dart';
@@ -28,28 +29,30 @@ class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
   @override
   Widget build(BuildContext context) {
     final socialLoginNotifier = ref.read(socialLoginController.notifier);
-    ref.read(maeumgagymReIssueController.notifier);
-    final maeumgagymLoginNotifier =
-        ref.read(maeumgagymLoginController.notifier);
+    final logoutNotifier = ref.read(maeumgagymLogoutProvider.notifier);
+    final loginOption = ref.watch(loginOptionController);
+    final maeumgagymLoginNotifier = ref.read(maeumgagymLoginController.notifier);
 
-    AlertDialog dialog(String title, String contents) {
-      return AlertDialog(
-        title: Text(title),
-        content: Text(contents),
-        actions: [
-          MaterialButton(
-            onPressed: () {
-              socialLoginNotifier.logout();
-              Navigator.pop(context);
-            },
-            child: const Text("확인"),
-          )
-        ],
+    void dialog(String title, String contents) {
+      showDialog(context: context, builder: (context) {
+        return AlertDialog(
+          title: Text(title),
+          content: Text(contents),
+          actions: [
+            MaterialButton(
+              onPressed: () {
+                logoutNotifier.logout(loginOption: loginOption);
+                Navigator.pop(context);
+              },
+              child: const Text("확인"),
+            )
+          ],
+        );
+      },
       );
     }
 
-    Future<void> whenMaeumgagymLoginIs404(
-        LoginOption loginOption, String oauthToken) async {
+    Future<void> doMaeumgagymRecovery(LoginOption loginOption, String oauthToken) async {
       await ref
           .read(maeumgagymRecoveryController.notifier)
           .switchRecovery(loginOption, oauthToken);
@@ -58,27 +61,21 @@ class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
             data: (data) async {
               if (data == 404) {
                 await context.push('/signUpAgree');
-                await socialLoginNotifier.logout();
+                await logoutNotifier.logout(loginOption: loginOption);
               } else {
                 context.go('/');
               }
             },
             error: (err, _) {
-              showDialog(
-                context: context,
-                builder: (context) {
-                  return dialog(
-                    "Maeumgagym Recovery Error",
-                    err.toString(),
-                  );
-                },
-              );
+              dialog("Maeumgagym Recovery Error", err.toString());
             },
             loading: () {},
           );
     }
 
-    Future<void> whenSuccessSocialLogin(LoginOption loginOption) async {
+    Future<void> doMaeumgagymLogin() async {
+      final LoginOption loginOption = ref.read(loginOptionController);
+
       switch (loginOption) {
         case LoginOption.google:
           await maeumgagymLoginNotifier.googleLogin(
@@ -98,7 +95,7 @@ class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
       ref.watch(maeumgagymLoginController).statusCode.when(
             data: (data) async {
               if (data == 404) {
-                whenMaeumgagymLoginIs404(
+                doMaeumgagymRecovery(
                   loginOption,
                   ref.watch(socialLoginController).token!,
                 );
@@ -107,14 +104,9 @@ class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
               }
             },
             error: (err, _) {
-              showDialog(
-                context: context,
-                builder: (context) {
-                  return dialog(
-                    "Maeumgagym Login Error",
-                    err.toString(),
-                  );
-                },
+              dialog(
+                "Maeumgagym Login Error",
+                err.toString(),
               );
               ref.watch(maeumgagymLoginController).statusCode =
                   const AsyncData(500);
@@ -123,47 +115,23 @@ class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
           );
     }
 
-    Future<void> clickLoginButton(LoginOption loginOption) async {
-      ref.read(loginOptionController.notifier).state = loginOption;
+    Future<bool> doSocialLogin() async {
+      /// socialLogin 시도
+      await socialLoginNotifier.login(loginOption);
+      debugPrint(ref.watch(socialLoginController).token);
 
+      if(ref.watch(socialLoginController).token != null){
+        return true;
+      } else {
+        dialog("Social Login Failed", "소셜 로그인에 실패하였습니다.");
+        return false;
+      }
+    }
+
+    void saveLoginOption(LoginOption loginOption) async {
+      ref.read(loginOptionController.notifier).state = loginOption;
       /// Login Option 설정
       await socialLoginNotifier.setLoginOption(loginOption);
-
-      /// socialLogin 시도
-      try {
-        await socialLoginNotifier.login(loginOption);
-        debugPrint(ref.watch(socialLoginController).token);
-      } catch (err) {
-        // debugPrint("소셜 로그인 실패! : ${err.toString()}");
-        if (context.mounted) {
-          showDialog(
-            context: context,
-            builder: (context) {
-              return dialog(
-                "Social Login Failed",
-                err.toString(),
-              );
-            },
-          );
-        }
-      }
-
-      /// socialLogin이 되었다면
-      ref.read(socialLoginController).stateus.when(
-            data: (data) => whenSuccessSocialLogin(loginOption),
-            error: (err, __) {
-              showDialog(
-                context: context,
-                builder: (context) {
-                  return dialog(
-                    "Social Login Failed",
-                    err.toString(),
-                  );
-                },
-              );
-            },
-            loading: () {},
-          );
     }
 
     return Scaffold(
@@ -201,7 +169,9 @@ class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
                   padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
                   child: GestureDetector(
                     onTap: () async {
-                      clickLoginButton(LoginOption.google);
+                      saveLoginOption(LoginOption.google);
+                      bool isSuccess = await doSocialLogin();
+                      if(isSuccess) doMaeumgagymLogin();
                     },
                     child: const OnBoardingContentsWidget(
                       image: 'assets/image/on_boarding_icon/google_logo.svg',
@@ -213,11 +183,12 @@ class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
                   padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
                   child: GestureDetector(
                     onTap: () async {
-                      clickLoginButton(LoginOption.kakao);
+                      saveLoginOption(LoginOption.kakao);
+                      bool isSuccess = await doSocialLogin();
+                      if(isSuccess) doMaeumgagymLogin();
                     },
                     child: const OnBoardingContentsWidget(
-                      image:
-                          'assets/image/on_boarding_icon/kakao_talk_logo.svg',
+                      image: 'assets/image/on_boarding_icon/kakao_talk_logo.svg',
                       title: '카카오로 로그인',
                     ),
                   ),

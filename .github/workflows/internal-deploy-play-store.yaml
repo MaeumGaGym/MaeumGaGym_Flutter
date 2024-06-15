@@ -35,9 +35,6 @@ jobs:
           echo "${{ secrets.SERVICE_ACCOUNT }}" | base64 --decode > serviceAccount.json
           ls
           pwd
-          
-      - name: Install dependencies
-        run: flutter pub get
 
       - name: Setup Fastlane
         run: |

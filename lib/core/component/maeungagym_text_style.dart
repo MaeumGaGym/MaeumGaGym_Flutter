@@ -23,4 +23,15 @@ class MaeumGaGymTextStyle {
       decorationThickness: 0,
     );
   }
+
+  static TextStyle labelMedium(Color color) {
+    return TextStyle(
+      fontFamily: pretendard,
+      fontSize: 16,
+      fontWeight: FontWeight.w500,
+      color: color,
+      overflow: TextOverflow.visible,
+      decorationThickness: 0,
+    );
+  }
 }

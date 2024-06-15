@@ -2,25 +2,25 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/core/di/dio_di.dart';
-import 'package:maeum_ga_gym_flutter/self_care/domain/model/exercise_info_request_model.dart';
-import 'package:maeum_ga_gym_flutter/self_care/domain/model/routine_and_user_info_model.dart';
-import 'package:maeum_ga_gym_flutter/self_care/domain/model/routine_history_model.dart';
-import 'package:maeum_ga_gym_flutter/self_care/domain/model/routine_response_model.dart';
+import 'package:maeum_ga_gym_flutter/self_care/domain/model/my_routine/exercise_info_request_model.dart';
+import 'package:maeum_ga_gym_flutter/self_care/domain/model/my_routine/routine_and_user_info_model.dart';
+import 'package:maeum_ga_gym_flutter/self_care/domain/model/my_routine/routine_history_model.dart';
+import 'package:maeum_ga_gym_flutter/self_care/domain/model/my_routine/routine_response_model.dart';
 
 class RoutineRemoteDataSource {
-  Future<AsyncValue<int?>> createRoutine({
+  Future<AsyncValue<int?>> addRoutine({
     required String accessToken,
     required String routineName,
     required bool isArchived,
     required bool isShared,
-    required List<ExerciseInfoRequestModel> exerciseInfoModelList,
+    required List<ExerciseInfoRequestModel> exerciseInfoRequestList,
     List<String>? dayOfWeeks,
   }) async {
     Map<String, dynamic> data = {
       "routine_name": routineName,
       "is_archived": isArchived,
       "is_shared": isShared,
-      "exercise_info_model_list": exerciseInfoModelList,
+      "exercise_info_request_list": exerciseInfoRequestList,
       "day_of_weeks": dayOfWeeks,
     };
     try {
@@ -43,13 +43,15 @@ class RoutineRemoteDataSource {
     }
   }
 
-  Future<RoutineAndUserInfoModel> getRoutineAllMe({
+  Future<RoutineAndUserInfoModel> getMyRoutine({
     required String accessToken,
+    required int index,
   }) async {
     try {
       return await dio
           .get(
-        "/routines/me/all",
+        "/routines/my",
+        queryParameters: {"index" : index},
         options: Options(
           headers: {
             "Content-Type": "application/json",

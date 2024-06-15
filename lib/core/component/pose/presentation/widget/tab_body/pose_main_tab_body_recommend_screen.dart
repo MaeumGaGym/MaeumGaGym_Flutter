@@ -24,7 +24,6 @@ class PoseMainTabBodyRecommendScreen extends ConsumerWidget {
             recommendPoseData: poseRecommend
                 .poses![poseRecommend.poses!.keys.toList()[index]]!,
             titleText: poseRecommend.poses!.keys.toList()[index],
-            titleImage: 'assets/image/pose_icon/pose_arm.png',
           );
         },
       ),

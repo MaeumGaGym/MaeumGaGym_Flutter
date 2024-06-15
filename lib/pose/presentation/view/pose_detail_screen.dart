@@ -20,7 +20,7 @@ class PoseDetailScreen extends ConsumerStatefulWidget {
 }
 
 class _PoseDetailScreenState extends ConsumerState<PoseDetailScreen> {
-  late VideoPlayerController _controller;
+  late VideoPlayerController _controller = VideoPlayerController.asset('');
 
   @override
   void initState() {
@@ -39,28 +39,11 @@ class _PoseDetailScreenState extends ConsumerState<PoseDetailScreen> {
   Future<void> initFunction() async {
     await ref.read(poseDetailController.notifier).getDetailData(id: widget.id);
 
-    if (ref
-        .read(poseDetailController)
-        .statusCode
-        .error
-        .toString()
-        .contains('401')) {
-      String? refreshToken = await TokenSecureStorageDi.readLoginRefreshToken();
-
-      await ref
-          .read(maeumgagymReIssueController.notifier)
-          .getReIssue(refreshToken!);
-      await ref
-          .read(poseDetailController.notifier)
-          .getDetailData(id: widget.id);
-    }
-
     _controller = VideoPlayerController.networkUrl(
       Uri.parse(ref.watch(poseDetailController).video!),
-    )..initialize();
-
+    );
+    _controller.initialize().then((_) => setState(() {}));
     _controller.setLooping(true);
-
     _controller.play();
   }
 
@@ -72,7 +55,8 @@ class _PoseDetailScreenState extends ConsumerState<PoseDetailScreen> {
       backgroundColor: MaeumgagymColor.white,
       appBar: const PoseDetailAppBar(),
       body: SafeArea(child: Builder(builder: (context) {
-        if (ref.watch(poseDetailController).statusCode.hasValue &&
+        if (_controller.value.isInitialized &&
+            ref.watch(poseDetailController).statusCode.hasValue &&
             ref.watch(maeumgagymReIssueController).stateus.hasValue) {
           return SingleChildScrollView(
             child: Column(
@@ -80,10 +64,15 @@ class _PoseDetailScreenState extends ConsumerState<PoseDetailScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 /// 사진
-                SizedBox(
+                Container(
                   width: MediaQuery.of(context).size.width,
                   height: 300,
-                  child: VideoPlayer(_controller),
+                  alignment: Alignment.center,
+                  color: MaeumgagymColor.gray25,
+                  child: AspectRatio(
+                    aspectRatio: 16 / 9,
+                    child: VideoPlayer(_controller),
+                  ),
                 ),
 
                 /// 기타 정보들

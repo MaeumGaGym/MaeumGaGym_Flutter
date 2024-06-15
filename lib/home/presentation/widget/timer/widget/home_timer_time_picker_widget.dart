@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:maeum_ga_gym_flutter/core/component/maeumgagym_toast_message.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/providers/home_timer_add_duration_provider.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/providers/local_timer_provider.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/providers/timer_state_provider.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/widget/timer/widget/home_timer_picker_bottom_button_widget.dart';
+import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 import '../../../../../config/maeumgagym_color.dart';
 import '../../../../../core/component/text/pretendard/ptd_text_widget.dart';
-import 'home_timer_cupertino_picker_widget.dart';
+import 'home_timer_picker_widget.dart';
 
 class HomeTimerTimePickerWidget extends ConsumerStatefulWidget {
   const HomeTimerTimePickerWidget({super.key});
@@ -19,12 +21,17 @@ class HomeTimerTimePickerWidget extends ConsumerStatefulWidget {
 
 class _HomeTimerTimePickerWidgetState
     extends ConsumerState<HomeTimerTimePickerWidget> {
+  void _showToast({required String message}) {
+    showTopSnackBar(
+      Overlay.of(context),
+      MaeumGaGymToastMessage(title: message),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final homeTimerDurationState = ref.watch(homeTimerAddDurationProvider);
-    final timersState = ref.watch(timersProvider);
     final timersNotifier = ref.watch(timersProvider.notifier);
-    final localTimerState = ref.watch(localTimerController);
     final localTimerNotifier = ref.read(localTimerController.notifier);
 
     return Scaffold(
@@ -49,7 +56,7 @@ class _HomeTimerTimePickerWidgetState
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const HomeTimerCupertinoPickerWidget(
+                  const HomeTimerPickerWidget(
                     listLength: 24,
                     type: TimerType.hour,
                   ),
@@ -58,7 +65,7 @@ class _HomeTimerTimePickerWidgetState
                     child: PtdTextWidget.timerPickerNumber(
                         ':', MaeumgagymColor.black),
                   ),
-                  const HomeTimerCupertinoPickerWidget(
+                  const HomeTimerPickerWidget(
                     listLength: 60,
                     type: TimerType.minute,
                   ),
@@ -67,7 +74,7 @@ class _HomeTimerTimePickerWidgetState
                     child: PtdTextWidget.timerPickerNumber(
                         ':', MaeumgagymColor.black),
                   ),
-                  const HomeTimerCupertinoPickerWidget(
+                  const HomeTimerPickerWidget(
                     listLength: 60,
                     type: TimerType.seconds,
                   ),
@@ -87,51 +94,42 @@ class _HomeTimerTimePickerWidgetState
             children: [
               GestureDetector(
                 behavior: HitTestBehavior.translucent,
-                onTap: () {},
+                onTap: () => Navigator.pop(context),
                 child: const HomeTimerPickerBottomButtonWidget(title: '취소'),
               ),
               Container(width: 1, height: 24, color: MaeumgagymColor.gray100),
               GestureDetector(
                 behavior: HitTestBehavior.translucent,
                 onTap: () async {
-                  await localTimerNotifier.addTimers(
-                    timerId: timersState[timersState.length - 1].timerId + 1,
-                    hours: homeTimerDurationState.hour,
-                    minutes: homeTimerDurationState.minute,
-                    seconds: homeTimerDurationState.seconds,
-                  );
+                  if (!(homeTimerDurationState.hour == 0 &&
+                      homeTimerDurationState.minute == 0 &&
+                      homeTimerDurationState.seconds == 0)) {
+                    int timerId = ref
+                        .watch(timersProvider)[
+                            ref.watch(timersProvider).length - 1]
+                        .timerId;
 
-                  await localTimerNotifier.getTimers();
+                    await timersNotifier.addTimer(
+                      timerId: timerId + 1,
+                      hours: homeTimerDurationState.hour,
+                      minutes: homeTimerDurationState.minute,
+                      seconds: homeTimerDurationState.seconds,
+                    );
 
-                  await timersNotifier.initAddTimer(localTimerState);
+                    await localTimerNotifier.addTimers(
+                      timerId: timerId + 1,
+                      hours: homeTimerDurationState.hour,
+                      minutes: homeTimerDurationState.minute,
+                      seconds: homeTimerDurationState.seconds,
+                    );
 
-                  timersNotifier
-                      .onReset(timersState[timersState.length - 1].timerId);
-
+                    timersNotifier.onReset(timerId + 1);
+                  } else {
+                    _showToast(message: "0초인 타이머는 만들 수 없어요.");
+                  }
                   if (context.mounted) {
                     Navigator.pop(context);
                   }
-                  // await ref.read(localTimerController.notifier).addTimers(
-                  //       timerId:
-                  //           timersState[timersState.length - 1].timerId + 1,
-                  //       hours: homeTimerDurationState.hour,
-                  //       minutes: homeTimerDurationState.minute,
-                  //       seconds: homeTimerDurationState.seconds,
-                  //     );
-                  //
-                  // await timersNotifier.addTimer(
-                  //   Duration(
-                  //     hours: homeTimerDurationState.hour,
-                  //     minutes: homeTimerDurationState.minute,
-                  //     seconds: homeTimerDurationState.seconds,
-                  //   ),
-                  // );
-                  // timersNotifier
-                  //     .onReset(timersState[timersState.length - 1].timerId);
-                  //
-                  // if (context.mounted) {
-                  //   Navigator.pop(context);
-                  // }
                 },
                 child: const HomeTimerPickerBottomButtonWidget(title: '확인'),
               ),

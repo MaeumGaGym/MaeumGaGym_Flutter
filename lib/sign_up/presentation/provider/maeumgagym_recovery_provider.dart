@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/core/di/login_option_di.dart';
-import 'package:maeum_ga_gym_flutter/sign_up/data/repositoryImpl/maeumgagym_recovery_repository_impl.dart';
 import 'package:maeum_ga_gym_flutter/sign_up/domain/usecase/maeumgagym_recovery_usecase.dart';
 
 final maeumgagymRecoveryController =
@@ -13,8 +12,7 @@ final maeumgagymRecoveryController =
 class MaeumgagymRecoveryStateNotifier extends StateNotifier<AsyncValue<int>> {
   MaeumgagymRecoveryStateNotifier() : super(const AsyncData(500));
 
-  final MaeumgagymRecoveryUseCase _useCase =
-      MaeumgagymRecoveryUseCase(MaeumgagymRecoveryRepositoryImpl());
+  final MaeumgagymRecoveryUseCase _useCase = MaeumgagymRecoveryUseCase();
 
   Future<void> switchRecovery(
       LoginOption loginOption, String oauthToken) async {

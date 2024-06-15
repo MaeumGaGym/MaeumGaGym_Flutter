@@ -9,6 +9,7 @@ import 'package:maeum_ga_gym_flutter/core/component/maeumgagym_button.dart';
 
 /// Core
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../../core/component/text/pretendard/ptd_text_widget.dart';
 
 /// widget
@@ -125,7 +126,7 @@ class SignUpAgreeScreen extends ConsumerWidget {
                       /// 자세히 보기 ( agreePersonInformation )
                       GestureDetector(
                         onTap: () {
-                          readMoreWidget(context);
+                          launchUrl(Uri.parse("https://info-dsm.notion.site/2a0474e87f754fbe8f53d58f2003ccb2?pvs=4"));
                         },
                         child: PtdTextWidget.labelSmall(
                           '자세히 보기',
@@ -171,11 +172,16 @@ class SignUpAgreeScreen extends ConsumerWidget {
                       ),
 
                       /// 자세히 보기 ( agreeConditionsOfUse )
-                      PtdTextWidget.labelSmall(
-                        '자세히 보기',
-                        MaeumgagymColor.gray300,
-                        TextDecoration.underline,
-                        MaeumgagymColor.gray300,
+                      GestureDetector(
+                        onTap: () {
+                          launchUrl(Uri.parse("https://info-dsm.notion.site/e9d45a0490674b81a419bbc4cbdd5a9d?pvs=4"));
+                        },
+                        child: PtdTextWidget.labelSmall(
+                          '자세히 보기',
+                          MaeumgagymColor.gray300,
+                          TextDecoration.underline,
+                          MaeumgagymColor.gray300,
+                        ),
                       ),
                     ],
                   ),

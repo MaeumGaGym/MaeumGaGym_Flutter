@@ -1,41 +1,40 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:maeum_ga_gym_flutter/home/data/repositoryImpl/home_today_routines_repository_impl.dart';
 import 'package:maeum_ga_gym_flutter/home/domain/model/home_today_routines_model.dart';
 import 'package:maeum_ga_gym_flutter/home/domain/usecase/home_today_routines_usecase.dart';
 
 final homeTodayRoutineController = StateNotifierProvider<
-    HomeTodayRoutineStateNotifier, HomeTodayRoutinesModel>((ref) {
+    HomeTodayRoutineStateNotifier, HomeTodayRoutineListModel>((ref) {
   return HomeTodayRoutineStateNotifier();
 });
 
 class HomeTodayRoutineStateNotifier
-    extends StateNotifier<HomeTodayRoutinesModel> {
+    extends StateNotifier<HomeTodayRoutineListModel> {
   HomeTodayRoutineStateNotifier()
-      : super(
-          HomeTodayRoutinesModel(
-            id: null,
-            routineName: null,
-            exerciseInfoResponseList: null,
-            dayOfWeeks: null,
-            routineStatus: null,
-            isCompleted: null,
-            statusCode: const AsyncData(500),
-          ),
-        );
+      : super(HomeTodayRoutineListModel(
+          routineList: [],
+          statusCode: const AsyncData(500),
+        ));
 
-  final HomeTodayRoutinesUseCase _useCase = HomeTodayRoutinesUseCase(
-    repository: HomeTodayRoutinesRepositoryImpl(),
-  );
+  final HomeTodayRoutinesUseCase _useCase = HomeTodayRoutinesUseCase();
 
   Future<void> getTodayRoutines() async {
     state = state.copyWith(statusCode: const AsyncLoading());
+    
     state = await _useCase.getTodayRoutines();
   }
 
-  Future<void> completeTodayRoutines() async {
+  Future<void> completeTodayRoutines(int id) async {
     state = state.copyWith(statusCode: const AsyncLoading());
 
-    AsyncValue<int> statusCode = await _useCase.completeTodayRoutines();
+    AsyncValue<int> statusCode = await _useCase.completeTodayRoutines(id);
+
+    state = state.copyWith(statusCode: statusCode);
+  }
+
+  Future<void> incompleteTodayRoutines(int id) async {
+    state = state.copyWith(statusCode: const AsyncLoading());
+
+    AsyncValue<int> statusCode = await _useCase.incompleteTodayRoutines(id);
 
     state = state.copyWith(statusCode: statusCode);
   }

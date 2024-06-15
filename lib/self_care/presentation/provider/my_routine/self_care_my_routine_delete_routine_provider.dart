@@ -30,8 +30,6 @@ class SelfCareMyRoutineDeleteRoutineStateNotifier
       );
 
       state = response;
-      print(routineId);
-      print(response);
     } catch (err) {
       throw Exception(err.toString());
     }

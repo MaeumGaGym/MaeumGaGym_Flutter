@@ -1,16 +1,15 @@
+import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/di/dio_di.dart';
 
 class MaeumgagymRecoveryRemoteDataSource {
   Future<AsyncValue<int>> googleRecovery(String googleToken) async {
-    final Map<String, dynamic> queryParam = {
-      "access_token": googleToken,
-    };
+    Map<String, dynamic> header = {"OAUTH-TOKEN": googleToken};
 
     try {
       return await dio
-          .put('/google/recovery', queryParameters: queryParam)
+          .put('/google/recovery', options: Options(headers: header))
           .then((response) {
         return AsyncData(response.statusCode!);
       });
@@ -24,13 +23,11 @@ class MaeumgagymRecoveryRemoteDataSource {
   }
 
   Future<AsyncValue<int>> kakaoRecovery(String kakaoToken) async {
-    final Map<String, dynamic> queryParam = {
-      "access_token": kakaoToken,
-    };
+    Map<String, dynamic> header = {"OAUTH-TOKEN": kakaoToken};
 
     try {
       return await dio
-          .put('/kakao/recovery', queryParameters: queryParam)
+          .put('/kakao/recovery', options: Options(headers: header))
           .then((response) {
         return AsyncData(response.statusCode!);
       });

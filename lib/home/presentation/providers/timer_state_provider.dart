@@ -1,51 +1,32 @@
 import 'dart:async';
-import 'package:flutter/cupertino.dart';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/models/timers.dart';
 
 import '../../domain/model/local_timer_model.dart';
+
+enum TimerState { initial, started, paused }
+
+/// 화면에 보여지는 Timer의 index값을 관리하기 위한 provider
+final selectedTimerProvider = StateProvider<int>((ref) => 0);
 
 final timersProvider =
     StateNotifierProvider<TimersNotifier, List<Timers>>((ref) {
   return TimersNotifier();
 });
 
-/// 화면에 보여지는 Timer의 index값을 관리하기 위한 provider
-final selectedTimerProvider = StateProvider<int>((ref) => 0);
-
-enum TimerState { initial, started, paused }
-
 class TimersNotifier extends StateNotifier<List<Timers>> {
   final List<StreamSubscription<int>?> _subscriptions = [null, null];
+  final _audioPlayer = AudioPlayer();
 
   // 이거 나중ㅇ ㅔ고쳐야됨
 
-  TimersNotifier()
-      : super(
-          [
-            // Timers(
-            //   currentTime: const Duration(seconds: 3),
-            //   initialTime: const Duration(seconds: 3),
-            //   timerId: 1,
-            // ),
-            // Timers(
-            //   currentTime: const Duration(seconds: 30, minutes: 1),
-            //   initialTime: const Duration(seconds: 30, minutes: 1),
-            //   timerId: 2,
-            // ),
-            // Timers(
-            //   currentTime: const Duration(hours: 2),
-            //   initialTime: const Duration(hours: 2),
-            //   timerId: 3,
-            // ),
-          ],
-        );
+  TimersNotifier() : super([]);
 
   Future<void> initAddTimer(List<LocalTimerModel> list) async {
     List<Timers> movingList = [];
     Timers timers;
-
-    int subScLength = 0;
+    int count = 0;
 
     for (int i = 0; i < list.length; i++) {
       timers = Timers(
@@ -62,11 +43,11 @@ class TimersNotifier extends StateNotifier<List<Timers>> {
         ),
       );
 
-      subScLength = list[i].timerId;
       movingList.add(timers);
+      count = list[i].timerId;
     }
 
-    for (int i = 0; i < subScLength; i++) {
+    for (int i = 0; i < count; i++) {
       _subscriptions.add(null);
     }
 
@@ -74,16 +55,41 @@ class TimersNotifier extends StateNotifier<List<Timers>> {
     state.addAll(movingList);
   }
 
-  // Future<void> addTimer(Duration duration) async {
-  //   _subscriptions.add(null);
-  //   state.add(
-  //     Timers(
-  //       timerId: state[state.length - 1].timerId + 1,
-  //       initialTime: duration,
-  //       currentTime: duration,
-  //     ),
-  //   );
-  // }
+  Future<void> addTimer(
+      {required int timerId,
+      required int hours,
+      required int minutes,
+      required int seconds}) async {
+    state.add(
+      Timers(
+        timerId: timerId,
+        initialTime: Duration(
+          hours: hours,
+          minutes: minutes,
+          seconds: seconds,
+        ),
+        currentTime: Duration(
+          hours: hours,
+          minutes: minutes,
+          seconds: seconds,
+        ),
+      ),
+    );
+
+    _subscriptions.add(null);
+  }
+
+  Future<void> delTimer({required int timerIndex}) async {
+    int delIndex = 0;
+
+    for (int i = 0; i < state.length; i++) {
+      if (state[timerIndex].timerId == state[i].timerId) {
+        delIndex = i;
+      }
+    }
+
+    state.removeAt(delIndex);
+  }
 
   void onTick(int timerId) {
     state = state.map((timer) {
@@ -93,6 +99,7 @@ class TimersNotifier extends StateNotifier<List<Timers>> {
             currentTime: timer.currentTime - const Duration(milliseconds: 20),
           );
         } else {
+          _audioPlayer.play(AssetSource('sounds/timer/timer_end_sound.wav'));
           _subscriptions[timerId - 1]?.cancel();
           return timer.copyWith(
             currentTime: timer.initialTime,

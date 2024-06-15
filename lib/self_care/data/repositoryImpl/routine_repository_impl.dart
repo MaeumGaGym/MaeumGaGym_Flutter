@@ -1,10 +1,10 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/self_care/data/date_source/remote/routine_remote_data_source.dart';
-import 'package:maeum_ga_gym_flutter/self_care/domain/model/exercise_info_request_model.dart';
-import 'package:maeum_ga_gym_flutter/self_care/domain/model/exercise_info_response_model.dart';
-import 'package:maeum_ga_gym_flutter/self_care/domain/model/routine_and_user_info_model.dart';
-import 'package:maeum_ga_gym_flutter/self_care/domain/model/routine_history_model.dart';
-import 'package:maeum_ga_gym_flutter/self_care/domain/model/routine_response_model.dart';
+import 'package:maeum_ga_gym_flutter/self_care/domain/model/my_routine/exercise_info_request_model.dart';
+import 'package:maeum_ga_gym_flutter/self_care/domain/model/my_routine/exercise_info_response_model.dart';
+import 'package:maeum_ga_gym_flutter/self_care/domain/model/my_routine/routine_and_user_info_model.dart';
+import 'package:maeum_ga_gym_flutter/self_care/domain/model/my_routine/routine_history_model.dart';
+import 'package:maeum_ga_gym_flutter/self_care/domain/model/my_routine/routine_response_model.dart';
 import 'package:maeum_ga_gym_flutter/self_care/domain/repository/routine_repository.dart';
 
 class RoutineRepositoryImpl implements RoutineRepository {
@@ -20,11 +20,13 @@ class RoutineRepositoryImpl implements RoutineRepository {
   }
 
   @override
-  Future<RoutineAndUserInfoModel> getRoutineAllMe({
+  Future<RoutineAndUserInfoModel> getMyRoutine({
     required String accessToken,
+    required int index,
   }) async {
-    return await _remoteDataSource.getRoutineAllMe(
+    return await _remoteDataSource.getMyRoutine(
       accessToken: accessToken,
+      index: index,
     );
   }
 
@@ -38,20 +40,20 @@ class RoutineRepositoryImpl implements RoutineRepository {
   }
 
   @override
-  Future<AsyncValue<int?>> createRoutine({
+  Future<AsyncValue<int?>> addRoutine({
     required String accessToken,
     required String routineName,
     required bool isArchived,
     required bool isShared,
-    required List<ExerciseInfoRequestModel> exerciseInfoModelList,
+    required List<ExerciseInfoRequestModel> exerciseInfoRequestList,
     List<String>? dayOfWeeks,
   }) async {
-    return await _remoteDataSource.createRoutine(
+    return await _remoteDataSource.addRoutine(
       accessToken: accessToken,
       routineName: routineName,
       isArchived: isArchived,
       isShared: isShared,
-      exerciseInfoModelList: exerciseInfoModelList,
+      exerciseInfoRequestList: exerciseInfoRequestList,
       dayOfWeeks: dayOfWeeks,
     );
   }

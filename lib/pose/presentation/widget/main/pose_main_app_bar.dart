@@ -45,7 +45,8 @@ class PoseMainTabAppBar extends ConsumerWidget {
 
                   ref.read(poseSearchController.notifier).state = '';
                 },
-                child: const ImageWidget(
+                child:  ImageWidget(
+                  color: MaeumgagymColor.black,
                   image: 'assets/image/core_icon/search_icon.svg',
                   imageType: ImageType.svg,
                 ),

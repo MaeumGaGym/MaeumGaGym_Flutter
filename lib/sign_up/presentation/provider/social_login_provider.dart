@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/di/login_option_di.dart';
 import '../../data/repositoryImpl/google_login_repository_impl.dart';
 import '../../data/repositoryImpl/kakao_login_repository_impl.dart';
-import '../../domain/model/social_login_model.dart';
+import '../../../core/model/social_login_model.dart';
 import '../../domain/usecase/social_login_usecase.dart';
 
 final socialLoginController =
@@ -54,14 +54,5 @@ class SocialLoginStateNotifier extends StateNotifier<SocialLoginModel> {
       case LoginOption.all:
         throw Exception('socialLogin LoginOption is All');
     }
-  }
-
-  Future<void> logout() async {
-    SocialLoginModel loginState = await _useCase.logout();
-
-    SocialLoginModel(
-      stateus: loginState.stateus,
-      token: loginState.token,
-    );
   }
 }

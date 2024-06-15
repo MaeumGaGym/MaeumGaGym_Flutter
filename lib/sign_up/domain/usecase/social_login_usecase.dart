@@ -1,4 +1,4 @@
-import '../model/social_login_model.dart';
+import '../../../core/model/social_login_model.dart';
 import '../repository/social_login_repository.dart';
 
 class SocialLoginUseCase {
@@ -8,9 +8,5 @@ class SocialLoginUseCase {
 
   Future<SocialLoginModel> login() async {
     return await _repository.login();
-  }
-
-  Future<SocialLoginModel> logout() async {
-    return await _repository.logout();
   }
 }
