@@ -21,7 +21,7 @@ class MaeumgagymLogoutStateNotifier extends StateNotifier<SocialLoginModel> {
   Future<void> logout({
     required LoginOption loginOption,
   }) async {
-    late SocialLoginModel loginState;
+    SocialLoginModel loginState = SocialLoginModel(stateus: const AsyncData(false), token: null);
 
     switch (loginOption) {
       case LoginOption.kakao:
