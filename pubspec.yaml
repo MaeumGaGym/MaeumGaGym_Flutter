@@ -3,7 +3,7 @@ description: A new Flutter project.
 
 publish_to: 'none'
 
-version: 0.9.14+75
+version: 0.9.15+76
 
 environment:
   sdk: '>=3.0.6 <4.0.0'
@@ -38,6 +38,7 @@ dependencies:
   cached_network_image: ^3.3.1
   get_it: ^7.6.7
   top_snackbar_flutter: ^3.1.0
+  url_launcher: ^6.3.0
 
 dev_dependencies:
   flutter_test:
