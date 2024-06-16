@@ -5,7 +5,6 @@ import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
 import 'package:maeum_ga_gym_flutter/core/di/login_option_di.dart';
 import 'package:maeum_ga_gym_flutter/core/logout/presentation/maeumgagym_logout_provider.dart';
-import 'package:maeum_ga_gym_flutter/sign_up/presentation/view/on_boarding_screen.dart';
 
 class SelfCareProfileLogoutDialog extends ConsumerWidget {
   const SelfCareProfileLogoutDialog({Key? key}) : super(key: key);
