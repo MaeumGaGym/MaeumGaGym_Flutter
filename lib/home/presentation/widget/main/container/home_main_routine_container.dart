@@ -18,7 +18,8 @@ class HomeMainRoutineContainer extends ConsumerStatefulWidget {
       _HomeMainRoutineContainerState();
 }
 
-class _HomeMainRoutineContainerState extends ConsumerState<HomeMainRoutineContainer> {
+class _HomeMainRoutineContainerState
+    extends ConsumerState<HomeMainRoutineContainer> {
   late PageController routineContainerPageController;
 
   @override
@@ -89,25 +90,43 @@ class _HomeMainRoutineContainerState extends ConsumerState<HomeMainRoutineContai
                   );
                 }
                 return SizedBox(
-                  height: 64 * todayRoutineList[routinePageIndex].exerciseInfoResponseList!.length * 1.0,
+                  height: 64 *
+                      todayRoutineList[routinePageIndex]
+                          .exerciseInfoResponseList!
+                          .length *
+                      1.0,
                   child: PageView.builder(
                     scrollDirection: Axis.horizontal,
                     controller: routineContainerPageController,
-                    onPageChanged: (value) => setState(() => ref.watch(homeRoutinePageIndexProvider.notifier).state = value),
+                    onPageChanged: (value) => setState(() => ref
+                        .watch(homeRoutinePageIndexProvider.notifier)
+                        .state = value),
                     itemCount: todayRoutineList.length,
                     itemBuilder: (context, pageIndex) {
                       return ListView.builder(
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
-                        itemCount: todayRoutineList[pageIndex].exerciseInfoResponseList!.length,
+                        itemCount: todayRoutineList[pageIndex]
+                            .exerciseInfoResponseList!
+                            .length,
                         itemBuilder: (context, index) {
-                          final pageRoutinePageData = todayRoutineList[pageIndex].exerciseInfoResponseList![index];
+                          final pageRoutinePageData =
+                              todayRoutineList[pageIndex]
+                                  .exerciseInfoResponseList![index];
                           return GestureDetector(
-                            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => PoseDetailScreen(id: pageRoutinePageData.pose.id!),)),
+                            onTap: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => PoseDetailScreen(
+                                    id: pageRoutinePageData.pose.id!,
+                                    poseData: pageRoutinePageData.pose,
+                                  ),
+                                )),
                             child: Column(
                               children: [
                                 Padding(
-                                  padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 15, vertical: 8),
                                   child: Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,

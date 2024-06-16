@@ -1,16 +1,16 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/core/di/token_secure_storage_di.dart';
-import 'package:maeum_ga_gym_flutter/self_care/data/repositoryImpl/routine_repository_impl.dart';
+import 'package:maeum_ga_gym_flutter/core/component/routine/data/repositoryImpl/routine_repository_impl.dart';
 import 'package:maeum_ga_gym_flutter/self_care/domain/model/my_routine/exercise_info_request_model.dart';
-import 'package:maeum_ga_gym_flutter/self_care/domain/usecase/routine_usecase.dart';
+import 'package:maeum_ga_gym_flutter/core/component/routine/domain/usecase/routine_usecase.dart';
 
-final selfCareMyRoutineEditRoutineProvider = StateNotifierProvider<
-    SelfCareMyRoutineEditRoutineStateNotifier,
-    AsyncValue<int?>>((ref) => SelfCareMyRoutineEditRoutineStateNotifier());
+final routineMyRoutineEditRoutineProvider = StateNotifierProvider<
+    RoutineMyRoutineEditRoutineStateNotifier,
+    AsyncValue<int?>>((ref) => RoutineMyRoutineEditRoutineStateNotifier());
 
-class SelfCareMyRoutineEditRoutineStateNotifier
+class RoutineMyRoutineEditRoutineStateNotifier
     extends StateNotifier<AsyncValue<int?>> {
-  SelfCareMyRoutineEditRoutineStateNotifier() : super(const AsyncData(500));
+  RoutineMyRoutineEditRoutineStateNotifier() : super(const AsyncData(500));
 
   final RoutineUseCase _routineUseCase =
       RoutineUseCase(RoutineRepositoryImpl());

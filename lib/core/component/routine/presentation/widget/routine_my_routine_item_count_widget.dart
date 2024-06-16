@@ -4,11 +4,11 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
 
-class SelfCareMyRoutineItemCountWidget extends ConsumerWidget {
+class RoutineMyRoutineItemCountWidget extends ConsumerWidget {
   final String title;
   final TextEditingController controller;
 
-  const SelfCareMyRoutineItemCountWidget({
+  const RoutineMyRoutineItemCountWidget({
     Key? key,
     required this.title,
     required this.controller,
@@ -88,13 +88,12 @@ class SelfCareMyRoutineItemCountWidget extends ConsumerWidget {
                     onChanged: (value) {
                       if (value.isNotEmpty) {
                         int parsedValue = int.tryParse(value) ?? 0;
+
                         /// 1보다 작은 경우 1로 설정
                         /// -, 0이 입력 되면 1로 고정
                         if (parsedValue < 1) {
                           controller.text = '1';
-                        } else {
-
-                        }
+                        } else {}
                       }
                     },
                     textAlign: TextAlign.center,

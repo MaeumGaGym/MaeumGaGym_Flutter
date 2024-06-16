@@ -52,6 +52,7 @@ class PoseSearchBody extends ConsumerWidget {
                       MaterialPageRoute(
                         builder: (context) => PoseDetailScreen(
                           id: poseAll[index].id!,
+                          poseData: poseAll[index],
                         ),
                       ),
                     ),

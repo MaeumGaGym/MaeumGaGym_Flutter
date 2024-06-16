@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:maeum_ga_gym_flutter/core/component/pose/domain/model/pose_data_model.dart';
 
 import '../../../../config/maeumgagym_color.dart';
 import '../../../../core/component/image_widget.dart';
@@ -7,16 +8,14 @@ import '../../../../core/component/text/pretendard/ptd_text_widget.dart';
 import '../../../../pose/presentation/view/pose_detail_screen.dart';
 
 class HomeTodayRoutineListWidget extends ConsumerWidget {
-  final int id, repetitions, sets;
-  final String thumbnail, name;
+  final int repetitions, sets;
+  final PoseDataModel poseData;
 
   const HomeTodayRoutineListWidget({
     super.key,
-    required this.id,
+    required this.poseData,
     required this.repetitions,
     required this.sets,
-    required this.thumbnail,
-    required this.name,
   });
 
   @override
@@ -28,7 +27,8 @@ class HomeTodayRoutineListWidget extends ConsumerWidget {
             context,
             MaterialPageRoute(
               builder: (context) => PoseDetailScreen(
-                id: id,
+                id: poseData.id!,
+                poseData: poseData,
               ),
             ),
           ),
@@ -45,7 +45,7 @@ class HomeTodayRoutineListWidget extends ConsumerWidget {
                       shape: BoxShape.circle,
                     ),
                     child: ImageWidget(
-                      image: thumbnail,
+                      image: poseData.thumbnail!,
                       imageType: ImageType.pngNetwork,
                     ),
                   ),
@@ -54,12 +54,12 @@ class HomeTodayRoutineListWidget extends ConsumerWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       PtdTextWidget.bodyLarge(
-                        name,
+                        poseData.name!,
                         MaeumgagymColor.black,
                       ),
                       const SizedBox(height: 2),
                       PtdTextWidget.bodyMedium(
-                        "$repetitions개 | $sets세트",
+                        "${repetitions!}개 | $sets세트",
                         MaeumgagymColor.gray400,
                       ),
                     ],

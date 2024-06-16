@@ -1,8 +1,9 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:maeum_ga_gym_flutter/self_care/domain/model/my_routine/exercise_info_edit_routine_pose_model.dart';
+import 'package:maeum_ga_gym_flutter/core/component/routine/domain/model/exercise_info_edit_routine_pose_model.dart';
 
 final selfCareMyRoutinePostListProvider = StateNotifierProvider.autoDispose<
-    SelfCareMyRoutinePoseListStateNotifier, List<ExerciseInfoEditRoutinePoseModel>>(
+    SelfCareMyRoutinePoseListStateNotifier,
+    List<ExerciseInfoEditRoutinePoseModel>>(
   (ref) => SelfCareMyRoutinePoseListStateNotifier(),
 );
 
