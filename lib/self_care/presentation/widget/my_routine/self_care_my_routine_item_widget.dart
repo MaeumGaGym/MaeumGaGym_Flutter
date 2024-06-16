@@ -3,9 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/my_routine/self_care_my_routine_my_routine_provider.dart';
+import 'package:maeum_ga_gym_flutter/core/component/routine/presentation/provider/routine_my_routine_my_routine_provider.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/self_care_my_routine_manage_bottom_sheet.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/self_care_my_routine_shared_widget.dart';
+import 'package:maeum_ga_gym_flutter/core/component/routine/presentation/widget/routine_my_routine_shared_widget.dart';
 
 class SelfCareMyRoutineItemWidget extends ConsumerStatefulWidget {
   final int listIndex;
@@ -24,7 +24,7 @@ class _SelfCareGoalRoutineItemWidgetState
     extends ConsumerState<SelfCareMyRoutineItemWidget> {
   @override
   Widget build(BuildContext context) {
-    final myRoutineState = ref.watch(selfCareMyRoutineMyRoutinesProvider);
+    final myRoutineState = ref.watch(routineMyRoutinesProvider);
     final item = myRoutineState.routineList[widget.listIndex];
     return Container(
       width: MediaQuery.of(context).size.width,
@@ -57,7 +57,7 @@ class _SelfCareGoalRoutineItemWidgetState
             Row(
               children: [
                 item.routineStatus!.isShared!
-                    ? const SelfCareMyRoutineSharedWidget()
+                    ? const RoutineMyRoutineSharedWidget()
                     : const SizedBox(),
                 const SizedBox(width: 12),
                 GestureDetector(

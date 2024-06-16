@@ -4,7 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/maeumgagym_toast_message.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/providers/home_today_routines_provider.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/my_routine/self_care_my_routine_my_routine_provider.dart';
+import 'package:maeum_ga_gym_flutter/core/component/routine/presentation/provider/routine_my_routine_my_routine_provider.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/my_routine/self_care_my_routine_delete_routine_provider.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/view/my_routine/self_care_my_routine_edit_screen.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/self_care_my_routine_button.dart';
@@ -38,13 +38,13 @@ class _SelfCareMyRoutineDetailScreenState
 
   @override
   Widget build(BuildContext context) {
-    final myRoutineState = ref.watch(selfCareMyRoutineMyRoutinesProvider);
-    final myRoutineNotifier =
-        ref.read(selfCareMyRoutineMyRoutinesProvider.notifier);
+    final myRoutineState = ref.watch(routineMyRoutinesProvider);
+    final myRoutineNotifier = ref.read(routineMyRoutinesProvider.notifier);
     final deleteRoutineNotifier =
         ref.read(selfCareMyRoutineDeleteRoutineProvider.notifier);
     final item = myRoutineState.routineList[widget.listIndex];
-    ref.listen(selfCareMyRoutineDeleteRoutineProvider.select((value) => value), (previous, next) {
+    ref.listen(selfCareMyRoutineDeleteRoutineProvider.select((value) => value),
+        (previous, next) {
       if (next == const AsyncData<int?>(204)) {
         myRoutineNotifier.getMyRoutineInit();
         Navigator.of(context).pop();
@@ -116,8 +116,11 @@ class _SelfCareMyRoutineDetailScreenState
                   child: GestureDetector(
                     behavior: HitTestBehavior.translucent,
                     onTap: () async {
-                      await deleteRoutineNotifier.deleteRoutine(routineId: item.id!);
-                      await ref.read(homeTodayRoutineController.notifier).getTodayRoutines();
+                      await deleteRoutineNotifier.deleteRoutine(
+                          routineId: item.id!);
+                      await ref
+                          .read(homeTodayRoutineController.notifier)
+                          .getTodayRoutines();
                     },
                     child: SelfCareMyRoutineButton(
                       width: MediaQuery.of(context).size.width,

@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/my_routine/self_care_my_routine_my_routine_provider.dart';
+import 'package:maeum_ga_gym_flutter/core/component/routine/presentation/provider/routine_my_routine_my_routine_provider.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/waka/self_care_waka_total_waka_provider.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/view/profile/self_care_profile_main_screen.dart';
 
@@ -21,21 +21,22 @@ class _SelfCareMainProfileContainerState
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.read(selfCareMyRoutineMyRoutinesProvider.notifier).getMyRoutineInit();
+      ref.read(routineMyRoutinesProvider.notifier).getMyRoutineInit();
       ref.read(selfCareWakaTotalWakaProvider.notifier).totalWaka();
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    final routineAllMeState = ref.watch(selfCareMyRoutineMyRoutinesProvider);
+    final routineAllMeState = ref.watch(routineMyRoutinesProvider);
     final totalWakaState = ref.watch(selfCareWakaTotalWakaProvider);
     return GestureDetector(
       behavior: HitTestBehavior.translucent,
       onTap: () => Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => SelfCareProfileMainScreen(nickname: routineAllMeState.userInfo!.nickname.toString()),
+          builder: (context) => SelfCareProfileMainScreen(
+              nickname: routineAllMeState.userInfo!.nickname.toString()),
         ),
       ),
       child: Padding(
