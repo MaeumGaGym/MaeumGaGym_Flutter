@@ -10,7 +10,6 @@ import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
 import 'package:maeum_ga_gym_flutter/core/logout/presentation/maeumgagym_logout_provider.dart';
 import 'package:maeum_ga_gym_flutter/sign_up/presentation/provider/maeumgagym_login_provider.dart';
-import 'package:maeum_ga_gym_flutter/core/re_issue/presentation/maeumgagym_re_issue_provider.dart';
 import 'package:maeum_ga_gym_flutter/sign_up/presentation/provider/maeumgagym_recovery_provider.dart';
 import 'package:maeum_ga_gym_flutter/sign_up/presentation/provider/social_login_provider.dart';
 import 'package:maeum_ga_gym_flutter/sign_up/presentation/widget/loading_widget.dart';
@@ -95,8 +94,6 @@ class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
             ref.watch(socialLoginController).token!,
           );
           break;
-        case LoginOption.all:
-          break;
       }
 
       ref.watch(maeumgagymLoginController).statusCode.when(
@@ -122,18 +119,19 @@ class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
           );
     }
 
-    Future<bool> doSocialLogin() async {
+    Future<void> doSocialLogin() async {
       LoginOption loginOption = ref.read(loginOptionController);
 
       /// socialLogin 시도
-      await socialLoginNotifier.login(loginOption);
-      debugPrint(ref.watch(socialLoginController).token);
+      try {
+        await socialLoginNotifier.login(loginOption);
+        debugPrint(ref.watch(socialLoginController).token);
 
-      if (ref.watch(socialLoginController).token != null) {
-        return true;
-      } else {
+        if (ref.watch(socialLoginController).token != null) {
+          doMaeumgagymLogin();
+        }
+      } catch (err) {
         dialog("Social Login Failed", "소셜 로그인에 실패하였습니다.");
-        return false;
       }
     }
 
@@ -180,8 +178,7 @@ class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
                   child: GestureDetector(
                     onTap: () async {
                       await saveLoginOption(LoginOption.google);
-                      bool isSuccess = await doSocialLogin();
-                      if (isSuccess) doMaeumgagymLogin();
+                      await doSocialLogin();
                     },
                     child: const OnBoardingContentsWidget(
                       image: 'assets/image/on_boarding_icon/google_logo.svg',
@@ -194,8 +191,7 @@ class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
                   child: GestureDetector(
                     onTap: () async {
                       await saveLoginOption(LoginOption.kakao);
-                      bool isSuccess = await doSocialLogin();
-                      if (isSuccess) doMaeumgagymLogin();
+                      await doSocialLogin();
                     },
                     child: const OnBoardingContentsWidget(
                       image:
@@ -207,9 +203,9 @@ class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
               ],
             ),
             LoadingWidget(
-              state: ref.watch(maeumgagymRecoveryController).hasValue &&
-                  ref.watch(maeumgagymLoginController).statusCode.hasValue &&
-                  ref.watch(socialLoginController).stateus.hasValue,
+              state: ref.watch(maeumgagymRecoveryController).isLoading ||
+                  ref.watch(maeumgagymLoginController).statusCode.isLoading ||
+                  ref.watch(socialLoginController).stateus.isLoading,
             )
           ],
         ),
