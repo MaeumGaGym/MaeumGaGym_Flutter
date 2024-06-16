@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
+import 'package:maeum_ga_gym_flutter/core/component/pose/domain/model/pose_data_model.dart';
 import 'package:maeum_ga_gym_flutter/core/component/pose/domain/model/pose_recommend_model.dart';
 import 'package:maeum_ga_gym_flutter/pose/presentation/provider/pose_detail_provider.dart';
 
@@ -9,7 +10,7 @@ import '../../../../../../../pose/presentation/view/pose_detail_screen.dart';
 import '../../../../../text/pretendard/ptd_text_widget.dart';
 
 class PoseRecommendWidgetBottom extends ConsumerWidget {
-  final List<PoseData> recommendPoseData;
+  final List<PoseDataModel> recommendPoseData;
 
   const PoseRecommendWidgetBottom({
     super.key,
@@ -34,7 +35,8 @@ class PoseRecommendWidgetBottom extends ConsumerWidget {
                   context,
                   MaterialPageRoute(
                     builder: (context) => PoseDetailScreen(
-                      id: poseData.id,
+                      id: poseData.id!,
+                      poseData: poseData,
                     ),
                   ),
                 ),
@@ -45,7 +47,7 @@ class PoseRecommendWidgetBottom extends ConsumerWidget {
                     radiusCircular: 8,
                     width: 148,
                     height: 148,
-                    image: poseData.thumbnail,
+                    image: poseData.thumbnail!,
                     imageType: ImageType.pngNetwork,
                   ),
                 ),
@@ -56,7 +58,7 @@ class PoseRecommendWidgetBottom extends ConsumerWidget {
               SizedBox(
                 width: 148,
                 child: PtdTextWidget.labelMedium(
-                  poseData.name,
+                  poseData.name!,
                   MaeumgagymColor.black,
                 ),
               ),
