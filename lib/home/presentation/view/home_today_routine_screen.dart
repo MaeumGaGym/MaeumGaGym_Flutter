@@ -91,11 +91,9 @@ class HomeTodayRoutineScreen extends ConsumerWidget {
                       final poseData =
                           todayRoutine.exerciseInfoResponseList![index];
                       return HomeTodayRoutineListWidget(
-                        id: poseData.pose.id!,
+                        poseData: poseData.pose,
                         repetitions: poseData.repetitions!,
                         sets: poseData.sets!,
-                        thumbnail: poseData.pose.thumbnail!,
-                        name: poseData.pose.name!,
                       );
                     },
                   ),

@@ -1,19 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
-import 'package:maeum_ga_gym_flutter/core/di/token_secure_storage_di.dart';
 import 'package:maeum_ga_gym_flutter/core/re_issue/presentation/maeumgagym_re_issue_provider.dart';
 import 'package:maeum_ga_gym_flutter/pose/presentation/provider/pose_detail_provider.dart';
 import 'package:maeum_ga_gym_flutter/pose/presentation/widget/detail/pose_detail_app_bar.dart';
 import 'package:video_player/video_player.dart';
+import '../../../core/component/pose/domain/model/pose_data_model.dart';
 import '../../../core/component/text/pretendard/ptd_text_widget.dart';
 import '../widget/detail/pose_detail_body_list_widget.dart';
 import '../widget/detail/pose_detail_body_tag.dart';
 
 class PoseDetailScreen extends ConsumerStatefulWidget {
+  final PoseDataModel poseData;
   final int id;
 
-  const PoseDetailScreen({super.key, required this.id});
+  const PoseDetailScreen({
+    super.key,
+    required this.id,
+    required this.poseData,
+  });
 
   @override
   ConsumerState<PoseDetailScreen> createState() => _PoseDetailScreenState();
@@ -51,14 +56,19 @@ class _PoseDetailScreenState extends ConsumerState<PoseDetailScreen> {
   Widget build(BuildContext context) {
     final poseDetail = ref.read(poseDetailController);
 
-    return Scaffold(
-      backgroundColor: MaeumgagymColor.white,
-      appBar: const PoseDetailAppBar(),
-      body: SafeArea(child: Builder(builder: (context) {
-        if (_controller.value.isInitialized &&
-            ref.watch(poseDetailController).statusCode.hasValue &&
-            ref.watch(maeumgagymReIssueController).stateus.hasValue) {
-          return SingleChildScrollView(
+    if (_controller.value.isInitialized &&
+        ref.watch(poseDetailController).statusCode.hasValue &&
+        ref.watch(maeumgagymReIssueController).stateus.hasValue) {
+      return Scaffold(
+        backgroundColor: MaeumgagymColor.white,
+        appBar: PoseDetailAppBar(
+          routineName: poseDetail.exactName!,
+          poseSimpleName: poseDetail.simpleName!,
+          poseExactName: poseDetail.exactName!,
+          poseData: widget.poseData,
+        ),
+        body: SafeArea(
+          child: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -178,15 +188,18 @@ class _PoseDetailScreenState extends ConsumerState<PoseDetailScreen> {
                 ),
               ],
             ),
-          );
-        } else {
-          return Center(
-            child: CircularProgressIndicator(
-              color: MaeumgagymColor.blue500,
-            ),
-          );
-        }
-      })),
-    );
+          ),
+        ),
+      );
+    } else {
+      return Material(
+        color: MaeumgagymColor.white,
+        child: Center(
+          child: CircularProgressIndicator(
+            color: MaeumgagymColor.blue500,
+          ),
+        ),
+      );
+    }
   }
 }
