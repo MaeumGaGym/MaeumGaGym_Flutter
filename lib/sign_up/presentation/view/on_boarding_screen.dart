@@ -30,29 +30,34 @@ class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
   Widget build(BuildContext context) {
     final socialLoginNotifier = ref.read(socialLoginController.notifier);
     final logoutNotifier = ref.read(maeumgagymLogoutProvider.notifier);
-    final loginOption = ref.watch(loginOptionController);
-    final maeumgagymLoginNotifier = ref.read(maeumgagymLoginController.notifier);
+    final maeumgagymLoginNotifier =
+        ref.read(maeumgagymLoginController.notifier);
 
     void dialog(String title, String contents) {
-      showDialog(context: context, builder: (context) {
-        return AlertDialog(
-          title: Text(title),
-          content: Text(contents),
-          actions: [
-            MaterialButton(
-              onPressed: () {
-                logoutNotifier.logout(loginOption: loginOption);
-                Navigator.pop(context);
-              },
-              child: const Text("확인"),
-            )
-          ],
-        );
-      },
+      final LoginOption loginOption = ref.read(loginOptionController);
+
+      showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text(title),
+            content: Text(contents),
+            actions: [
+              MaterialButton(
+                onPressed: () {
+                  logoutNotifier.logout(loginOption: loginOption);
+                  Navigator.pop(context);
+                },
+                child: const Text("확인"),
+              )
+            ],
+          );
+        },
       );
     }
 
-    Future<void> doMaeumgagymRecovery(LoginOption loginOption, String oauthToken) async {
+    Future<void> doMaeumgagymRecovery(
+        LoginOption loginOption, String oauthToken) async {
       await ref
           .read(maeumgagymRecoveryController.notifier)
           .switchRecovery(loginOption, oauthToken);
@@ -116,11 +121,13 @@ class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
     }
 
     Future<bool> doSocialLogin() async {
+      LoginOption loginOption = ref.read(loginOptionController);
+
       /// socialLogin 시도
       await socialLoginNotifier.login(loginOption);
       debugPrint(ref.watch(socialLoginController).token);
 
-      if(ref.watch(socialLoginController).token != null){
+      if (ref.watch(socialLoginController).token != null) {
         return true;
       } else {
         dialog("Social Login Failed", "소셜 로그인에 실패하였습니다.");
@@ -130,6 +137,7 @@ class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
 
     void saveLoginOption(LoginOption loginOption) async {
       ref.read(loginOptionController.notifier).state = loginOption;
+
       /// Login Option 설정
       await socialLoginNotifier.setLoginOption(loginOption);
     }
@@ -171,7 +179,7 @@ class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
                     onTap: () async {
                       saveLoginOption(LoginOption.google);
                       bool isSuccess = await doSocialLogin();
-                      if(isSuccess) doMaeumgagymLogin();
+                      if (isSuccess) doMaeumgagymLogin();
                     },
                     child: const OnBoardingContentsWidget(
                       image: 'assets/image/on_boarding_icon/google_logo.svg',
@@ -185,10 +193,11 @@ class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
                     onTap: () async {
                       saveLoginOption(LoginOption.kakao);
                       bool isSuccess = await doSocialLogin();
-                      if(isSuccess) doMaeumgagymLogin();
+                      if (isSuccess) doMaeumgagymLogin();
                     },
                     child: const OnBoardingContentsWidget(
-                      image: 'assets/image/on_boarding_icon/kakao_talk_logo.svg',
+                      image:
+                          'assets/image/on_boarding_icon/kakao_talk_logo.svg',
                       title: '카카오로 로그인',
                     ),
                   ),
