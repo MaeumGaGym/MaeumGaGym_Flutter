@@ -1,4 +1,6 @@
 /// Package
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -135,7 +137,7 @@ class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
       }
     }
 
-    void saveLoginOption(LoginOption loginOption) async {
+    Future<void> saveLoginOption(LoginOption loginOption) async {
       ref.read(loginOptionController.notifier).state = loginOption;
 
       /// Login Option 설정
@@ -177,7 +179,7 @@ class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
                   padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
                   child: GestureDetector(
                     onTap: () async {
-                      saveLoginOption(LoginOption.google);
+                      await saveLoginOption(LoginOption.google);
                       bool isSuccess = await doSocialLogin();
                       if (isSuccess) doMaeumgagymLogin();
                     },
@@ -191,7 +193,7 @@ class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
                   padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
                   child: GestureDetector(
                     onTap: () async {
-                      saveLoginOption(LoginOption.kakao);
+                      await saveLoginOption(LoginOption.kakao);
                       bool isSuccess = await doSocialLogin();
                       if (isSuccess) doMaeumgagymLogin();
                     },
