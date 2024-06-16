@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:maeum_ga_gym_flutter/core/component/pose/domain/model/pose_data_model.dart';
 
 class HomeTodayRoutineListModel {
   final List<HomeTodayRoutineModel> routineList;
@@ -83,7 +84,7 @@ class HomeTodayRoutineModel {
 }
 
 class ExerciseInfoList {
-  final PoseData pose;
+  final PoseDataModel pose;
   final int? repetitions;
   final int? sets;
 
@@ -95,7 +96,7 @@ class ExerciseInfoList {
 
   factory ExerciseInfoList.fromJson(Map<String, dynamic> json) {
     return ExerciseInfoList(
-      pose: PoseData.fromJson(json['pose']),
+      pose: PoseDataModel.fromJson(json['pose']),
       repetitions: json['repetitions'],
       sets: json['sets'],
     );
@@ -119,31 +120,31 @@ class RoutineStatus {
   }
 }
 
-class PoseData {
-  final int? id;
-  final bool? needMachine;
-  final String? name;
-  final List<String>? simplePart;
-  final List<String>? exactPart;
-  final String? thumbnail;
-
-  PoseData({
-    required this.id,
-    required this.needMachine,
-    required this.name,
-    required this.simplePart,
-    required this.exactPart,
-    required this.thumbnail,
-  });
-
-  factory PoseData.fromJson(Map<String, dynamic> json) {
-    return PoseData(
-      id: json['id'],
-      needMachine: json['need_machine'],
-      name: json['name'],
-      simplePart: List<String>.from(json['simple_part']),
-      exactPart: List<String>.from(json['exact_part']),
-      thumbnail: json['thumbnail'],
-    );
-  }
-}
+// class PoseData {
+//   final int? id;
+//   final bool? needMachine;
+//   final String? name;
+//   final List<String>? simplePart;
+//   final List<String>? exactPart;
+//   final String? thumbnail;
+//
+//   PoseData({
+//     required this.id,
+//     required this.needMachine,
+//     required this.name,
+//     required this.simplePart,
+//     required this.exactPart,
+//     required this.thumbnail,
+//   });
+//
+//   factory PoseData.fromJson(Map<String, dynamic> json) {
+//     return PoseData(
+//       id: json['id'],
+//       needMachine: json['need_machine'],
+//       name: json['name'],
+//       simplePart: List<String>.from(json['simple_part']),
+//       exactPart: List<String>.from(json['exact_part']),
+//       thumbnail: json['thumbnail'],
+//     );
+//   }
+// }

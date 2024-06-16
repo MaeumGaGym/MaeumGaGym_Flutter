@@ -6,7 +6,7 @@ import 'package:maeum_ga_gym_flutter/core/component/maeumgagym_toast_message.dar
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
 import 'package:maeum_ga_gym_flutter/self_care/domain/model/my_routine/exercise_info_request_model.dart';
 import 'package:maeum_ga_gym_flutter/core/component/routine/presentation/provider/routine_my_routine_my_routine_provider.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/my_routine/self_care_my_routine_edit_routine_provider.dart';
+import 'package:maeum_ga_gym_flutter/core/component/routine/presentation/provider/routine_my_routine_edit_routine_provider.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 class SelfCareMyRoutineDetailDialog extends ConsumerStatefulWidget {
@@ -37,7 +37,7 @@ class _SelfCareMyRoutineDetailDialogState
   }) async {
     final myRoutineState = ref.watch(routineMyRoutinesProvider);
     final editRoutineNotifier =
-        ref.read(selfCareMyRoutineEditRoutineProvider.notifier);
+        ref.read(routineMyRoutineEditRoutineProvider.notifier);
     final item = myRoutineState.routineList[widget.listIndex];
 
     await editRoutineNotifier.editRoutine(
@@ -62,7 +62,7 @@ class _SelfCareMyRoutineDetailDialogState
   Widget build(BuildContext context) {
     final myRoutineState = ref.watch(routineMyRoutinesProvider);
     final item = myRoutineState.routineList[widget.listIndex];
-    ref.listen(selfCareMyRoutineEditRoutineProvider.select((value) => value),
+    ref.listen(routineMyRoutineEditRoutineProvider.select((value) => value),
         (previous, next) {
       if (next == const AsyncData<int?>(200)) {
         Navigator.of(context).pop();

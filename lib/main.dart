@@ -28,7 +28,7 @@ void main() async {
   await Hive.initFlutter();
   Hive.registerAdapter(LocalTimerModelAdapter());
   await Hive.openBox<LocalTimerModel>('duration');
-  Hive.registerAdapter(PoseDataAdapter());
+  Hive.registerAdapter(PoseDataModelAdapter());
   await Hive.openBox<PoseDataModel>('poseData');
 
   /// 다국어 설정을 위함

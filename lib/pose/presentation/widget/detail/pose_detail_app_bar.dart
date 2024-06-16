@@ -1,13 +1,25 @@
 /// Package
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:maeum_ga_gym_flutter/core/component/pose/domain/model/pose_data_model.dart';
+import 'package:maeum_ga_gym_flutter/pose/presentation/view/pose_add_routine_screen.dart';
 
 /// Core
 import '../../../../config/maeumgagym_color.dart';
 import '../../../../core/component/text/pretendard/ptd_text_widget.dart';
 
 class PoseDetailAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const PoseDetailAppBar({super.key});
+  final String routineName;
+  final String poseSimpleName, poseExactName;
+  final PoseDataModel poseData;
+
+  const PoseDetailAppBar({
+    super.key,
+    required this.routineName,
+    required this.poseSimpleName,
+    required this.poseExactName,
+    required this.poseData,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -31,19 +43,34 @@ class PoseDetailAppBar extends StatelessWidget implements PreferredSizeWidget {
             ),
 
             /// 루틴에 추가
-            Container(
-              decoration: BoxDecoration(
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => PoseAddRoutineScreen(
+                        routineName: routineName,
+                        poseSimpleName: poseSimpleName,
+                        poseExactName: poseExactName,
+                        poseData: poseData),
+                  ),
+                );
+              },
+              child: Container(
+                decoration: BoxDecoration(
                   color: MaeumgagymColor.blue50,
-                  borderRadius: BorderRadius.circular(8)),
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-                child: Center(
-                  child: PtdTextWidget.labelSmall(
-                    '루틴에 추가',
-                    MaeumgagymColor.blue500,
-                    null,
-                    null,
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                  child: Center(
+                    child: PtdTextWidget.labelSmall(
+                      '루틴에 추가',
+                      MaeumgagymColor.blue500,
+                      null,
+                      null,
+                    ),
                   ),
                 ),
               ),
