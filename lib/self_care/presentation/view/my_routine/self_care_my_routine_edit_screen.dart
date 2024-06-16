@@ -4,11 +4,11 @@ import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/maeumgagym_toast_message.dart';
 import 'package:maeum_ga_gym_flutter/core/component/pose/domain/model/pose_data_model.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/providers/home_today_routines_provider.dart';
-import 'package:maeum_ga_gym_flutter/self_care/domain/model/my_routine/exercise_info_edit_routine_pose_model.dart';
+import 'package:maeum_ga_gym_flutter/core/component/routine/domain/model/exercise_info_edit_routine_pose_model.dart';
 import 'package:maeum_ga_gym_flutter/self_care/domain/model/my_routine/exercise_info_request_model.dart';
 import 'package:maeum_ga_gym_flutter/core/component/routine/presentation/provider/routine_my_routine_my_routine_provider.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/my_routine/self_care_my_routine_days_provider.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/my_routine/self_care_my_routine_edit_routine_provider.dart';
+import 'package:maeum_ga_gym_flutter/core/component/routine/presentation/provider/routine_my_routine_edit_routine_provider.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/my_routine/self_care_my_routine_pose_list_provider.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/view/my_routine/self_care_my_routine_pose_add_screen.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/self_care_my_routine_button.dart';
@@ -61,6 +61,8 @@ class _SelfCareMyRoutineEditScreenState
                       item.exerciseInfoResponseList[index].pose!.needMachine,
                   simplePart:
                       item.exerciseInfoResponseList[index].pose!.simplePart,
+                  exactPart:
+                      item.exerciseInfoResponseList[index].pose!.exactPart,
                 ),
                 repetitionsController: TextEditingController(
                     text: item.exerciseInfoResponseList[index].repetitions
@@ -79,7 +81,7 @@ class _SelfCareMyRoutineEditScreenState
         ref.watch(selfCareMyRoutinePostListProvider);
 
     final editPoseListNotifier =
-        ref.read(selfCareMyRoutineEditRoutineProvider.notifier);
+        ref.read(routineMyRoutineEditRoutineProvider.notifier);
 
     Map<String, bool> editRoutineDaysState =
         ref.watch(selfCareMyRoutineDaysProvider);
@@ -87,7 +89,7 @@ class _SelfCareMyRoutineEditScreenState
     final myRoutineState = ref.watch(routineMyRoutinesProvider);
     final myRoutineNotifier = ref.read(routineMyRoutinesProvider.notifier);
     final item = myRoutineState.routineList[widget.listIndex];
-    ref.listen(selfCareMyRoutineEditRoutineProvider.select((value) => value),
+    ref.listen(routineMyRoutineEditRoutineProvider.select((value) => value),
         (previous, next) {
       if (next == const AsyncData<int?>(200)) {
         myRoutineNotifier.getMyRoutineInit();

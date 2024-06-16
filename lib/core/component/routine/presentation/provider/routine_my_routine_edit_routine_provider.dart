@@ -4,13 +4,13 @@ import 'package:maeum_ga_gym_flutter/core/component/routine/data/repositoryImpl/
 import 'package:maeum_ga_gym_flutter/self_care/domain/model/my_routine/exercise_info_request_model.dart';
 import 'package:maeum_ga_gym_flutter/core/component/routine/domain/usecase/routine_usecase.dart';
 
-final selfCareMyRoutineEditRoutineProvider = StateNotifierProvider<
-    SelfCareMyRoutineEditRoutineStateNotifier,
-    AsyncValue<int?>>((ref) => SelfCareMyRoutineEditRoutineStateNotifier());
+final routineMyRoutineEditRoutineProvider = StateNotifierProvider<
+    RoutineMyRoutineEditRoutineStateNotifier,
+    AsyncValue<int?>>((ref) => RoutineMyRoutineEditRoutineStateNotifier());
 
-class SelfCareMyRoutineEditRoutineStateNotifier
+class RoutineMyRoutineEditRoutineStateNotifier
     extends StateNotifier<AsyncValue<int?>> {
-  SelfCareMyRoutineEditRoutineStateNotifier() : super(const AsyncData(500));
+  RoutineMyRoutineEditRoutineStateNotifier() : super(const AsyncData(500));
 
   final RoutineUseCase _routineUseCase =
       RoutineUseCase(RoutineRepositoryImpl());
