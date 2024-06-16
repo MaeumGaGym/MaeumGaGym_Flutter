@@ -8,7 +8,7 @@ import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/main/dividing
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/calendar/self_care_timeline_widget.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/main/self_care_main_profile_widget.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/main/self_care_main_widget_list.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/self_care_default_title_widget.dart';
+import 'package:maeum_ga_gym_flutter/core/component/routine/presentation/widget/routine_default_title_widget.dart';
 
 class SelfCareMainScreen extends ConsumerStatefulWidget {
   const SelfCareMainScreen({Key? key}) : super(key: key);
@@ -28,7 +28,8 @@ class _SelfCareMainScreenState extends ConsumerState<SelfCareMainScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -39,10 +40,11 @@ class _SelfCareMainScreenState extends ConsumerState<SelfCareMainScreen> {
                         color: MaeumgagymColor.blue50,
                         borderRadius: BorderRadius.circular(100),
                       ),
-                      child: SvgPicture.asset("assets/image/self_care_icon/dumbel_icon.svg"),
+                      child: SvgPicture.asset(
+                          "assets/image/self_care_icon/dumbel_icon.svg"),
                     ),
                     const SizedBox(height: 12),
-                    const SelfCareDefaultTitleContainer(
+                    const RoutineDefaultTitleContainer(
                       title: "자기관리",
                       subTitle: "나만의 루틴과 목표를 설정하여\n자기관리에 도전해보세요.",
                     ),

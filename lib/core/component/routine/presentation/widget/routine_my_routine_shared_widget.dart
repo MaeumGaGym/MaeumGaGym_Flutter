@@ -3,10 +3,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
 
-class SelfCareMyRoutineSharedWidget extends StatelessWidget {
+class RoutineMyRoutineSharedWidget extends StatelessWidget {
   final Color? color;
 
-  const SelfCareMyRoutineSharedWidget({
+  const RoutineMyRoutineSharedWidget({
     Key? key,
     this.color,
   }) : super(key: key);

@@ -5,7 +5,7 @@ import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/maeumgagym_toast_message.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
 import 'package:maeum_ga_gym_flutter/self_care/domain/model/my_routine/exercise_info_request_model.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/my_routine/self_care_my_routine_my_routine_provider.dart';
+import 'package:maeum_ga_gym_flutter/core/component/routine/presentation/provider/routine_my_routine_my_routine_provider.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/my_routine/self_care_my_routine_edit_routine_provider.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
@@ -22,8 +22,8 @@ class SelfCareMyRoutineDetailDialog extends ConsumerStatefulWidget {
       _SelfCareMyRoutineDetailDialogState();
 }
 
-class _SelfCareMyRoutineDetailDialogState extends ConsumerState<SelfCareMyRoutineDetailDialog> {
-
+class _SelfCareMyRoutineDetailDialogState
+    extends ConsumerState<SelfCareMyRoutineDetailDialog> {
   void _showToast({required String message}) {
     showTopSnackBar(
       Overlay.of(context),
@@ -35,7 +35,7 @@ class _SelfCareMyRoutineDetailDialogState extends ConsumerState<SelfCareMyRoutin
     bool? changeArchived,
     bool? changeShared,
   }) async {
-    final myRoutineState = ref.watch(selfCareMyRoutineMyRoutinesProvider);
+    final myRoutineState = ref.watch(routineMyRoutinesProvider);
     final editRoutineNotifier =
         ref.read(selfCareMyRoutineEditRoutineProvider.notifier);
     final item = myRoutineState.routineList[widget.listIndex];
@@ -60,12 +60,13 @@ class _SelfCareMyRoutineDetailDialogState extends ConsumerState<SelfCareMyRoutin
 
   @override
   Widget build(BuildContext context) {
-    final myRoutineState = ref.watch(selfCareMyRoutineMyRoutinesProvider);
+    final myRoutineState = ref.watch(routineMyRoutinesProvider);
     final item = myRoutineState.routineList[widget.listIndex];
-    ref.listen(selfCareMyRoutineEditRoutineProvider.select((value) => value), (previous, next) {
+    ref.listen(selfCareMyRoutineEditRoutineProvider.select((value) => value),
+        (previous, next) {
       if (next == const AsyncData<int?>(200)) {
         Navigator.of(context).pop();
-        ref.read(selfCareMyRoutineMyRoutinesProvider.notifier).getMyRoutineInit();
+        ref.read(routineMyRoutinesProvider.notifier).getMyRoutineInit();
       }
     });
     return Dialog(

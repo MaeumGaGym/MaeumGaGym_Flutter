@@ -1,45 +1,15 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:maeum_ga_gym_flutter/self_care/data/date_source/remote/routine_remote_data_source.dart';
 import 'package:maeum_ga_gym_flutter/self_care/domain/model/my_routine/exercise_info_request_model.dart';
-import 'package:maeum_ga_gym_flutter/self_care/domain/model/my_routine/exercise_info_response_model.dart';
-import 'package:maeum_ga_gym_flutter/self_care/domain/model/my_routine/routine_and_user_info_model.dart';
+import 'package:maeum_ga_gym_flutter/core/component/routine/domain/model/routine_and_user_info_model.dart';
 import 'package:maeum_ga_gym_flutter/self_care/domain/model/my_routine/routine_history_model.dart';
 import 'package:maeum_ga_gym_flutter/self_care/domain/model/my_routine/routine_response_model.dart';
-import 'package:maeum_ga_gym_flutter/self_care/domain/repository/routine_repository.dart';
+import 'package:maeum_ga_gym_flutter/core/component/routine/domain/repository/routine_repository.dart';
 
-class RoutineRepositoryImpl implements RoutineRepository {
-  final RoutineRemoteDataSource _remoteDataSource = RoutineRemoteDataSource();
+class RoutineUseCase {
+  final RoutineRepository _repository;
 
-  @override
-  Future<RoutineResponseModel> getTodayRoutine({
-    required String accessToken,
-  }) async {
-    return await _remoteDataSource.getTodayRoutine(
-      accessToken: accessToken,
-    );
-  }
+  RoutineUseCase(this._repository);
 
-  @override
-  Future<RoutineAndUserInfoModel> getMyRoutine({
-    required String accessToken,
-    required int index,
-  }) async {
-    return await _remoteDataSource.getMyRoutine(
-      accessToken: accessToken,
-      index: index,
-    );
-  }
-
-  @override
-  Future<AsyncValue<int?>> completeTodayRoutines({
-    required String accessToken,
-  }) async {
-    return await _remoteDataSource.completeTodayRoutines(
-      accessToken: accessToken,
-    );
-  }
-
-  @override
   Future<AsyncValue<int?>> addRoutine({
     required String accessToken,
     required String routineName,
@@ -48,7 +18,7 @@ class RoutineRepositoryImpl implements RoutineRepository {
     required List<ExerciseInfoRequestModel> exerciseInfoRequestList,
     List<String>? dayOfWeeks,
   }) async {
-    return await _remoteDataSource.addRoutine(
+    return await _repository.addRoutine(
       accessToken: accessToken,
       routineName: routineName,
       isArchived: isArchived,
@@ -58,18 +28,34 @@ class RoutineRepositoryImpl implements RoutineRepository {
     );
   }
 
-  @override
+  Future<RoutineAndUserInfoModel> getMyRoutine({
+    required String accessToken,
+    required int index,
+  }) async {
+    return await _repository.getMyRoutine(
+      accessToken: accessToken,
+      index: index,
+    );
+  }
+
+  Future<RoutineResponseModel> getTodayRoutine({
+    required String accessToken,
+  }) async {
+    return await _repository.getTodayRoutine(
+      accessToken: accessToken,
+    );
+  }
+
   Future<AsyncValue<int?>> deleteRoutine({
     required String accessToken,
     required int routineId,
   }) async {
-    return await _remoteDataSource.deleteRoutine(
+    return await _repository.deleteRoutine(
       accessToken: accessToken,
       routineId: routineId,
     );
   }
 
-  @override
   Future<AsyncValue<int?>> editRoutine({
     required String accessToken,
     required String routineName,
@@ -79,7 +65,7 @@ class RoutineRepositoryImpl implements RoutineRepository {
     required int routineId,
     required List<String> dayOfWeeks,
   }) async {
-    return await _remoteDataSource.editRoutine(
+    return await _repository.editRoutine(
       accessToken: accessToken,
       routineName: routineName,
       isArchived: isArchived,
@@ -90,12 +76,19 @@ class RoutineRepositoryImpl implements RoutineRepository {
     );
   }
 
-  @override
+  Future<AsyncValue<int?>> completeTodayRoutines({
+    required String accessToken,
+  }) async {
+    return await _repository.completeTodayRoutines(
+      accessToken: accessToken,
+    );
+  }
+
   Future<RoutineHistoryModel> getRoutineHistory({
     required String accessToken,
     required String date,
   }) async {
-    return await _remoteDataSource.getRoutineHistory(
+    return await _repository.getRoutineHistory(
       accessToken: accessToken,
       date: date,
     );

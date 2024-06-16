@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/my_routine/self_care_my_routine_my_routine_provider.dart';
+import 'package:maeum_ga_gym_flutter/core/component/routine/presentation/provider/routine_my_routine_my_routine_provider.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/view/my_routine/self_care_my_routine_add_screen.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/view/my_routine/self_care_my_routine_detail_screen.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/self_care_my_routine_button.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/self_care_my_routine_item_widget.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/self_care_default_app_bar.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/self_care_default_title_widget.dart';
+import 'package:maeum_ga_gym_flutter/core/component/routine/presentation/widget/routine_default_title_widget.dart';
 
 class SelfCareMyRoutineMainScreen extends ConsumerStatefulWidget {
   const SelfCareMyRoutineMainScreen({Key? key}) : super(key: key);
@@ -27,9 +27,7 @@ class _SelfCareMyRoutineMainScreenState
     scrollController = ScrollController()..addListener(listener);
     Future.delayed(
       Duration.zero,
-      () => ref
-          .read(selfCareMyRoutineMyRoutinesProvider.notifier)
-          .getMyRoutineInit(),
+      () => ref.read(routineMyRoutinesProvider.notifier).getMyRoutineInit(),
     );
   }
 
@@ -40,7 +38,7 @@ class _SelfCareMyRoutineMainScreenState
   }
 
   void listener() {
-    final myRoutineState = ref.watch(selfCareMyRoutineMyRoutinesProvider);
+    final myRoutineState = ref.watch(routineMyRoutinesProvider);
 
     /// ~/ => 나눈 몫을 정수형으로 반환
     int pageIndex = myRoutineState.routineList.length ~/ 10;
@@ -54,7 +52,7 @@ class _SelfCareMyRoutineMainScreenState
       /// 리스트의 데이터 갯수를 10으로 나눈 나머지가 0이 아닐 때, 즉 데이터가 10으로 나눠떨어지지 않을 때 계속해서 값이 호출되고, 리스트에 추가되는 경우를 방지
       if (hasMore) {
         ref
-            .read(selfCareMyRoutineMyRoutinesProvider.notifier)
+            .read(routineMyRoutinesProvider.notifier)
             .getMyRoutine(index: pageIndex);
       }
     }
@@ -62,7 +60,7 @@ class _SelfCareMyRoutineMainScreenState
 
   @override
   Widget build(BuildContext context) {
-    final myRoutineState = ref.watch(selfCareMyRoutineMyRoutinesProvider);
+    final myRoutineState = ref.watch(routineMyRoutinesProvider);
     return Scaffold(
       backgroundColor: MaeumgagymColor.white,
       appBar: const SelfCareDefaultAppBar(
@@ -76,7 +74,7 @@ class _SelfCareMyRoutineMainScreenState
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SelfCareDefaultTitleContainer(
+                const RoutineDefaultTitleContainer(
                   title: "내 루틴",
                   subTitle: "나만의 루틴을 구성하여\n규칙적인 운동을 해보세요.",
                 ),

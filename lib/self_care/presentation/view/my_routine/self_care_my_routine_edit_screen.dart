@@ -6,7 +6,7 @@ import 'package:maeum_ga_gym_flutter/core/component/pose/domain/model/pose_data_
 import 'package:maeum_ga_gym_flutter/home/presentation/providers/home_today_routines_provider.dart';
 import 'package:maeum_ga_gym_flutter/self_care/domain/model/my_routine/exercise_info_edit_routine_pose_model.dart';
 import 'package:maeum_ga_gym_flutter/self_care/domain/model/my_routine/exercise_info_request_model.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/my_routine/self_care_my_routine_my_routine_provider.dart';
+import 'package:maeum_ga_gym_flutter/core/component/routine/presentation/provider/routine_my_routine_my_routine_provider.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/my_routine/self_care_my_routine_days_provider.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/my_routine/self_care_my_routine_edit_routine_provider.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/my_routine/self_care_my_routine_pose_list_provider.dart';
@@ -46,7 +46,7 @@ class _SelfCareMyRoutineEditScreenState
 
     /// 화면이 빌드되었을 때 init
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      final myRoutineState = ref.watch(selfCareMyRoutineMyRoutinesProvider);
+      final myRoutineState = ref.watch(routineMyRoutinesProvider);
       final item = myRoutineState.routineList[widget.listIndex];
       ref.read(selfCareMyRoutinePostListProvider.notifier).init(
             List<ExerciseInfoEditRoutinePoseModel>.generate(
@@ -84,9 +84,8 @@ class _SelfCareMyRoutineEditScreenState
     Map<String, bool> editRoutineDaysState =
         ref.watch(selfCareMyRoutineDaysProvider);
 
-    final myRoutineState = ref.watch(selfCareMyRoutineMyRoutinesProvider);
-    final myRoutineNotifier =
-        ref.read(selfCareMyRoutineMyRoutinesProvider.notifier);
+    final myRoutineState = ref.watch(routineMyRoutinesProvider);
+    final myRoutineNotifier = ref.read(routineMyRoutinesProvider.notifier);
     final item = myRoutineState.routineList[widget.listIndex];
     ref.listen(selfCareMyRoutineEditRoutineProvider.select((value) => value),
         (previous, next) {
@@ -199,8 +198,7 @@ class _SelfCareMyRoutineEditScreenState
                 Expanded(
                   child: GestureDetector(
                     onTap: () async {
-                      await editPoseListNotifier
-                          .editRoutine(
+                      await editPoseListNotifier.editRoutine(
                         routineName: titleController.text,
                         isArchived: item.routineStatus!.isArchived!,
                         isShared: item.routineStatus!.isShared!,
@@ -230,7 +228,9 @@ class _SelfCareMyRoutineEditScreenState
                         routineId: item.id!,
                       );
 
-                      await ref.read(homeTodayRoutineController.notifier).getTodayRoutines();
+                      await ref
+                          .read(homeTodayRoutineController.notifier)
+                          .getTodayRoutines();
                     },
                     child: SelfCareMyRoutineButton(
                       width: MediaQuery.of(context).size.width,

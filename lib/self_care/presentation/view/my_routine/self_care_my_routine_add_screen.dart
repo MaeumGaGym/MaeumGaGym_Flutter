@@ -7,7 +7,7 @@ import 'package:maeum_ga_gym_flutter/self_care/domain/model/my_routine/exercise_
 import 'package:maeum_ga_gym_flutter/self_care/domain/model/my_routine/exercise_info_request_model.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/my_routine/self_care_my_routine_add_routine_provider.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/my_routine/self_care_my_routine_days_provider.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/my_routine/self_care_my_routine_my_routine_provider.dart';
+import 'package:maeum_ga_gym_flutter/core/component/routine/presentation/provider/routine_my_routine_my_routine_provider.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/my_routine/self_care_my_routine_pose_list_provider.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/view/my_routine/self_care_my_routine_pose_add_screen.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/self_care_my_routine_button.dart';
@@ -44,13 +44,13 @@ class _SelfCareMyRoutineAddScreenState
 
     final addRoutineNotifier =
         ref.read(selfCareMyRoutineAddRoutineProvider.notifier);
-    final myRoutineNotifier =
-        ref.read(selfCareMyRoutineMyRoutinesProvider.notifier);
+    final myRoutineNotifier = ref.read(routineMyRoutinesProvider.notifier);
 
     Map<String, bool> editRoutineDaysState =
         ref.watch(selfCareMyRoutineDaysProvider);
 
-    ref.listen(selfCareMyRoutineAddRoutineProvider.select((value) => value), (previous, next) {
+    ref.listen(selfCareMyRoutineAddRoutineProvider.select((value) => value),
+        (previous, next) {
       if (next == const AsyncData<int?>(201)) {
         myRoutineNotifier.getMyRoutineInit();
         Navigator.of(context).pop();
@@ -158,8 +158,7 @@ class _SelfCareMyRoutineAddScreenState
                     onTap: () async {
                       if (titleController.text.isNotEmpty &&
                           addPoseListState.isNotEmpty) {
-                        await addRoutineNotifier
-                            .addRoutine(
+                        await addRoutineNotifier.addRoutine(
                           routineName: titleController.text,
                           isArchived: false,
                           isShared: false,
@@ -190,7 +189,9 @@ class _SelfCareMyRoutineAddScreenState
                           /// entry.value 값이 true (참) 이라면 key 값으로 List 생성
                         );
 
-                        await ref.read(homeTodayRoutineController.notifier).getTodayRoutines();
+                        await ref
+                            .read(homeTodayRoutineController.notifier)
+                            .getTodayRoutines();
                       }
                     },
                     child: SelfCareMyRoutineButton(

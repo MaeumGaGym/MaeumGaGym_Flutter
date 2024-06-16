@@ -7,16 +7,18 @@ import 'package:maeum_ga_gym_flutter/self_care/presentation/view/purpose/self_ca
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/self_care_my_routine_button.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/purpose/self_care_purpose_item_widget.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/self_care_default_app_bar.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/self_care_default_title_widget.dart';
+import 'package:maeum_ga_gym_flutter/core/component/routine/presentation/widget/routine_default_title_widget.dart';
 
 class SelfCarePurposeMainScreen extends ConsumerStatefulWidget {
   const SelfCarePurposeMainScreen({super.key});
 
   @override
-  ConsumerState<SelfCarePurposeMainScreen> createState() => _SelfCarePurposeMainScreenState();
+  ConsumerState<SelfCarePurposeMainScreen> createState() =>
+      _SelfCarePurposeMainScreenState();
 }
 
-class _SelfCarePurposeMainScreenState extends ConsumerState<SelfCarePurposeMainScreen> {
+class _SelfCarePurposeMainScreenState
+    extends ConsumerState<SelfCarePurposeMainScreen> {
   late ScrollController scrollController;
 
   @override
@@ -25,7 +27,7 @@ class _SelfCarePurposeMainScreenState extends ConsumerState<SelfCarePurposeMainS
     scrollController = ScrollController()..addListener(listener);
     Future.delayed(
       Duration.zero,
-          () => ref
+      () => ref
           .read(selfCarePurposeMyPurposesProvider.notifier)
           .getMyPurposeInit(),
     );
@@ -44,10 +46,14 @@ class _SelfCarePurposeMainScreenState extends ConsumerState<SelfCarePurposeMainS
 
     /// 화면 스크롤 컨트롤러의 위치가 최대 스크롤 위치이면서 API가 로딩 중이 아닐 때 (API가 실행 중이 아닐 때)
     /// => 중복 요청 방지
-    if (scrollController.position.pixels == scrollController.position.maxScrollExtent && !myPurposeState.statusCode.isLoading) {
+    if (scrollController.position.pixels ==
+            scrollController.position.maxScrollExtent &&
+        !myPurposeState.statusCode.isLoading) {
       /// 리스트의 데이터 갯수를 10으로 나눈 나머지가 0이 아닐 때, 즉 데이터가 10으로 나눠떨어지지 않을 때 계속해서 값이 호출되고, 리스트에 추가되는 경우를 방지
       if (hasMore) {
-        ref.read(selfCarePurposeMyPurposesProvider.notifier).getMyPurpose(index: pageIndex);
+        ref
+            .read(selfCarePurposeMyPurposesProvider.notifier)
+            .getMyPurpose(index: pageIndex);
       }
     }
   }
@@ -68,7 +74,7 @@ class _SelfCarePurposeMainScreenState extends ConsumerState<SelfCarePurposeMainS
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SelfCareDefaultTitleContainer(
+                const RoutineDefaultTitleContainer(
                   title: "목표",
                   subTitle: "나만의 목표를 세워보세요.",
                 ),
@@ -83,17 +89,25 @@ class _SelfCarePurposeMainScreenState extends ConsumerState<SelfCarePurposeMainS
                         GestureDetector(
                           onTap: () => Navigator.of(context).push(
                             MaterialPageRoute(
-                              builder: (context) =>
-                                  SelfCarePurposeDetailScreen(purposeId: myPurposeState.purposeList[index].id!),
+                              builder: (context) => SelfCarePurposeDetailScreen(
+                                  purposeId:
+                                      myPurposeState.purposeList[index].id!),
                             ),
                           ),
                           child: SelfCarePurposeItemWidget(
                             purposeId: myPurposeState.purposeList[index].id!,
-                            title: myPurposeState.purposeList[index].title.toString(),
-                            subTitle: myPurposeState.purposeList[index].startDate.toString(),
+                            title: myPurposeState.purposeList[index].title
+                                .toString(),
+                            subTitle: myPurposeState
+                                .purposeList[index].startDate
+                                .toString(),
                           ),
                         ),
-                        SizedBox(height: index == myPurposeState.purposeList.length - 1 ? 0 : 12),
+                        SizedBox(
+                            height:
+                                index == myPurposeState.purposeList.length - 1
+                                    ? 0
+                                    : 12),
                       ],
                     );
                   },

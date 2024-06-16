@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/core/di/token_secure_storage_di.dart';
-import 'package:maeum_ga_gym_flutter/self_care/data/repositoryImpl/routine_repository_impl.dart';
-import 'package:maeum_ga_gym_flutter/self_care/domain/usecase/routine_usecase.dart';
+import 'package:maeum_ga_gym_flutter/core/component/routine/data/repositoryImpl/routine_repository_impl.dart';
+import 'package:maeum_ga_gym_flutter/core/component/routine/domain/usecase/routine_usecase.dart';
 
 final selfCareMyRoutineDeleteRoutineProvider = StateNotifierProvider<
     SelfCareMyRoutineDeleteRoutineStateNotifier, AsyncValue<int?>>(
