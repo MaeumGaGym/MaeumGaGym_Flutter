@@ -9,6 +9,7 @@ import 'package:maeum_ga_gym_flutter/home/presentation/widget/main/container/hom
 import 'package:maeum_ga_gym_flutter/home/presentation/widget/main/container/home_main_pedometer_container.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/widget/main/widget/home_main_app_bar.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/widget/main/container/home_main_routine_container.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomeMainScreen extends ConsumerStatefulWidget {
   const HomeMainScreen({Key? key}) : super(key: key);
@@ -92,9 +93,14 @@ class _HomeMainScreenState extends ConsumerState<HomeMainScreen> {
                           null,
                         ),
                         const SizedBox(height: 8),
-                        PtdTextWidget.labelLarge(
-                          "개인정보 처리방침 보기",
-                          MaeumgagymColor.gray400,
+                        GestureDetector(
+                          onTap: () {
+                            launchUrl(Uri.parse("https://info-dsm.notion.site/2a0474e87f754fbe8f53d58f2003ccb2?pvs=4"));
+                          },
+                          child: PtdTextWidget.labelLarge(
+                            "개인정보 처리방침 보기",
+                            MaeumgagymColor.gray400,
+                          ),
                         ),
                       ],
                     ),
