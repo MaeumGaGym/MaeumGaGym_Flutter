@@ -11,7 +11,7 @@ class LoadingWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Builder(
       builder: (context) {
-        if (state) {
+        if (!state) {
           return const SizedBox();
         } else {
           return Opacity(

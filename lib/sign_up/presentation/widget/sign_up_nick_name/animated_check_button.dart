@@ -64,8 +64,6 @@ class AnimatedCheckButton extends ConsumerWidget {
                   ref.watch(socialLoginController).token!,
                   name,
                 );
-              case LoginOption.all:
-                break;
             }
 
             ref.watch(maeumgagymSignUpController).when(

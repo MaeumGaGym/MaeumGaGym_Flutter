@@ -25,8 +25,6 @@ class MaeumgagymRecoveryStateNotifier extends StateNotifier<AsyncValue<int>> {
         debugPrint("recovery KaKaoToken : $oauthToken");
         await kakaoRecovery(oauthToken);
         break;
-      case LoginOption.all:
-        break;
     }
   }
 

@@ -28,8 +28,6 @@ class SocialLoginStateNotifier extends StateNotifier<SocialLoginModel> {
       case LoginOption.kakao:
         _useCase = SocialLoginUseCase(KaKaoLoginRepositoryImpl());
         break;
-      case LoginOption.all:
-        break;
     }
   }
 
@@ -51,8 +49,6 @@ class SocialLoginStateNotifier extends StateNotifier<SocialLoginModel> {
           token: loginState.token,
         );
         break;
-      case LoginOption.all:
-        throw Exception('socialLogin LoginOption is All');
     }
   }
 }
