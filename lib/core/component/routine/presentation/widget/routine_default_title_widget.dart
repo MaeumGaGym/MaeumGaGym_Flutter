@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
 
-class SelfCareDefaultTitleContainer extends StatelessWidget {
+class RoutineDefaultTitleContainer extends StatelessWidget {
   final String title;
   final String subTitle;
 
-  const SelfCareDefaultTitleContainer({
+  const RoutineDefaultTitleContainer({
     super.key,
     required this.title,
     required this.subTitle,

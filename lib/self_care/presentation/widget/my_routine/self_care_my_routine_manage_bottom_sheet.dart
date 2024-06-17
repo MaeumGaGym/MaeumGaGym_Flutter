@@ -3,9 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/maeumgagym_toast_message.dart';
 import 'package:maeum_ga_gym_flutter/self_care/domain/model/my_routine/exercise_info_request_model.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/my_routine/self_care_my_routine_my_routine_provider.dart';
+import 'package:maeum_ga_gym_flutter/core/component/routine/presentation/provider/routine_my_routine_my_routine_provider.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/my_routine/self_care_my_routine_delete_routine_provider.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/my_routine/self_care_my_routine_edit_routine_provider.dart';
+import 'package:maeum_ga_gym_flutter/core/component/routine/presentation/provider/routine_my_routine_edit_routine_provider.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/view/my_routine/self_care_my_routine_edit_screen.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/self_care_default_manage_item_widget.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
@@ -23,8 +23,8 @@ class SelfCareMyRoutineManageBottomSheet extends ConsumerStatefulWidget {
       _SelfCareMyRoutineManageBottomSheetState();
 }
 
-class _SelfCareMyRoutineManageBottomSheetState extends ConsumerState<SelfCareMyRoutineManageBottomSheet> {
-
+class _SelfCareMyRoutineManageBottomSheetState
+    extends ConsumerState<SelfCareMyRoutineManageBottomSheet> {
   void _showToast({required String message}) {
     showTopSnackBar(
       Overlay.of(context),
@@ -37,9 +37,9 @@ class _SelfCareMyRoutineManageBottomSheetState extends ConsumerState<SelfCareMyR
     bool? changeArchived,
     bool? changeShared,
   }) async {
-    final myRoutineState = ref.watch(selfCareMyRoutineMyRoutinesProvider);
+    final myRoutineState = ref.watch(routineMyRoutinesProvider);
     final editRoutineNotifier =
-        ref.read(selfCareMyRoutineEditRoutineProvider.notifier);
+        ref.read(routineMyRoutineEditRoutineProvider.notifier);
     final item = myRoutineState.routineList[widget.listIndex];
 
     await editRoutineNotifier.editRoutine(
@@ -61,16 +61,19 @@ class _SelfCareMyRoutineManageBottomSheetState extends ConsumerState<SelfCareMyR
 
   @override
   Widget build(BuildContext context) {
-    final myRoutineState = ref.watch(selfCareMyRoutineMyRoutinesProvider);
-    final myRoutineNotifier = ref.read(selfCareMyRoutineMyRoutinesProvider.notifier);
+    final myRoutineState = ref.watch(routineMyRoutinesProvider);
+    final myRoutineNotifier = ref.read(routineMyRoutinesProvider.notifier);
     final item = myRoutineState.routineList[widget.listIndex];
-    final deleteRoutineNotifier = ref.read(selfCareMyRoutineDeleteRoutineProvider.notifier);
-    ref.listen(selfCareMyRoutineEditRoutineProvider.select((value) => value), (previous, next) {
+    final deleteRoutineNotifier =
+        ref.read(selfCareMyRoutineDeleteRoutineProvider.notifier);
+    ref.listen(routineMyRoutineEditRoutineProvider.select((value) => value),
+        (previous, next) {
       if (next == const AsyncData<int?>(200)) {
         myRoutineNotifier.getMyRoutineInit();
       }
     });
-    ref.listen(selfCareMyRoutineDeleteRoutineProvider.select((value) => value), (previous, next) {
+    ref.listen(selfCareMyRoutineDeleteRoutineProvider.select((value) => value),
+        (previous, next) {
       if (next == const AsyncData<int?>(204)) {
         _showToast(message: "루틴을 삭제했어요.");
         myRoutineNotifier.getMyRoutineInit();

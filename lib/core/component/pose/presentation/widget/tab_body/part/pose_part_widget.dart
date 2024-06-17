@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
 import 'package:maeum_ga_gym_flutter/core/component/pose/domain/model/pose_data_model.dart';
 import 'package:maeum_ga_gym_flutter/pose/presentation/view/pose_detail_screen.dart';
-import 'package:maeum_ga_gym_flutter/self_care/domain/model/my_routine/exercise_info_edit_routine_pose_model.dart';
+import 'package:maeum_ga_gym_flutter/core/component/routine/domain/model/exercise_info_edit_routine_pose_model.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/my_routine/self_care_my_routine_pose_list_provider.dart';
 
 import '../../../../../../../config/maeumgagym_color.dart';
@@ -30,19 +30,22 @@ class PosePartWidget extends ConsumerWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => PoseDetailScreen(id: data.id!),
+              builder: (context) => PoseDetailScreen(
+                id: data.id!,
+                poseData: data,
+              ),
             ),
           );
         } else {
           ref.read(selfCareMyRoutinePostListProvider.notifier).insert(
                 ExerciseInfoEditRoutinePoseModel(
                   poseModel: PoseDataModel(
-                    id: data.id,
-                    thumbnail: data.thumbnail,
-                    name: data.name,
-                    needMachine: data.needMachine,
-                    simplePart: data.simplePart,
-                  ),
+                      id: data.id,
+                      thumbnail: data.thumbnail,
+                      name: data.name,
+                      needMachine: data.needMachine,
+                      simplePart: data.simplePart,
+                      exactPart: data.exactPart),
                   repetitionsController: TextEditingController(text: "10"),
                   setsController: TextEditingController(text: "1"),
                 ),

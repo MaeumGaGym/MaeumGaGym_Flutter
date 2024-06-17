@@ -5,7 +5,7 @@ import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/self_care_t
 import 'package:maeum_ga_gym_flutter/self_care/presentation/view/today_exercise/self_care_today_exercise_camera_screen.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/view/today_exercise/self_care_today_exercise_gallery_screen.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/self_care_default_app_bar.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/self_care_default_title_widget.dart';
+import 'package:maeum_ga_gym_flutter/core/component/routine/presentation/widget/routine_default_title_widget.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/today_exercise/self_care_today_exercise_fab.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/today_exercise/self_care_today_exercise_tab_bar.dart';
 
@@ -38,7 +38,7 @@ class _SelfCareTodayExerciseMainScreenState
                 const SizedBox(height: 24),
 
                 /// 오운완, 페이지 기능 설명 위젯
-                const SelfCareDefaultTitleContainer(
+                const RoutineDefaultTitleContainer(
                   title: "오운완",
                   subTitle: "오늘의 운동을 완료하고,\n내 모습을 사진으로 남겨보세요.",
                 ),

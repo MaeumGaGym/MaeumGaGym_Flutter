@@ -6,7 +6,7 @@ part of 'pose_data_model.dart';
 // TypeAdapterGenerator
 // **************************************************************************
 
-class PoseDataAdapter extends TypeAdapter<PoseDataModel> {
+class PoseDataModelAdapter extends TypeAdapter<PoseDataModel> {
   @override
   final int typeId = 2;
 
@@ -22,13 +22,14 @@ class PoseDataAdapter extends TypeAdapter<PoseDataModel> {
       name: fields[3] as String?,
       needMachine: fields[2] as bool?,
       simplePart: (fields[5] as List).cast<String>(),
+      exactPart: (fields[6] as List).cast<String>(),
     );
   }
 
   @override
   void write(BinaryWriter writer, PoseDataModel obj) {
     writer
-      ..writeByte(5)
+      ..writeByte(6)
       ..writeByte(1)
       ..write(obj.id)
       ..writeByte(2)
@@ -38,7 +39,9 @@ class PoseDataAdapter extends TypeAdapter<PoseDataModel> {
       ..writeByte(4)
       ..write(obj.thumbnail)
       ..writeByte(5)
-      ..write(obj.simplePart);
+      ..write(obj.simplePart)
+      ..writeByte(6)
+      ..write(obj.exactPart);
   }
 
   @override
@@ -47,7 +50,7 @@ class PoseDataAdapter extends TypeAdapter<PoseDataModel> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is PoseDataAdapter &&
+      other is PoseDataModelAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

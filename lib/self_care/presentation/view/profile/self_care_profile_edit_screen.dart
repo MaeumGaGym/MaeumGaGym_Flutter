@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/maeungagym_text_style.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/my_routine/self_care_my_routine_my_routine_provider.dart';
+import 'package:maeum_ga_gym_flutter/core/component/routine/presentation/provider/routine_my_routine_my_routine_provider.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/profile/self_care_profile_edit_profile_provider.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/profile/self_care_profile_sex_select_provider.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/self_care_text_field_provider.dart';
@@ -96,7 +96,7 @@ class _SelfCareProfileEditScreenState
         (previous, next) {
       if (next == const AsyncData<int?>(204)) {
         Navigator.of(context).popUntil((route) => route.isFirst);
-        ref.read(selfCareMyRoutineMyRoutinesProvider.notifier).getMyRoutineInit();
+        ref.read(routineMyRoutinesProvider.notifier).getMyRoutineInit();
       }
     });
     return GestureDetector(

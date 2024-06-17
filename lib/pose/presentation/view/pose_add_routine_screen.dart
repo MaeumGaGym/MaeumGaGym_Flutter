@@ -1,24 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
+import 'package:maeum_ga_gym_flutter/pose/presentation/view/pose_add_routine_detail_screen.dart';
+import 'package:maeum_ga_gym_flutter/pose/presentation/widget/add_routine/pose_add_routine_app_bar.dart';
 import 'package:maeum_ga_gym_flutter/core/component/routine/presentation/provider/routine_my_routine_my_routine_provider.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/view/my_routine/self_care_my_routine_add_screen.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/view/my_routine/self_care_my_routine_detail_screen.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/self_care_my_routine_button.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/self_care_my_routine_item_widget.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/self_care_default_app_bar.dart';
+import 'package:maeum_ga_gym_flutter/pose/presentation/widget/add_routine/pose_routine_item_widget.dart';
 import 'package:maeum_ga_gym_flutter/core/component/routine/presentation/widget/routine_default_title_widget.dart';
 
-class SelfCareMyRoutineMainScreen extends ConsumerStatefulWidget {
-  const SelfCareMyRoutineMainScreen({Key? key}) : super(key: key);
+import '../../../core/component/pose/domain/model/pose_data_model.dart';
+
+class PoseAddRoutineScreen extends ConsumerStatefulWidget {
+  final String routineName;
+  final String poseSimpleName, poseExactName;
+  final PoseDataModel poseData;
+
+  const PoseAddRoutineScreen({
+    super.key,
+    required this.routineName,
+    required this.poseData,
+    required this.poseSimpleName,
+    required this.poseExactName,
+  });
 
   @override
-  ConsumerState<SelfCareMyRoutineMainScreen> createState() =>
-      _SelfCareMyRoutineMainScreenState();
+  ConsumerState<PoseAddRoutineScreen> createState() =>
+      _PoseAddRoutineScreenState();
 }
 
-class _SelfCareMyRoutineMainScreenState
-    extends ConsumerState<SelfCareMyRoutineMainScreen> {
+class _PoseAddRoutineScreenState extends ConsumerState<PoseAddRoutineScreen> {
   late ScrollController scrollController;
 
   @override
@@ -63,9 +72,7 @@ class _SelfCareMyRoutineMainScreenState
     final myRoutineState = ref.watch(routineMyRoutinesProvider);
     return Scaffold(
       backgroundColor: MaeumgagymColor.white,
-      appBar: const SelfCareDefaultAppBar(
-        iconPath: "assets/image/core_icon/left_arrow_icon.svg",
-      ),
+      appBar: const PoseAddRoutineAppBar(),
       body: SafeArea(
         child: SingleChildScrollView(
           controller: scrollController,
@@ -74,9 +81,9 @@ class _SelfCareMyRoutineMainScreenState
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const RoutineDefaultTitleContainer(
-                  title: "내 루틴",
-                  subTitle: "나만의 루틴을 구성하여\n규칙적인 운동을 해보세요.",
+                RoutineDefaultTitleContainer(
+                  title: "루틴에 추가",
+                  subTitle: "${widget.routineName}을 추가하고 싶은\n루틴을 선택하세요",
                 ),
                 const SizedBox(height: 32),
                 ListView.builder(
@@ -96,46 +103,25 @@ class _SelfCareMyRoutineMainScreenState
                         onTap: () => Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => SelfCareMyRoutineDetailScreen(
-                              listIndex: index,
+                            builder: (context) => PoseAddRoutineDetailScreen(
+                              routineIndex: index,
+                              routineName: myRoutineState
+                                  .routineList[index].routineName!,
+                              poseSimpleName: widget.poseSimpleName,
+                              poseExactName: widget.poseExactName,
+                              poseData: widget.poseData,
                             ),
                           ),
                         ),
-                        child: SelfCareMyRoutineItemWidget(
+                        child: PoseRoutineItemWidget(
                           listIndex: index,
                         ),
                       ),
                     );
                   },
                 ),
-                const SizedBox(height: 98),
               ],
             ),
-          ),
-        ),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: GestureDetector(
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const SelfCareMyRoutineAddScreen(),
-            ),
-          );
-        },
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-          child: SelfCareMyRoutineButton(
-            width: MediaQuery.of(context).size.width,
-            height: 58,
-            imageWidth: 24,
-            imageHeight: 24,
-            imagePath: "assets/image/self_care_icon/add_icon.svg",
-            imageColor: MaeumgagymColor.white,
-            title: "루틴 추가하기",
-            textColor: MaeumgagymColor.white,
-            buttonColor: MaeumgagymColor.blue500,
           ),
         ),
       ),

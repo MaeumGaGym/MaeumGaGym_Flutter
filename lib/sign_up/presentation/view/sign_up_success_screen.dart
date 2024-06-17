@@ -66,8 +66,6 @@ class SignUpSuccessScreen extends ConsumerWidget {
                                   .kakaoLogin(
                                       ref.watch(socialLoginController).token!);
                               break;
-                            case LoginOption.all:
-                              break;
                           }
 
                           ref.watch(maeumgagymLoginController).statusCode.when(

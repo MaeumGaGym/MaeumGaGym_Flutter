@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/core/di/dio_di.dart';
 import 'package:maeum_ga_gym_flutter/self_care/domain/model/my_routine/exercise_info_request_model.dart';
-import 'package:maeum_ga_gym_flutter/self_care/domain/model/my_routine/routine_and_user_info_model.dart';
+import 'package:maeum_ga_gym_flutter/core/component/routine/domain/model/routine_and_user_info_model.dart';
 import 'package:maeum_ga_gym_flutter/self_care/domain/model/my_routine/routine_history_model.dart';
 import 'package:maeum_ga_gym_flutter/self_care/domain/model/my_routine/routine_response_model.dart';
 
@@ -51,7 +51,7 @@ class RoutineRemoteDataSource {
       return await dio
           .get(
         "/routines/my",
-        queryParameters: {"index" : index},
+        queryParameters: {"index": index},
         options: Options(
           headers: {
             "Content-Type": "application/json",
@@ -60,7 +60,7 @@ class RoutineRemoteDataSource {
         ),
       )
           .then((response) {
-            debugPrint(response.statusCode.toString());
+        debugPrint(response.statusCode.toString());
         return RoutineAndUserInfoModel.fromJson(
           response.data,
           response.statusCode!,
@@ -148,7 +148,8 @@ class RoutineRemoteDataSource {
     };
 
     try {
-      return await dio.put(
+      return await dio
+          .put(
         "/routines/$routineId",
         data: data,
         options: Options(
