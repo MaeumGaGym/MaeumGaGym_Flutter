@@ -7,8 +7,9 @@ import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_wid
 import 'package:maeum_ga_gym_flutter/home/presentation/providers/home_routine_page_index_provider.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/providers/home_today_routines_provider.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/view/home_today_routine_screen.dart';
-import 'package:maeum_ga_gym_flutter/home/presentation/widget/main/widget/home_main_container_title.dart';
 import 'package:maeum_ga_gym_flutter/pose/presentation/view/pose_detail_screen.dart';
+
+import '../widget/home_main_routine_title.dart';
 
 class HomeMainRoutineContainer extends ConsumerStatefulWidget {
   const HomeMainRoutineContainer({super.key});
@@ -75,7 +76,12 @@ class _HomeMainRoutineContainerState
                     );
                   }
                 },
-                child: const HomeMainContainerTitle(title: "오늘의 루틴"),
+                child: HomeMainRoutineTitle(
+                  title: "오늘의 루틴",
+                  routineName: todayRoutineList[routinePageIndex].routineName!,
+                  routineIsComplete:
+                      todayRoutineList[routinePageIndex].isCompleted!,
+                ),
               ),
             ),
             Builder(
