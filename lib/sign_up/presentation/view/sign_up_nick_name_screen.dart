@@ -100,8 +100,8 @@ class SignUpNickNameScreen extends StatelessWidget {
             Consumer(
               builder: (context, ref, child) {
                 return LoadingWidget(
-                  state: ref.watch(nicknameCheckController).hasValue &&
-                      ref.watch(maeumgagymSignUpController).hasValue,
+                  state: ref.watch(nicknameCheckController).isLoading ||
+                      ref.watch(maeumgagymSignUpController).isLoading,
                 );
               },
             ),
