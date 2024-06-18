@@ -39,7 +39,8 @@ class _HomeMainRoutineContainerState
 
   @override
   Widget build(BuildContext context) {
-    bool errState = ref.watch(homeTodayRoutineController).routineList.isEmpty;
+    bool todayRoutineIsEmpty =
+        ref.watch(homeTodayRoutineController).routineList.isEmpty;
 
     final todayRoutineList = ref.watch(homeTodayRoutineController).routineList;
 
@@ -60,7 +61,7 @@ class _HomeMainRoutineContainerState
               child: GestureDetector(
                 behavior: HitTestBehavior.opaque,
                 onTap: () async {
-                  if (!errState) {
+                  if (!todayRoutineIsEmpty) {
                     await Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -73,18 +74,20 @@ class _HomeMainRoutineContainerState
                 },
                 child: HomeMainRoutineTitle(
                   title: "오늘의 루틴",
-                  routineName: errState
+                  routineName: todayRoutineIsEmpty
                       ? null
                       : todayRoutineList[routinePageIndex].routineName!,
-                  routineIsComplete: errState
+                  routineIsComplete: todayRoutineIsEmpty
                       ? null
                       : todayRoutineList[routinePageIndex].isCompleted!,
                 ),
               ),
             ),
+
+            /// 루틴들
             Builder(
               builder: (context) {
-                if (errState) {
+                if (todayRoutineIsEmpty) {
                   return Padding(
                     padding: const EdgeInsets.only(top: 24),
                     child: PtdTextWidget.bodyLarge(
@@ -188,31 +191,41 @@ class _HomeMainRoutineContainerState
                 );
               },
             ),
-            Container(
-              width: MediaQuery.of(context).size.width - 40,
-              height: 52,
-              alignment: Alignment.center,
-              child: ListView.builder(
-                shrinkWrap: true,
-                scrollDirection: Axis.horizontal,
-                itemCount: todayRoutineList.length,
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.only(left: 8),
-                    child: Container(
-                      width: 12,
-                      height: 12,
-                      decoration: BoxDecoration(
-                        color: index == routinePageIndex
-                            ? MaeumgagymColor.blue500
-                            : MaeumgagymColor.gray100,
-                        shape: BoxShape.circle,
-                      ),
+
+            /// Page View Circles
+            Builder(
+              builder: (context) {
+                if (!todayRoutineIsEmpty) {
+                  return Container(
+                    width: MediaQuery.of(context).size.width - 40,
+                    height: 52,
+                    alignment: Alignment.center,
+                    child: ListView.builder(
+                      shrinkWrap: true,
+                      scrollDirection: Axis.horizontal,
+                      itemCount: todayRoutineList.length,
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: const EdgeInsets.only(left: 8),
+                          child: Container(
+                            width: 12,
+                            height: 12,
+                            decoration: BoxDecoration(
+                              color: index == routinePageIndex
+                                  ? MaeumgagymColor.blue500
+                                  : MaeumgagymColor.gray100,
+                              shape: BoxShape.circle,
+                            ),
+                          ),
+                        );
+                      },
                     ),
                   );
-                },
-              ),
-            ),
+                } else {
+                  return const SizedBox(height: 20);
+                }
+              },
+            )
           ],
         ),
       ),
