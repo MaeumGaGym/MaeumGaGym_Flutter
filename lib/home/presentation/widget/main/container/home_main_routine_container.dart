@@ -39,12 +39,7 @@ class _HomeMainRoutineContainerState
 
   @override
   Widget build(BuildContext context) {
-    bool errState = ref
-        .watch(homeTodayRoutineController)
-        .statusCode
-        .error
-        .toString()
-        .contains("type 'Null' is not");
+    bool errState = ref.watch(homeTodayRoutineController).routineList.isEmpty;
 
     final todayRoutineList = ref.watch(homeTodayRoutineController).routineList;
 
@@ -78,9 +73,12 @@ class _HomeMainRoutineContainerState
                 },
                 child: HomeMainRoutineTitle(
                   title: "오늘의 루틴",
-                  routineName: todayRoutineList[routinePageIndex].routineName!,
-                  routineIsComplete:
-                      todayRoutineList[routinePageIndex].isCompleted!,
+                  routineName: errState
+                      ? null
+                      : todayRoutineList[routinePageIndex].routineName!,
+                  routineIsComplete: errState
+                      ? null
+                      : todayRoutineList[routinePageIndex].isCompleted!,
                 ),
               ),
             ),
