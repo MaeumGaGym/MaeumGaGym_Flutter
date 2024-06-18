@@ -68,6 +68,7 @@ class _SelfCareTextFieldState extends State<SelfCareTextField> {
             focusNode: widget.focusNode,
             textInputAction: widget.inputAction,
             keyboardType: widget.keyboardType,
+            autofocus: false,
             maxLines: widget.maxLines,
             maxLength: widget.maxLengths,
             onTap: () {
