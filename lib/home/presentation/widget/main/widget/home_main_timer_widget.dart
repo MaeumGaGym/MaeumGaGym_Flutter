@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
-import 'package:maeum_ga_gym_flutter/home/presentation/providers/timer_state_provider.dart';
+import 'package:maeum_ga_gym_flutter/home/presentation/providers/home_timer_state_provider.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/view/home_timer_screen.dart';
 
 class HomeMainTimerWidget extends ConsumerStatefulWidget {
@@ -16,7 +16,7 @@ class HomeMainTimerWidget extends ConsumerStatefulWidget {
 class _MainTimerWidgetState extends ConsumerState<HomeMainTimerWidget> {
   @override
   Widget build(BuildContext context) {
-    final timerList = ref.watch(timersProvider);
+    final timerList = ref.watch(homeTimersProvider);
     return Column(
       children: [
         Padding(
@@ -51,7 +51,8 @@ class _MainTimerWidgetState extends ConsumerState<HomeMainTimerWidget> {
                               ),
                               const SizedBox(width: 24),
                               PtdTextWidget.titleLarge(
-                                formatDuration(timerList[index].currentTime).toString(),
+                                formatDuration(timerList[index].currentTime)
+                                    .toString(),
                                 timerList[index].timerState ==
                                         TimerState.started
                                     ? MaeumgagymColor.blue500
@@ -61,10 +62,16 @@ class _MainTimerWidgetState extends ConsumerState<HomeMainTimerWidget> {
                           ),
                           GestureDetector(
                             onTap: () {
-                              if (timerList[index].timerState == TimerState.paused || timerList[index].timerState == TimerState.initial) {
-                                ref.read(timersProvider.notifier).onStarted(timerList[index].timerId);
+                              if (timerList[index].timerState ==
+                                      TimerState.paused ||
+                                  timerList[index].timerState ==
+                                      TimerState.initial) {
+                                ref.read(homeTimersProvider.notifier).onStarted(
+                                    timerList[index].timerId, context);
                               } else {
-                                ref.read(timersProvider.notifier).onPaused(timerList[index].timerId);
+                                ref
+                                    .read(homeTimersProvider.notifier)
+                                    .onPaused(timerList[index].timerId);
                               }
                             },
                             child: Container(
@@ -150,7 +157,8 @@ class _MainTimerWidgetState extends ConsumerState<HomeMainTimerWidget> {
       formattedDuration += "00:";
     }
 
-    formattedDuration += hours == 0 && minutes == 0 ? "$seconds" : twoDigits(seconds);
+    formattedDuration +=
+        hours == 0 && minutes == 0 ? "$seconds" : twoDigits(seconds);
 
     return formattedDuration;
   }

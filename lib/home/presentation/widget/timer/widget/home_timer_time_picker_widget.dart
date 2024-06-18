@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/core/component/maeumgagym_toast_message.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/providers/home_timer_add_duration_provider.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/providers/local_timer_provider.dart';
-import 'package:maeum_ga_gym_flutter/home/presentation/providers/timer_state_provider.dart';
+import 'package:maeum_ga_gym_flutter/home/presentation/providers/home_timer_state_provider.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/widget/timer/widget/home_timer_picker_bottom_button_widget.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
@@ -31,7 +31,7 @@ class _HomeTimerTimePickerWidgetState
   @override
   Widget build(BuildContext context) {
     final homeTimerDurationState = ref.watch(homeTimerAddDurationProvider);
-    final timersNotifier = ref.watch(timersProvider.notifier);
+    final timersNotifier = ref.watch(homeTimersProvider.notifier);
     final localTimerNotifier = ref.read(localTimerController.notifier);
 
     return Scaffold(
@@ -105,8 +105,8 @@ class _HomeTimerTimePickerWidgetState
                       homeTimerDurationState.minute == 0 &&
                       homeTimerDurationState.seconds == 0)) {
                     int timerId = ref
-                        .watch(timersProvider)[
-                            ref.watch(timersProvider).length - 1]
+                        .watch(homeTimersProvider)[
+                            ref.watch(homeTimersProvider).length - 1]
                         .timerId;
 
                     await timersNotifier.addTimer(
