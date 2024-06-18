@@ -93,7 +93,7 @@ class SignUpSuccessScreen extends ConsumerWidget {
             ],
           ),
           LoadingWidget(
-            state: ref.watch(maeumgagymLoginController).statusCode.hasValue,
+            state: ref.watch(maeumgagymLoginController).statusCode.isLoading,
           ),
         ],
       ),
