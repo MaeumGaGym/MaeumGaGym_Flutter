@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:maeum_ga_gym_flutter/home/presentation/providers/timer_state_provider.dart';
+import 'package:maeum_ga_gym_flutter/home/presentation/providers/home_timer_state_provider.dart';
 
 part 'timers.freezed.dart';
 

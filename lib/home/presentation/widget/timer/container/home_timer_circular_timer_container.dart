@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
-import 'package:maeum_ga_gym_flutter/home/presentation/providers/timer_state_provider.dart';
+import 'package:maeum_ga_gym_flutter/home/presentation/providers/home_timer_state_provider.dart';
 
 class HomeTimerCircularTimerContainer extends ConsumerStatefulWidget {
   const HomeTimerCircularTimerContainer({super.key});
@@ -13,10 +13,11 @@ class HomeTimerCircularTimerContainer extends ConsumerStatefulWidget {
       _HomeTimerCircularTimerContainerState();
 }
 
-class _HomeTimerCircularTimerContainerState extends ConsumerState<HomeTimerCircularTimerContainer> {
+class _HomeTimerCircularTimerContainerState
+    extends ConsumerState<HomeTimerCircularTimerContainer> {
   @override
   Widget build(BuildContext context) {
-    final timerState = ref.watch(timersProvider);
+    final timerState = ref.watch(homeTimersProvider);
     final timerIndex = ref.watch(selectedTimerProvider);
     return Stack(
       alignment: Alignment.center,

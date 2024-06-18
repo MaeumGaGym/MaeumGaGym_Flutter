@@ -1,16 +1,22 @@
 import 'dart:async';
 import 'package:audioplayers/audioplayers.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/models/timers.dart';
+import 'package:maeum_ga_gym_flutter/home/presentation/widget/timer/widget/home_timer_alert_widget.dart';
 
 import '../../domain/model/local_timer_model.dart';
+
+late OverlayEntry? timerOverlay;
+bool timerOverlayMounted = false;
+Set<int> finishedTimers = {};
 
 enum TimerState { initial, started, paused }
 
 /// 화면에 보여지는 Timer의 index값을 관리하기 위한 provider
 final selectedTimerProvider = StateProvider<int>((ref) => 0);
 
-final timersProvider =
+final homeTimersProvider =
     StateNotifierProvider<TimersNotifier, List<Timers>>((ref) {
   return TimersNotifier();
 });
@@ -79,19 +85,40 @@ class TimersNotifier extends StateNotifier<List<Timers>> {
     _subscriptions.add(null);
   }
 
-  Future<void> delTimer({required int timerIndex}) async {
-    int delIndex = 0;
-
-    for (int i = 0; i < state.length; i++) {
-      if (state[timerIndex].timerId == state[i].timerId) {
-        delIndex = i;
-      }
-    }
-
-    state.removeAt(delIndex);
+  void setTimerOverlay(BuildContext context) {
+    timerOverlay = OverlayEntry(
+      builder: (_) => HomeTimerAlertWidget(
+        receivedContext: context,
+        finishedTimers: finishedTimers,
+      ),
+    );
   }
 
-  void onTick(int timerId) {
+  void showTimerOverlay(BuildContext context, int timerId) async {
+    finishedTimers.add(timerId);
+
+    if (timerOverlayMounted) {
+      timerOverlay?.remove();
+      timerOverlay = null;
+
+      setTimerOverlay(context);
+      Navigator.of(context).overlay!.insert(timerOverlay!);
+    } else {
+      setTimerOverlay(context);
+      Navigator.of(context).overlay!.insert(timerOverlay!);
+    }
+
+    timerOverlayMounted = true;
+  }
+
+  Future<void> removeTimerOverlay() async {
+    finishedTimers = {};
+    timerOverlayMounted = false;
+    timerOverlay?.remove();
+    timerOverlay = null;
+  }
+
+  void onTick(int timerId, BuildContext context) {
     state = state.map((timer) {
       if (timer.timerId == timerId && timer.timerState == TimerState.started) {
         if (timer.currentTime > const Duration(milliseconds: 20)) {
@@ -101,6 +128,7 @@ class TimersNotifier extends StateNotifier<List<Timers>> {
         } else {
           _audioPlayer.play(AssetSource('sounds/timer/timer_end_sound.wav'));
           _subscriptions[timerId - 1]?.cancel();
+          showTimerOverlay(context, timerId);
           return timer.copyWith(
             currentTime: timer.initialTime,
             timerState: TimerState.initial,
@@ -111,13 +139,27 @@ class TimersNotifier extends StateNotifier<List<Timers>> {
     }).toList();
   }
 
-  void onStarted(int timerId) {
+  void onStarted(int timerId, BuildContext context) {
     state = state.map((timer) {
       if (timer.timerId == timerId && timer.timerState != TimerState.started) {
         _subscriptions[timerId - 1]?.cancel();
         _subscriptions[timerId - 1] =
             Stream.periodic(const Duration(milliseconds: 20), (x) => x)
-                .listen((_) => onTick(timerId));
+                .listen((_) => onTick(timerId, context));
+        return timer.copyWith(timerState: TimerState.started);
+      }
+      return timer;
+    }).toList();
+  }
+
+  void onStartedUseSet(Set<int> timerId, BuildContext context) {
+    state = state.map((timer) {
+      if (timerId.contains(timer.timerId) &&
+          timer.timerState != TimerState.started) {
+        _subscriptions[timer.timerId - 1]?.cancel();
+        _subscriptions[timer.timerId - 1] =
+            Stream.periodic(const Duration(milliseconds: 20), (x) => x)
+                .listen((_) => onTick(timer.timerId, context));
         return timer.copyWith(timerState: TimerState.started);
       }
       return timer;
@@ -144,6 +186,18 @@ class TimersNotifier extends StateNotifier<List<Timers>> {
       }
       return timer;
     }).toList();
+  }
+
+  Future<void> delTimer({required int timerIndex}) async {
+    int delIndex = 0;
+
+    for (int i = 0; i < state.length; i++) {
+      if (state[timerIndex].timerId == state[i].timerId) {
+        delIndex = i;
+      }
+    }
+
+    state.removeAt(delIndex);
   }
 }
 

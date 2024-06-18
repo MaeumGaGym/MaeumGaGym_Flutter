@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/providers/local_timer_provider.dart';
-import 'package:maeum_ga_gym_flutter/home/presentation/providers/timer_state_provider.dart';
+import 'package:maeum_ga_gym_flutter/home/presentation/providers/home_timer_state_provider.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/widget/main/container/home_main_quotes_container.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/widget/main/container/home_main_timer_and_metronome_container.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/widget/main/container/home_main_pedometer_container.dart';
@@ -32,12 +32,13 @@ class _HomeMainScreenState extends ConsumerState<HomeMainScreen> {
     await ref.read(localTimerController.notifier).getTimers().then(
       (value) {
         ref
-            .read(timersProvider.notifier)
+            .read(homeTimersProvider.notifier)
             .initAddTimer(ref.watch(localTimerController))
             .then(
           (value) {
-            ref.read(timersProvider.notifier).onReset(ref
-                .read(timersProvider)[ref.read(timersProvider).length - 1]
+            ref.read(homeTimersProvider.notifier).onReset(ref
+                .read(
+                    homeTimersProvider)[ref.read(homeTimersProvider).length - 1]
                 .timerId);
           },
         );
@@ -95,7 +96,8 @@ class _HomeMainScreenState extends ConsumerState<HomeMainScreen> {
                         const SizedBox(height: 8),
                         GestureDetector(
                           onTap: () {
-                            launchUrl(Uri.parse("https://info-dsm.notion.site/2a0474e87f754fbe8f53d58f2003ccb2?pvs=4"));
+                            launchUrl(Uri.parse(
+                                "https://info-dsm.notion.site/2a0474e87f754fbe8f53d58f2003ccb2?pvs=4"));
                           },
                           child: PtdTextWidget.labelLarge(
                             "개인정보 처리방침 보기",
