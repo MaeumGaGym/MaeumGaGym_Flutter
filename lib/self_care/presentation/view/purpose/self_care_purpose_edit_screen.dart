@@ -10,29 +10,25 @@ class SelfCarePurposeEditScreen extends ConsumerStatefulWidget {
   const SelfCarePurposeEditScreen({super.key});
 
   @override
-  ConsumerState<SelfCarePurposeEditScreen> createState() => _SelfCarePurposeEditScreenState();
+  ConsumerState<SelfCarePurposeEditScreen> createState() =>
+      _SelfCarePurposeEditScreenState();
 }
 
-class _SelfCarePurposeEditScreenState extends ConsumerState<SelfCarePurposeEditScreen> {
+class _SelfCarePurposeEditScreenState
+    extends ConsumerState<SelfCarePurposeEditScreen> {
   late TextEditingController titleController;
-  late TextEditingController startDateController;
-  late TextEditingController endDateController;
   late TextEditingController contentController;
 
   @override
   void initState() {
     super.initState();
     titleController = TextEditingController();
-    startDateController = TextEditingController();
-    endDateController = TextEditingController();
     contentController = TextEditingController();
   }
 
   @override
   void dispose() {
     titleController.dispose();
-    startDateController.dispose();
-    endDateController.dispose();
     contentController.dispose();
     super.dispose();
   }
@@ -54,8 +50,6 @@ class _SelfCarePurposeEditScreenState extends ConsumerState<SelfCarePurposeEditS
               children: [
                 SelfCarePurposeTextFieldListWidget(
                   titleController: titleController,
-                  startDateController: startDateController,
-                  endDateController: endDateController,
                   contentController: contentController,
                 ),
                 SizedBox(height: MediaQuery.of(context).viewInsets.bottom),
@@ -69,7 +63,7 @@ class _SelfCarePurposeEditScreenState extends ConsumerState<SelfCarePurposeEditS
         child: Padding(
           padding: EdgeInsets.only(
             bottom:
-            ref.watch(selfCareTextFieldProvider.notifier).state ? 0 : 20,
+                ref.watch(selfCareTextFieldProvider.notifier).state ? 0 : 20,
 
             /// textfield가 활성화 되면 padding 0, 비활성화 상태라면 padding 20
           ),

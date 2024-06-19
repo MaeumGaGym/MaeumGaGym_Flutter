@@ -8,6 +8,8 @@ import 'package:maeum_ga_gym_flutter/self_care/presentation/view/purpose/self_ca
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/self_care_default_manage_item_widget.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
+import '../../provider/purpose/self_care_purpose_calender_provider.dart';
+
 class SelfCarePurposeManageBottomSheet extends ConsumerStatefulWidget {
   final int purposeId;
   final bool inDetail;
@@ -78,13 +80,25 @@ class _SelfCarePurposeManageBottomSheetState
             children: [
               GestureDetector(
                 behavior: HitTestBehavior.translucent,
-                onTap: () {
+                onTap: () async {
                   Navigator.of(context).pop();
-                  Navigator.of(context).push(
+                  await Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (context) => const SelfCarePurposeEditScreen(),
                     ),
                   );
+
+                  if (ref.read(selfCarePurposeStartCalenderProvider).isActive) {
+                    ref
+                        .read(selfCarePurposeStartCalenderProvider.notifier)
+                        .overlayRemove();
+                  }
+
+                  if (ref.read(selfCarePurposeEndCalenderProvider).isActive) {
+                    ref
+                        .read(selfCarePurposeEndCalenderProvider.notifier)
+                        .overlayRemove();
+                  }
                 },
                 child: const SelfCareDefaultManageItemWidget(
                   title: "수정",

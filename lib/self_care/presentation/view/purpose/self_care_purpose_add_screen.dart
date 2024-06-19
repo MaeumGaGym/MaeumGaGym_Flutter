@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/purpose/self_care_purpose_calender_provider.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/self_care_text_field_provider.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/purpose/self_care_purpose_text_field_list_widget.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/self_care_animated_button.dart';
@@ -17,24 +18,18 @@ class SelfCarePurposeAddScreen extends ConsumerStatefulWidget {
 class _SelfCarePurposeAddScreenState
     extends ConsumerState<SelfCarePurposeAddScreen> {
   late TextEditingController titleController;
-  late TextEditingController startDateController;
-  late TextEditingController endDateController;
   late TextEditingController contentController;
 
   @override
   void initState() {
     super.initState();
     titleController = TextEditingController();
-    startDateController = TextEditingController();
-    endDateController = TextEditingController();
     contentController = TextEditingController();
   }
 
   @override
   void dispose() {
     titleController.dispose();
-    startDateController.dispose();
-    endDateController.dispose();
     contentController.dispose();
     super.dispose();
   }
@@ -47,21 +42,24 @@ class _SelfCarePurposeAddScreenState
         iconPath: "assets/image/core_icon/left_arrow_icon.svg",
         title: "목표 추가",
       ),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SelfCarePurposeTextFieldListWidget(
-                  titleController: titleController,
-                  startDateController: startDateController,
-                  endDateController: endDateController,
-                  contentController: contentController,
-                ),
-                SizedBox(height: MediaQuery.of(context).viewInsets.bottom),
-              ],
+      body: GestureDetector(
+        onTap: () => ref
+            .read(selfCarePurposeStartCalenderProvider.notifier)
+            .overlayRemove(),
+        child: SafeArea(
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SelfCarePurposeTextFieldListWidget(
+                    titleController: titleController,
+                    contentController: contentController,
+                  ),
+                  SizedBox(height: MediaQuery.of(context).viewInsets.bottom),
+                ],
+              ),
             ),
           ),
         ),
