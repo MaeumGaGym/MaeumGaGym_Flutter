@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
-import 'package:maeum_ga_gym_flutter/empty_view/empty_view_screen.dart';
+import 'package:maeum_ga_gym_flutter/empty_view/view/empty_view_screen.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/view/home_main_screen.dart';
 import 'package:maeum_ga_gym_flutter/page_manager/presentation/view/animated_indexed_stack_screen.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/view/self_care_main_screen.dart';
@@ -21,8 +21,8 @@ class PageManagerScreen extends ConsumerWidget {
     final List<Widget> screenData = [
       const HomeMainScreen(),
       const PoseMainScreen(),
-      const EmptyViewScreen(),
-      const EmptyViewScreen(),
+      const EmptyViewScreen(isTap: true),
+      const EmptyViewScreen(isTap: true),
       const SelfCareMainScreen(),
     ];
 

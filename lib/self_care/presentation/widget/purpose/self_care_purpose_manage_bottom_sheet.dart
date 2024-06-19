@@ -8,6 +8,8 @@ import 'package:maeum_ga_gym_flutter/self_care/presentation/view/purpose/self_ca
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/self_care_default_manage_item_widget.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
+import '../../provider/purpose/self_care_purpose_calender_provider.dart';
+
 class SelfCarePurposeManageBottomSheet extends ConsumerStatefulWidget {
   final int purposeId;
   final bool inDetail;
@@ -38,6 +40,11 @@ class _SelfCarePurposeManageBottomSheetState
         ref.read(selfCarePurposeMyPurposesProvider.notifier);
     final deletePurposesNotifier =
         ref.read(selfCarePurposeDeletePurposesProvider.notifier);
+    final purposeStartCalenderNotifier =
+        ref.read(selfCarePurposeStartCalenderProvider.notifier);
+    final purposeEndCalenderNotifier =
+        ref.read(selfCarePurposeEndCalenderProvider.notifier);
+
     ref.listen(selfCarePurposeDeletePurposesProvider.select((value) => value),
         (previous, next) {
       if (next == const AsyncData<int?>(204)) {
@@ -78,13 +85,26 @@ class _SelfCarePurposeManageBottomSheetState
             children: [
               GestureDetector(
                 behavior: HitTestBehavior.translucent,
-                onTap: () {
+                onTap: () async {
                   Navigator.of(context).pop();
-                  Navigator.of(context).push(
+                  await Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context) => const SelfCarePurposeEditScreen(),
+                      builder: (context) => SelfCarePurposeEditScreen(
+                        purposeId: widget.purposeId,
+                      ),
                     ),
                   );
+
+                  purposeStartCalenderNotifier.calenderDateReset();
+                  purposeEndCalenderNotifier.calenderDateReset();
+
+                  if (ref.read(selfCarePurposeStartCalenderProvider).isActive) {
+                    purposeStartCalenderNotifier.overlayRemove();
+                  }
+
+                  if (ref.read(selfCarePurposeEndCalenderProvider).isActive) {
+                    purposeEndCalenderNotifier.overlayRemove();
+                  }
                 },
                 child: const SelfCareDefaultManageItemWidget(
                   title: "수정",

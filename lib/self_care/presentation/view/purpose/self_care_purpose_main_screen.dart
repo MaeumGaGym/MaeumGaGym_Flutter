@@ -9,6 +9,8 @@ import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/purpose/self_
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/self_care_default_app_bar.dart';
 import 'package:maeum_ga_gym_flutter/core/component/routine/presentation/widget/routine_default_title_widget.dart';
 
+import '../../provider/purpose/self_care_purpose_calender_provider.dart';
+
 class SelfCarePurposeMainScreen extends ConsumerStatefulWidget {
   const SelfCarePurposeMainScreen({super.key});
 
@@ -61,6 +63,11 @@ class _SelfCarePurposeMainScreenState
   @override
   Widget build(BuildContext context) {
     final myPurposeState = ref.watch(selfCarePurposeMyPurposesProvider);
+    final purposeStartCalenderNotifier =
+        ref.read(selfCarePurposeStartCalenderProvider.notifier);
+    final purposeEndCalenderNotifier =
+        ref.read(selfCarePurposeEndCalenderProvider.notifier);
+
     return Scaffold(
       backgroundColor: MaeumgagymColor.white,
       appBar: const SelfCareDefaultAppBar(
@@ -120,11 +127,23 @@ class _SelfCarePurposeMainScreenState
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: GestureDetector(
-        onTap: () => Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (context) => const SelfCarePurposeAddScreen(),
-          ),
-        ),
+        onTap: () async {
+          await Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => const SelfCarePurposeAddScreen(),
+            ),
+          );
+          purposeStartCalenderNotifier.calenderDateReset();
+          purposeEndCalenderNotifier.calenderDateReset();
+
+          if (ref.read(selfCarePurposeStartCalenderProvider).isActive) {
+            purposeStartCalenderNotifier.overlayRemove();
+          }
+
+          if (ref.read(selfCarePurposeEndCalenderProvider).isActive) {
+            purposeEndCalenderNotifier.overlayRemove();
+          }
+        },
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
           child: SelfCareMyRoutineButton(
