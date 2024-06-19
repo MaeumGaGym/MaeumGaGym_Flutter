@@ -37,30 +37,27 @@ class _SelfCarePurposeManageBottomSheetState
   @override
   Widget build(BuildContext context) {
     final myPurposeNotifier =
-    ref.read(selfCarePurposeMyPurposesProvider.notifier);
+        ref.read(selfCarePurposeMyPurposesProvider.notifier);
     final deletePurposesNotifier =
-    ref.read(selfCarePurposeDeletePurposesProvider.notifier);
+        ref.read(selfCarePurposeDeletePurposesProvider.notifier);
     final purposeStartCalenderNotifier =
-    ref.read(selfCarePurposeStartCalenderProvider.notifier);
+        ref.read(selfCarePurposeStartCalenderProvider.notifier);
     final purposeEndCalenderNotifier =
-    ref.read(selfCarePurposeEndCalenderProvider.notifier);
+        ref.read(selfCarePurposeEndCalenderProvider.notifier);
 
     ref.listen(selfCarePurposeDeletePurposesProvider.select((value) => value),
-            (previous, next) {
-          if (next == const AsyncData<int?>(204)) {
-            myPurposeNotifier.getMyPurposeInit();
-            if (widget.inDetail) {
-              Navigator.of(context).pop();
-            }
-            Navigator.of(context).pop();
-            _showToast(message: "목표를 삭제했어요.");
-          }
-        });
+        (previous, next) {
+      if (next == const AsyncData<int?>(204)) {
+        myPurposeNotifier.getMyPurposeInit();
+        if (widget.inDetail) {
+          Navigator.of(context).pop();
+        }
+        Navigator.of(context).pop();
+        _showToast(message: "목표를 삭제했어요.");
+      }
+    });
     return Container(
-      width: MediaQuery
-          .of(context)
-          .size
-          .width,
+      width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
         color: MaeumgagymColor.white,
         borderRadius: const BorderRadius.only(
@@ -92,22 +89,20 @@ class _SelfCarePurposeManageBottomSheetState
                   Navigator.of(context).pop();
                   await Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context) => const SelfCarePurposeEditScreen(),
+                      builder: (context) => SelfCarePurposeEditScreen(
+                        purposeId: widget.purposeId,
+                      ),
                     ),
                   );
 
                   purposeStartCalenderNotifier.calenderDateReset();
                   purposeEndCalenderNotifier.calenderDateReset();
 
-                  if (ref
-                      .read(selfCarePurposeStartCalenderProvider)
-                      .isActive) {
+                  if (ref.read(selfCarePurposeStartCalenderProvider).isActive) {
                     purposeStartCalenderNotifier.overlayRemove();
                   }
 
-                  if (ref
-                      .read(selfCarePurposeEndCalenderProvider)
-                      .isActive) {
+                  if (ref.read(selfCarePurposeEndCalenderProvider).isActive) {
                     purposeEndCalenderNotifier.overlayRemove();
                   }
                 },
