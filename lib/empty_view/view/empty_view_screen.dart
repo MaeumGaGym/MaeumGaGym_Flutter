@@ -2,14 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
+import 'package:maeum_ga_gym_flutter/empty_view/widget/empty_view_app_bar.dart';
 
 class EmptyViewScreen extends StatelessWidget {
-  const EmptyViewScreen({super.key});
+  final bool isTap;
+
+  const EmptyViewScreen({
+    super.key,
+    this.isTap = false,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: MaeumgagymColor.white,
+      appBar: !isTap ? const EmptyViewAppBar() : null,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
