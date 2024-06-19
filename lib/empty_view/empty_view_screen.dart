@@ -18,7 +18,7 @@ class EmptyViewScreen extends StatelessWidget {
               image: 'assets/image/core_icon/empty_view_icon.svg',
             ),
             const SizedBox(height: 24),
-            PtdTextWidget.titleMedium('아직 개발중 이예요', MaeumgagymColor.black),
+            PtdTextWidget.titleMedium('아직 개발중이에요', MaeumgagymColor.black),
             const SizedBox(height: 12),
             PtdTextWidget.bodyMedium('현재 탭은 개발중입니다.', MaeumgagymColor.gray500),
             PtdTextWidget.bodyMedium(
