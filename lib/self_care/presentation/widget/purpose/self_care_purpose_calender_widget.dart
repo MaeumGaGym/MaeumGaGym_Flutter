@@ -50,6 +50,8 @@ class _SelfCarePurposeCalenderWidgetState
       padding: EdgeInsets.zero,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 7,
+        crossAxisSpacing: 13,
+        mainAxisSpacing: 6,
       ),
       itemCount: daysInMonth + weekdayOfFirstDay,
       itemBuilder: (context, index) {
@@ -63,27 +65,63 @@ class _SelfCarePurposeCalenderWidgetState
           );
           String dayText = date.day.toString();
           bool isSelectDay = date == widget.selectedDate;
+          bool isToday = date ==
+              DateTime(
+                DateTime.now().year,
+                DateTime.now().month,
+                DateTime.now().day,
+              );
 
           return GestureDetector(
             onTap: () {
               widget.notifier.saveDate(date: date);
               widget.notifier.overlayRemove();
             },
-            child: Container(
-              width: 40,
-              height: 40,
-              decoration: isSelectDay
-                  ? const BoxDecoration(
+            child: Builder(
+              builder: (context) {
+                if (isSelectDay) {
+                  return Container(
+                    width: 40,
+                    height: 40,
+                    decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: Colors.blue,
-                    )
-                  : const BoxDecoration(),
-              child: Center(
-                child: PtdTextWidget.bodyLarge(
-                  dayText,
-                  isSelectDay ? MaeumgagymColor.white : MaeumgagymColor.black,
-                ),
-              ),
+                      color: MaeumgagymColor.blue50,
+                    ),
+                    child: Center(
+                      child: PtdTextWidget.bodyLarge(
+                        dayText,
+                        MaeumgagymColor.blue600,
+                      ),
+                    ),
+                  );
+                } else if (isToday) {
+                  return Container(
+                    width: 40,
+                    height: 40,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: MaeumgagymColor.blue500,
+                    ),
+                    child: Center(
+                      child: PtdTextWidget.bodyLarge(
+                        dayText,
+                        MaeumgagymColor.white,
+                      ),
+                    ),
+                  );
+                } else {
+                  return SizedBox(
+                    width: 40,
+                    height: 40,
+                    child: Center(
+                      child: PtdTextWidget.bodyLarge(
+                        dayText,
+                        MaeumgagymColor.black,
+                      ),
+                    ),
+                  );
+                }
+              },
             ),
           );
         }
@@ -212,7 +250,7 @@ class _SelfCarePurposeCalenderWidgetState
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 8.0),
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         _buildWeekDay('Sun'),
                         _buildWeekDay('Mon'),
