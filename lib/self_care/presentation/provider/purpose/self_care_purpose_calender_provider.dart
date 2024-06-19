@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/purpose/self_care_purpose_calender_widget.dart';
 
 final selfCarePurposeStartCalenderProvider =
@@ -50,6 +51,20 @@ class SelfCarePurposeCalenderStateNotifier
 
   void saveDate({required DateTime date}) {
     state = state.copyWith(date: date);
+  }
+
+  void calenderDateReset() {
+    state = state.copyWith(
+      date: DateTime(
+        DateTime.now().year,
+        DateTime.now().month,
+        DateTime.now().day,
+      ),
+    );
+  }
+
+  String dateTimeFormat() {
+    return DateFormat("yyyy-MM-dd").format(state.date);
   }
 }
 
