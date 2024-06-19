@@ -63,6 +63,11 @@ class _SelfCarePurposeMainScreenState
   @override
   Widget build(BuildContext context) {
     final myPurposeState = ref.watch(selfCarePurposeMyPurposesProvider);
+    final purposeStartCalenderNotifier =
+        ref.read(selfCarePurposeStartCalenderProvider.notifier);
+    final purposeEndCalenderNotifier =
+        ref.read(selfCarePurposeEndCalenderProvider.notifier);
+
     return Scaffold(
       backgroundColor: MaeumgagymColor.white,
       appBar: const SelfCareDefaultAppBar(
@@ -128,17 +133,15 @@ class _SelfCarePurposeMainScreenState
               builder: (context) => const SelfCarePurposeAddScreen(),
             ),
           );
+          purposeStartCalenderNotifier.calenderDateReset();
+          purposeEndCalenderNotifier.calenderDateReset();
 
           if (ref.read(selfCarePurposeStartCalenderProvider).isActive) {
-            ref
-                .read(selfCarePurposeStartCalenderProvider.notifier)
-                .overlayRemove();
+            purposeStartCalenderNotifier.overlayRemove();
           }
 
           if (ref.read(selfCarePurposeEndCalenderProvider).isActive) {
-            ref
-                .read(selfCarePurposeEndCalenderProvider.notifier)
-                .overlayRemove();
+            purposeEndCalenderNotifier.overlayRemove();
           }
         },
         child: Padding(
