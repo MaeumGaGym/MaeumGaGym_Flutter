@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
+import 'package:maeum_ga_gym_flutter/empty_view/view/empty_view_screen.dart';
 
 class HomeMainAppBar extends StatelessWidget implements PreferredSizeWidget {
   const HomeMainAppBar({super.key});
@@ -29,7 +30,13 @@ class HomeMainAppBar extends StatelessWidget implements PreferredSizeWidget {
             ],
           ),
           GestureDetector(
-            onTap: () {},
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => const EmptyViewScreen(isTap: false),
+                ),
+              );
+            },
             child: SvgPicture.asset(
               'assets/image/home_icon/setting_icon.svg',
               width: 28,
