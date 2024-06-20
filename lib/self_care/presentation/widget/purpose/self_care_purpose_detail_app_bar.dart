@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image/images.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/purpose/self_care_purpose_manage_bottom_sheet.dart';
 
 class SelfCarePurposeDetailAppBar extends StatelessWidget
@@ -31,11 +33,9 @@ class SelfCarePurposeDetailAppBar extends StatelessWidget
                     onTap: () => Navigator.pop(context),
                     child: Container(
                       alignment: Alignment.center,
-                      child: SvgPicture.asset(
-                        "assets/image/core_icon/left_arrow_icon.svg",
+                      child: const ImageWidget(
                         width: 28,
-                        height: 28,
-                        color: MaeumgagymColor.black,
+                        image: Images.arrowLeft,
                       ),
                     ),
                   ),
@@ -46,15 +46,14 @@ class SelfCarePurposeDetailAppBar extends StatelessWidget
                   showModalBottomSheet(
                     context: context,
                     builder: (context) {
-                      return SelfCarePurposeManageBottomSheet(purposeId: purposeId, inDetail: true);
+                      return SelfCarePurposeManageBottomSheet(
+                          purposeId: purposeId, inDetail: true);
                     },
                   );
                 },
-                child: SvgPicture.asset(
-                  "assets/image/core_icon/dots_vertical_icon.svg",
+                child: const ImageWidget(
                   width: 28,
-                  height: 28,
-                  color: MaeumgagymColor.black,
+                  image: Images.iconsDotsVertical,
                 ),
               ),
             ],

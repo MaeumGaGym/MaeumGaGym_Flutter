@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image/images.dart';
 import 'package:maeum_ga_gym_flutter/core/component/maeumgagym_toast_message.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/purpose/self_care_purpose_delete_purposes_provider.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/purpose/self_care_purpose_my_purposes_provider.dart';
@@ -108,7 +109,7 @@ class _SelfCarePurposeManageBottomSheetState
                 },
                 child: const SelfCareDefaultManageItemWidget(
                   title: "수정",
-                  iconPath: "assets/image/self_care_icon/edit_pencil_icon.svg",
+                  iconPath: Images.editPencil,
                 ),
               ),
               GestureDetector(
@@ -119,7 +120,7 @@ class _SelfCarePurposeManageBottomSheetState
                 },
                 child: const SelfCareDefaultManageItemWidget(
                   title: "삭제",
-                  iconPath: "assets/image/self_care_icon/edit_trash_icon.svg",
+                  iconPath: Images.editTrash,
                 ),
               ),
             ],

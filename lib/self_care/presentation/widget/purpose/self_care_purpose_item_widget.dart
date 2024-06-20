@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image/images.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/purpose/self_care_purpose_manage_bottom_sheet.dart';
 
@@ -52,12 +54,15 @@ class SelfCarePurposeItemWidget extends StatelessWidget {
                 showModalBottomSheet(
                   context: context,
                   builder: (context) {
-                    return SelfCarePurposeManageBottomSheet(purposeId: purposeId, inDetail: false);
+                    return SelfCarePurposeManageBottomSheet(
+                        purposeId: purposeId, inDetail: false);
                   },
                 );
               },
-              child: SvgPicture.asset(
-                "assets/image/core_icon/dots_vertical_icon.svg",
+              child: ImageWidget(
+                width: 24,
+                height: 24,
+                image: Images.iconsDotsVertical,
                 color: MaeumgagymColor.gray400,
               ),
             ),

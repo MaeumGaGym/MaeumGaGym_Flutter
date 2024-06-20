@@ -34,106 +34,113 @@ class _HomeTimerTimePickerWidgetState
     final timersNotifier = ref.watch(homeTimersProvider.notifier);
     final localTimerNotifier = ref.read(localTimerController.notifier);
 
-    return Scaffold(
-      backgroundColor: Colors.transparent,
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // AppBar
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 24),
-              child: PtdTextWidget.titleMedium(
-                '타이머 추가',
-                MaeumgagymColor.black,
-              ),
-            ),
-
-            // Body
-            SizedBox(
-              width: MediaQuery.of(context).size.width,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const HomeTimerPickerWidget(
-                    listLength: 24,
-                    type: TimerType.hour,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: PtdTextWidget.timerPickerNumber(
-                        ':', MaeumgagymColor.black),
-                  ),
-                  const HomeTimerPickerWidget(
-                    listLength: 60,
-                    type: TimerType.minute,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: PtdTextWidget.timerPickerNumber(
-                        ':', MaeumgagymColor.black),
-                  ),
-                  const HomeTimerPickerWidget(
-                    listLength: 60,
-                    type: TimerType.seconds,
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
+    return Container(
+      decoration: BoxDecoration(
+        color: MaeumgagymColor.white,
+        borderRadius: BorderRadius.circular(20),
       ),
-      bottomSheet: SizedBox(
-        width: MediaQuery.of(context).size.width,
-        height: 74,
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(20, 0, 20, 10),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        body: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              GestureDetector(
-                behavior: HitTestBehavior.translucent,
-                onTap: () => Navigator.pop(context),
-                child: const HomeTimerPickerBottomButtonWidget(title: '취소'),
+              // AppBar
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 24),
+                child: PtdTextWidget.titleMedium(
+                  '타이머 추가',
+                  MaeumgagymColor.black,
+                ),
               ),
-              Container(width: 1, height: 24, color: MaeumgagymColor.gray100),
-              GestureDetector(
-                behavior: HitTestBehavior.translucent,
-                onTap: () async {
-                  if (!(homeTimerDurationState.hour == 0 &&
-                      homeTimerDurationState.minute == 0 &&
-                      homeTimerDurationState.seconds == 0)) {
-                    int timerId = ref
-                        .watch(homeTimersProvider)[
-                            ref.watch(homeTimersProvider).length - 1]
-                        .timerId;
 
-                    await timersNotifier.addTimer(
-                      timerId: timerId + 1,
-                      hours: homeTimerDurationState.hour,
-                      minutes: homeTimerDurationState.minute,
-                      seconds: homeTimerDurationState.seconds,
-                    );
-
-                    await localTimerNotifier.addTimers(
-                      timerId: timerId + 1,
-                      hours: homeTimerDurationState.hour,
-                      minutes: homeTimerDurationState.minute,
-                      seconds: homeTimerDurationState.seconds,
-                    );
-
-                    timersNotifier.onReset(timerId + 1);
-                  } else {
-                    _showToast(message: "0초인 타이머는 만들 수 없어요.");
-                  }
-                  if (context.mounted) {
-                    Navigator.pop(context);
-                  }
-                },
-                child: const HomeTimerPickerBottomButtonWidget(title: '확인'),
+              // Body
+              SizedBox(
+                width: MediaQuery.of(context).size.width,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const HomeTimerPickerWidget(
+                      listLength: 24,
+                      type: TimerType.hour,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: PtdTextWidget.timerPickerNumber(
+                          ':', MaeumgagymColor.black),
+                    ),
+                    const HomeTimerPickerWidget(
+                      listLength: 60,
+                      type: TimerType.minute,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: PtdTextWidget.timerPickerNumber(
+                          ':', MaeumgagymColor.black),
+                    ),
+                    const HomeTimerPickerWidget(
+                      listLength: 60,
+                      type: TimerType.seconds,
+                    ),
+                  ],
+                ),
               ),
             ],
+          ),
+        ),
+        bottomSheet: Container(
+          width: MediaQuery.of(context).size.width,
+          height: 74,
+          color: MaeumgagymColor.white,
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(20, 0, 20, 10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                GestureDetector(
+                  behavior: HitTestBehavior.translucent,
+                  onTap: () => Navigator.pop(context),
+                  child: const HomeTimerPickerBottomButtonWidget(title: '취소'),
+                ),
+                Container(width: 1, height: 24, color: MaeumgagymColor.gray100),
+                GestureDetector(
+                  behavior: HitTestBehavior.translucent,
+                  onTap: () async {
+                    if (!(homeTimerDurationState.hour == 0 &&
+                        homeTimerDurationState.minute == 0 &&
+                        homeTimerDurationState.seconds == 0)) {
+                      int timerId = ref
+                          .watch(homeTimersProvider)[
+                              ref.watch(homeTimersProvider).length - 1]
+                          .timerId;
+
+                      await timersNotifier.addTimer(
+                        timerId: timerId + 1,
+                        hours: homeTimerDurationState.hour,
+                        minutes: homeTimerDurationState.minute,
+                        seconds: homeTimerDurationState.seconds,
+                      );
+
+                      await localTimerNotifier.addTimers(
+                        timerId: timerId + 1,
+                        hours: homeTimerDurationState.hour,
+                        minutes: homeTimerDurationState.minute,
+                        seconds: homeTimerDurationState.seconds,
+                      );
+
+                      timersNotifier.onReset(timerId + 1);
+                    } else {
+                      _showToast(message: "0초인 타이머는 만들 수 없어요.");
+                    }
+                    if (context.mounted) {
+                      Navigator.pop(context);
+                    }
+                  },
+                  child: const HomeTimerPickerBottomButtonWidget(title: '확인'),
+                ),
+              ],
+            ),
           ),
         ),
       ),

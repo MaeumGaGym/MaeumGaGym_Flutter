@@ -1,6 +1,7 @@
 /// Package
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image/images.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
 import 'package:maeum_ga_gym_flutter/core/component/pose/domain/model/pose_data_model.dart';
 import 'package:maeum_ga_gym_flutter/pose/presentation/view/pose_add_routine_screen.dart';
 
@@ -35,8 +36,8 @@ class PoseDetailAppBar extends StatelessWidget implements PreferredSizeWidget {
             /// POP 버튼
             GestureDetector(
               onTap: () => Navigator.pop(context),
-              child: SvgPicture.asset(
-                'assets/image/core_icon/left_arrow_icon.svg',
+              child: const ImageWidget(
+                image: Images.arrowLeft,
                 width: 28,
                 height: 28,
               ),

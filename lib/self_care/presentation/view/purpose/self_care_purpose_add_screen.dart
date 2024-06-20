@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image/images.dart';
 import 'package:maeum_ga_gym_flutter/core/component/maeumgagym_toast_message.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/purpose/self_care_purpose_calender_provider.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/purpose/self_care_purpose_create_purposes_provider.dart';
@@ -61,7 +62,7 @@ class _SelfCarePurposeAddScreenState
     return Scaffold(
       backgroundColor: MaeumgagymColor.white,
       appBar: const SelfCareDefaultAppBar(
-        iconPath: "assets/image/core_icon/left_arrow_icon.svg",
+        iconPath: Images.arrowLeft,
         title: "목표 추가",
       ),
       body: GestureDetector(

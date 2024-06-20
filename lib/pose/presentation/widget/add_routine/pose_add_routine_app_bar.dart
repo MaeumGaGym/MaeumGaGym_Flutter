@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image/images.dart';
 import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
 
 class PoseAddRoutineAppBar extends StatelessWidget
@@ -20,12 +21,10 @@ class PoseAddRoutineAppBar extends StatelessWidget
             children: [
               GestureDetector(
                 onTap: () => Navigator.pop(context),
-                child: ImageWidget(
-                  imageType: ImageType.svg,
-                  image: "assets/image/core_icon/left_arrow_icon.svg",
+                child: const ImageWidget(
+                  image: Images.arrowLeft,
                   imageWidth: 28,
                   imageHeight: 28,
-                  color: MaeumgagymColor.black,
                 ),
               ),
             ],

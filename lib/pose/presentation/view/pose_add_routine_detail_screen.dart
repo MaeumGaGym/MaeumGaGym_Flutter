@@ -136,6 +136,9 @@ class _PoseAddRoutineDetailScreenState
         padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
           color: MaeumgagymColor.white,
+          border: Border(
+            top: BorderSide(width: 1, color: MaeumgagymColor.gray50),
+          ),
         ),
         child: SafeArea(
           child: Row(
@@ -242,7 +245,9 @@ class _PoseAddRoutineDetailScreenState
                           borderRadius: BorderRadius.circular(8),
                         ),
                         child: PtdTextWidget.labelLarge(
-                            "완료", MaeumgagymColor.white),
+                          "완료",
+                          MaeumgagymColor.white,
+                        ),
                       ),
                     );
                   }

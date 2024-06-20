@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image/images.dart';
 import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/purpose/self_care_purpose_calender_provider.dart';
@@ -172,17 +173,14 @@ class _SelfCarePurposeCalenderWidgetState
                             ),
                             const SizedBox(width: 8),
                             ImageWidget(
-                              image:
-                                  "assets/image/core_icon/right_arrow_ios_icon.png",
-                              imageType: ImageType.png,
-                              imageWidth: 7,
-                              imageHeight: 11,
+                              image: Images.chevronRight,
+                              height: 24,
                               color: MaeumgagymColor.blue500,
                             ),
                           ],
                         ),
                         SizedBox(
-                          width: 51,
+                          width: 60,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -204,12 +202,10 @@ class _SelfCarePurposeCalenderWidgetState
                                     _pageController.jumpToPage(11);
                                   }
                                 },
-                                child: const ImageWidget(
-                                  image:
-                                      "assets/image/core_icon/left_arrow_ios_icon.png",
-                                  imageType: ImageType.png,
-                                  imageWidth: 10,
-                                  imageHeight: 18,
+                                child: ImageWidget(
+                                  image: Images.chevronLeft,
+                                  imageHeight: 25,
+                                  color: MaeumgagymColor.blue500,
                                 ),
                               ),
                               GestureDetector(
@@ -231,12 +227,10 @@ class _SelfCarePurposeCalenderWidgetState
                                     _pageController.jumpToPage(0);
                                   }
                                 },
-                                child: const ImageWidget(
-                                  image:
-                                      "assets/image/core_icon/right_arrow_ios_icon.png",
-                                  imageType: ImageType.png,
-                                  imageWidth: 10,
-                                  imageHeight: 18,
+                                child: ImageWidget(
+                                  image: Images.chevronRight,
+                                  imageHeight: 25,
+                                  color: MaeumgagymColor.blue500,
                                 ),
                               ),
                             ],

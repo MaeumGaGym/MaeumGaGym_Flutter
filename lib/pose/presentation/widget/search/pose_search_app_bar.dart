@@ -38,6 +38,7 @@ class _PoseSearchAppbarState extends ConsumerState<PoseSearchAppbar> {
     return AppBar(
       automaticallyImplyLeading: false,
       centerTitle: true,
+      backgroundColor: MaeumgagymColor.white,
 
       /// AppBar
       title: Padding(

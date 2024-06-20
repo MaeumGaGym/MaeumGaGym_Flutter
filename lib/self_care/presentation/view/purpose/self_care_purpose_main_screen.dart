@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image/images.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/purpose/self_care_purpose_my_purposes_provider.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/view/purpose/self_care_purpose_add_screen.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/view/purpose/self_care_purpose_detail_screen.dart';
@@ -71,7 +72,7 @@ class _SelfCarePurposeMainScreenState
     return Scaffold(
       backgroundColor: MaeumgagymColor.white,
       appBar: const SelfCareDefaultAppBar(
-        iconPath: "assets/image/core_icon/left_arrow_icon.svg",
+        iconPath: Images.arrowLeft,
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -151,7 +152,7 @@ class _SelfCarePurposeMainScreenState
             height: 58,
             imageWidth: 24,
             imageHeight: 24,
-            imagePath: "assets/image/self_care_icon/add_icon.svg",
+            imagePath: Images.editAdd,
             imageColor: MaeumgagymColor.white,
             title: "목표 추가하기",
             textColor: MaeumgagymColor.white,

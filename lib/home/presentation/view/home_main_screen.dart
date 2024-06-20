@@ -49,6 +49,7 @@ class _HomeMainScreenState extends ConsumerState<HomeMainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: MaeumgagymColor.blue50,
       appBar: const HomeMainAppBar(),
       body: SingleChildScrollView(
         child: Container(
@@ -90,7 +91,8 @@ class _HomeMainScreenState extends ConsumerState<HomeMainScreen> {
                         PtdTextWidget.labelSmall(
                           "©2023 마음가짐",
                           MaeumgagymColor.gray400,
-                          null, // 값이 없으면 null로 해줘야합니다. nullable하게 변수 선언해줬다고 해도
+                          null,
+                          // 값이 없으면 null로 해줘야합니다. nullable하게 변수 선언해줬다고 해도
                           null,
                         ),
                         const SizedBox(height: 8),

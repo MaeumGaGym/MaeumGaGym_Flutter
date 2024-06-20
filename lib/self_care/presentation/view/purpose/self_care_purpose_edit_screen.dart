@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image/images.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/purpose/self_care_purpose_edit_purposes_provider.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/purpose/self_care_purpose_my_purposes_provider.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/self_care_text_field_provider.dart';
@@ -66,7 +67,7 @@ class _SelfCarePurposeEditScreenState
     return Scaffold(
       backgroundColor: MaeumgagymColor.white,
       appBar: const SelfCareDefaultAppBar(
-        iconPath: "assets/image/core_icon/left_arrow_icon.svg",
+        iconPath: Images.arrowLeft,
         title: "목표 수정",
       ),
       body: SafeArea(
