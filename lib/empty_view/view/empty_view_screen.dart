@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image/images.dart';
 import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
 import 'package:maeum_ga_gym_flutter/empty_view/widget/empty_view_app_bar.dart';
@@ -22,8 +23,9 @@ class EmptyViewScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const ImageWidget(
-              imageType: ImageType.svg,
-              image: 'assets/image/core_icon/empty_view_icon.svg',
+              image: Images.iconsNotDesignSysEmptyViewIcon,
+              width: 120,
+              height: 120,
             ),
             const SizedBox(height: 24),
             PtdTextWidget.titleMedium('아직 개발중이에요', MaeumgagymColor.black),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image/images.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
 
 class EmptyViewAppBar extends StatelessWidget implements PreferredSizeWidget {
   const EmptyViewAppBar({Key? key}) : super(key: key);
@@ -13,16 +15,15 @@ class EmptyViewAppBar extends StatelessWidget implements PreferredSizeWidget {
         child: AppBar(
           automaticallyImplyLeading: false,
           scrolledUnderElevation: 0,
-          backgroundColor:MaeumgagymColor.white,
+          backgroundColor: MaeumgagymColor.white,
           title: GestureDetector(
             onTap: () => Navigator.pop(context),
-            child: Align(
+            child: const Align(
               alignment: Alignment.centerLeft,
-              child: SvgPicture.asset(
-                "assets/image/core_icon/left_arrow_icon.svg",
+              child: ImageWidget(
+                image: Images.arrowLeft,
                 width: 28,
                 height: 28,
-                color: MaeumgagymColor.black,
               ),
             ),
           ),
