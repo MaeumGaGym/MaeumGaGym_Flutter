@@ -50,7 +50,6 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
-
   assets:
     - assets/image/core_icon/
     - assets/image/sign_up_icon/
@@ -62,6 +61,13 @@ flutter:
     - assets/image/on_boarding_icon/
     - assets/sounds/metronome/
     - assets/sounds/timer/
+
+    - assets/image/icons/
+    - assets/image/icons/Edit/
+    - assets/image/icons/Time/
+    - assets/image/icons/arrow/
+    - assets/image/icons/Media/
+    - assets/image/icons/chevron/
 
   fonts:
     - family: Pretendard
