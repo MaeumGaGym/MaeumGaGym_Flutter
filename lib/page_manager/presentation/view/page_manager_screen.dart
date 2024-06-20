@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image/images.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
 import 'package:maeum_ga_gym_flutter/empty_view/view/empty_view_screen.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/view/home_main_screen.dart';
@@ -55,40 +57,50 @@ class PageManagerScreen extends ConsumerWidget {
           showUnselectedLabels: true,
           items: [
             BottomNavigationBarItem(
-              icon: SvgPicture.asset(
-                'assets/image/bottom_navigation_bar_icon/home_icon${pageControllerIndex == 0 ? '_filled' : ''}.svg',
+              icon: ImageWidget(
+                image: pageControllerIndex == 0
+                    ? Images.iconsHouseFilled
+                    : Images.iconsHouse,
                 width: 32,
                 height: 32,
               ),
               label: '홈',
             ),
             BottomNavigationBarItem(
-              icon: SvgPicture.asset(
-                'assets/image/bottom_navigation_bar_icon/pose_icon${pageControllerIndex == 1 ? '_filled' : ''}.svg',
+              icon: ImageWidget(
+                image: pageControllerIndex == 1
+                    ? Images.iconsPoseFilled
+                    : Images.iconsPose,
                 width: 32,
                 height: 32,
               ),
               label: '자세',
             ),
             BottomNavigationBarItem(
-              icon: SvgPicture.asset(
-                'assets/image/bottom_navigation_bar_icon/cart_icon${pageControllerIndex == 2 ? '_filled' : ''}.svg',
+              icon: ImageWidget(
+                image: pageControllerIndex == 2
+                    ? Images.iconsCartFilled
+                    : Images.iconsCart,
                 width: 32,
                 height: 32,
               ),
               label: '샵',
             ),
             BottomNavigationBarItem(
-              icon: SvgPicture.asset(
-                'assets/image/bottom_navigation_bar_icon/pickle_icon${pageControllerIndex == 3 ? '_filled' : ''}.svg',
+              icon: ImageWidget(
+                image: pageControllerIndex == 3
+                    ? Images.iconsPickleFilled
+                    : Images.iconsPickle,
                 width: 32,
                 height: 32,
               ),
               label: '피클',
             ),
             BottomNavigationBarItem(
-              icon: SvgPicture.asset(
-                'assets/image/bottom_navigation_bar_icon/arm_icon${pageControllerIndex == 4 ? '_filled' : ''}.svg',
+              icon: ImageWidget(
+                image: pageControllerIndex == 4
+                    ? Images.iconsArmFilled
+                    : Images.iconsArm,
                 width: 32,
                 height: 32,
               ),
