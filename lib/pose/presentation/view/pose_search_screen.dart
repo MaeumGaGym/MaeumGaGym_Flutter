@@ -14,16 +14,44 @@ class PoseSearchScreen extends ConsumerStatefulWidget {
 }
 
 class _PoseSearchScreenState extends ConsumerState<PoseSearchScreen> {
-  TextEditingController textController = TextEditingController();
+  late TextEditingController textController;
+  late FocusNode textFocusNode;
+
+  @override
+  void initState() {
+    super.initState();
+    textController = TextEditingController();
+    textFocusNode = FocusNode();
+
+    textFocusNode.addListener(() {
+      setState(() {});
+    });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    textController.dispose();
+    textFocusNode.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: PoseSearchAppbar(
-        textEditingController: textController,
-      ),
-      body: PoseSearchBody(
-        textEditingController: textController,
+    return Container(
+      color: Colors.white,
+      child: SafeArea(
+        child: Scaffold(
+          appBar: PoseSearchAppbar(
+            textEditingController: textController,
+            textFocusNode: textFocusNode,
+          ),
+          body: GestureDetector(
+            onTap: () => textFocusNode.unfocus(),
+            child: PoseSearchBody(
+              textEditingController: textController,
+            ),
+          ),
+        ),
       ),
     );
   }
