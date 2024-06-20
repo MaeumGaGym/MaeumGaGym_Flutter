@@ -87,8 +87,8 @@ flutter:
 
 flutter_native_splash:
   color: "#FFFFFF"
-  image: assets/image/core_icon/splash_logo.png
+  image: assets/image/icons_not_design_sys/logos/splash_logo.png
 
   android_12:
     color: "#FFFFFF"
-    image: assets/image/core_icon/splash_logo.png
+    image: assets/image/icons_not_design_sys/logos/splash_logo.png
