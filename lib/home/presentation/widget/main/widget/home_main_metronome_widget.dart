@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image/images.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/providers/metronome_state_provider.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/view/metronome/home_metronome_screen.dart';
@@ -43,8 +45,8 @@ class _MainMetronomeWidgetState extends ConsumerState<HomeMainMetronomeWidget>
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          SvgPicture.asset(
-                            "assets/image/home_icon/metronome_icon.svg",
+                          ImageWidget(
+                            image: Images.timeMetronome,
                             width: 24,
                             height: 24,
                             color: MaeumgagymColor.gray400,
@@ -94,13 +96,12 @@ class _MainMetronomeWidgetState extends ConsumerState<HomeMainMetronomeWidget>
                                     color: MaeumgagymColor.gray50,
                                     borderRadius: BorderRadius.circular(100),
                                   ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: SvgPicture.asset(
-                                      "assets/image/home_icon/remove_minus_icon.svg",
+                                  child: const Padding(
+                                    padding: EdgeInsets.all(8.0),
+                                    child: ImageWidget(
+                                      image: Images.editRemoveMinus,
                                       width: 16,
                                       height: 16,
-                                      color: MaeumgagymColor.black,
                                     ),
                                   ),
                                 ),
@@ -116,13 +117,12 @@ class _MainMetronomeWidgetState extends ConsumerState<HomeMainMetronomeWidget>
                                     color: MaeumgagymColor.gray50,
                                     borderRadius: BorderRadius.circular(100),
                                   ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: SvgPicture.asset(
-                                      "assets/image/home_icon/add_icon.svg",
+                                  child: const Padding(
+                                    padding: EdgeInsets.all(8.0),
+                                    child: ImageWidget(
+                                      image: Images.editAdd,
                                       width: 16,
                                       height: 16,
-                                      color: MaeumgagymColor.black,
                                     ),
                                   ),
                                 ),
@@ -153,10 +153,10 @@ class _MainMetronomeWidgetState extends ConsumerState<HomeMainMetronomeWidget>
                           : MaeumgagymColor.blue500,
                       borderRadius: BorderRadius.circular(100),
                     ),
-                    child: SvgPicture.asset(
-                      metronomeState.onPlay
-                          ? "assets/image/home_icon/pause_icon.svg"
-                          : "assets/image/home_icon/play_filled_icon.svg",
+                    child: ImageWidget(
+                      image: metronomeState.onPlay
+                          ? Images.mediaPause
+                          : Images.mediaPlayFilled,
                       width: 20,
                       height: 20,
                       color: metronomeState.onPlay

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image/images.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/providers/home_timer_state_provider.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/view/home_timer_screen.dart';
@@ -43,11 +45,11 @@ class _MainTimerWidgetState extends ConsumerState<HomeMainTimerWidget> {
                         children: [
                           Row(
                             children: [
-                              SvgPicture.asset(
-                                "assets/image/home_icon/timer_icon.svg",
-                                color: MaeumgagymColor.gray400,
+                              ImageWidget(
+                                image: Images.timeTimer,
                                 width: 24,
                                 height: 24,
+                                color: MaeumgagymColor.gray400,
                               ),
                               const SizedBox(width: 24),
                               PtdTextWidget.titleLarge(
@@ -85,14 +87,17 @@ class _MainTimerWidgetState extends ConsumerState<HomeMainTimerWidget> {
                                     : MaeumgagymColor.blue500,
                                 shape: BoxShape.circle,
                               ),
-                              child: SvgPicture.asset(
-                                timerList[index].timerState ==
+                              child: ImageWidget(
+                                image: timerList[index].timerState ==
                                         TimerState.started
-                                    ? 'assets/image/home_icon/pause_icon.svg'
-                                    : 'assets/image/home_icon/play_filled_icon.svg',
-                                color: MaeumgagymColor.white,
+                                    ? Images.mediaPause
+                                    : Images.mediaPlayFilled,
                                 width: 20,
                                 height: 20,
+                                color: timerList[index].timerState ==
+                                        TimerState.started
+                                    ? MaeumgagymColor.black
+                                    : MaeumgagymColor.white,
                               ),
                             ),
                           ),
@@ -111,7 +116,7 @@ class _MainTimerWidgetState extends ConsumerState<HomeMainTimerWidget> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => HomeTimerScreen(),
+                builder: (context) => const HomeTimerScreen(),
               ),
             );
           },
@@ -123,11 +128,11 @@ class _MainTimerWidgetState extends ConsumerState<HomeMainTimerWidget> {
               color: MaeumgagymColor.gray50,
               borderRadius: BorderRadius.circular(50),
             ),
-            child: SvgPicture.asset(
-              'assets/image/home_icon/add_icon.svg',
-              color: MaeumgagymColor.gray800,
-              height: 24,
+            child: ImageWidget(
+              image: Images.editAdd,
               width: 24,
+              height: 24,
+              color: MaeumgagymColor.gray800,
             ),
           ),
         ),

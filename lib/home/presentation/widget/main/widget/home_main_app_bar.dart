@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image/images.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
 import 'package:maeum_ga_gym_flutter/empty_view/view/empty_view_screen.dart';
 
@@ -17,8 +19,8 @@ class HomeMainAppBar extends StatelessWidget implements PreferredSizeWidget {
         children: [
           Row(
             children: [
-              Image.asset(
-                'assets/image/core_icon/logo.png',
+              const ImageWidget(
+                image: Images.logosLogo,
                 width: 42,
                 height: 17,
               ),
@@ -37,10 +39,11 @@ class HomeMainAppBar extends StatelessWidget implements PreferredSizeWidget {
                 ),
               );
             },
-            child: SvgPicture.asset(
-              'assets/image/home_icon/setting_icon.svg',
+            child: ImageWidget(
+              image: Images.iconsSetting,
               width: 28,
               height: 28,
+              color: MaeumgagymColor.gray400,
             ),
           ),
         ],

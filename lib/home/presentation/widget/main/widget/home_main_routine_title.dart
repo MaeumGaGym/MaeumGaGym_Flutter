@@ -4,6 +4,8 @@ import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
 
+import '../../../../../core/component/image/images.dart';
+
 class HomeMainRoutineTitle extends StatelessWidget {
   final String title;
   final String? routineName;
@@ -29,10 +31,11 @@ class HomeMainRoutineTitle extends StatelessWidget {
               MaeumgagymColor.black,
             ),
             GestureDetector(
-              child: SvgPicture.asset(
-                'assets/image/core_icon/right_arrow_icon.svg',
+              child: ImageWidget(
+                image: Images.chevronRight,
                 width: 24,
                 height: 24,
+                color: MaeumgagymColor.gray200,
               ),
             ),
           ],
@@ -56,12 +59,11 @@ class HomeMainRoutineTitle extends StatelessWidget {
                     ),
                     const SizedBox(width: 12),
                     routineIsComplete!
-                        ? const ImageWidget(
-                            image:
-                                "assets/image/home_icon/completed_circle_icon.svg",
-                            imageType: ImageType.svg,
+                        ? ImageWidget(
+                            image: Images.iconsCheckCircle,
                             imageWidth: 24,
                             imageHeight: 24,
+                            color: MaeumgagymColor.blue500,
                           )
                         : const SizedBox.shrink(),
                   ],
@@ -69,13 +71,6 @@ class HomeMainRoutineTitle extends StatelessWidget {
                 const SizedBox(height: 4),
                 PtdTextWidget.bodyMedium(routineName!, MaeumgagymColor.gray500),
               ],
-            ),
-            GestureDetector(
-              child: SvgPicture.asset(
-                'assets/image/core_icon/right_arrow_icon.svg',
-                width: 24,
-                height: 24,
-              ),
             ),
           ],
         ),
