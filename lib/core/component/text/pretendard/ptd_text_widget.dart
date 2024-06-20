@@ -288,4 +288,18 @@ class PtdTextWidget {
       ),
     );
   }
+
+  static Text bottomNavigationText(String text, Color color) {
+    return Text(
+      text,
+      textAlign: TextAlign.center,
+      style: TextStyle(
+        fontFamily: pretendard,
+        fontSize: 12,
+        fontWeight: FontWeight.w500,
+        color: color,
+        overflow: TextOverflow.visible,
+      ),
+    );
+  }
 }

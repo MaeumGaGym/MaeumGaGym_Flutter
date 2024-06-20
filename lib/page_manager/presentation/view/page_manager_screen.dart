@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/image/images.dart';
-import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
-import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
 import 'package:maeum_ga_gym_flutter/empty_view/view/empty_view_screen.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/view/home_main_screen.dart';
 import 'package:maeum_ga_gym_flutter/page_manager/presentation/view/animated_indexed_stack_screen.dart';
+import 'package:maeum_ga_gym_flutter/page_manager/presentation/view/bottom_navigation_item.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/view/self_care_main_screen.dart';
 import '../../../pose/presentation/view/pose_main_screen.dart';
 import '../provider/page_manager_controller.dart';
@@ -17,8 +15,7 @@ class PageManagerScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final pageControllerIndex = ref.watch(pageControllerProvider).index;
-    final pageControllerNotifier = ref.read(pageControllerProvider.notifier);
+    final pageControllerIndex = ref.watch(pageControllerProvider);
 
     final List<Widget> screenData = [
       const HomeMainScreen(),
@@ -33,78 +30,41 @@ class PageManagerScreen extends ConsumerWidget {
         index: pageControllerIndex,
         children: screenData,
       ),
-      bottomNavigationBar: SafeArea(
-        child: BottomNavigationBar(
-          type: BottomNavigationBarType.fixed,
-          currentIndex: pageControllerIndex,
-          elevation: 0,
-          backgroundColor: MaeumgagymColor.white,
-          onTap: (value) => pageControllerNotifier.setPage(value),
-          selectedItemColor: MaeumgagymColor.black,
-          unselectedItemColor: MaeumgagymColor.gray500,
-          selectedLabelStyle: TextStyle(
-            fontWeight: FontWeight.w500,
-            fontFamily: pretendard,
-            fontSize: 12,
-          ),
-          unselectedLabelStyle: TextStyle(
-            fontWeight: FontWeight.w500,
-            fontFamily: pretendard,
-            fontSize: 12,
-          ),
-          selectedFontSize: 12,
-          showSelectedLabels: true,
-          showUnselectedLabels: true,
-          items: [
-            BottomNavigationBarItem(
-              icon: ImageWidget(
-                image: pageControllerIndex == 0
-                    ? Images.iconsHouseFilled
-                    : Images.iconsHouse,
-                width: 32,
-                height: 32,
-              ),
-              label: '홈',
+      bottomNavigationBar: Container(
+        height: 64,
+        color: MaeumgagymColor.white,
+        child: const Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            BottomNavigationItem(
+              label: "홈",
+              clickState: 0,
+              selectedImage: Images.iconsHouseFilled,
+              image: Images.iconsHouse,
             ),
-            BottomNavigationBarItem(
-              icon: ImageWidget(
-                image: pageControllerIndex == 1
-                    ? Images.iconsPoseFilled
-                    : Images.iconsPose,
-                width: 32,
-                height: 32,
-              ),
-              label: '자세',
+            BottomNavigationItem(
+              label: "자세",
+              clickState: 1,
+              selectedImage: Images.iconsPoseFilled,
+              image: Images.iconsPose,
             ),
-            BottomNavigationBarItem(
-              icon: ImageWidget(
-                image: pageControllerIndex == 2
-                    ? Images.iconsCartFilled
-                    : Images.iconsCart,
-                width: 32,
-                height: 32,
-              ),
-              label: '샵',
+            BottomNavigationItem(
+              label: "샵",
+              clickState: 2,
+              selectedImage: Images.iconsCartFilled,
+              image: Images.iconsCart,
             ),
-            BottomNavigationBarItem(
-              icon: ImageWidget(
-                image: pageControllerIndex == 3
-                    ? Images.iconsPickleFilled
-                    : Images.iconsPickle,
-                width: 32,
-                height: 32,
-              ),
-              label: '피클',
+            BottomNavigationItem(
+              label: "피클",
+              clickState: 3,
+              selectedImage: Images.iconsPickleFilled,
+              image: Images.iconsPickle,
             ),
-            BottomNavigationBarItem(
-              icon: ImageWidget(
-                image: pageControllerIndex == 4
-                    ? Images.iconsArmFilled
-                    : Images.iconsArm,
-                width: 32,
-                height: 32,
-              ),
-              label: '자기관리',
+            BottomNavigationItem(
+              label: "자기관리",
+              clickState: 4,
+              selectedImage: Images.iconsArmFilled,
+              image: Images.iconsArm,
             ),
           ],
         ),
