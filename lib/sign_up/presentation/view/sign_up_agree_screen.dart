@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image/images.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
 import 'package:maeum_ga_gym_flutter/core/component/maeumgagym_button.dart';
 
 /// Core
@@ -41,8 +43,9 @@ class SignUpAgreeScreen extends ConsumerWidget {
                   onTap: () {
                     context.pop();
                   },
-                  child: SvgPicture.asset(
-                    'assets/image/core_icon/left_arrow_icon.svg',
+                  child: const ImageWidget(
+                    image: Images.arrowLeft,
+                    imageType: ImageType.png,
                     width: 24,
                     height: 24,
                   ),
@@ -80,7 +83,9 @@ class SignUpAgreeScreen extends ConsumerWidget {
                         Padding(
                           padding: const EdgeInsets.only(left: 12),
                           child: PtdTextWidget.labelLarge(
-                              '모두 동의해요.', MaeumgagymColor.black),
+                            '모두 동의해요.',
+                            MaeumgagymColor.black,
+                          ),
                         )
                       ],
                     ),
@@ -126,7 +131,8 @@ class SignUpAgreeScreen extends ConsumerWidget {
                       /// 자세히 보기 ( agreePersonInformation )
                       GestureDetector(
                         onTap: () {
-                          launchUrl(Uri.parse("https://info-dsm.notion.site/2a0474e87f754fbe8f53d58f2003ccb2?pvs=4"));
+                          launchUrl(Uri.parse(
+                              "https://info-dsm.notion.site/2a0474e87f754fbe8f53d58f2003ccb2?pvs=4"));
                         },
                         child: PtdTextWidget.labelSmall(
                           '자세히 보기',
@@ -174,7 +180,8 @@ class SignUpAgreeScreen extends ConsumerWidget {
                       /// 자세히 보기 ( agreeConditionsOfUse )
                       GestureDetector(
                         onTap: () {
-                          launchUrl(Uri.parse("https://info-dsm.notion.site/e9d45a0490674b81a419bbc4cbdd5a9d?pvs=4"));
+                          launchUrl(Uri.parse(
+                              "https://info-dsm.notion.site/e9d45a0490674b81a419bbc4cbdd5a9d?pvs=4"));
                         },
                         child: PtdTextWidget.labelSmall(
                           '자세히 보기',

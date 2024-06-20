@@ -7,6 +7,7 @@ import 'package:go_router/go_router.dart';
 
 /// Core
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image/images.dart';
 import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
 import 'package:maeum_ga_gym_flutter/core/logout/presentation/maeumgagym_logout_provider.dart';
 import 'package:maeum_ga_gym_flutter/sign_up/presentation/provider/maeumgagym_login_provider.dart';
@@ -157,10 +158,10 @@ class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
                       color: MaeumgagymColor.gray50,
                       shape: BoxShape.circle,
                     ),
-                    child: const ImageWidget(
-                      imageType: ImageType.svg,
-                      image:
-                          'assets/image/on_boarding_icon/on_boarding_circle_image.svg',
+                    child: ImageWidget(
+                      image: Images.iconsNotDesignSysRoutineIcon,
+                      imageType: ImageType.png,
+                      imageWidth: MediaQuery.of(context).size.width - 307,
                     ),
                   ),
                 ),
@@ -181,7 +182,7 @@ class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
                       await doSocialLogin();
                     },
                     child: const OnBoardingContentsWidget(
-                      image: 'assets/image/on_boarding_icon/google_logo.svg',
+                      image: Images.logosGoogleLogoIcon,
                       title: '구글로 로그인',
                     ),
                   ),
@@ -194,8 +195,7 @@ class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
                       await doSocialLogin();
                     },
                     child: const OnBoardingContentsWidget(
-                      image:
-                          'assets/image/on_boarding_icon/kakao_talk_logo.svg',
+                      image: Images.logosKakaoTalkLogoIcon,
                       title: '카카오로 로그인',
                     ),
                   ),

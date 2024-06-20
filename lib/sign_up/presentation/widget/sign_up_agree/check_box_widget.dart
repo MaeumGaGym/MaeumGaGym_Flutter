@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image/images.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
 
 class CheckBoxWidget extends StatelessWidget {
   final bool state;
@@ -9,9 +12,21 @@ class CheckBoxWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (state) {
-      return SvgPicture.asset('assets/image/sign_up_icon/check_box.svg');
+      return ImageWidget(
+        image: Images.iconsCheckCircle,
+        imageType: ImageType.png,
+        width: 28,
+        height: 28,
+        color: MaeumgagymColor.blue500,
+      );
     } else {
-      return SvgPicture.asset('assets/image/sign_up_icon/empty_check_box.svg');
+      return ImageWidget(
+        image: Images.iconsCheckCircleOutline,
+        imageType: ImageType.png,
+        width: 28,
+        height: 28,
+        color: MaeumgagymColor.gray200,
+      );
     }
   }
 }

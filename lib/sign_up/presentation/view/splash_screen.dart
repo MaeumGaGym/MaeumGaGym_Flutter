@@ -3,6 +3,7 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image/images.dart';
 import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
 import 'package:maeum_ga_gym_flutter/core/component/pose/presentation/provider/pose_all_provider.dart';
 import 'package:maeum_ga_gym_flutter/core/component/pose/presentation/provider/pose_recommend_provider.dart';
@@ -72,8 +73,9 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
       backgroundColor: MaeumgagymColor.white,
       body: const Center(
         child: ImageWidget(
-          imageType: ImageType.svg,
-          image: 'assets/image/on_boarding_icon/splash_text_icon.svg',
+          imageType: ImageType.png,
+          image: Images.logosSplashTextLogo,
+          width: 150,
         ),
       ),
     );

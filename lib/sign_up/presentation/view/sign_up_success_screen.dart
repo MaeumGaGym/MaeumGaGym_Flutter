@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image/images.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
 
 /// Core
 import 'package:maeum_ga_gym_flutter/core/component/maeumgagym_button.dart';
@@ -29,11 +31,11 @@ class SignUpSuccessScreen extends ConsumerWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Center(
-                      child: Image.asset(
-                        'assets/image/core_icon/logo.png',
-                        width: 102,
-                        height: 42,
+                    const Center(
+                      child: ImageWidget(
+                        image: Images.logosLogo,
+                        width: 120,
+                        height: 120,
                       ),
                     ),
                     const SizedBox(height: 51),
