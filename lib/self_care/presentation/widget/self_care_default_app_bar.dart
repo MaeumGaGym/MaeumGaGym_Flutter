@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image/images.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/purpose/self_care_purpose_manage_bottom_sheet.dart';
 
 class SelfCareDefaultAppBar extends StatelessWidget
     implements PreferredSizeWidget {
@@ -39,10 +39,10 @@ class SelfCareDefaultAppBar extends StatelessWidget
                     onTap: () => Navigator.pop(context),
                     child: Container(
                       alignment: Alignment.center,
-                      child: SvgPicture.asset(
-                        iconPath,
+                      child: ImageWidget(
                         width: 28,
                         height: 28,
+                        image: iconPath,
                         color: color ?? MaeumgagymColor.black,
                       ),
                     ),

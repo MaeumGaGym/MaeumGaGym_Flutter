@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image/images.dart';
 import 'package:maeum_ga_gym_flutter/core/component/maeungagym_text_style.dart';
 import 'package:maeum_ga_gym_flutter/core/component/routine/presentation/provider/routine_my_routine_my_routine_provider.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/profile/self_care_profile_edit_profile_provider.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/profile/self_care_profile_sex_select_provider.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/self_care_text_field_provider.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/view/profile/self_care_profile_main_screen.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/profile/self_care_profile_sex_select_widget.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/self_care_animated_button.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/self_care_default_app_bar.dart';
@@ -108,7 +108,7 @@ class _SelfCareProfileEditScreenState
       child: Scaffold(
         backgroundColor: MaeumgagymColor.white,
         appBar: const SelfCareDefaultAppBar(
-          iconPath: "assets/image/core_icon/left_arrow_icon.svg",
+          iconPath: Images.arrowLeft,
           title: "내 정보 변경",
         ),
         body: SafeArea(

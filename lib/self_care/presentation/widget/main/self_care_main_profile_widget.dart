@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image/images.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
 import 'package:maeum_ga_gym_flutter/core/component/routine/presentation/provider/routine_my_routine_my_routine_provider.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/waka/self_care_waka_total_waka_provider.dart';
@@ -68,12 +69,10 @@ class _SelfCareMainProfileContainerState
                                 MaeumgagymColor.black,
                               ),
                               const SizedBox(width: 8),
-                              SvgPicture.asset(
-                                "assets/image/self_care_icon/profile_icon.svg",
-                                // 뱃지
-                                height: 16,
-                                width: 16,
-                              )
+                              const ImageWidget(
+                                width: 18,
+                                image: Images.iconsNotDesignSysProfileIcon,
+                              ),
                             ],
                           ),
                           const SizedBox(height: 2),
@@ -85,10 +84,10 @@ class _SelfCareMainProfileContainerState
                       ),
                     ],
                   ),
-                  SvgPicture.asset(
-                    "assets/image/core_icon/right_arrow_icon.svg",
+                  ImageWidget(
                     width: 24,
-                    height: 24,
+                    image: Images.chevronRight,
+                    color: MaeumgagymColor.gray200,
                   ),
                 ],
               );

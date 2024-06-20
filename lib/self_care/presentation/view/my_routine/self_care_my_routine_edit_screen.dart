@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image/images.dart';
 import 'package:maeum_ga_gym_flutter/core/component/maeumgagym_toast_message.dart';
 import 'package:maeum_ga_gym_flutter/core/component/pose/domain/model/pose_data_model.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/providers/home_today_routines_provider.dart';
@@ -104,7 +105,7 @@ class _SelfCareMyRoutineEditScreenState
       resizeToAvoidBottomInset: false,
       backgroundColor: MaeumgagymColor.white,
       appBar: SelfCareDefaultAppBar(
-        iconPath: "assets/image/core_icon/left_arrow_icon.svg",
+        iconPath: Images.arrowLeft,
         title: widget.routineName,
       ),
       body: SafeArea(
@@ -190,7 +191,9 @@ class _SelfCareMyRoutineEditScreenState
                       width: MediaQuery.of(context).size.width,
                       height: 58,
                       title: "자세 추가",
-                      imagePath: "assets/image/self_care_icon/add_icon.svg",
+                      imageHeight: 24,
+                      imageWidth: 24,
+                      imagePath: Images.editAdd,
                       buttonColor: MaeumgagymColor.gray50,
                       textColor: MaeumgagymColor.gray800,
                     ),

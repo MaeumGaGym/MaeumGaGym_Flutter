@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image/images.dart';
 import 'package:maeum_ga_gym_flutter/core/component/maeumgagym_toast_message.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/providers/home_today_routines_provider.dart';
 import 'package:maeum_ga_gym_flutter/self_care/domain/model/my_routine/exercise_info_request_model.dart';
@@ -121,7 +122,7 @@ class _SelfCareMyRoutineManageBottomSheetState
                 ),
                 child: const SelfCareDefaultManageItemWidget(
                   title: "수정",
-                  iconPath: "assets/image/self_care_icon/edit_pencil_icon.svg",
+                  iconPath: Images.editPencil,
                 ),
               ),
               GestureDetector(
@@ -137,7 +138,7 @@ class _SelfCareMyRoutineManageBottomSheetState
                 },
                 child: SelfCareDefaultManageItemWidget(
                   title: item.routineStatus!.isArchived! ? "보관 취소" : "보관",
-                  iconPath: "assets/image/self_care_icon/inbox_icon.svg",
+                  iconPath: Images.iconsInbox,
                 ),
               ),
               GestureDetector(
@@ -153,7 +154,7 @@ class _SelfCareMyRoutineManageBottomSheetState
                 },
                 child: SelfCareDefaultManageItemWidget(
                   title: item.routineStatus!.isShared! ? "공유 취소" : "공유",
-                  iconPath: "assets/image/self_care_icon/earth_icon.svg",
+                  iconPath: Images.iconsEarth,
                 ),
               ),
               GestureDetector(
@@ -165,7 +166,7 @@ class _SelfCareMyRoutineManageBottomSheetState
                 },
                 child: const SelfCareDefaultManageItemWidget(
                   title: "삭제",
-                  iconPath: "assets/image/self_care_icon/edit_trash_icon.svg",
+                  iconPath: Images.editTrash,
                 ),
               ),
             ],

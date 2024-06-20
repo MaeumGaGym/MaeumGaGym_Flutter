@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image/images.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
 import 'package:maeum_ga_gym_flutter/empty_view/view/empty_view_screen.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/view/my_routine/self_care_my_routine_main_screen.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/view/purpose/self_care_purpose_main_screen.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/view/today_exercise/self_care_today_exercise_main_screen.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/main/self_care_item_widget.dart';
 
 class SelfCareMainWidgetList extends StatelessWidget {
@@ -33,7 +33,9 @@ class SelfCareMainWidgetList extends StatelessWidget {
               ),
             ),
             child: const SelfCareItemWidget(
-              imagePath: "assets/image/self_care_icon/routine_icon.svg",
+              width: 25,
+              height: 28,
+              imagePath: Images.iconsNotDesignSysRoutineIcon,
               title: "내 루틴",
             ),
           ),
@@ -45,7 +47,9 @@ class SelfCareMainWidgetList extends StatelessWidget {
               ),
             ),
             child: const SelfCareItemWidget(
-              imagePath: "assets/image/self_care_icon/objective_icon.svg",
+              width: 32,
+              height: 32,
+              imagePath: Images.iconsNotDesignSysTargetIcon,
               title: "목표",
             ),
           ),
@@ -57,7 +61,9 @@ class SelfCareMainWidgetList extends StatelessWidget {
               ),
             ),
             child: const SelfCareItemWidget(
-              imagePath: "assets/image/self_care_icon/protein_shake_icon.svg",
+              width: 16,
+              height: 26,
+              imagePath: Images.iconsNotDesignSysDietIcon,
               title: "식단",
             ),
           ),
@@ -69,7 +75,9 @@ class SelfCareMainWidgetList extends StatelessWidget {
               ),
             ),
             child: const SelfCareItemWidget(
-              imagePath: "assets/image/self_care_icon/gallery_icon.svg",
+              width: 24,
+              height: 24,
+              imagePath: Images.iconsNotDesignSysTodayExcersizeCompleteIcon,
               title: "오운완",
             ),
           ),

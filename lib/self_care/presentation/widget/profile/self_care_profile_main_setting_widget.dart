@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image/images.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/view/profile/self_care_profile_edit_screen.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/profile/dialog/self_care_profile_logout_dialog.dart';
@@ -41,8 +43,12 @@ class SelfCareProfileMainSettingWidget extends StatelessWidget {
                         "내 정보 변경",
                         MaeumgagymColor.black,
                       ),
-                      SvgPicture.asset(
-                          "assets/image/core_icon/right_arrow_icon.svg"),
+                      ImageWidget(
+                        image: Images.chevronRight,
+                        color: MaeumgagymColor.gray200,
+                        imageHeight: 24,
+                        imageWidth: 24,
+                      ),
                     ],
                   ),
                 ),
@@ -68,8 +74,12 @@ class SelfCareProfileMainSettingWidget extends StatelessWidget {
                         "로그아웃",
                         MaeumgagymColor.black,
                       ),
-                      SvgPicture.asset(
-                          "assets/image/core_icon/right_arrow_icon.svg"),
+                      ImageWidget(
+                        image: Images.chevronRight,
+                        color: MaeumgagymColor.gray200,
+                        imageHeight: 24,
+                        imageWidth: 24,
+                      ),
                     ],
                   ),
                 ),
@@ -97,8 +107,12 @@ class SelfCareProfileMainSettingWidget extends StatelessWidget {
                         "회원탈퇴",
                         MaeumgagymColor.black,
                       ),
-                      SvgPicture.asset(
-                          "assets/image/core_icon/right_arrow_icon.svg"),
+                      ImageWidget(
+                        image: Images.chevronRight,
+                        color: MaeumgagymColor.gray200,
+                        imageHeight: 24,
+                        imageWidth: 24,
+                      ),
                     ],
                   ),
                 ),

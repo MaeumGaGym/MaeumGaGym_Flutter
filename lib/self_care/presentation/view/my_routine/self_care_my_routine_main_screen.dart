@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image/images.dart';
 import 'package:maeum_ga_gym_flutter/core/component/routine/presentation/provider/routine_my_routine_my_routine_provider.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/view/my_routine/self_care_my_routine_add_screen.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/view/my_routine/self_care_my_routine_detail_screen.dart';
@@ -64,7 +65,7 @@ class _SelfCareMyRoutineMainScreenState
     return Scaffold(
       backgroundColor: MaeumgagymColor.white,
       appBar: const SelfCareDefaultAppBar(
-        iconPath: "assets/image/core_icon/left_arrow_icon.svg",
+        iconPath: Images.arrowLeft,
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -131,7 +132,7 @@ class _SelfCareMyRoutineMainScreenState
             height: 58,
             imageWidth: 24,
             imageHeight: 24,
-            imagePath: "assets/image/self_care_icon/add_icon.svg",
+            imagePath: Images.editAdd,
             imageColor: MaeumgagymColor.white,
             title: "루틴 추가하기",
             textColor: MaeumgagymColor.white,

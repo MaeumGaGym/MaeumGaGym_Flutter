@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image/images.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
 import 'package:maeum_ga_gym_flutter/core/component/maeungagym_text_style.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/profile/self_care_profile_get_profile_provider.dart';
@@ -33,12 +35,12 @@ class SelfCareProfileMainInfoWidget extends ConsumerWidget {
           padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 25),
           child: Column(
             children: [
-              Padding(
-                padding: const EdgeInsets.all(20),
-                child: Image.asset(
-                  "assets/image/self_care_icon/sparkling_icon.png",
-                  width: 80,
-                  height: 80,
+              const Padding(
+                padding: EdgeInsets.all(20),
+                child: ImageWidget(
+                  image: Images.iconsNotDesignSysSparklingIcon,
+                  imageHeight: 80,
+                  imageWidth: 80,
                 ),
               ),
               const SizedBox(height: 12),

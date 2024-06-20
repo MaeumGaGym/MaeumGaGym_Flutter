@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image/images.dart';
 import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
 import 'package:maeum_ga_gym_flutter/core/component/routine/domain/model/exercise_info_edit_routine_pose_model.dart';
@@ -25,11 +26,12 @@ class SelfCareMyRoutinePoseItemWidget extends ConsumerStatefulWidget {
 
 class _SelfCareMyRoutinePoseItemWidgetState
     extends ConsumerState<SelfCareMyRoutinePoseItemWidget> {
-
   @override
   Widget build(BuildContext context) {
-    List<ExerciseInfoEditRoutinePoseModel> editPoseListState = ref.watch(selfCareMyRoutinePostListProvider);
-    final editPoseListNotifier = ref.read(selfCareMyRoutinePostListProvider.notifier);
+    List<ExerciseInfoEditRoutinePoseModel> editPoseListState =
+        ref.watch(selfCareMyRoutinePostListProvider);
+    final editPoseListNotifier =
+        ref.read(selfCareMyRoutinePostListProvider.notifier);
     return Column(
       children: [
         Row(
@@ -43,7 +45,10 @@ class _SelfCareMyRoutinePoseItemWidgetState
                     width: 80,
                     height: 80,
                     imageType: ImageType.pngNetwork,
-                    image: editPoseListState[widget.poseIndex].poseModel!.thumbnail.toString(),
+                    image: editPoseListState[widget.poseIndex]
+                        .poseModel!
+                        .thumbnail
+                        .toString(),
                     backgroundColor: MaeumgagymColor.gray25,
                   ),
                 ),
@@ -51,7 +56,10 @@ class _SelfCareMyRoutinePoseItemWidgetState
 
                 /// 아이템 이름
                 PtdTextWidget.bodyLarge(
-                  editPoseListState[widget.poseIndex].poseModel!.name.toString(),
+                  editPoseListState[widget.poseIndex]
+                      .poseModel!
+                      .name
+                      .toString(),
                   MaeumgagymColor.black,
                 ),
               ],
@@ -63,8 +71,11 @@ class _SelfCareMyRoutinePoseItemWidgetState
                   editPoseListNotifier.delete(widget.poseIndex);
                 }
               },
-              child: SvgPicture.asset(
-                "assets/image/self_care_icon/close_icon.svg",
+              child: ImageWidget(
+                image: Images.editClose,
+                imageWidth: 24,
+                imageHeight: 24,
+                color: MaeumgagymColor.gray700,
               ),
             ),
           ],

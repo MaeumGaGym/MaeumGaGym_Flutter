@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image/images.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
 import 'package:maeum_ga_gym_flutter/core/component/maeumgagym_toast_message.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
 import 'package:maeum_ga_gym_flutter/self_care/domain/model/my_routine/exercise_info_request_model.dart';
@@ -102,8 +104,11 @@ class _SelfCareMyRoutineDetailDialogState
                   padding: const EdgeInsets.symmetric(vertical: 12),
                   child: Row(
                     children: [
-                      SvgPicture.asset(
-                        "assets/image/self_care_icon/earth_icon.svg",
+                      ImageWidget(
+                        image: Images.iconsEarth,
+                        color: MaeumgagymColor.black,
+                        imageHeight: 24,
+                        imageWidth: 24,
                       ),
                       const SizedBox(width: 12),
                       PtdTextWidget.bodyLarge(
@@ -129,8 +134,11 @@ class _SelfCareMyRoutineDetailDialogState
                   padding: const EdgeInsets.symmetric(vertical: 12),
                   child: Row(
                     children: [
-                      SvgPicture.asset(
-                        "assets/image/self_care_icon/inbox_icon.svg",
+                      ImageWidget(
+                        image: Images.iconsInbox,
+                        color: MaeumgagymColor.black,
+                        imageHeight: 24,
+                        imageWidth: 24,
                       ),
                       const SizedBox(width: 12),
                       PtdTextWidget.bodyLarge(

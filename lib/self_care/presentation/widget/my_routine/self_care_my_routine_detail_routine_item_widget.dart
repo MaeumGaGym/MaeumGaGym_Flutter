@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image/images.dart';
 import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
 import 'package:maeum_ga_gym_flutter/core/component/routine/presentation/provider/routine_my_routine_my_routine_provider.dart';
@@ -54,7 +55,12 @@ class SelfCareMyRoutineDetailRoutineItemWidget extends ConsumerWidget {
             ),
           ],
         ),
-        SvgPicture.asset("assets/image/core_icon/right_arrow_icon.svg"),
+        ImageWidget(
+          image: Images.chevronRight,
+          color: MaeumgagymColor.gray200,
+          imageHeight: 24,
+          imageWidth: 24,
+        ),
       ],
     );
   }

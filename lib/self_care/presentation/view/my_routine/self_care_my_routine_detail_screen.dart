@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image/images.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
 import 'package:maeum_ga_gym_flutter/core/component/maeumgagym_toast_message.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/providers/home_today_routines_provider.dart';
 import 'package:maeum_ga_gym_flutter/core/component/routine/presentation/provider/routine_my_routine_my_routine_provider.dart';
@@ -54,7 +55,7 @@ class _SelfCareMyRoutineDetailScreenState
     return Scaffold(
       backgroundColor: MaeumgagymColor.white,
       appBar: const SelfCareDefaultAppBar(
-        iconPath: "assets/image/core_icon/left_arrow_icon.svg",
+        iconPath: Images.arrowLeft,
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -126,8 +127,9 @@ class _SelfCareMyRoutineDetailScreenState
                       width: MediaQuery.of(context).size.width,
                       height: 58,
                       title: "루틴 삭제",
-                      imagePath:
-                          "assets/image/self_care_icon/edit_trash_icon.svg",
+                      imageWidth: 24,
+                      imageHeight: 24,
+                      imagePath: Images.editTrash,
                       buttonColor: MaeumgagymColor.gray50,
                       textColor: MaeumgagymColor.gray800,
                     ),
@@ -151,8 +153,9 @@ class _SelfCareMyRoutineDetailScreenState
                       width: MediaQuery.of(context).size.width,
                       height: 58,
                       title: "루틴 수정",
-                      imagePath:
-                          "assets/image/self_care_icon/edit_pencil_icon.svg",
+                      imageWidth: 24,
+                      imageHeight: 24,
+                      imagePath: Images.editPencil,
                       imageColor: MaeumgagymColor.white,
                       buttonColor: MaeumgagymColor.blue500,
                       textColor: MaeumgagymColor.white,
@@ -172,11 +175,10 @@ class _SelfCareMyRoutineDetailScreenState
                       },
                     );
                   },
-                  child: SvgPicture.asset(
-                    "assets/image/core_icon/dots_vertical_icon.svg",
+                  child: const ImageWidget(
+                    image: Images.iconsDotsVertical,
                     width: 32,
                     height: 32,
-                    color: MaeumgagymColor.black,
                   ),
                 ),
               ],

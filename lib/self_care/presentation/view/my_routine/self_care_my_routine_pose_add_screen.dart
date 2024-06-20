@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image/images.dart';
 import 'package:maeum_ga_gym_flutter/core/component/pose/presentation/view/pose_main_tab_bar.dart';
 import 'package:maeum_ga_gym_flutter/core/component/pose/presentation/view/pose_main_tab_body.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/self_care_default_app_bar.dart';
@@ -48,7 +49,7 @@ class _SelfCareMyRoutinePoseAddScreenState
     return Scaffold(
       backgroundColor: MaeumgagymColor.white,
       appBar: const SelfCareDefaultAppBar(
-        iconPath: "assets/image/self_care_icon/close_icon.svg",
+        iconPath: Images.editClose,
         title: "루틴 자세 추가",
       ),
       body: Column(

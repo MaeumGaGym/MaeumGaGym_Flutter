@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
 
 class SelfCareDefaultManageItemWidget extends StatelessWidget {
@@ -22,10 +22,11 @@ class SelfCareDefaultManageItemWidget extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            SvgPicture.asset(
-              iconPath,
-              width: 28,
-              height: 28,
+            ImageWidget(
+              image: iconPath,
+              color: MaeumgagymColor.black,
+              imageHeight: 28,
+              imageWidth: 28,
             ),
             const SizedBox(width: 24),
             PtdTextWidget.labelLarge(

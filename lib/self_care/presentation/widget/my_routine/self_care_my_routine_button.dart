@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
 
 class SelfCareMyRoutineButton extends StatelessWidget {
@@ -41,8 +41,8 @@ class SelfCareMyRoutineButton extends StatelessWidget {
         children: [
           /// image를 쓰는지 안 쓰는지 체크
           if (imagePath != null)
-            SvgPicture.asset(
-              imagePath!,
+            ImageWidget(
+              image: imagePath!,
               width: imageHeight,
               height: imageWidth,
               color: imageColor,

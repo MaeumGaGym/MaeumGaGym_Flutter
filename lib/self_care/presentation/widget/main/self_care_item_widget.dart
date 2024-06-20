@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image/images.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
 
 class SelfCareItemWidget extends StatelessWidget {
-  final String imagePath;
-  final String title;
+  final String imagePath, title;
+
+  final double width, height;
+
 
   const SelfCareItemWidget({
     Key? key,
+    required this.width,
+    required this.height,
     required this.imagePath,
     required this.title,
   }) : super(key: key);
@@ -22,20 +28,19 @@ class SelfCareItemWidget extends StatelessWidget {
         children: [
           Row(
             children: [
-              GestureDetector(
-                behavior: HitTestBehavior.translucent,
-                onTap: () {},
-                child: Container(
-                  height: 40,
-                  width: 40,
-                  alignment: Alignment.center, // 이것도 align 지정안하면 크기 변경 안돼요
-                  decoration: BoxDecoration(
-                    color: MaeumgagymColor.gray200,
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: SvgPicture.asset(
-                    imagePath,
-                  ),
+              Container(
+                height: 40,
+                width: 40,
+                alignment: Alignment.center,
+                // 이것도 align 지정안하면 크기 변경 안돼요
+                decoration: BoxDecoration(
+                  color: MaeumgagymColor.gray200,
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: ImageWidget(
+                  imageWidth: width,
+                  imageHeight: height,
+                  image: imagePath,
                 ),
               ),
               const SizedBox(width: 16),
@@ -45,10 +50,10 @@ class SelfCareItemWidget extends StatelessWidget {
               ),
             ],
           ),
-          SvgPicture.asset(
-            "assets/image/core_icon/right_arrow_icon.svg",
+          ImageWidget(
             width: 24,
-            height: 24,
+            image: Images.chevronRight,
+            color: MaeumgagymColor.gray200,
           ),
         ],
       ),

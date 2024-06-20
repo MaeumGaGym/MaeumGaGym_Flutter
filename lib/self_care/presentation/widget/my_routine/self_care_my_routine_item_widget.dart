@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image/images.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
 import 'package:maeum_ga_gym_flutter/core/component/routine/presentation/provider/routine_my_routine_my_routine_provider.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/self_care_my_routine_manage_bottom_sheet.dart';
@@ -48,8 +49,12 @@ class _SelfCareGoalRoutineItemWidgetState
                   const SizedBox(height: 4),
                   PtdTextWidget.bodySmall(
                     (item.routineStatus!.isArchived! ? "보관중" : "사용중") +
-                        (item.dayOfWeeks.isNotEmpty ? " | ${item.dayOfWeeks.map((str) => str[0]).join(", ")}" : ""),
-                    item.routineStatus!.isArchived! ? MaeumgagymColor.gray400 : MaeumgagymColor.blue500,
+                        (item.dayOfWeeks.isNotEmpty
+                            ? " | ${item.dayOfWeeks.map((str) => str[0]).join(", ")}"
+                            : ""),
+                    item.routineStatus!.isArchived!
+                        ? MaeumgagymColor.gray400
+                        : MaeumgagymColor.blue500,
                   ),
                 ],
               ),
@@ -71,8 +76,10 @@ class _SelfCareGoalRoutineItemWidgetState
                       },
                     );
                   },
-                  child: SvgPicture.asset(
-                    "assets/image/core_icon/dots_vertical_icon.svg",
+                  child: ImageWidget(
+                    width: 24,
+                    height: 24,
+                    image: Images.iconsDotsVertical,
                     color: MaeumgagymColor.gray400,
                   ),
                 ),

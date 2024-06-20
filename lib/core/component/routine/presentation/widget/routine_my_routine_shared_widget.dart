@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image/images.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
 
 class RoutineMyRoutineSharedWidget extends StatelessWidget {
@@ -27,8 +29,8 @@ class RoutineMyRoutineSharedWidget extends StatelessWidget {
               MaeumgagymColor.blue500,
             ),
             const SizedBox(width: 8),
-            SvgPicture.asset(
-              "assets/image/self_care_icon/earth_icon.svg",
+            ImageWidget(
+              image: Images.iconsEarth,
               width: 16,
               height: 16,
               color: MaeumgagymColor.blue500,

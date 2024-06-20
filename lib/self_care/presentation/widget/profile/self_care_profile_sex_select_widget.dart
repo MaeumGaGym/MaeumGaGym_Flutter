@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image/images.dart';
 import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
 import 'package:maeum_ga_gym_flutter/core/component/maeungagym_text_style.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/profile/self_care_profile_sex_select_provider.dart';
@@ -44,10 +45,16 @@ class SelfCareProfileSexSelectWidget extends ConsumerWidget {
                     sexSelectState == "" ? MaeumgagymColor.gray200 : MaeumgagymColor.black,
                   ),
                 ),
+                // ImageWidget(
+                //   image:
+                //       "assets/image/self_care_icon/${dropDownState ? "top" : "bottom"}_arrow_icon.svg",
+                //   imageType: ImageType.svg,
+                // ),
                 ImageWidget(
-                  image:
-                      "assets/image/self_care_icon/${dropDownState ? "top" : "bottom"}_arrow_icon.svg",
-                  imageType: ImageType.svg,
+                  image: dropDownState ? Images.chevronUp : Images.chevronDown,
+                  color: MaeumgagymColor.gray500,
+                  imageHeight: 24,
+                  imageWidth: 24,
                 ),
               ],
             ),
