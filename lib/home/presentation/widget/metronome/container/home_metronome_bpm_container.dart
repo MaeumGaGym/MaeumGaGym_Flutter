@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image/images.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/providers/metronome_state_provider.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/widget/metronome/widget/home_metronome_bpm_controller_widget.dart';
@@ -33,7 +34,7 @@ class HomeMetronomeBpmContainer extends ConsumerWidget {
                       metronomeNotifier.decreaseBpm();
                     },
                     child: const HomeMetronomeBpmControllerWidget(
-                      iconPath: "assets/image/home_icon/remove_minus_icon.svg",
+                      iconPath: Images.editRemoveMinus,
                     ),
                   ),
                   Padding(
@@ -48,7 +49,7 @@ class HomeMetronomeBpmContainer extends ConsumerWidget {
                       metronomeNotifier.increaseBpm();
                     },
                     child: const HomeMetronomeBpmControllerWidget(
-                      iconPath: "assets/image/home_icon/add_icon.svg",
+                      iconPath: Images.editAdd,
                     ),
                   ),
                 ],

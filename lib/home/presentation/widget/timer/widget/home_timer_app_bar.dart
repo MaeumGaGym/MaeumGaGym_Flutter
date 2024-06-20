@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image/images.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/providers/home_timer_add_duration_provider.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/widget/timer/widget/home_timer_time_picker_widget.dart';
 
@@ -45,11 +47,10 @@ class HomeTimerAppBar extends ConsumerWidget implements PreferredSizeWidget {
             children: [
               GestureDetector(
                 onTap: () => Navigator.pop(context),
-                child: SvgPicture.asset(
-                  "assets/image/core_icon/left_arrow_icon.svg",
+                child: const ImageWidget(
+                  image: Images.arrowLeft,
                   width: 32,
                   height: 32,
-                  color: MaeumgagymColor.black,
                 ),
               ),
               Row(
@@ -57,18 +58,17 @@ class HomeTimerAppBar extends ConsumerWidget implements PreferredSizeWidget {
                 children: [
                   GestureDetector(
                     onTap: () => showAddTimerScreen(),
-                    child: SvgPicture.asset(
-                      'assets/image/home_icon/add_icon.svg',
+                    child: const ImageWidget(
+                      image: Images.editAdd,
                       width: 32,
                       height: 32,
                     ),
                   ),
                   const SizedBox(width: 12),
-                  SvgPicture.asset(
-                    "assets/image/core_icon/dots_vertical_icon.svg",
+                  const ImageWidget(
+                    image: Images.iconsDotsVertical,
                     width: 32,
                     height: 32,
-                    color: MaeumgagymColor.black,
                   ),
                 ],
               ),

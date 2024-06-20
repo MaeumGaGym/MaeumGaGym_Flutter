@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image/images.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/providers/home_timer_state_provider.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/widget/timer/home_function_widget.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
@@ -56,7 +57,8 @@ class HomeTimerFuncButtonListContainer extends ConsumerWidget {
             backgroundColor: MaeumgagymColor.white,
             padding: 22,
             iconColor: MaeumgagymColor.blue400,
-            iconPath: "assets/image/self_care_icon/close_icon.svg",
+            iconPath: Images.editClose,
+            // iconPath: "assets/image/self_care_icon/close_icon.svg",
           ),
         ),
         // start parse
@@ -84,8 +86,8 @@ class HomeTimerFuncButtonListContainer extends ConsumerWidget {
                               ref.watch(selectedTimerProvider)]
                           .timerState ==
                       TimerState.started
-                  ? "assets/image/home_icon/pause_icon.svg"
-                  : "assets/image/home_icon/play_filled_icon.svg",
+                  ? Images.mediaPause
+                  : Images.mediaPlayFilled,
             ),
           ),
         ),
@@ -103,7 +105,7 @@ class HomeTimerFuncButtonListContainer extends ConsumerWidget {
             backgroundColor: MaeumgagymColor.white,
             padding: 22,
             iconColor: MaeumgagymColor.blue400,
-            iconPath: "assets/image/home_icon/edit_redo_icon.svg",
+            iconPath: Images.editRedo,
           ),
         ),
       ],

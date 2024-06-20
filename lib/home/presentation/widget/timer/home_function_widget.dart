@@ -32,7 +32,6 @@ class HomeFunctionWidget extends StatelessWidget {
       child: Padding(
         padding: EdgeInsets.all(padding),
         child: ImageWidget(
-          imageType: ImageType.svg,
           image: iconPath,
           imageWidth: size,
           imageHeight: size,

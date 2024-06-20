@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image/images.dart';
 import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/providers/home_timer_state_provider.dart';
@@ -96,8 +97,7 @@ class _HomeTimerAlertWidgetState extends ConsumerState<HomeTimerAlertWidget>
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         ImageWidget(
-                          imageType: ImageType.svg,
-                          image: "assets/image/home_icon/timer_icon.svg",
+                          image: Images.timeTimer,
                           imageWidth: 16,
                           imageHeight: 16,
                           color: MaeumgagymColor.blue500,

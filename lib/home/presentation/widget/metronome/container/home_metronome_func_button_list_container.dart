@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image/images.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/providers/metronome_state_provider.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/widget/timer/home_function_widget.dart';
 
@@ -37,7 +38,7 @@ class _HomeMetronomeFuncListContainerState
               iconColor: metronomeState.onVibration
                   ? MaeumgagymColor.white
                   : MaeumgagymColor.blue400,
-              iconPath: "assets/image/home_icon/vibration_icon.svg",
+              iconPath: Images.iconsVibration,
             ),
           ),
           Padding(
@@ -57,8 +58,8 @@ class _HomeMetronomeFuncListContainerState
                 padding: 20,
                 iconColor: MaeumgagymColor.white,
                 iconPath: metronomeState.onPlay
-                    ? "assets/image/home_icon/pause_icon.svg"
-                    : "assets/image/home_icon/play_filled_icon.svg",
+                    ? Images.mediaPause
+                    : Images.mediaPlayFilled,
               ),
             ),
           ),
@@ -73,8 +74,8 @@ class _HomeMetronomeFuncListContainerState
               padding: 22,
               iconColor: MaeumgagymColor.blue400,
               iconPath: metronomeState.volume == 0
-                  ? "assets/image/home_icon/volume_off_icon.svg"
-                  : "assets/image/home_icon/volume_icon.svg",
+                  ? Images.mediaVolumeOff
+                  : Images.mediaVolume,
             ),
           ),
         ],

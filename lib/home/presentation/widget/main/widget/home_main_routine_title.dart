@@ -1,8 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
+import 'package:maeum_ga_gym_flutter/home/presentation/view/home_today_routine_screen.dart';
 
 import '../../../../../core/component/image/images.dart';
 
@@ -30,13 +32,11 @@ class HomeMainRoutineTitle extends StatelessWidget {
               title,
               MaeumgagymColor.black,
             ),
-            GestureDetector(
-              child: ImageWidget(
-                image: Images.chevronRight,
-                width: 24,
-                height: 24,
-                color: MaeumgagymColor.gray200,
-              ),
+            ImageWidget(
+              image: Images.chevronRight,
+              width: 24,
+              height: 24,
+              color: MaeumgagymColor.gray200,
             ),
           ],
         ),
@@ -71,6 +71,12 @@ class HomeMainRoutineTitle extends StatelessWidget {
                 const SizedBox(height: 4),
                 PtdTextWidget.bodyMedium(routineName!, MaeumgagymColor.gray500),
               ],
+            ),
+            ImageWidget(
+              image: Images.chevronRight,
+              width: 24,
+              height: 24,
+              color: MaeumgagymColor.gray200,
             ),
           ],
         ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image/images.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/providers/home_today_routines_provider.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/widget/today_routine/home_today_routine_app_bar.dart';
@@ -72,9 +73,13 @@ class HomeTodayRoutineScreen extends ConsumerWidget {
                             const SizedBox(width: 8),
                             ImageWidget(
                               image: todayRoutine.isCompleted!
-                                  ? 'assets/image/home_icon/completed_circle_icon.svg'
-                                  : 'assets/image/home_icon/clock.svg',
-                              imageType: ImageType.svg,
+                                  ? Images.iconsCheckCircle
+                                  : Images.timeClock,
+                              width: 16,
+                              height: 16,
+                              color: todayRoutine.isCompleted!
+                                  ? MaeumgagymColor.blue500
+                                  : MaeumgagymColor.gray600,
                             ),
                           ],
                         ),

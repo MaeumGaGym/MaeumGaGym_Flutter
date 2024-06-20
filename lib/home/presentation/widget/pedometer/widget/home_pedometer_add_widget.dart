@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image/images.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
 
 class HomePedometerAddWidget extends StatelessWidget {
@@ -18,8 +20,13 @@ class HomePedometerAddWidget extends StatelessWidget {
           children: [
             Row(
               children: [
-                SvgPicture.asset(
-                  "assets/image/home_icon/add_widget_icon.svg",
+                // SvgPicture.asset(
+                //   "assets/image/home_icon/add_widget_icon.svg",
+                // ),
+                const ImageWidget(
+                  image: Images.iconsNotDesignSysAddWidgeticon,
+                  width: 40,
+                  height: 40,
                 ),
                 const SizedBox(width: 16),
                 PtdTextWidget.bodyLarge(
@@ -28,8 +35,10 @@ class HomePedometerAddWidget extends StatelessWidget {
                 ),
               ],
             ),
-            SvgPicture.asset(
-              "assets/image/core_icon/right_arrow_icon.svg",
+            ImageWidget(
+              image: Images.chevronRight,
+              width: 24,
+              height: 24,
               color: MaeumgagymColor.gray200,
             ),
           ],
