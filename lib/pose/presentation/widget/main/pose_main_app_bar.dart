@@ -1,6 +1,7 @@
 /// Package
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image/images.dart';
 import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
 
 /// Core
@@ -45,10 +46,10 @@ class PoseMainTabAppBar extends ConsumerWidget {
 
                   ref.read(poseSearchController.notifier).state = '';
                 },
-                child:  ImageWidget(
-                  color: MaeumgagymColor.black,
-                  image: 'assets/image/core_icon/search_icon.svg',
-                  imageType: ImageType.svg,
+                child: const ImageWidget(
+                  image: Images.iconsSearch,
+                  width: 28,
+                  height: 28,
                 ),
               ),
             ],

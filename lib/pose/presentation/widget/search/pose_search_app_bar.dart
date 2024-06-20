@@ -1,6 +1,7 @@
 /// Package
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image/images.dart';
 import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
 
 /// Core
@@ -47,14 +48,10 @@ class _PoseSearchAppbarState extends ConsumerState<PoseSearchAppbar> {
             GestureDetector(
               behavior: HitTestBehavior.opaque,
               onTap: () => Navigator.pop(context),
-              child: ImageWidget(
-                image: "assets/image/core_icon/left_arrow_ios_icon.png",
-                imageType: ImageType.png,
+              child: const ImageWidget(
+                image: Images.chevronLeft,
                 width: 24,
                 height: 24,
-                imageWidth: 7,
-                imageHeight: 14,
-                color: MaeumgagymColor.black,
               ),
             ),
             Container(
@@ -80,9 +77,7 @@ class _PoseSearchAppbarState extends ConsumerState<PoseSearchAppbar> {
                       child: const ImageWidget(
                         width: 24,
                         imageWidth: 24,
-                        image: 'assets/image/core_icon/search_icon.svg',
-                        imageType: ImageType.svg,
-                        color: Colors.black,
+                        image: Images.iconsSearch,
                       ),
                     ),
                   ),
@@ -118,11 +113,9 @@ class _PoseSearchAppbarState extends ConsumerState<PoseSearchAppbar> {
                               textController.clear();
                             },
                             child: const ImageWidget(
-                              image: "assets/image/core_icon/close_icon.png",
-                              imageType: ImageType.png,
+                              image: Images.editClose,
                               width: 24,
                               height: 24,
-                              imageWidth: 12,
                             ),
                           )
                         : GestureDetector(
