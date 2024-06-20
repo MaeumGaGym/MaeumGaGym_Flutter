@@ -31,7 +31,7 @@ class SelfCareMyRoutineAddRoutineStateNotifier
       final response = await _routineUseCase.addRoutine(
         accessToken: accessToken!,
         routineName: routineName,
-        isArchived: isArchived,
+        isArchived: false,
         isShared: isShared,
         exerciseInfoRequestList: exerciseInfoRequestList,
         dayOfWeeks: dayOfWeeks,
