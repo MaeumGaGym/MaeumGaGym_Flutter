@@ -51,6 +51,32 @@ class Images {
   static const String iconsLink = 'assets/image/icons/link.png';
   static const String iconsLock = 'assets/image/icons/lock.png';
   static const String iconsMessage = 'assets/image/icons/message.png';
+  static const String iconsNotDesignSysAddCircleIcon =
+      'assets/image/icons_not_design_sys/add_circle_icon.svg';
+  static const String iconsNotDesignSysAddWidgeticon =
+      'assets/image/icons_not_design_sys/add_widget_icon.png';
+  static const String iconsNotDesignSysCalculateIcon =
+      'assets/image/icons_not_design_sys/calculate_icon.png';
+  static const String iconsNotDesignSysCameraButtonIcon =
+      'assets/image/icons_not_design_sys/camera_button_icon.png';
+  static const String iconsNotDesignSysDietIcon =
+      'assets/image/icons_not_design_sys/diet_icon.png';
+  static const String iconsNotDesignSysDumbelIcon =
+      'assets/image/icons_not_design_sys/dumbel_icon.png';
+  static const String iconsNotDesignSysEmptyViewIcon =
+      'assets/image/icons_not_design_sys/empty_view_icon.png';
+  static const String iconsNotDesignSysProfileIcon =
+      'assets/image/icons_not_design_sys/profile_icon.png';
+  static const String iconsNotDesignSysRoutineIcon =
+      'assets/image/icons_not_design_sys/routine_icon.png';
+  static const String iconsNotDesignSysSparklingIcon =
+      'assets/image/icons_not_design_sys/sparkling_icon.png';
+  static const String iconsNotDesignSysTargetIcon =
+      'assets/image/icons_not_design_sys/target_icon.png';
+  static const String iconsNotDesignSysTodayExcersizeCompleteIcon =
+      'assets/image/icons_not_design_sys/today_excersize_complete_icon.png';
+  static const String iconsNotDesignSysWakatimeIcon =
+      'assets/image/icons_not_design_sys/wakatime_icon.png';
   static const String iconsPickle = 'assets/image/icons/pickle.png';
   static const String iconsPickleFilled =
       'assets/image/icons/pickle-filled.png';
@@ -68,6 +94,16 @@ class Images {
   static const String iconsUser = 'assets/image/icons/user.png';
   static const String iconsVibration = 'assets/image/icons/vibration.png';
   static const String iconsWeight = 'assets/image/icons/weight.png';
+  static const String logosGoogleLogoIcon =
+      'assets/image/icons_not_design_sys/logos/google_logo_icon.png';
+  static const String logosKakaoTalkLogoIcon =
+      'assets/image/icons_not_design_sys/logos/kakao_talk_logo_icon.png';
+  static const String logosLogo =
+      'assets/image/icons_not_design_sys/logos/logo.png';
+  static const String logosSplashLogo =
+      'assets/image/icons_not_design_sys/logos/splash_logo.png';
+  static const String logosSplashTextLogo =
+      'assets/image/icons_not_design_sys/logos/splash_text_logo.png';
   static const String mediaPause = 'assets/image/icons/Media/pause.png';
   static const String mediaPlay = 'assets/image/icons/Media/Play.png';
   static const String mediaPlayFilled =

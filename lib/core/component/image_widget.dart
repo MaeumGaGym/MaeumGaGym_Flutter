@@ -15,7 +15,7 @@ class ImageWidget extends StatelessWidget {
     // image path
     required this.image,
     // image type
-    required this.imageType,
+    this.imageType = ImageType.png,
     // image color
     this.color,
     // image width
