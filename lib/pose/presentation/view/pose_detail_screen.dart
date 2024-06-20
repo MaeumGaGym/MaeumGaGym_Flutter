@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
 import 'package:maeum_ga_gym_flutter/core/re_issue/presentation/maeumgagym_re_issue_provider.dart';
 import 'package:maeum_ga_gym_flutter/pose/presentation/provider/pose_detail_provider.dart';
 import 'package:maeum_ga_gym_flutter/pose/presentation/widget/detail/pose_detail_app_bar.dart';
-import 'package:video_player/video_player.dart';
 import '../../../core/component/pose/domain/model/pose_data_model.dart';
 import '../../../core/component/text/pretendard/ptd_text_widget.dart';
 import '../widget/detail/pose_detail_body_list_widget.dart';
@@ -25,8 +25,6 @@ class PoseDetailScreen extends ConsumerStatefulWidget {
 }
 
 class _PoseDetailScreenState extends ConsumerState<PoseDetailScreen> {
-  late VideoPlayerController _controller = VideoPlayerController.asset('');
-
   @override
   void initState() {
     super.initState();
@@ -38,26 +36,17 @@ class _PoseDetailScreenState extends ConsumerState<PoseDetailScreen> {
   @override
   void dispose() {
     super.dispose();
-    _controller.dispose();
   }
 
   Future<void> initFunction() async {
     await ref.read(poseDetailController.notifier).getDetailData(id: widget.id);
-
-    _controller = VideoPlayerController.networkUrl(
-      Uri.parse(ref.watch(poseDetailController).video!),
-    );
-    _controller.initialize().then((_) => setState(() {}));
-    _controller.setLooping(true);
-    _controller.play();
   }
 
   @override
   Widget build(BuildContext context) {
     final poseDetail = ref.read(poseDetailController);
 
-    if (_controller.value.isInitialized &&
-        ref.watch(poseDetailController).statusCode.hasValue &&
+    if (ref.watch(poseDetailController).statusCode.hasValue &&
         ref.watch(maeumgagymReIssueController).stateus.hasValue) {
       return Scaffold(
         backgroundColor: MaeumgagymColor.white,
@@ -79,9 +68,9 @@ class _PoseDetailScreenState extends ConsumerState<PoseDetailScreen> {
                   height: 300,
                   alignment: Alignment.center,
                   color: MaeumgagymColor.gray25,
-                  child: AspectRatio(
-                    aspectRatio: 16 / 9,
-                    child: VideoPlayer(_controller),
+                  child: ImageWidget(
+                    image: poseDetail.video!,
+                    imageType: ImageType.pngNetwork,
                   ),
                 ),
 
