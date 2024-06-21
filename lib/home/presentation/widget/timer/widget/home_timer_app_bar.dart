@@ -65,11 +65,11 @@ class HomeTimerAppBar extends ConsumerWidget implements PreferredSizeWidget {
                     ),
                   ),
                   const SizedBox(width: 12),
-                  const ImageWidget(
-                    image: Images.iconsDotsVertical,
-                    width: 32,
-                    height: 32,
-                  ),
+                  // const ImageWidget(
+                  //   image: Images.iconsDotsVertical,
+                  //   width: 32,
+                  //   height: 32,
+                  // ),
                 ],
               ),
             ],
