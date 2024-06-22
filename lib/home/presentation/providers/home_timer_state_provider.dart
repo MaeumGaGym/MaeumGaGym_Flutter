@@ -85,27 +85,29 @@ class TimersNotifier extends StateNotifier<List<Timers>> {
     _subscriptions.add(null);
   }
 
-  void setTimerOverlay(BuildContext context) {
+  void setTimerOverlay(OverlayState context) {
     timerOverlay = OverlayEntry(
       builder: (_) => HomeTimerAlertWidget(
-        receivedContext: context,
+        overlayState: context,
         finishedTimers: finishedTimers,
       ),
     );
   }
 
-  void showTimerOverlay(BuildContext context, int timerId) async {
+  void showTimerOverlay(OverlayState overlayState, int timerId) async {
     finishedTimers.add(timerId);
 
     if (timerOverlayMounted) {
       timerOverlay?.remove();
       timerOverlay = null;
 
-      setTimerOverlay(context);
-      Navigator.of(context).overlay!.insert(timerOverlay!);
+      setTimerOverlay(overlayState);
+      overlayState.insert(timerOverlay!);
+      // Navigator.of(context).overlay!.insert(timerOverlay!);
+
     } else {
-      setTimerOverlay(context);
-      Navigator.of(context).overlay!.insert(timerOverlay!);
+      setTimerOverlay(overlayState);
+      overlayState.insert(timerOverlay!);
     }
 
     timerOverlayMounted = true;
@@ -118,7 +120,7 @@ class TimersNotifier extends StateNotifier<List<Timers>> {
     timerOverlay = null;
   }
 
-  void onTick(int timerId, BuildContext context) {
+  void onTick(int timerId, OverlayState overlayState) {
     state = state.map((timer) {
       if (timer.timerId == timerId && timer.timerState == TimerState.started) {
         if (timer.currentTime > const Duration(milliseconds: 20)) {
@@ -128,7 +130,7 @@ class TimersNotifier extends StateNotifier<List<Timers>> {
         } else {
           _audioPlayer.play(AssetSource('sounds/timer/timer_end_sound.wav'));
           _subscriptions[timerId - 1]?.cancel();
-          showTimerOverlay(context, timerId);
+          showTimerOverlay(overlayState, timerId);
           return timer.copyWith(
             currentTime: timer.initialTime,
             timerState: TimerState.initial,
@@ -139,27 +141,27 @@ class TimersNotifier extends StateNotifier<List<Timers>> {
     }).toList();
   }
 
-  void onStarted(int timerId, BuildContext context) {
+  void onStarted(int timerId, OverlayState overlayState) {
     state = state.map((timer) {
       if (timer.timerId == timerId && timer.timerState != TimerState.started) {
         _subscriptions[timerId - 1]?.cancel();
         _subscriptions[timerId - 1] =
             Stream.periodic(const Duration(milliseconds: 20), (x) => x)
-                .listen((_) => onTick(timerId, context));
+                .listen((_) => onTick(timerId, overlayState));
         return timer.copyWith(timerState: TimerState.started);
       }
       return timer;
     }).toList();
   }
 
-  void onStartedUseSet(Set<int> timerId, BuildContext context) {
+  void onStartedUseSet(Set<int> timerId, OverlayState overlayState) {
     state = state.map((timer) {
       if (timerId.contains(timer.timerId) &&
           timer.timerState != TimerState.started) {
         _subscriptions[timer.timerId - 1]?.cancel();
         _subscriptions[timer.timerId - 1] =
             Stream.periodic(const Duration(milliseconds: 20), (x) => x)
-                .listen((_) => onTick(timer.timerId, context));
+                .listen((_) => onTick(timer.timerId, overlayState));
         return timer.copyWith(timerState: TimerState.started);
       }
       return timer;
