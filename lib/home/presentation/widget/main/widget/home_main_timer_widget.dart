@@ -69,7 +69,7 @@ class _MainTimerWidgetState extends ConsumerState<HomeMainTimerWidget> {
                                   timerList[index].timerState ==
                                       TimerState.initial) {
                                 ref.read(homeTimersProvider.notifier).onStarted(
-                                    timerList[index].timerId, context);
+                                    timerList[index].timerId, Overlay.of(context));
                               } else {
                                 ref
                                     .read(homeTimersProvider.notifier)

@@ -9,12 +9,12 @@ import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_wid
 import 'package:maeum_ga_gym_flutter/home/presentation/providers/home_timer_state_provider.dart';
 
 class HomeTimerAlertWidget extends ConsumerStatefulWidget {
-  final BuildContext receivedContext;
+  final OverlayState overlayState;
   final Set<int> finishedTimers;
 
   const HomeTimerAlertWidget({
     super.key,
-    required this.receivedContext,
+    required this.overlayState,
     required this.finishedTimers,
   });
 
@@ -72,22 +72,22 @@ class _HomeTimerAlertWidgetState extends ConsumerState<HomeTimerAlertWidget>
           padding: const EdgeInsets.only(top: 24),
           child: SlideTransition(
             position: _animation,
-            child: Material(
-              child: Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-                width: MediaQuery.of(context).size.width - 40,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(20),
-                  boxShadow: const [
-                    BoxShadow(
-                      color: Color(0x4C000000),
-                      blurRadius: 6,
-                      offset: Offset(0, 0),
-                    ),
-                  ],
-                ),
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+              width: MediaQuery.of(context).size.width - 40,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(20),
+                boxShadow: const [
+                  BoxShadow(
+                    color: Color(0x4C000000),
+                    blurRadius: 6,
+                    offset: Offset(0, 0),
+                  ),
+                ],
+              ),
+              child: Material(
+                color: MaeumgagymColor.white,
                 child: Column(
                   verticalDirection: VerticalDirection.down,
                   mainAxisSize: MainAxisSize.min,
@@ -147,7 +147,7 @@ class _HomeTimerAlertWidgetState extends ConsumerState<HomeTimerAlertWidget>
                           onTap: () {
                             timersNotifier.onStartedUseSet(
                               widget.finishedTimers,
-                              widget.receivedContext,
+                              widget.overlayState,
                             );
 
                             timersNotifier.removeTimerOverlay();
