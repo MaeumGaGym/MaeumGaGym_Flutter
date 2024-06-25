@@ -5,6 +5,7 @@ import 'package:maeum_ga_gym_flutter/core/component/image/images.dart';
 import 'package:maeum_ga_gym_flutter/core/component/routine/presentation/provider/routine_my_routine_my_routine_provider.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/view/my_routine/self_care_my_routine_add_screen.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/view/my_routine/self_care_my_routine_detail_screen.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/view/my_routine/self_care_my_routine_empty_screen.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/self_care_my_routine_button.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/self_care_my_routine_item_widget.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/self_care_default_app_bar.dart';
@@ -68,51 +69,58 @@ class _SelfCareMyRoutineMainScreenState
         iconPath: Images.arrowLeft,
       ),
       body: SafeArea(
-        child: SingleChildScrollView(
-          controller: scrollController,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const RoutineDefaultTitleContainer(
-                  title: "내 루틴",
-                  subTitle: "나만의 루틴을 구성하여\n규칙적인 운동을 해보세요.",
-                ),
-                const SizedBox(height: 32),
-                ListView.builder(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
+        child: Builder(
+          builder: (context) {
+            if (myRoutineState.routineList.isEmpty) {
+              return const SelfCareMyRoutineEmptyScreen();
+            }
+            return SingleChildScrollView(
+              controller: scrollController,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const RoutineDefaultTitleContainer(
+                      title: "내 루틴",
+                      subTitle: "나만의 루틴을 구성하여\n규칙적인 운동을 해보세요.",
+                    ),
+                    const SizedBox(height: 32),
+                    ListView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
 
-                  /// Notifier에 입력된 Model 개수만큼
-                  itemCount: myRoutineState.routineList.length,
-                  itemBuilder: (context, index) {
-                    /// 공통된 변수
-                    return Padding(
-                      padding: EdgeInsets.only(
-                          bottom: index == myRoutineState.routineList.length - 1
-                              ? 0
-                              : 12),
-                      child: GestureDetector(
-                        onTap: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => SelfCareMyRoutineDetailScreen(
+                      /// Notifier에 입력된 Model 개수만큼
+                      itemCount: myRoutineState.routineList.length,
+                      itemBuilder: (context, index) {
+                        /// 공통된 변수
+                        return Padding(
+                          padding: EdgeInsets.only(
+                              bottom: index == myRoutineState.routineList.length - 1
+                                  ? 0
+                                  : 12),
+                          child: GestureDetector(
+                            onTap: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => SelfCareMyRoutineDetailScreen(
+                                  listIndex: index,
+                                ),
+                              ),
+                            ),
+                            child: SelfCareMyRoutineItemWidget(
                               listIndex: index,
                             ),
                           ),
-                        ),
-                        child: SelfCareMyRoutineItemWidget(
-                          listIndex: index,
-                        ),
-                      ),
-                    );
-                  },
+                        );
+                      },
+                    ),
+                    const SizedBox(height: 98),
+                  ],
                 ),
-                const SizedBox(height: 98),
-              ],
-            ),
-          ),
+              ),
+            );
+          }
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
