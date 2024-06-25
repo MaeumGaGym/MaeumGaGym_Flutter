@@ -76,61 +76,63 @@ class _SelfCarePurposeMainScreenState
         iconPath: Images.arrowLeft,
       ),
       body: SafeArea(
-        child: Builder(
-          builder: (context) {
-            if(myPurposeState.purposeList.isEmpty){
-              return const SelfCarePurposeEmptyScreen();
-            }
-
-            return SingleChildScrollView(
-              controller: scrollController,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const RoutineDefaultTitleContainer(
-                      title: "목표",
-                      subTitle: "나만의 목표를 세워보세요.",
-                    ),
-                    const SizedBox(height: 32),
-                    ListView.builder(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemCount: myPurposeState.purposeList.length, // 임의로 넣은 아이템 갯수
-                      itemBuilder: (context, index) {
-                        return Column(
-                          children: [
-                            GestureDetector(
-                              onTap: () => Navigator.of(context).push(
-                                MaterialPageRoute(
-                                  builder: (context) => SelfCarePurposeDetailScreen(purposeId: myPurposeState.purposeList[index].id!),
-                                ),
-                              ),
-                              child: SelfCarePurposeItemWidget(
-                                purposeId: myPurposeState.purposeList[index].id!,
-                                title: myPurposeState.purposeList[index].title
-                                    .toString(),
-                                subTitle: myPurposeState
-                                    .purposeList[index].startDate
-                                    .toString(),
-                              ),
-                            ),
-                            SizedBox(
-                                height: index == myPurposeState.purposeList.length - 1 ?
-                                0 : 12
-                            ),
-                          ],
-                        );
-                      },
-                    ),
-                    const SizedBox(height: 98),
-                  ],
-                ),
-              ),
-            );
+        child: Builder(builder: (context) {
+          if (myPurposeState.purposeList.isEmpty) {
+            return const SelfCarePurposeEmptyScreen();
           }
-        ),
+          return SingleChildScrollView(
+            controller: scrollController,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const RoutineDefaultTitleContainer(
+                    title: "목표",
+                    subTitle: "나만의 목표를 세워보세요.",
+                  ),
+                  const SizedBox(height: 32),
+                  ListView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: myPurposeState.purposeList.length,
+                    // 임의로 넣은 아이템 갯수
+                    itemBuilder: (context, index) {
+                      return Column(
+                        children: [
+                          GestureDetector(
+                            onTap: () => Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    SelfCarePurposeDetailScreen(
+                                        purposeId: myPurposeState
+                                            .purposeList[index].id!),
+                              ),
+                            ),
+                            child: SelfCarePurposeItemWidget(
+                              purposeId: myPurposeState.purposeList[index].id!,
+                              title: myPurposeState.purposeList[index].title
+                                  .toString(),
+                              subTitle: myPurposeState
+                                  .purposeList[index].startDate
+                                  .toString(),
+                            ),
+                          ),
+                          SizedBox(
+                              height:
+                                  index == myPurposeState.purposeList.length - 1
+                                      ? 0
+                                      : 12),
+                        ],
+                      );
+                    },
+                  ),
+                  const SizedBox(height: 98),
+                ],
+              ),
+            ),
+          );
+        }),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: GestureDetector(
