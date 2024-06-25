@@ -10,9 +10,12 @@ class PoseRecommendWidget extends StatelessWidget {
 
   final String titleText;
 
+  final bool useNavigator;
+
   const PoseRecommendWidget({
     required this.recommendPoseData,
     required this.titleText,
+    required this.useNavigator,
     super.key,
   });
 
@@ -31,7 +34,7 @@ class PoseRecommendWidget extends StatelessWidget {
           ),
 
           /// ~ 운동 하단
-          PoseRecommendWidgetBottom(recommendPoseData: recommendPoseData),
+          PoseRecommendWidgetBottom(recommendPoseData: recommendPoseData, useNavigator: useNavigator),
         ],
       ),
     );

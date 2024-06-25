@@ -27,7 +27,7 @@ class PoseMainTabBody extends ConsumerWidget {
       child: Builder(
         builder: (context) {
           if (tabBodyData[ref.watch(poseTabController)] == "추천") {
-            return const PoseMainTabBodyRecommendScreen();
+            return PoseMainTabBodyRecommendScreen(useNavigator: useNavigator,);
           } else {
             return PoseMainTabBodyPartScreen(
               tabName: tabBodyData[ref.watch(poseTabController)],

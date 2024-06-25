@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
 import 'package:maeum_ga_gym_flutter/core/component/pose/domain/model/pose_data_model.dart';
-import 'package:maeum_ga_gym_flutter/core/component/pose/domain/model/pose_recommend_model.dart';
-import 'package:maeum_ga_gym_flutter/pose/presentation/provider/pose_detail_provider.dart';
+import 'package:maeum_ga_gym_flutter/core/component/routine/domain/model/exercise_info_edit_routine_pose_model.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/my_routine/self_care_my_routine_pose_list_provider.dart';
 
 import '../../../../../../../config/maeumgagym_color.dart';
 import '../../../../../../../pose/presentation/view/pose_detail_screen.dart';
@@ -11,10 +11,12 @@ import '../../../../../text/pretendard/ptd_text_widget.dart';
 
 class PoseRecommendWidgetBottom extends ConsumerWidget {
   final List<PoseDataModel> recommendPoseData;
+  final bool useNavigator;
 
   const PoseRecommendWidgetBottom({
     super.key,
     required this.recommendPoseData,
+    required this.useNavigator,
   });
 
   @override
@@ -31,15 +33,34 @@ class PoseRecommendWidgetBottom extends ConsumerWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               GestureDetector(
-                onTap: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => PoseDetailScreen(
-                      id: poseData.id!,
-                      poseData: poseData,
-                    ),
-                  ),
-                ),
+                onTap: () {
+                  if (useNavigator == true) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => PoseDetailScreen(
+                          id: poseData.id!,
+                          poseData: poseData,
+                        ),
+                      ),
+                    );
+                  } else {
+                    ref.read(selfCareMyRoutinePostListProvider.notifier).insert(
+                      ExerciseInfoEditRoutinePoseModel(
+                        poseModel: PoseDataModel(
+                            id: recommendPoseData[index].id,
+                            thumbnail: recommendPoseData[index].thumbnail,
+                            name: recommendPoseData[index].name,
+                            needMachine: recommendPoseData[index].needMachine,
+                            simplePart: recommendPoseData[index].simplePart,
+                            exactPart: recommendPoseData[index].exactPart),
+                        repetitionsController: TextEditingController(text: "10"),
+                        setsController: TextEditingController(text: "1"),
+                      ),
+                    );
+                    Navigator.pop(context);
+                  }
+                },
                 child: Padding(
                   padding: const EdgeInsets.only(right: 12),
                   child: ImageWidget(
