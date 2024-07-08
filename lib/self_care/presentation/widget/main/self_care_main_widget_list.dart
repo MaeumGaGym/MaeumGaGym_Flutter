@@ -25,61 +25,33 @@ class SelfCareMainWidgetList extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 12),
-          GestureDetector(
-            behavior: HitTestBehavior.translucent,
-            onTap: () => Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) => const SelfCareMyRoutineMainScreen(),
-              ),
-            ),
-            child: const SelfCareItemWidget(
-              width: 25,
-              height: 28,
-              imagePath: Images.iconsNotDesignSysRoutineIcon,
-              title: "내 루틴",
-            ),
+          const SelfCareItemWidget(
+            width: 25,
+            height: 28,
+            imagePath: Images.iconsNotDesignSysRoutineIcon,
+            title: "내 루틴",
+            routePage: SelfCareMyRoutineMainScreen(),
           ),
-          GestureDetector(
-            behavior: HitTestBehavior.translucent,
-            onTap: () => Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) => const SelfCarePurposeMainScreen(),
-              ),
-            ),
-            child: const SelfCareItemWidget(
-              width: 32,
-              height: 32,
-              imagePath: Images.iconsNotDesignSysTargetIcon,
-              title: "목표",
-            ),
+          const SelfCareItemWidget(
+            width: 25,
+            height: 28,
+            imagePath: Images.iconsNotDesignSysTargetIcon,
+            title: "목표",
+            routePage: SelfCarePurposeMainScreen(),
           ),
-          GestureDetector(
-            behavior: HitTestBehavior.translucent,
-            onTap: () => Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) => const EmptyViewScreen(),
-              ),
-            ),
-            child: const SelfCareItemWidget(
-              width: 16,
-              height: 26,
-              imagePath: Images.iconsNotDesignSysDietIcon,
-              title: "식단",
-            ),
+          const SelfCareItemWidget(
+            width: 25,
+            height: 28,
+            imagePath: Images.iconsNotDesignSysDietIcon,
+            title: "식단",
+            routePage: EmptyViewScreen(),
           ),
-          GestureDetector(
-            behavior: HitTestBehavior.translucent,
-            onTap: () => Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) => const EmptyViewScreen(),
-              ),
-            ),
-            child: const SelfCareItemWidget(
-              width: 24,
-              height: 24,
-              imagePath: Images.iconsNotDesignSysTodayExcersizeCompleteIcon,
-              title: "오운완",
-            ),
+          const SelfCareItemWidget(
+            width: 25,
+            height: 28,
+            imagePath: Images.iconsNotDesignSysTodayExcersizeCompleteIcon,
+            title: "오운완",
+            routePage: EmptyViewScreen(),
           ),
         ],
       ),
