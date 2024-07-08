@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image/images.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
 
 import '../../../../config/maeumgagym_color.dart';
@@ -122,12 +123,16 @@ class MaeumgagymTextField extends ConsumerWidget {
                           textFieldNotifier.isText(false);
                           textFieldNotifier.clicked(false);
                         },
-                        child: textFieldState.inText &&
-                                    textFieldState.onClicked ||
-                                textFieldState.inText
-                            ? SvgPicture.asset(
-                                'assets/image/sign_up_icon/close_circle.svg')
-                            : const SizedBox(),
+                        child:
+                            textFieldState.inText && textFieldState.onClicked ||
+                                    textFieldState.inText
+                                ? ImageWidget(
+                                    image: Images.iconsCloseCircle,
+                                    width: 24,
+                                    height: 24,
+                                    color: MaeumgagymColor.gray400,
+                                  )
+                                : const SizedBox(),
                       ),
                     ),
                   ],
