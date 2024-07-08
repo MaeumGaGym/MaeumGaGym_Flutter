@@ -13,6 +13,7 @@ import '../../../core/di/token_secure_storage_di.dart';
 import '../../../core/re_issue/presentation/maeumgagym_re_issue_provider.dart';
 import '../../../home/presentation/providers/home_quotes_provider.dart';
 import '../../../home/presentation/providers/home_today_routines_provider.dart';
+import '../../../self_care/presentation/provider/profile/self_care_profile_get_profile_provider.dart';
 
 class SplashScreen extends ConsumerStatefulWidget {
   const SplashScreen({super.key});
@@ -54,6 +55,8 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
             await ref.read(poseAllController.notifier).getPoseDataList();
 
             await ref.read(poseRecommendController.notifier).getRecommendPose();
+
+            await ref.read(selfCareProfileGetProfileProvider.notifier).getUserProfile();
 
             context.go('/home');
           },

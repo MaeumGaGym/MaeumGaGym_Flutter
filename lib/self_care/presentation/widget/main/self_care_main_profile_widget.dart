@@ -19,14 +19,6 @@ class SelfCareMainProfileWidget extends ConsumerStatefulWidget {
 class _SelfCareMainProfileContainerState
     extends ConsumerState<SelfCareMainProfileWidget> {
   @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.read(selfCareProfileGetProfileProvider.notifier).getUserProfile();
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
     final profileState = ref.watch(selfCareProfileGetProfileProvider);
     return GestureDetector(
