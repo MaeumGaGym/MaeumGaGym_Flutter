@@ -10,6 +10,7 @@ class BottomNavigationItem extends ConsumerWidget {
   final int clickState;
   final String label;
   final String selectedImage, image;
+  final PageController pageController;
 
   const BottomNavigationItem({
     super.key,
@@ -17,6 +18,7 @@ class BottomNavigationItem extends ConsumerWidget {
     required this.image,
     required this.selectedImage,
     required this.clickState,
+    required this.pageController,
   });
 
   @override
@@ -25,7 +27,14 @@ class BottomNavigationItem extends ConsumerWidget {
     final bool isSelected = ref.watch(pageControllerProvider) == clickState;
 
     return GestureDetector(
-      onTap: () => pageControllerNotifier.state = clickState,
+      onTap: () {
+        pageController.animateToPage(
+          clickState,
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.ease,
+        );
+        pageControllerNotifier.state = clickState;
+      },
       child: SizedBox(
         height: 64,
         child: FittedBox(
