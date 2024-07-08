@@ -26,79 +26,56 @@ class _SelfCareMainProfileContainerState
       onTap: () => Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => SelfCareProfileMainScreen(
-            profileImage: profileState.profileImage.toString(),
-            nickname: profileState.nickname.toString(),
-            totalWakaTime: profileState.totalWakatime!,
-          ),
+          builder: (context) => const SelfCareProfileMainScreen(),
         ),
       ),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-        child: profileState.statusCode.when(
-          data: (data) {
-            if (data == 200) {
-              return Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(100),
-                        child: Image.network(
-                          profileState.profileImage.toString(),
-                          width: 48,
-                          height: 48,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Row(
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(100),
+                  child: Image.network(
+                    profileState.profileImage.toString(),
+                    width: 48,
+                    height: 48,
+                  ),
+                ),
+                const SizedBox(width: 12),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        PtdTextWidget.labelLarge(
+                          profileState.nickname.toString(),
+                          MaeumgagymColor.black,
                         ),
-                      ),
-                      const SizedBox(width: 12),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            children: [
-                              PtdTextWidget.labelLarge(
-                                profileState.nickname.toString(),
-                                MaeumgagymColor.black,
-                              ),
-                              const SizedBox(width: 8),
-                              const ImageWidget(
-                                width: 18,
-                                image: Images.iconsNotDesignSysProfileIcon,
-                              ),
-                            ],
-                          ),
-                          const SizedBox(height: 2),
-                          PtdTextWidget.bodyMedium(
-                            "${profileState.totalWakatime}시간",
-                            MaeumgagymColor.gray400,
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  ImageWidget(
-                    width: 24,
-                    image: Images.chevronRight,
-                    color: MaeumgagymColor.gray200,
-                  ),
-                ],
-              );
-            } else {
-              return Text(
-                "${profileState.statusCode}",
-              );
-            }
-          },
-          error: (error, stack) {
-            throw Exception(profileState.statusCode);
-          },
-          loading: () {
-            return Center(
-                child: CircularProgressIndicator(
-              color: MaeumgagymColor.blue500,
-            ));
-          },
+                        const SizedBox(width: 8),
+                        const ImageWidget(
+                          width: 18,
+                          image: Images.iconsNotDesignSysProfileIcon,
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 2),
+                    PtdTextWidget.bodyMedium(
+                      "${profileState.totalWakatime}시간",
+                      MaeumgagymColor.gray400,
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            ImageWidget(
+              width: 24,
+              image: Images.chevronRight,
+              color: MaeumgagymColor.gray200,
+            ),
+          ],
         ),
       ),
     );
