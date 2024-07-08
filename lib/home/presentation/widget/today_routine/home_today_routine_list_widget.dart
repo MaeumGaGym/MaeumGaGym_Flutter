@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image/images.dart';
 import 'package:maeum_ga_gym_flutter/core/component/pose/domain/model/pose_data_model.dart';
 
 import '../../../../config/maeumgagym_color.dart';
@@ -66,11 +67,11 @@ class HomeTodayRoutineListWidget extends ConsumerWidget {
                   ),
                 ],
               ),
-              const ImageWidget(
-                image: 'assets/image/core_icon/right_arrow_icon.svg',
-                imageType: ImageType.svg,
+               ImageWidget(
+                image: Images.chevronRight,
                 width: 24,
                 height: 24,
+                color: MaeumgagymColor.gray200,
               ),
             ],
           ),
