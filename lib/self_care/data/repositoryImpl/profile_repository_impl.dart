@@ -9,11 +9,9 @@ class ProfileRepositoryImpl implements ProfileRepository {
   @override
   Future<ProfileResponseModel> getUserProfile({
     required String accessToken,
-    required String nickname,
   }) async {
     return await _remoteDataSource.getUserProfile(
       accessToken: accessToken,
-      nickname: nickname,
     );
   }
 

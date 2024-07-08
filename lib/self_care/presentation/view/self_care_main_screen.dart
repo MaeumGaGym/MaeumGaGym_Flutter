@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/image/images.dart';
 import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
-
-import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/main/dividing_line_widget.dart';
+import 'package:maeum_ga_gym_flutter/core/component/routine/presentation/widget/routine_default_title_widget.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/calendar/self_care_timeline_widget.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/main/dividing_line_widget.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/main/self_care_main_profile_widget.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/main/self_care_main_widget_list.dart';
-import 'package:maeum_ga_gym_flutter/core/component/routine/presentation/widget/routine_default_title_widget.dart';
 
 class SelfCareMainScreen extends ConsumerStatefulWidget {
   const SelfCareMainScreen({Key? key}) : super(key: key);
@@ -29,8 +27,7 @@ class _SelfCareMainScreenState extends ConsumerState<SelfCareMainScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
+                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
