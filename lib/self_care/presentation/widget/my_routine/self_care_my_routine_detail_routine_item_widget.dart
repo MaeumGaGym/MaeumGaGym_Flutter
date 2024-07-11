@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/image/images.dart';
 import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
@@ -34,7 +33,7 @@ class SelfCareMyRoutineDetailRoutineItemWidget extends ConsumerWidget {
                 width: 80,
                 height: 80,
                 imageType: ImageType.pngNetwork,
-                image: item.pose!.thumbnail.toString(),
+                image: item.pose.thumbnail.toString(),
                 backgroundColor: MaeumgagymColor.gray25,
               ),
             ),
@@ -43,7 +42,7 @@ class SelfCareMyRoutineDetailRoutineItemWidget extends ConsumerWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 PtdTextWidget.bodyLarge(
-                  item.pose!.name.toString(),
+                  item.pose.name.toString(),
                   MaeumgagymColor.black,
                 ),
                 const SizedBox(height: 2),

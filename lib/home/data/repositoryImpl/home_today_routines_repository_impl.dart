@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/home/data/data_source/remote/home_today_routines_remote_data_source.dart';
-import 'package:maeum_ga_gym_flutter/home/domain/model/home_today_routines_model.dart';
+import 'package:maeum_ga_gym_flutter/core/model/routine/maeumgagym_routine_list_model.dart';
 import 'package:maeum_ga_gym_flutter/home/domain/repository/home_today_routines_repository.dart';
 
 class HomeTodayRoutinesRepositoryImpl implements HomeTodayRoutinesRepository {
@@ -8,7 +8,7 @@ class HomeTodayRoutinesRepositoryImpl implements HomeTodayRoutinesRepository {
       HomeTodayRoutinesRemoteDataSource();
 
   @override
-  Future<HomeTodayRoutineListModel> getTodayRoutines() async {
+  Future<MaeumgagymRoutineListModel> getTodayRoutines() async {
     return await _dataSource.getTodayRoutines();
   }
 

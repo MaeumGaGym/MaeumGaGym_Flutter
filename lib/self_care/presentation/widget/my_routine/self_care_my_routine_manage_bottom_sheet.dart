@@ -46,17 +46,17 @@ class _SelfCareMyRoutineManageBottomSheetState
 
     await editRoutineNotifier.editRoutine(
       routineName: item.routineName.toString(),
-      isArchived: changeArchived ?? item.routineStatus!.isArchived!,
-      isShared: changeShared ?? item.routineStatus!.isShared!,
+      isArchived: changeArchived ?? item.routineStatus.isArchived,
+      isShared: changeShared ?? item.routineStatus.isShared,
       exerciseInfoRequestList: List<ExerciseInfoRequestModel>.generate(
         item.exerciseInfoResponseList.length,
         (index) => ExerciseInfoRequestModel(
           repetitions: item.exerciseInfoResponseList[index].repetitions,
           sets: item.exerciseInfoResponseList[index].sets,
-          id: item.exerciseInfoResponseList[index].pose!.id,
+          id: item.exerciseInfoResponseList[index].pose.id,
         ),
       ),
-      routineId: item.id!,
+      routineId: item.id,
       dayOfWeeks: item.dayOfWeeks,
     );
   }
@@ -128,7 +128,7 @@ class _SelfCareMyRoutineManageBottomSheetState
               GestureDetector(
                 behavior: HitTestBehavior.translucent,
                 onTap: () async {
-                  if (item.routineStatus!.isArchived == true) {
+                  if (item.routineStatus.isArchived == true) {
                     _updateState(changeArchived: false);
                     _showToast(message: "루틴 보관을 취소했어요.");
                   } else {
@@ -137,14 +137,14 @@ class _SelfCareMyRoutineManageBottomSheetState
                   }
                 },
                 child: SelfCareDefaultManageItemWidget(
-                  title: item.routineStatus!.isArchived! ? "보관 취소" : "보관",
+                  title: item.routineStatus.isArchived ? "보관 취소" : "보관",
                   iconPath: Images.iconsInbox,
                 ),
               ),
               GestureDetector(
                 behavior: HitTestBehavior.translucent,
                 onTap: () {
-                  if (item.routineStatus!.isShared == true) {
+                  if (item.routineStatus.isShared == true) {
                     _updateState(changeShared: false);
                     _showToast(message: "루틴 공유를 취소했어요.");
                   } else {
@@ -153,7 +153,7 @@ class _SelfCareMyRoutineManageBottomSheetState
                   }
                 },
                 child: SelfCareDefaultManageItemWidget(
-                  title: item.routineStatus!.isShared! ? "공유 취소" : "공유",
+                  title: item.routineStatus.isShared ? "공유 취소" : "공유",
                   iconPath: Images.iconsEarth,
                 ),
               ),
@@ -161,7 +161,7 @@ class _SelfCareMyRoutineManageBottomSheetState
                 behavior: HitTestBehavior.translucent,
                 onTap: () async {
                   await deleteRoutineNotifier.deleteRoutine(
-                      routineId: item.id!);
+                      routineId: item.id);
                   await todayRoutineNotifier.getTodayRoutines();
                 },
                 child: const SelfCareDefaultManageItemWidget(

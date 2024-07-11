@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/component/timer_sound_component.dart';
-import '../../../home/domain/model/home_today_routines_model.dart';
+import '../../../core/model/routine/maeumgagym_routine_list_model.dart';
 import '../../domain/model/routine_start_model.dart';
 
 final routineStartExerciseProvider = StateNotifierProvider<RoutineStartExerciseNotifier, RoutineStartModel>((ref) {

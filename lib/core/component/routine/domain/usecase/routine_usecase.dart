@@ -2,7 +2,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/self_care/domain/model/my_routine/exercise_info_request_model.dart';
 import 'package:maeum_ga_gym_flutter/core/component/routine/domain/model/routine_and_user_info_model.dart';
 import 'package:maeum_ga_gym_flutter/self_care/domain/model/my_routine/routine_history_model.dart';
-import 'package:maeum_ga_gym_flutter/self_care/domain/model/my_routine/routine_response_model.dart';
 import 'package:maeum_ga_gym_flutter/core/component/routine/domain/repository/routine_repository.dart';
 
 class RoutineUseCase {
@@ -35,14 +34,6 @@ class RoutineUseCase {
     return await _repository.getMyRoutine(
       accessToken: accessToken,
       index: index,
-    );
-  }
-
-  Future<RoutineResponseModel> getTodayRoutine({
-    required String accessToken,
-  }) async {
-    return await _repository.getTodayRoutine(
-      accessToken: accessToken,
     );
   }
 

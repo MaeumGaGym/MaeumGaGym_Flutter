@@ -10,7 +10,7 @@ import 'package:maeum_ga_gym_flutter/routine_start/presentation/provider/routine
 import 'package:maeum_ga_gym_flutter/routine_start/presentation/provider/routine_start_page_view_provider.dart';
 import 'package:maeum_ga_gym_flutter/routine_start/presentation/widget/routine_start_main_bottom_sheet.dart';
 import 'package:maeum_ga_gym_flutter/routine_start/presentation/widget/routine_start_main_list_widget.dart';
-import '../../../home/domain/model/home_today_routines_model.dart';
+import '../../../core/model/routine/maeumgagym_routine_list_model.dart';
 import '../widget/routine_start_main_app_bar.dart';
 
 class RoutineStartMainScreen extends ConsumerStatefulWidget {

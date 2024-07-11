@@ -1,4 +1,4 @@
-import '../../../../home/domain/model/home_today_routines_model.dart';
+import '../../../core/model/routine/maeumgagym_routine_list_model.dart';
 
 class RoutineStartModel {
   int routineId;

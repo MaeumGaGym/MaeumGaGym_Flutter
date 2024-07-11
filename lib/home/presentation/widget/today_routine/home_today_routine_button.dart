@@ -7,7 +7,7 @@ import 'package:maeum_ga_gym_flutter/routine_start/presentation/view/routine_sta
 
 import '../../../../config/maeumgagym_color.dart';
 import '../../../../core/component/text/pretendard/ptd_text_widget.dart';
-import '../../../domain/model/home_today_routines_model.dart';
+import '../../../../core/model/routine/maeumgagym_routine_list_model.dart';
 
 class HomeTodayRoutineButton extends ConsumerWidget {
   final int routineId;

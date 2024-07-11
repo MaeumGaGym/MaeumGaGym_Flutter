@@ -12,9 +12,9 @@ import '../../../core/component/routine/presentation/provider/routine_my_routine
 import '../../../core/component/routine/presentation/provider/routine_my_routine_my_routine_provider.dart';
 import '../../../core/component/routine/domain/model/exercise_info_edit_routine_pose_model.dart';
 import '../../../core/component/routine/presentation/widget/routine_my_routine_item_count_widget.dart';
+import '../../../core/model/routine/maeumgagym_routine_list_model.dart';
 import '../../../home/presentation/providers/home_today_routines_provider.dart';
 import '../../../self_care/domain/model/my_routine/exercise_info_request_model.dart';
-import '../../../self_care/domain/model/my_routine/routine_response_model.dart';
 
 class PoseAddRoutineDetailScreen extends ConsumerStatefulWidget {
   final int routineIndex;
@@ -38,7 +38,7 @@ class PoseAddRoutineDetailScreen extends ConsumerStatefulWidget {
 
 class _PoseAddRoutineDetailScreenState
     extends ConsumerState<PoseAddRoutineDetailScreen> {
-  late final RoutineResponseModel item;
+  late final RoutineModel item;
   late List<ExerciseInfoEditRoutinePoseModel> routineEditList;
   late final TextEditingController poseRepetitionsTextController;
   late final TextEditingController poseSetTextController;
@@ -58,18 +58,17 @@ class _PoseAddRoutineDetailScreenState
 
     /// 화면이 빌드되었을 때 init
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      item =
-          ref.watch(routineMyRoutinesProvider).routineList[widget.routineIndex];
+      item = ref.watch(routineMyRoutinesProvider).routineList[widget.routineIndex];
       routineEditList = List<ExerciseInfoEditRoutinePoseModel>.generate(
         item.exerciseInfoResponseList.length,
         (index) => ExerciseInfoEditRoutinePoseModel(
           poseModel: PoseDataModel(
-            id: item.exerciseInfoResponseList[index].pose!.id,
-            thumbnail: item.exerciseInfoResponseList[index].pose!.thumbnail,
-            name: item.exerciseInfoResponseList[index].pose!.name,
-            needMachine: item.exerciseInfoResponseList[index].pose!.needMachine,
-            simplePart: item.exerciseInfoResponseList[index].pose!.simplePart,
-            exactPart: item.exerciseInfoResponseList[index].pose!.exactPart,
+            id: item.exerciseInfoResponseList[index].pose.id,
+            thumbnail: item.exerciseInfoResponseList[index].pose.thumbnail,
+            name: item.exerciseInfoResponseList[index].pose.name,
+            needMachine: item.exerciseInfoResponseList[index].pose.needMachine,
+            simplePart: item.exerciseInfoResponseList[index].pose.simplePart,
+            exactPart: item.exerciseInfoResponseList[index].pose.exactPart,
           ),
           repetitionsController: TextEditingController(
               text:
@@ -195,8 +194,8 @@ class _PoseAddRoutineDetailScreenState
 
                         await editPoseListNotifier.editRoutine(
                           routineName: widget.routineName,
-                          isArchived: item.routineStatus!.isArchived!,
-                          isShared: item.routineStatus!.isShared!,
+                          isArchived: item.routineStatus.isArchived,
+                          isShared: item.routineStatus.isShared,
                           exerciseInfoRequestList:
                               List<ExerciseInfoRequestModel>.generate(
                             routineEditList.length,
@@ -217,7 +216,7 @@ class _PoseAddRoutineDetailScreenState
                             ),
                           ),
                           dayOfWeeks: item.dayOfWeeks,
-                          routineId: item.id!,
+                          routineId: item.id,
                         );
 
                         await ref

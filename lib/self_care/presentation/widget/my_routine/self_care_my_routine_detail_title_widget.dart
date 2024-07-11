@@ -32,7 +32,7 @@ class SelfCareMyRoutineDetailTitleWidget extends ConsumerWidget {
                 MaeumgagymColor.black,
               ),
               const SizedBox(height: 12),
-              if (!item.routineStatus!.isArchived!)
+              if (!item.routineStatus.isArchived)
                 PtdTextWidget.bodyMedium(
                   item.dayOfWeeks.isEmpty
                       ? "사용중"
@@ -42,7 +42,7 @@ class SelfCareMyRoutineDetailTitleWidget extends ConsumerWidget {
             ],
           ),
         ),
-        if (item.routineStatus!.isShared!)
+        if (item.routineStatus.isShared)
           RoutineMyRoutineSharedWidget(color: MaeumgagymColor.blue50),
       ],
     );

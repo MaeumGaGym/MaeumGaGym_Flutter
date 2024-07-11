@@ -70,7 +70,7 @@ class _SelfCareMyRoutineDetailScreenState
                 ListView.builder(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
-                  itemCount: item.exerciseInfoResponseList.length,
+                  itemCount: item.exerciseInfoResponseList!.length,
                   itemBuilder: (context, index) {
                     return Column(
                       children: [
@@ -82,7 +82,7 @@ class _SelfCareMyRoutineDetailScreenState
                         /// 마지막 아이템일 경우 간격 x
                         SizedBox(
                           height:
-                              index == item.exerciseInfoResponseList.length - 1
+                              index == item.exerciseInfoResponseList!.length - 1
                                   ? 0
                                   : 12,
                         ),
@@ -117,8 +117,7 @@ class _SelfCareMyRoutineDetailScreenState
                   child: GestureDetector(
                     behavior: HitTestBehavior.translucent,
                     onTap: () async {
-                      await deleteRoutineNotifier.deleteRoutine(
-                          routineId: item.id!);
+                      await deleteRoutineNotifier.deleteRoutine(routineId: item.id!);
                       await ref
                           .read(homeTodayRoutineController.notifier)
                           .getTodayRoutines();
