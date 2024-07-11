@@ -121,6 +121,7 @@ class HomeTodayRoutineScreen extends ConsumerWidget {
       bottomSheet: HomeTodayRoutineButton(
         isCompleted: todayRoutine.isCompleted!,
         routineId: todayRoutine.id!,
+        routineList: todayRoutine.exerciseInfoResponseList!,
       ),
     );
   }
