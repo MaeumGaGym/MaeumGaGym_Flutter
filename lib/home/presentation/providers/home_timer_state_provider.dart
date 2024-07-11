@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/models/timers.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/widget/timer/widget/home_timer_alert_widget.dart';
 
+import '../../../core/component/timer_sound_component.dart';
 import '../../domain/model/local_timer_model.dart';
 
 late OverlayEntry? timerOverlay;
@@ -23,10 +24,8 @@ final homeTimersProvider =
 
 class TimersNotifier extends StateNotifier<List<Timers>> {
   final List<StreamSubscription<int>?> _subscriptions = [null, null];
-  final _audioPlayer = AudioPlayer();
 
   // 이거 나중ㅇ ㅔ고쳐야됨
-
   TimersNotifier() : super([]);
 
   Future<void> initAddTimer(List<LocalTimerModel> list) async {
@@ -128,7 +127,7 @@ class TimersNotifier extends StateNotifier<List<Timers>> {
             currentTime: timer.currentTime - const Duration(milliseconds: 20),
           );
         } else {
-          _audioPlayer.play(AssetSource('sounds/timer/timer_end_sound.wav'));
+          TimerSoundComponent.timerPlay();
           _subscriptions[timerId - 1]?.cancel();
           showTimerOverlay(overlayState, timerId);
           return timer.copyWith(
