@@ -32,35 +32,34 @@ class _SelfCareMyRoutineDetailDialogState
     );
   }
 
-  Future<void> _updateState({
-    bool? changeArchived,
-    bool? changeShared,
-  }) async {
-    final myRoutineState = ref.watch(routineMyRoutinesProvider);
-    final editRoutineNotifier =
-        ref.read(routineMyRoutineEditRoutineProvider.notifier);
-    final item = myRoutineState.routineList[widget.listIndex];
-
-    await editRoutineNotifier.editRoutine(
-      routineName: item.routineName.toString(),
-      isArchived: changeArchived ?? item.routineStatus.isArchived,
-      isShared: changeShared ?? item.routineStatus.isShared,
-      exerciseInfoRequestList: List<ExerciseInfoRequestModel>.filled(
-        item.exerciseInfoResponseList.length,
-        ExerciseInfoRequestModel(
-          repetitions:
-              item.exerciseInfoResponseList[widget.listIndex].repetitions,
-          sets: item.exerciseInfoResponseList[widget.listIndex].sets,
-          id: item.exerciseInfoResponseList[widget.listIndex].pose.id,
-        ),
-      ),
-      routineId: item.id,
-      dayOfWeeks: item.dayOfWeeks,
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
+    Future<void> updateState({
+      bool? changeArchived,
+      bool? changeShared,
+    }) async {
+      final myRoutineState = ref.watch(routineMyRoutinesProvider);
+      final editRoutineNotifier = ref.read(routineMyRoutineEditRoutineProvider.notifier);
+      final item = myRoutineState.routineList[widget.listIndex];
+
+      List<ExerciseInfoRequestModel> exerciseListModel =
+        item.exerciseInfoResponseList.map((e) => ExerciseInfoRequestModel(id: e.pose.id, repetitions: e.repetitions, sets: e.sets)).toList();
+
+      ref.read(routineMyRoutinesProvider.notifier).changeRoutineState(
+          index: widget.listIndex,
+          isArchived: changeArchived,
+          isShared: changeShared);
+
+      await editRoutineNotifier.editRoutine(
+        routineName: item.routineName.toString(),
+        isArchived: changeArchived ?? item.routineStatus.isArchived,
+        isShared: changeShared ?? item.routineStatus.isShared,
+        exerciseInfoRequestList: exerciseListModel,
+        routineId: item.id,
+        dayOfWeeks: item.dayOfWeeks,
+      );
+    }
+
     final myRoutineState = ref.watch(routineMyRoutinesProvider);
     final item = myRoutineState.routineList[widget.listIndex];
     ref.listen(routineMyRoutineEditRoutineProvider.select((value) => value),
@@ -91,11 +90,11 @@ class _SelfCareMyRoutineDetailDialogState
               GestureDetector(
                 behavior: HitTestBehavior.translucent,
                 onTap: () {
-                  if (item.routineStatus.isShared == true) {
-                    _updateState(changeShared: false);
+                  if (item.routineStatus.isShared) {
+                    updateState(changeShared: false);
                     _showToast(message: "루틴 공유를 취소했어요.");
                   } else {
-                    _updateState(changeShared: true);
+                    updateState(changeShared: true);
                     _showToast(message: "루틴을 공유했어요.");
                   }
                 },
@@ -121,11 +120,11 @@ class _SelfCareMyRoutineDetailDialogState
               GestureDetector(
                 behavior: HitTestBehavior.translucent,
                 onTap: () {
-                  if (item.routineStatus.isArchived == true) {
-                    _updateState(changeArchived: false);
+                  if (item.routineStatus.isArchived) {
+                    updateState(changeArchived: false);
                     _showToast(message: "루틴 보관을 취소했어요.");
                   } else {
-                    _updateState(changeArchived: true);
+                    updateState(changeArchived: true);
                     _showToast(message: "루틴을 보관했어요.");
                   }
                 },
@@ -141,7 +140,7 @@ class _SelfCareMyRoutineDetailDialogState
                       ),
                       const SizedBox(width: 12),
                       PtdTextWidget.bodyLarge(
-                        !item.routineStatus.isArchived ? "보관 취소" : "보관",
+                        !item.routineStatus.isArchived ? "보관" : "보관 취소",
                         MaeumgagymColor.black,
                       ),
                     ],

@@ -40,9 +40,13 @@ class _SelfCareMyRoutineManageBottomSheetState
     bool? changeShared,
   }) async {
     final myRoutineState = ref.watch(routineMyRoutinesProvider);
-    final editRoutineNotifier =
-        ref.read(routineMyRoutineEditRoutineProvider.notifier);
+    final editRoutineNotifier = ref.read(routineMyRoutineEditRoutineProvider.notifier);
     final item = myRoutineState.routineList[widget.listIndex];
+
+    ref.read(routineMyRoutinesProvider.notifier).changeRoutineState(
+        index: widget.listIndex,
+        isArchived: changeArchived,
+        isShared: changeShared);
 
     await editRoutineNotifier.editRoutine(
       routineName: item.routineName.toString(),
@@ -66,15 +70,16 @@ class _SelfCareMyRoutineManageBottomSheetState
     final myRoutineState = ref.watch(routineMyRoutinesProvider);
     final myRoutineNotifier = ref.read(routineMyRoutinesProvider.notifier);
     final item = myRoutineState.routineList[widget.listIndex];
-    final deleteRoutineNotifier =
-        ref.read(selfCareMyRoutineDeleteRoutineProvider.notifier);
+    final deleteRoutineNotifier = ref.read(selfCareMyRoutineDeleteRoutineProvider.notifier);
     final todayRoutineNotifier = ref.read(homeTodayRoutineController.notifier);
+
     ref.listen(routineMyRoutineEditRoutineProvider.select((value) => value),
         (previous, next) {
       if (next == const AsyncData<int?>(200)) {
         myRoutineNotifier.getMyRoutineInit();
       }
     });
+
     ref.listen(selfCareMyRoutineDeleteRoutineProvider.select((value) => value),
         (previous, next) {
       if (next == const AsyncData<int?>(204)) {
@@ -82,6 +87,7 @@ class _SelfCareMyRoutineManageBottomSheetState
         myRoutineNotifier.getMyRoutineInit();
       }
     });
+
     return Container(
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
