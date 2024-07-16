@@ -59,4 +59,8 @@ class RoutineMyRoutinesStateNotifier
       throw Exception(err.toString());
     }
   }
+
+  Future<void> changeRoutineState({required int index, required bool? isArchived, required bool? isShared}) async {
+    state.routineList[index].routineStatus = state.routineList[index].routineStatus.copyWith(isArchived: isArchived, isShared: isShared);
+  }
 }
