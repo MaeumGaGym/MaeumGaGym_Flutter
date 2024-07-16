@@ -10,6 +10,7 @@ class SelfCareItemWidget extends StatelessWidget {
 
   final double width, height;
 
+  final Widget routePage;
 
   const SelfCareItemWidget({
     Key? key,
@@ -17,45 +18,54 @@ class SelfCareItemWidget extends StatelessWidget {
     required this.height,
     required this.imagePath,
     required this.title,
+    required this.routePage,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 12),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Row(
-            children: [
-              Container(
-                height: 40,
-                width: 40,
-                alignment: Alignment.center,
-                // 이것도 align 지정안하면 크기 변경 안돼요
-                decoration: BoxDecoration(
-                  color: MaeumgagymColor.gray200,
-                  borderRadius: BorderRadius.circular(8),
+    return GestureDetector(
+      behavior: HitTestBehavior.translucent,
+      onTap: () => Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => routePage,
+        ),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 12),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Row(
+              children: [
+                Container(
+                  height: 40,
+                  width: 40,
+                  alignment: Alignment.center,
+                  // 이것도 align 지정안하면 크기 변경 안돼요
+                  decoration: BoxDecoration(
+                    color: MaeumgagymColor.gray200,
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: ImageWidget(
+                    imageWidth: width,
+                    imageHeight: height,
+                    image: imagePath,
+                  ),
                 ),
-                child: ImageWidget(
-                  imageWidth: width,
-                  imageHeight: height,
-                  image: imagePath,
+                const SizedBox(width: 16),
+                PtdTextWidget.bodyLarge(
+                  title,
+                  MaeumgagymColor.black,
                 ),
-              ),
-              const SizedBox(width: 16),
-              PtdTextWidget.bodyLarge(
-                title,
-                MaeumgagymColor.black,
-              ),
-            ],
-          ),
-          ImageWidget(
-            width: 24,
-            image: Images.chevronRight,
-            color: MaeumgagymColor.gray200,
-          ),
-        ],
+              ],
+            ),
+            ImageWidget(
+              width: 24,
+              image: Images.chevronRight,
+              color: MaeumgagymColor.gray200,
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -2,7 +2,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/self_care/domain/model/my_routine/exercise_info_request_model.dart';
 import 'package:maeum_ga_gym_flutter/core/component/routine/domain/model/routine_and_user_info_model.dart';
 import 'package:maeum_ga_gym_flutter/self_care/domain/model/my_routine/routine_history_model.dart';
-import 'package:maeum_ga_gym_flutter/self_care/domain/model/my_routine/routine_response_model.dart';
 
 abstract class RoutineRepository {
   Future<AsyncValue<int?>> addRoutine({
@@ -17,10 +16,6 @@ abstract class RoutineRepository {
   Future<RoutineAndUserInfoModel> getMyRoutine({
     required String accessToken,
     required int index,
-  });
-
-  Future<RoutineResponseModel> getTodayRoutine({
-    required String accessToken,
   });
 
   Future<AsyncValue<int?>> deleteRoutine({

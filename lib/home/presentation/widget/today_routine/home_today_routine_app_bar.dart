@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image/images.dart';
 import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
 
 import '../../../../config/maeumgagym_color.dart';
@@ -23,8 +24,7 @@ class HomeTodayRoutineAppBar extends StatelessWidget
               GestureDetector(
                 onTap: () => Navigator.pop(context),
                 child: ImageWidget(
-                  image: "assets/image/core_icon/left_arrow_icon.svg",
-                  imageType: ImageType.svg,
+                  image: Images.arrowLeft,
                   width: 28,
                   height: 28,
                   color: MaeumgagymColor.black,

@@ -38,12 +38,12 @@ class HomeTimerFuncButtonListContainer extends ConsumerWidget {
 
               if (timerState[timerIndex].timerState != TimerState.started) {
                 timerNotifier.onStarted(
-                    timerState[timerIndex].timerId, context);
+                    timerState[timerIndex].timerId, Overlay.of(context));
                 timerNotifier.onPaused(timerState[timerIndex].timerId);
               } else {
                 timerNotifier.onPaused(timerState[timerIndex].timerId);
                 timerNotifier.onStarted(
-                    timerState[timerIndex].timerId, context);
+                    timerState[timerIndex].timerId, Overlay.of(context));
               }
             } else {
               showTopSnackBar(
@@ -71,7 +71,7 @@ class HomeTimerFuncButtonListContainer extends ConsumerWidget {
 
               if (timerState[timerIndex].timerState != TimerState.started) {
                 timerNotifier.onStarted(
-                    timerState[timerIndex].timerId, context);
+                    timerState[timerIndex].timerId, Overlay.of(context));
               } else {
                 timerNotifier.onPaused(timerState[timerIndex].timerId);
               }

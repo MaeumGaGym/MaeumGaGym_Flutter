@@ -73,7 +73,7 @@ class _HomeMainScreenState extends ConsumerState<HomeMainScreen> {
                 const SizedBox(height: 20),
                 const HomeMainQuotesContainer(),
                 const SizedBox(height: 24),
-                const HomeMainWalkContainer(),
+                // const HomeMainWalkContainer(),
                 const SizedBox(height: 24),
                 const HomeMainRoutineContainer(),
                 const SizedBox(height: 24),

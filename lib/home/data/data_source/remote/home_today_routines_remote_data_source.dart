@@ -4,10 +4,10 @@ import 'package:intl/intl.dart';
 import 'package:maeum_ga_gym_flutter/core/di/dio_di.dart';
 
 import '../../../../core/di/token_secure_storage_di.dart';
-import '../../../domain/model/home_today_routines_model.dart';
+import '../../../../core/model/routine/maeumgagym_routine_list_model.dart';
 
 class HomeTodayRoutinesRemoteDataSource {
-  Future<HomeTodayRoutineListModel> getTodayRoutines() async {
+  Future<MaeumgagymRoutineListModel> getTodayRoutines() async {
     final accessToken = await TokenSecureStorageDi.readLoginAccessToken();
     Map<String, dynamic> headers = {
       'Content-Type': 'application/json',
@@ -18,13 +18,13 @@ class HomeTodayRoutinesRemoteDataSource {
       return await dio
           .get('/routines/today', options: Options(headers: headers))
           .then(
-            (response) => HomeTodayRoutineListModel.fromJson(
+            (response) => MaeumgagymRoutineListModel.fromJson(
               response.data,
               response.statusCode,
             ),
           );
     } catch (err) {
-      return HomeTodayRoutineListModel(
+      return MaeumgagymRoutineListModel(
         routineList: [],
         statusCode: AsyncError(err, StackTrace.empty),
       );

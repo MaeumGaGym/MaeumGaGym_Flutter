@@ -3,20 +3,10 @@ import 'package:maeum_ga_gym_flutter/core/component/routine/data/datasource/remo
 import 'package:maeum_ga_gym_flutter/self_care/domain/model/my_routine/exercise_info_request_model.dart';
 import 'package:maeum_ga_gym_flutter/core/component/routine/domain/model/routine_and_user_info_model.dart';
 import 'package:maeum_ga_gym_flutter/self_care/domain/model/my_routine/routine_history_model.dart';
-import 'package:maeum_ga_gym_flutter/self_care/domain/model/my_routine/routine_response_model.dart';
 import 'package:maeum_ga_gym_flutter/core/component/routine/domain/repository/routine_repository.dart';
 
 class RoutineRepositoryImpl implements RoutineRepository {
   final RoutineRemoteDataSource _remoteDataSource = RoutineRemoteDataSource();
-
-  @override
-  Future<RoutineResponseModel> getTodayRoutine({
-    required String accessToken,
-  }) async {
-    return await _remoteDataSource.getTodayRoutine(
-      accessToken: accessToken,
-    );
-  }
 
   @override
   Future<RoutineAndUserInfoModel> getMyRoutine({

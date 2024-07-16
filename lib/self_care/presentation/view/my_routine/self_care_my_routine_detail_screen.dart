@@ -4,10 +4,9 @@ import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/image/images.dart';
 import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
 import 'package:maeum_ga_gym_flutter/core/component/maeumgagym_toast_message.dart';
-import 'package:maeum_ga_gym_flutter/home/presentation/providers/home_today_routines_provider.dart';
 import 'package:maeum_ga_gym_flutter/core/component/routine/presentation/provider/routine_my_routine_my_routine_provider.dart';
+import 'package:maeum_ga_gym_flutter/routine_start/presentation/view/routine_start_main_screen.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/my_routine/self_care_my_routine_delete_routine_provider.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/view/my_routine/self_care_my_routine_edit_screen.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/self_care_my_routine_button.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/self_care_my_routine_detail_dialog.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/my_routine/self_care_my_routine_detail_routine_item_widget.dart';
@@ -41,9 +40,8 @@ class _SelfCareMyRoutineDetailScreenState
   Widget build(BuildContext context) {
     final myRoutineState = ref.watch(routineMyRoutinesProvider);
     final myRoutineNotifier = ref.read(routineMyRoutinesProvider.notifier);
-    final deleteRoutineNotifier =
-        ref.read(selfCareMyRoutineDeleteRoutineProvider.notifier);
     final item = myRoutineState.routineList[widget.listIndex];
+
     ref.listen(selfCareMyRoutineDeleteRoutineProvider.select((value) => value),
         (previous, next) {
       if (next == const AsyncData<int?>(204)) {
@@ -112,57 +110,34 @@ class _SelfCareMyRoutineDetailScreenState
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Expanded(
-                  child: GestureDetector(
-                    behavior: HitTestBehavior.translucent,
-                    onTap: () async {
-                      await deleteRoutineNotifier.deleteRoutine(
-                          routineId: item.id!);
-                      await ref
-                          .read(homeTodayRoutineController.notifier)
-                          .getTodayRoutines();
-                    },
-                    child: SelfCareMyRoutineButton(
-                      width: MediaQuery.of(context).size.width,
-                      height: 58,
-                      title: "루틴 삭제",
-                      imageWidth: 24,
-                      imageHeight: 24,
-                      imagePath: Images.editTrash,
-                      buttonColor: MaeumgagymColor.gray50,
-                      textColor: MaeumgagymColor.gray800,
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 8),
-                Expanded(
-                  child: GestureDetector(
-                    onTap: () => Navigator.push(
+                GestureDetector(
+                  behavior: HitTestBehavior.translucent,
+                  onTap: () async {
+                    Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) {
-                          return SelfCareMyRoutineEditScreen(
-                            listIndex: widget.listIndex,
-                            routineName: item.routineName.toString(),
-                          );
-                        },
+                        builder: (context) => RoutineStartMainScreen(
+                          routineId: item.id,
+                          routineList: item.exerciseInfoResponseList,
+                        ),
                       ),
-                    ),
-                    child: SelfCareMyRoutineButton(
-                      width: MediaQuery.of(context).size.width,
-                      height: 58,
-                      title: "루틴 수정",
-                      imageWidth: 24,
-                      imageHeight: 24,
-                      imagePath: Images.editPencil,
-                      imageColor: MaeumgagymColor.white,
-                      buttonColor: MaeumgagymColor.blue500,
-                      textColor: MaeumgagymColor.white,
-                    ),
+                    );
+                  },
+                  child: SelfCareMyRoutineButton(
+                    width: MediaQuery.of(context).size.width - 92,
+                    height: 58,
+                    title: "루틴 시작하기",
+                    imageWidth: 24,
+                    imageHeight: 24,
+                    imagePath: Images.mediaPlayFilled,
+                    imageColor: MaeumgagymColor.white,
+                    buttonColor: MaeumgagymColor.blue500,
+                    textColor: MaeumgagymColor.white,
                   ),
                 ),
-                const SizedBox(width: 20),
+                // const SizedBox(width: 20),
                 GestureDetector(
                   onTap: () {
                     showDialog(

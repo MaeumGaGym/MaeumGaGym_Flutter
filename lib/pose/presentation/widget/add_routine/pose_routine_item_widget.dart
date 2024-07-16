@@ -43,17 +43,17 @@ class _PoseRoutineItemWidgetState extends ConsumerState<PoseRoutineItemWidget> {
                 ),
                 const SizedBox(height: 4),
                 PtdTextWidget.bodySmall(
-                  (item.routineStatus!.isArchived! ? "보관중" : "사용중") +
+                  (item.routineStatus.isArchived ? "보관중" : "사용중") +
                       (item.dayOfWeeks.isNotEmpty
                           ? " | ${item.dayOfWeeks.map((str) => str[0]).join(", ")}"
                           : ""),
-                  item.routineStatus!.isArchived!
+                  item.routineStatus.isArchived
                       ? MaeumgagymColor.gray400
                       : MaeumgagymColor.blue500,
                 ),
               ],
             ),
-            item.routineStatus!.isShared!
+            item.routineStatus.isShared
                 ? const RoutineMyRoutineSharedWidget()
                 : const SizedBox(),
           ],

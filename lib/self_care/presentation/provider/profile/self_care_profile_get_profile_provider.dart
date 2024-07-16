@@ -26,23 +26,11 @@ class SelfCareUserGetProfileStateNotifier
 
   String? accessToken;
 
-  Future<void> getUserProfile({
-    required String nickname,
-  }) async {
+  Future<void> getUserProfile() async {
     try {
       state = state.copyWith(statusCode: const AsyncLoading());
       accessToken = await TokenSecureStorageDi.readLoginAccessToken();
-      final response = await _userUseCase.getUserProfile(
-        accessToken: accessToken!,
-        nickname: nickname,
-      );
-      state = state.copyWith(
-        statusCode: response.statusCode,
-        nickname: response.nickname,
-        profileImage: response.profileImage,
-        level: response.level,
-        totalWakatime: response.totalWakatime,
-      );
+      state = await _userUseCase.getUserProfile(accessToken: accessToken!);
     } catch (err) {
       throw Exception(err.toString());
     }

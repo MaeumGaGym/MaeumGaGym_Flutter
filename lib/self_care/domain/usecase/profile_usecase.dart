@@ -9,11 +9,9 @@ class ProfileUseCase {
 
   Future<ProfileResponseModel> getUserProfile({
     required String accessToken,
-    required String nickname,
   }) async {
     return await _repository.getUserProfile(
       accessToken: accessToken,
-      nickname: nickname,
     );
   }
 

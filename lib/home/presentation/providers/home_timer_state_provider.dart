@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/models/timers.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/widget/timer/widget/home_timer_alert_widget.dart';
 
+import '../../../core/component/timer_sound_component.dart';
 import '../../domain/model/local_timer_model.dart';
 
 late OverlayEntry? timerOverlay;
@@ -23,10 +24,8 @@ final homeTimersProvider =
 
 class TimersNotifier extends StateNotifier<List<Timers>> {
   final List<StreamSubscription<int>?> _subscriptions = [null, null];
-  final _audioPlayer = AudioPlayer();
 
   // 이거 나중ㅇ ㅔ고쳐야됨
-
   TimersNotifier() : super([]);
 
   Future<void> initAddTimer(List<LocalTimerModel> list) async {
@@ -85,27 +84,29 @@ class TimersNotifier extends StateNotifier<List<Timers>> {
     _subscriptions.add(null);
   }
 
-  void setTimerOverlay(BuildContext context) {
+  void setTimerOverlay(OverlayState context) {
     timerOverlay = OverlayEntry(
       builder: (_) => HomeTimerAlertWidget(
-        receivedContext: context,
+        overlayState: context,
         finishedTimers: finishedTimers,
       ),
     );
   }
 
-  void showTimerOverlay(BuildContext context, int timerId) async {
+  void showTimerOverlay(OverlayState overlayState, int timerId) async {
     finishedTimers.add(timerId);
 
     if (timerOverlayMounted) {
       timerOverlay?.remove();
       timerOverlay = null;
 
-      setTimerOverlay(context);
-      Navigator.of(context).overlay!.insert(timerOverlay!);
+      setTimerOverlay(overlayState);
+      overlayState.insert(timerOverlay!);
+      // Navigator.of(context).overlay!.insert(timerOverlay!);
+
     } else {
-      setTimerOverlay(context);
-      Navigator.of(context).overlay!.insert(timerOverlay!);
+      setTimerOverlay(overlayState);
+      overlayState.insert(timerOverlay!);
     }
 
     timerOverlayMounted = true;
@@ -118,7 +119,7 @@ class TimersNotifier extends StateNotifier<List<Timers>> {
     timerOverlay = null;
   }
 
-  void onTick(int timerId, BuildContext context) {
+  void onTick(int timerId, OverlayState overlayState) {
     state = state.map((timer) {
       if (timer.timerId == timerId && timer.timerState == TimerState.started) {
         if (timer.currentTime > const Duration(milliseconds: 20)) {
@@ -126,9 +127,9 @@ class TimersNotifier extends StateNotifier<List<Timers>> {
             currentTime: timer.currentTime - const Duration(milliseconds: 20),
           );
         } else {
-          _audioPlayer.play(AssetSource('sounds/timer/timer_end_sound.wav'));
+          TimerSoundComponent.timerPlay();
           _subscriptions[timerId - 1]?.cancel();
-          showTimerOverlay(context, timerId);
+          showTimerOverlay(overlayState, timerId);
           return timer.copyWith(
             currentTime: timer.initialTime,
             timerState: TimerState.initial,
@@ -139,27 +140,27 @@ class TimersNotifier extends StateNotifier<List<Timers>> {
     }).toList();
   }
 
-  void onStarted(int timerId, BuildContext context) {
+  void onStarted(int timerId, OverlayState overlayState) {
     state = state.map((timer) {
       if (timer.timerId == timerId && timer.timerState != TimerState.started) {
         _subscriptions[timerId - 1]?.cancel();
         _subscriptions[timerId - 1] =
             Stream.periodic(const Duration(milliseconds: 20), (x) => x)
-                .listen((_) => onTick(timerId, context));
+                .listen((_) => onTick(timerId, overlayState));
         return timer.copyWith(timerState: TimerState.started);
       }
       return timer;
     }).toList();
   }
 
-  void onStartedUseSet(Set<int> timerId, BuildContext context) {
+  void onStartedUseSet(Set<int> timerId, OverlayState overlayState) {
     state = state.map((timer) {
       if (timerId.contains(timer.timerId) &&
           timer.timerState != TimerState.started) {
         _subscriptions[timer.timerId - 1]?.cancel();
         _subscriptions[timer.timerId - 1] =
             Stream.periodic(const Duration(milliseconds: 20), (x) => x)
-                .listen((_) => onTick(timer.timerId, context));
+                .listen((_) => onTick(timer.timerId, overlayState));
         return timer.copyWith(timerState: TimerState.started);
       }
       return timer;

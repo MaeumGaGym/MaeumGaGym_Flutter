@@ -4,7 +4,6 @@ import 'package:maeum_ga_gym_flutter/self_care/domain/model/profile/profile_resp
 abstract class ProfileRepository {
   Future<ProfileResponseModel> getUserProfile({
     required String accessToken,
-    required String nickname,
   });
 
   Future<AsyncValue<int?>> editUserProfile({

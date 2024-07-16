@@ -54,16 +54,16 @@ class _SelfCareMyRoutineEditScreenState
               item.exerciseInfoResponseList.length,
               (index) => ExerciseInfoEditRoutinePoseModel(
                 poseModel: PoseDataModel(
-                  id: item.exerciseInfoResponseList[index].pose!.id,
+                  id: item.exerciseInfoResponseList[index].pose.id,
                   thumbnail:
-                      item.exerciseInfoResponseList[index].pose!.thumbnail,
-                  name: item.exerciseInfoResponseList[index].pose!.name,
+                      item.exerciseInfoResponseList[index].pose.thumbnail,
+                  name: item.exerciseInfoResponseList[index].pose.name,
                   needMachine:
-                      item.exerciseInfoResponseList[index].pose!.needMachine,
+                      item.exerciseInfoResponseList[index].pose.needMachine,
                   simplePart:
-                      item.exerciseInfoResponseList[index].pose!.simplePart,
+                      item.exerciseInfoResponseList[index].pose.simplePart,
                   exactPart:
-                      item.exerciseInfoResponseList[index].pose!.exactPart,
+                      item.exerciseInfoResponseList[index].pose.exactPart,
                 ),
                 repetitionsController: TextEditingController(
                     text: item.exerciseInfoResponseList[index].repetitions
@@ -205,8 +205,8 @@ class _SelfCareMyRoutineEditScreenState
                     onTap: () async {
                       await editPoseListNotifier.editRoutine(
                         routineName: titleController.text,
-                        isArchived: item.routineStatus!.isArchived!,
-                        isShared: item.routineStatus!.isShared!,
+                        isArchived: item.routineStatus.isArchived,
+                        isShared: item.routineStatus.isShared,
                         exerciseInfoRequestList:
                             List<ExerciseInfoRequestModel>.generate(
                           editPoseListState.length,
@@ -230,7 +230,7 @@ class _SelfCareMyRoutineEditScreenState
                             .where((entry) => entry.value)
                             .map((entry) => entry.key)
                             .toList(),
-                        routineId: item.id!,
+                        routineId: item.id,
                       );
 
                       await ref

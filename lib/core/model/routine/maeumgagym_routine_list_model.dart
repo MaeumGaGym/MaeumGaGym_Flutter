@@ -1,46 +1,46 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/core/component/pose/domain/model/pose_data_model.dart';
 
-class HomeTodayRoutineListModel {
-  final List<HomeTodayRoutineModel> routineList;
+class MaeumgagymRoutineListModel {
+  final List<RoutineModel> routineList;
   final AsyncValue<int> statusCode;
 
-  HomeTodayRoutineListModel({
+  MaeumgagymRoutineListModel({
     required this.routineList,
     required this.statusCode,
   });
 
-  factory HomeTodayRoutineListModel.fromJson(
+  factory MaeumgagymRoutineListModel.fromJson(
       Map<String, dynamic> json, int? statusCode) {
-    return HomeTodayRoutineListModel(
+    return MaeumgagymRoutineListModel(
       routineList: json['routine_list']
-          .map<HomeTodayRoutineModel>(
-              (data) => HomeTodayRoutineModel.fromJson(data))
+          .map<RoutineModel>(
+              (data) => RoutineModel.fromJson(data))
           .toList(),
       statusCode: AsyncData(statusCode!),
     );
   }
 
-  HomeTodayRoutineListModel copyWith({
-    List<HomeTodayRoutineModel>? routineList,
+  MaeumgagymRoutineListModel copyWith({
+    List<RoutineModel>? routineList,
     AsyncValue<int>? statusCode,
   }) {
-    return HomeTodayRoutineListModel(
+    return MaeumgagymRoutineListModel(
       routineList: routineList ?? this.routineList,
       statusCode: statusCode ?? this.statusCode,
     );
   }
 }
 
-class HomeTodayRoutineModel {
-  final int? id;
-  final String? routineName;
-  final List<ExerciseInfoList>? exerciseInfoResponseList;
-  final List<String>? dayOfWeeks;
-  final RoutineStatus? routineStatus;
+class RoutineModel {
+  final int id;
+  final String routineName;
+  final List<ExerciseInfoList> exerciseInfoResponseList;
+  final List<String> dayOfWeeks;
+  final RoutineStatus routineStatus;
   final bool? isCompleted;
 
-  HomeTodayRoutineModel({
+  RoutineModel({
     required this.id,
     required this.routineName,
     required this.exerciseInfoResponseList,
@@ -49,8 +49,8 @@ class HomeTodayRoutineModel {
     required this.isCompleted,
   });
 
-  factory HomeTodayRoutineModel.fromJson(Map<String, dynamic> json) {
-    return HomeTodayRoutineModel(
+  factory RoutineModel.fromJson(Map<String, dynamic> json) {
+    return RoutineModel(
       id: json['id'],
       routineName: json['routine_name'],
       exerciseInfoResponseList: json['exercise_info_response_list']
@@ -62,7 +62,7 @@ class HomeTodayRoutineModel {
     );
   }
 
-  HomeTodayRoutineModel copyWith({
+  RoutineModel copyWith({
     int? id,
     String? routineName,
     List<ExerciseInfoList>? exerciseInfoResponseList,
@@ -71,7 +71,7 @@ class HomeTodayRoutineModel {
     bool? isCompleted,
     AsyncValue<int>? statusCode,
   }) {
-    return HomeTodayRoutineModel(
+    return RoutineModel(
       id: id ?? this.id,
       routineName: routineName ?? this.routineName,
       exerciseInfoResponseList:
@@ -85,8 +85,8 @@ class HomeTodayRoutineModel {
 
 class ExerciseInfoList {
   final PoseDataModel pose;
-  final int? repetitions;
-  final int? sets;
+  final int repetitions;
+  final int sets;
 
   ExerciseInfoList({
     required this.pose,
@@ -118,33 +118,11 @@ class RoutineStatus {
       isShared: json['is_shared'],
     );
   }
-}
 
-// class PoseData {
-//   final int? id;
-//   final bool? needMachine;
-//   final String? name;
-//   final List<String>? simplePart;
-//   final List<String>? exactPart;
-//   final String? thumbnail;
-//
-//   PoseData({
-//     required this.id,
-//     required this.needMachine,
-//     required this.name,
-//     required this.simplePart,
-//     required this.exactPart,
-//     required this.thumbnail,
-//   });
-//
-//   factory PoseData.fromJson(Map<String, dynamic> json) {
-//     return PoseData(
-//       id: json['id'],
-//       needMachine: json['need_machine'],
-//       name: json['name'],
-//       simplePart: List<String>.from(json['simple_part']),
-//       exactPart: List<String>.from(json['exact_part']),
-//       thumbnail: json['thumbnail'],
-//     );
-//   }
-// }
+  RoutineStatus copyWith({required bool? isArchived, required bool? isShared}){
+    return RoutineStatus(
+      isArchived: isArchived ?? this.isArchived,
+      isShared: isShared ?? this.isShared,
+    );
+  }
+}

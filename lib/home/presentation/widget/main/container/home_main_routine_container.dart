@@ -30,6 +30,10 @@ class _HomeMainRoutineContainerState
     routineContainerPageController = PageController(
       initialPage: 0,
     );
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(homeRoutinePageIndexProvider.notifier).state = 0;
+    });
   }
 
   @override

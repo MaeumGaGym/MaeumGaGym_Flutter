@@ -77,6 +77,8 @@ class Images {
       'assets/image/icons_not_design_sys/today_excersize_complete_icon.png';
   static const String iconsNotDesignSysWakatimeIcon =
       'assets/image/icons_not_design_sys/wakatime_icon.png';
+  static const String iconsNotDesignSysInfoIcon =
+      'assets/image/icons_not_design_sys/Info.png';
   static const String iconsPickle = 'assets/image/icons/pickle.png';
   static const String iconsPickleFilled =
       'assets/image/icons/pickle-filled.png';

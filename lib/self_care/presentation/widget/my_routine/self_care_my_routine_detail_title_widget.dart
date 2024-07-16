@@ -32,17 +32,30 @@ class SelfCareMyRoutineDetailTitleWidget extends ConsumerWidget {
                 MaeumgagymColor.black,
               ),
               const SizedBox(height: 12),
-              if (!item.routineStatus!.isArchived!)
-                PtdTextWidget.bodyMedium(
-                  item.dayOfWeeks.isEmpty
-                      ? "사용중"
-                      : "사용중 | ${item.dayOfWeeks.map((str) => str[0]).join(", ")}",
-                  MaeumgagymColor.blue500,
-                )
+              Builder(
+                builder: (context) {
+                  if (!item.routineStatus.isArchived){
+                    return PtdTextWidget.bodyMedium(
+                      item.dayOfWeeks.isEmpty
+                          ? "사용중"
+                          : "사용중 | ${item.dayOfWeeks.map((str) => str[0]).join(", ")}",
+                      MaeumgagymColor.blue500,
+                    );
+                  } else {
+                    return PtdTextWidget.bodyMedium(
+                      item.dayOfWeeks.isEmpty
+                          ? "보관중"
+                          : "보관중 | ${item.dayOfWeeks.map((str) => str[0]).join(", ")}",
+                      MaeumgagymColor.gray400,
+                    );
+                  }
+                },
+              )
+
             ],
           ),
         ),
-        if (item.routineStatus!.isShared!)
+        if (item.routineStatus.isShared)
           RoutineMyRoutineSharedWidget(color: MaeumgagymColor.blue50),
       ],
     );

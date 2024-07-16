@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
-import 'package:maeum_ga_gym_flutter/core/re_issue/presentation/maeumgagym_re_issue_provider.dart';
 import 'package:maeum_ga_gym_flutter/pose/presentation/provider/pose_detail_provider.dart';
 import 'package:maeum_ga_gym_flutter/pose/presentation/widget/detail/pose_detail_app_bar.dart';
 import '../../../core/component/pose/domain/model/pose_data_model.dart';
@@ -46,8 +45,7 @@ class _PoseDetailScreenState extends ConsumerState<PoseDetailScreen> {
   Widget build(BuildContext context) {
     final poseDetail = ref.read(poseDetailController);
 
-    if (ref.watch(poseDetailController).statusCode.hasValue &&
-        ref.watch(maeumgagymReIssueController).stateus.hasValue) {
+    if (ref.watch(poseDetailController).statusCode.hasValue) {
       return Scaffold(
         backgroundColor: MaeumgagymColor.white,
         appBar: PoseDetailAppBar(

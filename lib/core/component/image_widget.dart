@@ -1,8 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
-enum ImageType { svg, svgNetwork, png, pngNetwork }
+enum ImageType { png, pngNetwork }
 
 class ImageWidget extends StatelessWidget {
   final double? width, height, imageWidth, imageHeight, radiusCircular;
@@ -56,22 +55,6 @@ class ImageWidget extends StatelessWidget {
               case ImageType.pngNetwork:
                 return CachedNetworkImage(
                   imageUrl: image,
-                  color: color,
-                  width: imageWidth,
-                  height: imageHeight,
-                  fit: BoxFit.cover,
-                );
-              case ImageType.svg:
-                return SvgPicture.asset(
-                  image,
-                  color: color,
-                  width: imageWidth,
-                  height: imageHeight,
-                  fit: BoxFit.cover,
-                );
-              case ImageType.svgNetwork:
-                return SvgPicture.network(
-                  image,
                   color: color,
                   width: imageWidth,
                   height: imageHeight,

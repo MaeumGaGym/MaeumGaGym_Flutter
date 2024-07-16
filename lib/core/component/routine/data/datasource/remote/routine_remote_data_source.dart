@@ -5,7 +5,6 @@ import 'package:maeum_ga_gym_flutter/core/di/dio_di.dart';
 import 'package:maeum_ga_gym_flutter/self_care/domain/model/my_routine/exercise_info_request_model.dart';
 import 'package:maeum_ga_gym_flutter/core/component/routine/domain/model/routine_and_user_info_model.dart';
 import 'package:maeum_ga_gym_flutter/self_care/domain/model/my_routine/routine_history_model.dart';
-import 'package:maeum_ga_gym_flutter/self_care/domain/model/my_routine/routine_response_model.dart';
 
 class RoutineRemoteDataSource {
   Future<AsyncValue<int?>> addRoutine({
@@ -71,38 +70,6 @@ class RoutineRemoteDataSource {
         statusCode: AsyncError(err, StackTrace.empty),
         userInfo: null,
         routineList: [],
-      );
-    }
-  }
-
-  Future<RoutineResponseModel> getTodayRoutine({
-    required String accessToken,
-  }) async {
-    try {
-      return await dio
-          .get(
-        "/routines/today",
-        options: Options(
-          headers: {
-            "Content-Type": "application/json",
-            "Authorization": accessToken,
-          },
-        ),
-      )
-          .then((response) {
-        return RoutineResponseModel.fromJson(
-          response.data,
-          response.statusCode!,
-        );
-      });
-    } catch (err) {
-      return RoutineResponseModel(
-        statusCode: AsyncError(err, StackTrace.empty),
-        id: null,
-        routineName: null,
-        exerciseInfoResponseList: [],
-        dayOfWeeks: [],
-        routineStatus: null,
       );
     }
   }

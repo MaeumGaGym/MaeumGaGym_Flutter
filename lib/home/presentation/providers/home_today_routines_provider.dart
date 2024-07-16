@@ -1,16 +1,16 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:maeum_ga_gym_flutter/home/domain/model/home_today_routines_model.dart';
+import 'package:maeum_ga_gym_flutter/core/model/routine/maeumgagym_routine_list_model.dart';
 import 'package:maeum_ga_gym_flutter/home/domain/usecase/home_today_routines_usecase.dart';
 
 final homeTodayRoutineController = StateNotifierProvider<
-    HomeTodayRoutineStateNotifier, HomeTodayRoutineListModel>((ref) {
+    HomeTodayRoutineStateNotifier, MaeumgagymRoutineListModel>((ref) {
   return HomeTodayRoutineStateNotifier();
 });
 
 class HomeTodayRoutineStateNotifier
-    extends StateNotifier<HomeTodayRoutineListModel> {
+    extends StateNotifier<MaeumgagymRoutineListModel> {
   HomeTodayRoutineStateNotifier()
-      : super(HomeTodayRoutineListModel(
+      : super(MaeumgagymRoutineListModel(
           routineList: [],
           statusCode: const AsyncData(500),
         ));

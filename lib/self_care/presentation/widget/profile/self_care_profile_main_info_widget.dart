@@ -5,14 +5,15 @@ import 'package:maeum_ga_gym_flutter/core/component/image/images.dart';
 import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
 import 'package:maeum_ga_gym_flutter/core/component/maeungagym_text_style.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
-import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/profile/self_care_profile_get_profile_provider.dart';
 
 class SelfCareProfileMainInfoWidget extends ConsumerWidget {
-  const SelfCareProfileMainInfoWidget({Key? key}) : super(key: key);
+  final int totalWakaTime;
+
+  const SelfCareProfileMainInfoWidget({super.key, required this.totalWakaTime,});
+
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final profileState = ref.watch(selfCareProfileGetProfileProvider);
     return SafeArea(
       child: Container(
         width: MediaQuery.of(context).size.width,
@@ -58,7 +59,7 @@ class SelfCareProfileMainInfoWidget extends ConsumerWidget {
                     ),
                     TextSpan(
                       style: MaeumGaGymTextStyle.bodyMedium(MaeumgagymColor.blue500),
-                      text: profileState.totalWakatime.toString(),
+                      text: totalWakaTime.toString()
                     ),
                     const TextSpan(
                       text: "시간 운동하셨어요!",

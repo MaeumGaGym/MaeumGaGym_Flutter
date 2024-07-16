@@ -6,12 +6,11 @@ import 'package:maeum_ga_gym_flutter/self_care/domain/model/profile/profile_resp
 class ProfileRemoteDataSource {
   Future<ProfileResponseModel> getUserProfile({
     required String accessToken,
-    required String nickname,
   }) async {
     try {
       return dio
           .get(
-        "/user/$nickname",
+        "/user",
         options: Options(
           headers: {
             "Content-Type": "application/json",
