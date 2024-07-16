@@ -8,7 +8,11 @@ import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_wid
 import 'package:maeum_ga_gym_flutter/self_care/domain/model/my_routine/exercise_info_request_model.dart';
 import 'package:maeum_ga_gym_flutter/core/component/routine/presentation/provider/routine_my_routine_my_routine_provider.dart';
 import 'package:maeum_ga_gym_flutter/core/component/routine/presentation/provider/routine_my_routine_edit_routine_provider.dart';
+import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/my_routine/self_care_my_routine_delete_routine_provider.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
+
+import '../../../../home/presentation/providers/home_today_routines_provider.dart';
+import '../../view/my_routine/self_care_my_routine_edit_screen.dart';
 
 class SelfCareMyRoutineDetailDialog extends ConsumerStatefulWidget {
   final int listIndex;
@@ -45,11 +49,6 @@ class _SelfCareMyRoutineDetailDialogState
       List<ExerciseInfoRequestModel> exerciseListModel =
         item.exerciseInfoResponseList.map((e) => ExerciseInfoRequestModel(id: e.pose.id, repetitions: e.repetitions, sets: e.sets)).toList();
 
-      ref.read(routineMyRoutinesProvider.notifier).changeRoutineState(
-          index: widget.listIndex,
-          isArchived: changeArchived,
-          isShared: changeShared);
-
       await editRoutineNotifier.editRoutine(
         routineName: item.routineName.toString(),
         isArchived: changeArchived ?? item.routineStatus.isArchived,
@@ -60,8 +59,10 @@ class _SelfCareMyRoutineDetailDialogState
       );
     }
 
+    final deleteRoutineNotifier = ref.read(selfCareMyRoutineDeleteRoutineProvider.notifier);
     final myRoutineState = ref.watch(routineMyRoutinesProvider);
     final item = myRoutineState.routineList[widget.listIndex];
+
     ref.listen(routineMyRoutineEditRoutineProvider.select((value) => value),
         (previous, next) {
       if (next == const AsyncData<int?>(200)) {
@@ -87,6 +88,40 @@ class _SelfCareMyRoutineDetailDialogState
                 MaeumgagymColor.black,
               ),
               const SizedBox(height: 12),
+              GestureDetector(
+                behavior: HitTestBehavior.translucent,
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return SelfCareMyRoutineEditScreen(
+                          listIndex: widget.listIndex,
+                          routineName: item.routineName.toString(),
+                        );
+                      },
+                    ),
+                  );
+                },
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 12),
+                  child: Row(
+                    children: [
+                      ImageWidget(
+                        image: Images.editPencil,
+                        color: MaeumgagymColor.black,
+                        imageHeight: 24,
+                        imageWidth: 24,
+                      ),
+                      const SizedBox(width: 12),
+                      PtdTextWidget.bodyLarge(
+                        "수정",
+                        MaeumgagymColor.black,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
               GestureDetector(
                 behavior: HitTestBehavior.translucent,
                 onTap: () {
@@ -141,6 +176,35 @@ class _SelfCareMyRoutineDetailDialogState
                       const SizedBox(width: 12),
                       PtdTextWidget.bodyLarge(
                         !item.routineStatus.isArchived ? "보관" : "보관 취소",
+                        MaeumgagymColor.black,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              GestureDetector(
+                behavior: HitTestBehavior.translucent,
+                onTap: () async {
+                  Navigator.pop(context);
+
+                  await deleteRoutineNotifier.deleteRoutine(routineId: item.id);
+                  await ref
+                      .read(homeTodayRoutineController.notifier)
+                      .getTodayRoutines();
+                },
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 12),
+                  child: Row(
+                    children: [
+                      ImageWidget(
+                        image: Images.editTrash,
+                        color: MaeumgagymColor.black,
+                        imageHeight: 24,
+                        imageWidth: 24,
+                      ),
+                      const SizedBox(width: 12),
+                      PtdTextWidget.bodyLarge(
+                        "삭제",
                         MaeumgagymColor.black,
                       ),
                     ],

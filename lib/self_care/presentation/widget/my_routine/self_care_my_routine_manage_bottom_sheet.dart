@@ -43,11 +43,6 @@ class _SelfCareMyRoutineManageBottomSheetState
     final editRoutineNotifier = ref.read(routineMyRoutineEditRoutineProvider.notifier);
     final item = myRoutineState.routineList[widget.listIndex];
 
-    ref.read(routineMyRoutinesProvider.notifier).changeRoutineState(
-        index: widget.listIndex,
-        isArchived: changeArchived,
-        isShared: changeShared);
-
     await editRoutineNotifier.editRoutine(
       routineName: item.routineName.toString(),
       isArchived: changeArchived ?? item.routineStatus.isArchived,
@@ -63,6 +58,8 @@ class _SelfCareMyRoutineManageBottomSheetState
       routineId: item.id,
       dayOfWeeks: item.dayOfWeeks,
     );
+
+
   }
 
   @override
@@ -133,7 +130,7 @@ class _SelfCareMyRoutineManageBottomSheetState
               ),
               GestureDetector(
                 behavior: HitTestBehavior.translucent,
-                onTap: () async {
+                onTap: () {
                   if (item.routineStatus.isArchived == true) {
                     _updateState(changeArchived: false);
                     _showToast(message: "루틴 보관을 취소했어요.");

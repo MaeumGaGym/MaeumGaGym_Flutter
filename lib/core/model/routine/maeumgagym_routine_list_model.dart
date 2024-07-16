@@ -37,7 +37,7 @@ class RoutineModel {
   final String routineName;
   final List<ExerciseInfoList> exerciseInfoResponseList;
   final List<String> dayOfWeeks;
-  RoutineStatus routineStatus;
+  final RoutineStatus routineStatus;
   final bool? isCompleted;
 
   RoutineModel({
