@@ -28,8 +28,7 @@ class RoutineStartMainScreen extends ConsumerStatefulWidget {
       _RoutineStartMainScreenState();
 }
 
-class _RoutineStartMainScreenState
-    extends ConsumerState<RoutineStartMainScreen> {
+class _RoutineStartMainScreenState extends ConsumerState<RoutineStartMainScreen> {
   final ScrollController _scrollController = ScrollController();
   double _containerHeight = 200.0;
 
@@ -50,6 +49,7 @@ class _RoutineStartMainScreenState
     });
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(routineStartPageViewProvider.notifier).state = 0;
       if (ref.read(routineStartExerciseProvider).routineId != widget.routineId ||
           ref.read(routineStartExerciseProvider).exercises.length != widget.routineList.length) {
         ref
