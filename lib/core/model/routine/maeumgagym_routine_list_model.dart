@@ -37,7 +37,7 @@ class RoutineModel {
   final String routineName;
   final List<ExerciseInfoList> exerciseInfoResponseList;
   final List<String> dayOfWeeks;
-  final RoutineStatus routineStatus;
+  RoutineStatus routineStatus;
   final bool? isCompleted;
 
   RoutineModel({
@@ -116,6 +116,13 @@ class RoutineStatus {
     return RoutineStatus(
       isArchived: json['is_archived'],
       isShared: json['is_shared'],
+    );
+  }
+
+  RoutineStatus copyWith({required bool? isArchived, required bool? isShared}){
+    return RoutineStatus(
+      isArchived: isArchived ?? this.isArchived,
+      isShared: isShared ?? this.isShared,
     );
   }
 }
