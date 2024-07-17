@@ -1,7 +1,7 @@
 /// Package
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image/image_widget.dart';
 import 'package:maeum_ga_gym_flutter/core/component/pose/presentation/provider/pose_all_provider.dart';
 import 'package:maeum_ga_gym_flutter/pose/presentation/provider/pose_search_provider.dart';
 

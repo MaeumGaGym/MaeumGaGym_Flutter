@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/image/images.dart';
-import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image/image_widget.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/view/metronome/home_metronome_setting_screen.dart';
 
 class HomeMetronomeAppBar extends StatelessWidget

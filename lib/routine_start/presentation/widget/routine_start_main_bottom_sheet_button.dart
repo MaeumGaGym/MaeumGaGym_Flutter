@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../config/maeumgagym_color.dart';
-import '../../../core/component/image_widget.dart';
+import '../../../core/component/image/image_widget.dart';
 
 class RoutineStartMainBottomSheetButton extends StatelessWidget {
   final String icon;

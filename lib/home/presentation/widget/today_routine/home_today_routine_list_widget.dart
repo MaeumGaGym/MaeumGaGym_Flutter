@@ -4,7 +4,7 @@ import 'package:maeum_ga_gym_flutter/core/component/image/images.dart';
 import 'package:maeum_ga_gym_flutter/core/component/pose/domain/model/pose_data_model.dart';
 
 import '../../../../config/maeumgagym_color.dart';
-import '../../../../core/component/image_widget.dart';
+import '../../../../core/component/image/image_widget.dart';
 import '../../../../core/component/text/pretendard/ptd_text_widget.dart';
 import '../../../../pose/presentation/view/pose_detail_screen.dart';
 

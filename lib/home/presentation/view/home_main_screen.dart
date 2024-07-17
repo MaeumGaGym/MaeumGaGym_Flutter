@@ -6,7 +6,6 @@ import 'package:maeum_ga_gym_flutter/home/presentation/providers/local_timer_pro
 import 'package:maeum_ga_gym_flutter/home/presentation/providers/home_timer_state_provider.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/widget/main/container/home_main_quotes_container.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/widget/main/container/home_main_timer_and_metronome_container.dart';
-import 'package:maeum_ga_gym_flutter/home/presentation/widget/main/container/home_main_pedometer_container.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/widget/main/widget/home_main_app_bar.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/widget/main/container/home_main_routine_container.dart';
 import 'package:url_launcher/url_launcher.dart';
