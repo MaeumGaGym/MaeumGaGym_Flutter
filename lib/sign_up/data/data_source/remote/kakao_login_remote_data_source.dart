@@ -11,27 +11,28 @@ class KaKaoLoginRemoteDataSource {
       bool isInstalled = await isKakaoTalkInstalled();
       if (isInstalled) {
         try {
-          final oauthToken = await UserApi.instance.loginWithKakaoTalk();
+          final OAuthToken oauthToken = await UserApi.instance.loginWithKakaoTalk();
           _token = oauthToken.accessToken;
           return SocialLoginModel.fromJson(const AsyncData(true), _token);
         } catch (err) {
-          // return SocialLoginModel.fromJson(
-          //   AsyncError(err, StackTrace.empty),
-          //   null,
-          // );
-          return SocialLoginModel.fromJson(const AsyncData(false), _token);
+          return SocialLoginModel.fromJson(
+            AsyncError(err, StackTrace.empty),
+            null,
+          );
+          // return SocialLoginModel.fromJson(const AsyncData(false), _token);
         }
       } else {
         try {
-          final oauthToken = await UserApi.instance.loginWithKakaoTalk();
+          final OAuthToken oauthToken = await UserApi.instance.loginWithKakaoAccount();
+          // final oauthToken = await UserApi.instance.loginWithKakaoTalk();
           _token = oauthToken.accessToken;
           return SocialLoginModel.fromJson(const AsyncData(true), _token);
         } catch (err) {
-          // return SocialLoginModel.fromJson(
-          //   AsyncError(err, StackTrace.empty),
-          //   null,
-          // );
-          return SocialLoginModel.fromJson(const AsyncData(false), _token);
+          return SocialLoginModel.fromJson(
+            AsyncError(err, StackTrace.empty),
+            null,
+          );
+          // return SocialLoginModel.fromJson(const AsyncData(false), _token);
         }
       }
     } catch (err) {
