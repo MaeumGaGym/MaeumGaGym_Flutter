@@ -38,11 +38,25 @@ class _SelfCareMainProfileContainerState
               children: [
                 ClipRRect(
                   borderRadius: BorderRadius.circular(100),
-                  child: Image.network(
-                    profileState.profileImage.toString(),
-                    width: 48,
-                    height: 48,
-                  ),
+                  child: Builder(
+                    builder: (context) {
+                      if(profileState.profileImage != null){
+                        return ImageWidget(
+                          image: profileState.profileImage!,
+                          width: 48,
+                          height: 48,
+                          imageType: ImageType.pngNetwork,
+                        );
+                      } else {
+                        return const ImageWidget(
+                          image: Images.iconsNotDesignSysDefaultProfile,
+                          width: 48,
+                          height: 48,
+                          imageType: ImageType.png,
+                        );
+                      }
+                    },
+                  )
                 ),
                 const SizedBox(width: 12),
                 Column(
