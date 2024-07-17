@@ -130,6 +130,8 @@ class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
 
         if (ref.watch(socialLoginController).token != null) {
           doMaeumgagymLogin();
+        } else {
+          dialog("Social Login Failed", ref.read(socialLoginController).stateus.toString());
         }
       } catch (err) {
         dialog("Social Login Failed", "소셜 로그인에 실패하였습니다.");
@@ -166,11 +168,10 @@ class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
                   ),
                 ),
                 const SizedBox(height: 30),
-                PtdTextWidget.titleMedium(
-                    '이제 운동을 시작해 보세요!', MaeumgagymColor.black),
+                PtdTextWidget.titleMedium('이제 운동을 시작해 보세요!', MaeumgagymColor.black),
                 const SizedBox(height: 10),
                 PtdTextWidget.onBoardingSubTitle(
-                  '저희의 좋은 서비스를 통해 즐거운 헬창 생활을\n즐겨보세요!',
+                  "마음가짐 서비스를 통해 규칙적인 생활을\n실천해 보세요!",
                   MaeumgagymColor.gray600,
                 ),
                 const SizedBox(height: 68),
