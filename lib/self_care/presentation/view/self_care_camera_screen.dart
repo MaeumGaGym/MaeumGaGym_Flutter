@@ -1,7 +1,8 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image/image_widget.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image/images.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/camera/self_care_camera_widget.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/self_care_default_app_bar.dart';
 
@@ -37,7 +38,7 @@ class _SelfCareCameraScreenState extends State<SelfCareCameraScreen> {
     return Scaffold(
       backgroundColor: MaeumgagymColor.black,
       appBar: SelfCareDefaultAppBar(
-        iconPath: "assets/image/self_care_icon/close_icon.svg",
+        iconPath: Images.editClose,
         title: "사진 촬영",
         backgroundColor: MaeumgagymColor.black,
         color: MaeumgagymColor.white,
@@ -52,16 +53,17 @@ class _SelfCareCameraScreenState extends State<SelfCareCameraScreen> {
                 child: CameraPreview(cameraController),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 72),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 40, vertical: 72),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const SelfCareCameraWidget(iconPath: "assets/image/self_care_icon/image_icon.svg"),
-                  SvgPicture.asset(
-                    "assets/image/self_care_icon/camera_button_icon.svg",
+                  SelfCareCameraWidget(iconPath: Images.iconsImage),
+                  ImageWidget(
+                    image: Images.iconsNotDesignSysCameraButtonIcon,
+                    width: 80,
                   ),
-                  const SelfCareCameraWidget(iconPath: "assets/image/self_care_icon/turn_icon.svg"),
+                  SelfCareCameraWidget(iconPath: Images.iconsTurn),
                 ],
               ),
             ),

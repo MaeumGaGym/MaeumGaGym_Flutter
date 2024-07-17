@@ -1,8 +1,9 @@
 /// Package
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:maeum_ga_gym_flutter/calorie_calculator/presentation/provider/food_search_provider.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image/image_widget.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image/images.dart';
 
 /// Core
 import '../../../../config/maeumgagym_color.dart';
@@ -37,10 +38,9 @@ class _AddFoodTextFieldState extends ConsumerState<AddFoodTextField> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             /// Search Icon
-            SvgPicture.asset(
-              'assets/image/core_icon/search_icon.svg',
+            const ImageWidget(
+              image: Images.iconsSearch,
               width: 24,
-              height: 24,
             ),
             const SizedBox(width: 8),
             SizedBox(

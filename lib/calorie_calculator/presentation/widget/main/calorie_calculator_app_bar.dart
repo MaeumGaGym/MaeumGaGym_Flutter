@@ -1,6 +1,7 @@
 /// Package
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image/image_widget.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image/images.dart';
 
 /// Core
 import '../../../../config/maeumgagym_color.dart';
@@ -23,10 +24,9 @@ class CalorieCalculatorAppBar extends StatelessWidget
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            SvgPicture.asset(
-              'assets/image/core_icon/left_arrow_icon.svg',
+            const ImageWidget(
+              image: Images.arrowLeft,
               width: 32,
-              height: 32,
             ),
             PtdTextWidget.labelLarge('칼로리 계산기', MaeumgagymColor.black),
             const SizedBox(

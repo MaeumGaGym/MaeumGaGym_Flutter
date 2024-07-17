@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/image/images.dart';
@@ -81,7 +80,7 @@ class _HomeMainRoutineContainerState
                   title: "오늘의 루틴",
                   routineName: todayRoutineIsEmpty
                       ? null
-                      : todayRoutineList[routinePageIndex].routineName!,
+                      : todayRoutineList[routinePageIndex].routineName,
                   routineIsComplete: todayRoutineIsEmpty
                       ? null
                       : todayRoutineList[routinePageIndex].isCompleted!,
@@ -104,7 +103,7 @@ class _HomeMainRoutineContainerState
                 return SizedBox(
                   height: 64 *
                       todayRoutineList[routinePageIndex]
-                          .exerciseInfoResponseList!
+                          .exerciseInfoResponseList
                           .length *
                       1.0,
                   child: PageView.builder(
@@ -119,12 +118,12 @@ class _HomeMainRoutineContainerState
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
                         itemCount: todayRoutineList[pageIndex]
-                            .exerciseInfoResponseList!
+                            .exerciseInfoResponseList
                             .length,
                         itemBuilder: (context, index) {
                           final pageRoutinePageData =
                               todayRoutineList[pageIndex]
-                                  .exerciseInfoResponseList![index];
+                                  .exerciseInfoResponseList[index];
                           return GestureDetector(
                             onTap: () => Navigator.push(
                                 context,

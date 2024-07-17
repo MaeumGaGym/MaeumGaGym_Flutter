@@ -1,9 +1,6 @@
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-
 /// Package
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:maeum_ga_gym_flutter/core/component/image/images.dart';
 import 'package:maeum_ga_gym_flutter/core/component/image/image_widget.dart';
@@ -17,7 +14,6 @@ import '../../../core/component/text/pretendard/ptd_text_widget.dart';
 /// widget
 import '../provider/check_box_state_provider.dart';
 import '../widget/sign_up_agree/check_box_widget.dart';
-import '../widget/sign_up_agree/read_more_widget.dart';
 
 class SignUpAgreeScreen extends ConsumerWidget {
   const SignUpAgreeScreen({super.key});

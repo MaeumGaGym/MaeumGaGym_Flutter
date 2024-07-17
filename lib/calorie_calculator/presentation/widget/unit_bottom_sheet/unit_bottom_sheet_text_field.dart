@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:maeum_ga_gym_flutter/calorie_calculator/presentation/provider/food_data_provider.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image/image_widget.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image/images.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
 
 import '../../../../config/maeumgagym_color.dart';
@@ -61,13 +62,12 @@ class _UnitBottomSheetTextFieldState
             onTap: () {
               foodDataStateNotifier.decrementUnitValue(index);
             },
-            child: SizedBox(
+            child: const SizedBox(
               width: 64,
               child: Center(
-                child: SvgPicture.asset(
-                  'assets/image/home_icon/remove_minus_icon.svg',
+                child: ImageWidget(
+                  image: Images.editRemoveMinus,
                   width: 24,
-                  height: 24,
                 ),
               ),
             ),
@@ -111,13 +111,12 @@ class _UnitBottomSheetTextFieldState
             onTap: () {
               foodDataStateNotifier.incrementUnitValue(index);
             },
-            child: SizedBox(
+            child: const SizedBox(
               width: 64,
               child: Center(
-                child: SvgPicture.asset(
-                  'assets/image/home_icon/add_icon.svg',
+                child: ImageWidget(
+                  image: Images.editAdd,
                   width: 24,
-                  height: 24,
                 ),
               ),
             ),
