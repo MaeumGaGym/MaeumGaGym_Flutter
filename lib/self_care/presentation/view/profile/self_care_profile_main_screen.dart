@@ -8,6 +8,7 @@ import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/profile/self_
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/profile/self_care_profile_main_setting_widget.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/self_care_default_app_bar.dart';
 
+import '../../../../core/component/image_widget.dart';
 import '../../provider/profile/self_care_profile_get_profile_provider.dart';
 
 class SelfCareProfileMainScreen extends ConsumerStatefulWidget {
@@ -55,14 +56,27 @@ class _SelfCareProfileMainScreenState
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(
-                        width: 120,
-                        height: 120,
-                        child: CircleAvatar(
-                          backgroundImage: NetworkImage(
-                            profileState.profileImage.toString(),
-                          ),
-                        ),
+                      ClipRRect(
+                          borderRadius: BorderRadius.circular(100),
+                          child: Builder(
+                            builder: (context) {
+                              if(profileState.profileImage != null){
+                                return ImageWidget(
+                                  image: profileState.profileImage!,
+                                  width: 120,
+                                  imageWidth: 120,
+                                  imageType: ImageType.pngNetwork,
+                                );
+                              } else {
+                                return const ImageWidget(
+                                  image: Images.iconsNotDesignSysDefaultProfile,
+                                  width: 120,
+                                  imageWidth: 120,
+                                  imageType: ImageType.png,
+                                );
+                              }
+                            },
+                          )
                       ),
                       const SizedBox(height: 16),
                       PtdTextWidget.titleMedium(
