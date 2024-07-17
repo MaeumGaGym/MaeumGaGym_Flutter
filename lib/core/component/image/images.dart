@@ -15,8 +15,7 @@ class Images {
   static const String editMove = 'assets/image/icons/Edit/Move.png';
   static const String editPencil = 'assets/image/icons/Edit/pencil.png';
   static const String editRedo = 'assets/image/icons/Edit/Redo.png';
-  static const String editRemoveMinus =
-      'assets/image/icons/Edit/Remove_Minus.png';
+  static const String editRemoveMinus = 'assets/image/icons/Edit/Remove_Minus.png';
   static const String editTrash = 'assets/image/icons/Edit/trash.png';
   static const String iconsArm = 'assets/image/icons/arm.png';
   static const String iconsArmFilled = 'assets/image/icons/arm-filled.png';
@@ -28,13 +27,10 @@ class Images {
   static const String iconsCartFilled = 'assets/image/icons/cart-filled.png';
   static const String iconsCheck = 'assets/image/icons/check.png';
   static const String iconsCheckCircle = 'assets/image/icons/check-circle.png';
-  static const String iconsCheckCircleOutline =
-      'assets/image/icons/check-circle-outline.png';
+  static const String iconsCheckCircleOutline = 'assets/image/icons/check-circle-outline.png';
   static const String iconsCloseCircle = 'assets/image/icons/close-circle.png';
-  static const String iconsDotsHorizontal =
-      'assets/image/icons/dots-horizontal.png';
-  static const String iconsDotsVertical =
-      'assets/image/icons/dots-vertical.png';
+  static const String iconsDotsHorizontal = 'assets/image/icons/dots-horizontal.png';
+  static const String iconsDotsVertical = 'assets/image/icons/dots-vertical.png';
   static const String iconsEarth = 'assets/image/icons/earth.png';
   static const String iconsEmail = 'assets/image/icons/email.png';
   static const String iconsEye = 'assets/image/icons/eye.png';
@@ -51,37 +47,22 @@ class Images {
   static const String iconsLink = 'assets/image/icons/link.png';
   static const String iconsLock = 'assets/image/icons/lock.png';
   static const String iconsMessage = 'assets/image/icons/message.png';
-  static const String iconsNotDesignSysAddCircleIcon =
-      'assets/image/icons_not_design_sys/add_circle_icon.svg';
-  static const String iconsNotDesignSysAddWidgeticon =
-      'assets/image/icons_not_design_sys/add_widget_icon.png';
-  static const String iconsNotDesignSysCalculateIcon =
-      'assets/image/icons_not_design_sys/calculate_icon.png';
-  static const String iconsNotDesignSysCameraButtonIcon =
-      'assets/image/icons_not_design_sys/camera_button_icon.png';
-  static const String iconsNotDesignSysDietIcon =
-      'assets/image/icons_not_design_sys/diet_icon.png';
-  static const String iconsNotDesignSysDumbelIcon =
-      'assets/image/icons_not_design_sys/dumbel_icon.png';
-  static const String iconsNotDesignSysEmptyViewIcon =
-      'assets/image/icons_not_design_sys/empty_view_icon.png';
-  static const String iconsNotDesignSysProfileIcon =
-      'assets/image/icons_not_design_sys/profile_icon.png';
-  static const String iconsNotDesignSysRoutineIcon =
-      'assets/image/icons_not_design_sys/routine_icon.png';
-  static const String iconsNotDesignSysSparklingIcon =
-      'assets/image/icons_not_design_sys/sparkling_icon.png';
-  static const String iconsNotDesignSysTargetIcon =
-      'assets/image/icons_not_design_sys/target_icon.png';
-  static const String iconsNotDesignSysTodayExcersizeCompleteIcon =
-      'assets/image/icons_not_design_sys/today_excersize_complete_icon.png';
-  static const String iconsNotDesignSysWakatimeIcon =
-      'assets/image/icons_not_design_sys/wakatime_icon.png';
-  static const String iconsNotDesignSysInfoIcon =
-      'assets/image/icons_not_design_sys/Info.png';
+  static const String iconsNotDesignSysAddCircleIcon = 'assets/image/icons_not_design_sys/add_circle_icon.svg';
+  static const String iconsNotDesignSysAddWidgeticon = 'assets/image/icons_not_design_sys/add_widget_icon.png';
+  static const String iconsNotDesignSysCalculateIcon = 'assets/image/icons_not_design_sys/calculate_icon.png';
+  static const String iconsNotDesignSysCameraButtonIcon = 'assets/image/icons_not_design_sys/camera_button_icon.png';
+  static const String iconsNotDesignSysDietIcon = 'assets/image/icons_not_design_sys/diet_icon.png';
+  static const String iconsNotDesignSysDumbelIcon = 'assets/image/icons_not_design_sys/dumbel_icon.png';
+  static const String iconsNotDesignSysEmptyViewIcon = 'assets/image/icons_not_design_sys/empty_view_icon.png';
+  static const String iconsNotDesignSysProfileIcon = 'assets/image/icons_not_design_sys/profile_icon.png';
+  static const String iconsNotDesignSysRoutineIcon = 'assets/image/icons_not_design_sys/routine_icon.png';
+  static const String iconsNotDesignSysSparklingIcon = 'assets/image/icons_not_design_sys/sparkling_icon.png';
+  static const String iconsNotDesignSysTargetIcon = 'assets/image/icons_not_design_sys/target_icon.png';
+  static const String iconsNotDesignSysTodayExcersizeCompleteIcon = 'assets/image/icons_not_design_sys/today_excersize_complete_icon.png';
+  static const String iconsNotDesignSysWakatimeIcon = 'assets/image/icons_not_design_sys/wakatime_icon.png';
+  static const String iconsNotDesignSysInfoIcon = 'assets/image/icons_not_design_sys/Info.png';
   static const String iconsPickle = 'assets/image/icons/pickle.png';
-  static const String iconsPickleFilled =
-      'assets/image/icons/pickle-filled.png';
+  static const String iconsPickleFilled = 'assets/image/icons/pickle-filled.png';
   static const String iconsPose = 'assets/image/icons/pose.png';
   static const String iconsPoseFilled = 'assets/image/icons/pose-filled.png';
   static const String iconsSearch = 'assets/image/icons/search.png';
@@ -96,26 +77,20 @@ class Images {
   static const String iconsUser = 'assets/image/icons/user.png';
   static const String iconsVibration = 'assets/image/icons/vibration.png';
   static const String iconsWeight = 'assets/image/icons/weight.png';
-  static const String logosGoogleLogoIcon =
-      'assets/image/icons_not_design_sys/logos/google_logo_icon.png';
-  static const String logosKakaoTalkLogoIcon =
-      'assets/image/icons_not_design_sys/logos/kakao_talk_logo_icon.png';
-  static const String logosLogo =
-      'assets/image/icons_not_design_sys/logos/logo.png';
-  static const String logosSplashLogo =
-      'assets/image/icons_not_design_sys/logos/splash_logo.png';
-  static const String logosSplashTextLogo =
-      'assets/image/icons_not_design_sys/logos/splash_text_logo.png';
+  static const String logosGoogleLogoIcon = 'assets/image/icons_not_design_sys/logos/google_logo_icon.png';
+  static const String logosKakaoTalkLogoIcon = 'assets/image/icons_not_design_sys/logos/kakao_talk_logo_icon.png';
+  static const String logosLogo = 'assets/image/icons_not_design_sys/logos/logo.png';
+  static const String logosSplashLogo = 'assets/image/icons_not_design_sys/logos/splash_logo.png';
+  static const String logosSplashTextLogo = 'assets/image/icons_not_design_sys/logos/splash_text_logo.png';
   static const String mediaPause = 'assets/image/icons/Media/pause.png';
   static const String mediaPlay = 'assets/image/icons/Media/Play.png';
-  static const String mediaPlayFilled =
-      'assets/image/icons/Media/play-filled.png';
+  static const String mediaPlayFilled = 'assets/image/icons/Media/play-filled.png';
   static const String mediaVolume = 'assets/image/icons/Media/volume.png';
-  static const String mediaVolumeOff =
-      'assets/image/icons/Media/Volume_Off.png';
+  static const String mediaVolumeOff = 'assets/image/icons/Media/Volume_Off.png';
   static const String timeAlarm = 'assets/image/icons/Time/alarm.png';
   static const String timeAlarmDel = 'assets/image/icons/Time/alarm-del.png';
   static const String timeClock = 'assets/image/icons/Time/clock.png';
   static const String timeMetronome = 'assets/image/icons/Time/metronome.png';
   static const String timeTimer = 'assets/image/icons/Time/timer.png';
+  static const String iconsNotDesignSysDefaultProfile = 'assets/image/icons_not_design_sys/default_profile.png';
 }
