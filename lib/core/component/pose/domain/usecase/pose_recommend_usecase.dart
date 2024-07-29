@@ -6,7 +6,7 @@ class PoseRecommendUseCase {
   final PoseRecommendRepository _repository =
       locator<PoseRecommendRepository>();
 
-  Future<PoseRecommendModel> getRecommendPose() async {
+  Future<PoseRecommendListModel> getRecommendPose() async {
     return await _repository.getRecommendPose();
   }
 }

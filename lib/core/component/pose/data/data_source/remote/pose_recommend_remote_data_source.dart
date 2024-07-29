@@ -7,7 +7,7 @@ import 'package:maeum_ga_gym_flutter/core/di/token_secure_storage_di.dart';
 import '../../../domain/model/pose_recommend_model.dart';
 
 class PoseRecommendRemoteDataSource {
-  Future<PoseRecommendModel> getRecommendPose() async {
+  Future<PoseRecommendListModel> getRecommendPose() async {
     final accessToken = await TokenSecureStorageDi.readLoginAccessToken();
     Map<String, dynamic> headers = {
       'Content-Type': 'application/json',
@@ -18,15 +18,15 @@ class PoseRecommendRemoteDataSource {
       return await dio
           .get('/poses', options: Options(headers: headers))
           .then((response) {
-        return PoseRecommendModel.fromJson(
+        return PoseRecommendListModel.fromJson(
           response.data,
           response.statusCode,
         );
       });
     } catch (err) {
       debugPrint("-----$err------");
-      return PoseRecommendModel(
-        poses: null,
+      return PoseRecommendListModel(
+        responses: [],
         statusCode: AsyncError(err, StackTrace.empty),
       );
     }

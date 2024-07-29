@@ -7,7 +7,7 @@ class PoseRecommendRepositoryImpl implements PoseRecommendRepository {
       PoseRecommendRemoteDataSource();
 
   @override
-  Future<PoseRecommendModel> getRecommendPose() async {
+  Future<PoseRecommendListModel> getRecommendPose() async {
     return await _dataSource.getRecommendPose();
   }
 }
