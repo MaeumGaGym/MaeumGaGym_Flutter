@@ -19,6 +19,8 @@ import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/self_care_def
 import 'package:maeum_ga_gym_flutter/self_care/presentation/widget/self_care_text_field.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
+import '../../../../core/component/maeumgagym_toast_error_message.dart';
+
 class SelfCareMyRoutineEditScreen extends ConsumerStatefulWidget {
   final int listIndex;
   final String routineName;
@@ -44,6 +46,7 @@ class _SelfCareMyRoutineEditScreenState
     super.initState();
     titleController = TextEditingController(text: widget.routineName);
     titleNode = FocusNode();
+    titleNode.unfocus();
 
     /// 화면이 빌드되었을 때 init
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -74,6 +77,12 @@ class _SelfCareMyRoutineEditScreenState
             ),
           );
     });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    titleNode.dispose();
   }
 
   @override
@@ -203,39 +212,46 @@ class _SelfCareMyRoutineEditScreenState
                 Expanded(
                   child: GestureDetector(
                     onTap: () async {
-                      await editPoseListNotifier.editRoutine(
-                        routineName: titleController.text,
-                        isArchived: item.routineStatus.isArchived,
-                        isShared: item.routineStatus.isShared,
-                        exerciseInfoRequestList:
-                            List<ExerciseInfoRequestModel>.generate(
-                          editPoseListState.length,
-                          (index) => ExerciseInfoRequestModel(
-                            id: editPoseListState[index].poseModel!.id,
+                      if(titleController.text.isNotEmpty && ref.read(selfCareMyRoutineDaysProvider.notifier).daysHaveTrue() && editPoseListState.isNotEmpty){
+                        await editPoseListNotifier.editRoutine(
+                          routineName: titleController.text,
+                          isArchived: item.routineStatus.isArchived,
+                          isShared: item.routineStatus.isShared,
+                          exerciseInfoRequestList:
+                          List<ExerciseInfoRequestModel>.generate(
+                            editPoseListState.length,
+                                (index) => ExerciseInfoRequestModel(
+                              id: editPoseListState[index].poseModel!.id,
 
-                            /// TextEditingController >> int
-                            repetitions: int.parse(
-                              editPoseListState[index]
-                                  .repetitionsController
-                                  .text,
-                            ),
+                              /// TextEditingController >> int
+                              repetitions: int.parse(
+                                editPoseListState[index]
+                                    .repetitionsController
+                                    .text,
+                              ),
 
-                            /// TextEditingController >> int
-                            sets: int.parse(
-                              editPoseListState[index].setsController.text,
+                              /// TextEditingController >> int
+                              sets: int.parse(
+                                editPoseListState[index].setsController.text,
+                              ),
                             ),
                           ),
-                        ),
-                        dayOfWeeks: editRoutineDaysState.entries
-                            .where((entry) => entry.value)
-                            .map((entry) => entry.key)
-                            .toList(),
-                        routineId: item.id,
-                      );
+                          dayOfWeeks: editRoutineDaysState.entries
+                              .where((entry) => entry.value)
+                              .map((entry) => entry.key)
+                              .toList(),
+                          routineId: item.id,
+                        );
 
-                      await ref
-                          .read(homeTodayRoutineController.notifier)
-                          .getTodayRoutines();
+                        await ref
+                            .read(homeTodayRoutineController.notifier)
+                            .getTodayRoutines();
+                      } else {
+                        showTopSnackBar(
+                          Overlay.of(context),
+                          const MaeumGaGymToastErrorMessage(title: "루틴을 수정할 수 없어요"),
+                        );
+                      }
                     },
                     child: SelfCareMyRoutineButton(
                       width: MediaQuery.of(context).size.width,

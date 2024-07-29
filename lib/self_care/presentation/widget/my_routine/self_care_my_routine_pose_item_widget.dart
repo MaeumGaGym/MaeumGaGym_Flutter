@@ -65,10 +65,11 @@ class _SelfCareMyRoutinePoseItemWidgetState
             ),
             GestureDetector(
               onTap: () {
-                if (editPoseListState.length != 1) {
-                  /// 포즈는 최소 한개 남아있어야함.
-                  editPoseListNotifier.delete(widget.poseIndex);
-                }
+                editPoseListNotifier.delete(widget.poseIndex);
+                // if (editPoseListState.length != 1) {
+                //   /// 포즈는 최소 한개 남아있어야함.
+                //
+                // }
               },
               child: ImageWidget(
                 image: Images.editClose,
