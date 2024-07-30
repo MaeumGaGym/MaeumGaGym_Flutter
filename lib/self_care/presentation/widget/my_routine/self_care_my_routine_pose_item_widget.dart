@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/image/images.dart';
-import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image/image_widget.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
 import 'package:maeum_ga_gym_flutter/core/component/routine/domain/model/exercise_info_edit_routine_pose_model.dart';
 import 'package:maeum_ga_gym_flutter/self_care/presentation/provider/my_routine/self_care_my_routine_pose_list_provider.dart';
@@ -66,10 +65,11 @@ class _SelfCareMyRoutinePoseItemWidgetState
             ),
             GestureDetector(
               onTap: () {
-                if (editPoseListState.length != 1) {
-                  /// 포즈는 최소 한개 남아있어야함.
-                  editPoseListNotifier.delete(widget.poseIndex);
-                }
+                editPoseListNotifier.delete(widget.poseIndex);
+                // if (editPoseListState.length != 1) {
+                //   /// 포즈는 최소 한개 남아있어야함.
+                //
+                // }
               },
               child: ImageWidget(
                 image: Images.editClose,

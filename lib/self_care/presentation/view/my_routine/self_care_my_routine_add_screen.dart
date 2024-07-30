@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/image/images.dart';
+import 'package:maeum_ga_gym_flutter/core/component/maeumgagym_toast_error_message.dart';
 import 'package:maeum_ga_gym_flutter/core/component/maeumgagym_toast_message.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/providers/home_today_routines_provider.dart';
 import 'package:maeum_ga_gym_flutter/core/component/routine/domain/model/exercise_info_edit_routine_pose_model.dart';
@@ -36,6 +37,13 @@ class _SelfCareMyRoutineAddScreenState
     super.initState();
     titleController = TextEditingController();
     titleNode = FocusNode();
+    titleNode.unfocus();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    titleNode.dispose();
   }
 
   @override
@@ -159,8 +167,7 @@ class _SelfCareMyRoutineAddScreenState
                 Expanded(
                   child: GestureDetector(
                     onTap: () async {
-                      if (titleController.text.isNotEmpty &&
-                          addPoseListState.isNotEmpty) {
+                      if (titleController.text.isNotEmpty && ref.read(selfCareMyRoutineDaysProvider.notifier).daysHaveTrue() && addPoseListState.isNotEmpty) {
                         await addRoutineNotifier.addRoutine(
                           routineName: titleController.text,
                           isArchived: false,
@@ -195,6 +202,11 @@ class _SelfCareMyRoutineAddScreenState
                         await ref
                             .read(homeTodayRoutineController.notifier)
                             .getTodayRoutines();
+                      } else {
+                        showTopSnackBar(
+                          Overlay.of(context),
+                          const MaeumGaGymToastErrorMessage(title: "루틴을 추가할 수 없어요"),
+                        );
                       }
                     },
                     child: SelfCareMyRoutineButton(

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:maeum_ga_gym_flutter/core/component/image/images.dart';
-import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image/image_widget.dart';
 
 /// Core
 import 'package:maeum_ga_gym_flutter/core/component/maeumgagym_button.dart';

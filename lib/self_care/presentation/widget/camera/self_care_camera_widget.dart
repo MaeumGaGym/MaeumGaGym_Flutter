@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image/image_widget.dart';
 
 class SelfCareCameraWidget extends StatelessWidget {
   final String iconPath;
@@ -20,8 +20,9 @@ class SelfCareCameraWidget extends StatelessWidget {
         color: MaeumgagymColor.gray800,
         borderRadius: BorderRadius.circular(34),
       ),
-      child: SvgPicture.asset(
-        iconPath,
+      child: ImageWidget(
+        image: iconPath,
+        width: 24,
         color: MaeumgagymColor.white,
       ),
     );

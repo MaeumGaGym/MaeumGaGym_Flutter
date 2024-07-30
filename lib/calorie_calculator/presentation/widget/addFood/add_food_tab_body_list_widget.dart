@@ -1,6 +1,7 @@
 /// Package
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image/image_widget.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image/images.dart';
 
 /// Core
 import '../../../../config/maeumgagym_color.dart';
@@ -77,12 +78,10 @@ class AddFoodTabBodyListWidget extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () => foodDataStateNotifier.toggleSelection(index),
-            child: SvgPicture.asset(
-              selected
-                  ? 'assets/image/home_icon/check_circle_icon.svg'
-                  : 'assets/image/home_icon/add_circle_icon.svg',
-              width: 40,
-              height: 40,
+            child: ImageWidget(image: selected
+                  ? Images.iconsCheckCircle
+                  : Images.iconsNotDesignSysAddCircleIcon,
+              color: MaeumgagymColor.blue500,
             ),
           ),
         ],

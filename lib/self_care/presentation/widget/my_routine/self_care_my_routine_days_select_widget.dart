@@ -38,7 +38,6 @@ class _SelfCareMyRoutineDaysSelectWidgetState
 
   @override
   Widget build(BuildContext context) {
-    final selectedDaysState = ref.watch(selfCareMyRoutineSelectedDaysProvider);
     final daysState = ref.watch(selfCareMyRoutineDaysProvider);
     final daysNotifier = ref.read(selfCareMyRoutineDaysProvider.notifier);
     return Column(
@@ -55,7 +54,7 @@ class _SelfCareMyRoutineDaysSelectWidgetState
                 for (int i = 0; i < 7; i++)
                   GestureDetector(
                     onTap: () {
-                      daysNotifier.changeDays(i, selectedDaysState);
+                      daysNotifier.changeDays(i);
                     },
                     child: Padding(
                       padding: EdgeInsets.only(right: i == 6 ? 0 : 4),

@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
 
-import '../../../core/component/image_widget.dart';
+import '../../../core/component/image/image_widget.dart';
 import '../provider/page_manager_controller.dart';
 
 class BottomNavigationItem extends ConsumerWidget {

@@ -24,9 +24,16 @@ class SelfCareMyRoutineDaysStateNotifier extends StateNotifier<Map<String, bool>
     state = Map.fromEntries(state.entries.map((entry) => MapEntry(entry.key, daysOfWeek.contains(entry.key))));
   }
 
-  void changeDays(int index, List<String> selectedDays) {
+  void changeDays(int index) {
     final day = state.keys.elementAt(index);
-    /// 다른 루틴들에서 사용중인 날짜는 선택 불가.
     state = Map.from(state)..[day] = !state[day]!;
+  }
+
+  bool daysHaveTrue() {
+    for(int i=0; i<state.length; i++){
+      if(state[state.keys.elementAt(i)]!) return true;
+    }
+
+    return false;
   }
 }

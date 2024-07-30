@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../config/maeumgagym_color.dart';
 import '../../../core/component/image/images.dart';
-import '../../../core/component/image_widget.dart';
+import '../../../core/component/image/image_widget.dart';
 import '../../../core/component/text/pretendard/ptd_text_widget.dart';
 import '../provider/routine_start_exercise_provider.dart';
 

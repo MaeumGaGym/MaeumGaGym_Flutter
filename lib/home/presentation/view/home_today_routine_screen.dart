@@ -8,7 +8,7 @@ import 'package:maeum_ga_gym_flutter/home/presentation/widget/today_routine/home
 import 'package:maeum_ga_gym_flutter/home/presentation/widget/today_routine/home_today_routine_button.dart';
 import 'package:maeum_ga_gym_flutter/home/presentation/widget/today_routine/home_today_routine_list_widget.dart';
 
-import '../../../core/component/image_widget.dart';
+import '../../../core/component/image/image_widget.dart';
 
 class HomeTodayRoutineScreen extends ConsumerWidget {
   final int routineListIndex;

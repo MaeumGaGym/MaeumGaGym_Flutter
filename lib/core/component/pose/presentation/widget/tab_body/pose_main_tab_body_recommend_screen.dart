@@ -17,12 +17,12 @@ class PoseMainTabBodyRecommendScreen extends ConsumerWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: ListView.builder(
-        itemCount: poseRecommend.poses!.keys.length,
+        // itemCount: poseRecommend.poses!.keys.length,
+        itemCount: poseRecommend.responses.length,
         itemBuilder: (context, index) {
           return PoseRecommendWidget(
-            recommendPoseData: poseRecommend
-                .poses![poseRecommend.poses!.keys.toList()[index]]!,
-            titleText: poseRecommend.poses!.keys.toList()[index],
+            recommendPoseData: poseRecommend.responses[index].poses,
+            titleText: poseRecommend.responses[index].category,
             useNavigator: useNavigator,
           );
         },

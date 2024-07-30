@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:maeum_ga_gym_flutter/config/maeumgagym_color.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image/image_widget.dart';
 import 'package:maeum_ga_gym_flutter/core/component/text/pretendard/ptd_text_widget.dart';
 
 class HomeMainContentWidget extends StatelessWidget {
@@ -31,17 +31,20 @@ class HomeMainContentWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SvgPicture.asset("assets/image/home_icon/calculate_icon.svg"),
+              ImageWidget(
+                image: iconPath,
+                width: 40,
+              ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   PtdTextWidget.titleMedium(
-                    "칼로리 계산기",
+                    title,
                     MaeumgagymColor.black,
                   ),
                   const SizedBox(height: 8),
                   PtdTextWidget.bodyMedium(
-                    "먹은 음식의 칼로리를\n계산해 보세요.",
+                    content,
                     MaeumgagymColor.black,
                   ),
                 ],

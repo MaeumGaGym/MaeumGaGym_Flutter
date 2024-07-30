@@ -1,7 +1,7 @@
 /// Package
 import 'package:flutter/material.dart';
 import 'package:maeum_ga_gym_flutter/core/component/image/images.dart';
-import 'package:maeum_ga_gym_flutter/core/component/image_widget.dart';
+import 'package:maeum_ga_gym_flutter/core/component/image/image_widget.dart';
 import 'package:maeum_ga_gym_flutter/core/component/pose/domain/model/pose_data_model.dart';
 import 'package:maeum_ga_gym_flutter/pose/presentation/view/pose_add_routine_screen.dart';
 
