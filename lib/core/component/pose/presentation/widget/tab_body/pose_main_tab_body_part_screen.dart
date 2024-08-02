@@ -48,7 +48,7 @@ class _PoseMainTabBodyScreenState
               itemCount: poseAll.length,
               itemBuilder: (context, index) {
                 /// tabName으로 들어온 값이랑 exactPart가 맞지 않으면 SizedBox.shrink()
-                if (!poseAll[index].simplePart.contains(widget.tabName)) {
+                if (!poseAll[index].category.contains(widget.tabName)) {
                   return const SizedBox.shrink();
                 } else {
                   switch (posePartState) {

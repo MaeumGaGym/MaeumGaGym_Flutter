@@ -1,7 +1,6 @@
 /// Package
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:maeum_ga_gym_flutter/core/component/pose/presentation/widget/tab_body/recommend/pose_recommend_widget.dart';
 
 /// Provider
 import '../provider/pose_tab_provider.dart';

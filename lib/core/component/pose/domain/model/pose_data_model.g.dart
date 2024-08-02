@@ -23,13 +23,14 @@ class PoseDataModelAdapter extends TypeAdapter<PoseDataModel> {
       needMachine: fields[2] as bool?,
       simplePart: (fields[5] as List).cast<String>(),
       exactPart: (fields[6] as List).cast<String>(),
+      category: (fields[7] as List).cast<String>(),
     );
   }
 
   @override
   void write(BinaryWriter writer, PoseDataModel obj) {
     writer
-      ..writeByte(6)
+      ..writeByte(7)
       ..writeByte(1)
       ..write(obj.id)
       ..writeByte(2)
@@ -41,7 +42,9 @@ class PoseDataModelAdapter extends TypeAdapter<PoseDataModel> {
       ..writeByte(5)
       ..write(obj.simplePart)
       ..writeByte(6)
-      ..write(obj.exactPart);
+      ..write(obj.exactPart)
+      ..writeByte(7)
+      ..write(obj.category);
   }
 
   @override

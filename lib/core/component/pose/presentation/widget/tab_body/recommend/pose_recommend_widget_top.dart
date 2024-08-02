@@ -36,8 +36,7 @@ class PoseRecommendWidgetTop extends ConsumerWidget {
           ],
         ),
         GestureDetector(
-          onTap: () =>
-              ref.read(poseTabController.notifier).setTabStateToName(titleText),
+          onTap: () => ref.read(poseTabController.notifier).setTabStateToName(titleText),
           child: Row(
             children: [
               PtdTextWidget.bodyMedium('더보기', MaeumgagymColor.gray400),

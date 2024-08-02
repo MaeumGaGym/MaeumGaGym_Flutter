@@ -9,11 +9,8 @@ import '../../../../../di/token_secure_storage_di.dart';
 import '../../../domain/model/pose_data_list_model.dart';
 
 class PoseAllRemoteDataSource {
-  final PoseAllLocalDataSource _poseAllLocalDataSource =
-      PoseAllLocalDataSource();
-  final MaeumgagymPoseDataVersionLocalDataSource
-      _poseDataVersionLocalDataSource =
-      MaeumgagymPoseDataVersionLocalDataSource();
+  final PoseAllLocalDataSource _poseAllLocalDataSource = PoseAllLocalDataSource();
+  final MaeumgagymPoseDataVersionLocalDataSource _poseDataVersionLocalDataSource = MaeumgagymPoseDataVersionLocalDataSource();
 
   Future<List<PoseDataModel>> getPoseDataList() async {
     final accessToken = await TokenSecureStorageDi.readLoginAccessToken();
