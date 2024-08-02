@@ -58,15 +58,12 @@ class _SelfCareMyRoutineEditScreenState
               (index) => ExerciseInfoEditRoutinePoseModel(
                 poseModel: PoseDataModel(
                   id: item.exerciseInfoResponseList[index].pose.id,
-                  thumbnail:
-                      item.exerciseInfoResponseList[index].pose.thumbnail,
+                  thumbnail: item.exerciseInfoResponseList[index].pose.thumbnail,
                   name: item.exerciseInfoResponseList[index].pose.name,
-                  needMachine:
-                      item.exerciseInfoResponseList[index].pose.needMachine,
-                  simplePart:
-                      item.exerciseInfoResponseList[index].pose.simplePart,
-                  exactPart:
-                      item.exerciseInfoResponseList[index].pose.exactPart,
+                  needMachine: item.exerciseInfoResponseList[index].pose.needMachine,
+                  simplePart: item.exerciseInfoResponseList[index].pose.simplePart,
+                  exactPart: item.exerciseInfoResponseList[index].pose.exactPart,
+                  category: item.exerciseInfoResponseList[index].pose.category,
                 ),
                 repetitionsController: TextEditingController(
                     text: item.exerciseInfoResponseList[index].repetitions

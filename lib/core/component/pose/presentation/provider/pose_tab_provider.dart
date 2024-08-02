@@ -31,14 +31,8 @@ class PoseTabStateNotifier extends StateNotifier<int> {
     else if(exerciseName == "복근"){
       state = 5;
     }
-    else if(exerciseName == "앞 허벅지"){
+    else if(exerciseName == "하체"){
       state = 6;
-    }
-    else if(exerciseName == "뒷 허벅지"){
-      state = 7;
-    }
-    else if(exerciseName == "종아리"){
-      state = 8;
     }
     else {
       state = 0;

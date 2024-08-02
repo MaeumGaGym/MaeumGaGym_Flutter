@@ -69,6 +69,7 @@ class _PoseAddRoutineDetailScreenState
             needMachine: item.exerciseInfoResponseList[index].pose.needMachine,
             simplePart: item.exerciseInfoResponseList[index].pose.simplePart,
             exactPart: item.exerciseInfoResponseList[index].pose.exactPart,
+            category: item.exerciseInfoResponseList[index].pose.category,
           ),
           repetitionsController: TextEditingController(
               text:

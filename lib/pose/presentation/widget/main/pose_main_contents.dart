@@ -19,9 +19,10 @@ class PoseMainTabContents extends ConsumerWidget {
       '어깨',
       '팔',
       '복근',
-      '앞 허벅지',
-      '뒷 허벅지',
-      '종아리',
+      '하체',
+      // '앞 허벅지',
+      // '뒷 허벅지',
+      // '종아리',
     ];
 
     /// 각 TabBar마다 어떤 뷰를 보여줄지 정해주는 List
@@ -35,9 +36,10 @@ class PoseMainTabContents extends ConsumerWidget {
       '어깨',
       '팔',
       '복근',
-      '앞 허벅지',
-      '뒷 허벅지',
-      '종아리',
+      '하체',
+      // '앞 허벅지',
+      // '뒷 허벅지',
+      // '종아리',
     ];
 
     return Column(

@@ -16,6 +16,8 @@ class PoseDataModel {
   final List<String> simplePart;
   @HiveField(6)
   final List<String> exactPart;
+  @HiveField(7)
+  final List<String> category;
 
   const PoseDataModel({
     required this.id,
@@ -24,6 +26,7 @@ class PoseDataModel {
     required this.needMachine,
     required this.simplePart,
     required this.exactPart,
+    required this.category
   });
 
   factory PoseDataModel.fromJson(Map<String, dynamic> json) {
@@ -34,6 +37,7 @@ class PoseDataModel {
       needMachine: json['need_machine'],
       simplePart: List<String>.from(json['simple_part']),
       exactPart: List<String>.from(json['exact_part']),
+      category: List<String>.from(json['category']),
     );
   }
 }
