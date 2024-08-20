@@ -5,7 +5,7 @@ import 'package:maeumgagym_flutter/component/pose/presentation/view_model/routin
 import 'package:maeumgagym_flutter/component/pose/presentation/view_model/routine_add_pose_list_state_model.dart';
 import 'package:maeumgagym_flutter/core/maeum/maeum_color.dart';
 import 'package:maeumgagym_flutter/core/maeum/maeum_text.dart';
-import 'package:maeumgagym_flutter/presentation/routine/ui/widget/routine_add_edit/routine_add_edit_pose_item_count_widget.dart';
+import 'package:maeumgagym_flutter/presentation/routine/ui/widget/routine_add_edit_pose_item_count_widget.dart';
 
 import '../../../../../component/image_widget.dart';
 import '../../../../../core/images.dart';

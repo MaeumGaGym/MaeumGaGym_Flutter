@@ -1,10 +1,12 @@
 class PoseDetailEntity {
+  final int id;
   final bool needMachine;
   final String simpleName, exactName, thumbnail;
   final List<String> category, simplePart, exactPart;
   final List<String> startPose, exerciseWay, breatheWay, caution;
 
   PoseDetailEntity({
+    required this.id,
     required this.needMachine,
     required this.simpleName,
     required this.exactName,

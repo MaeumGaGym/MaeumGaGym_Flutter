@@ -3,8 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:maeumgagym_flutter/core/maeum/maeum_color.dart';
 import 'package:maeumgagym_flutter/core/maeum/maeum_text.dart';
 
-import '../../../../../component/image_widget.dart';
-import '../../../../../core/images.dart';
+import '../../../../component/image_widget.dart';
+import '../../../../core/images.dart';
 
 class RoutineAddEditPoseItemCountWidget extends StatelessWidget {
   final String title;
