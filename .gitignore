@@ -43,5 +43,6 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 
-/lib/core/base_url.dart
 /android/app/serviceAccount.json
+
+/lib/core/ignore
