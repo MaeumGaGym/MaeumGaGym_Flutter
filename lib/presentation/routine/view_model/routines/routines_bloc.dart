@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:maeumgagym_flutter/domain/routines/entity/routines_entity.dart';
 import 'package:maeumgagym_flutter/domain/routines/use_case/add_routine_use_case.dart';
@@ -73,6 +74,12 @@ class RoutinesBloc extends Bloc<RoutinesEvent, RoutinesState<RoutinesEntity>> {
         routineId: event.routineId,
         addRoutineRequest: event.addRoutineRequest,
       );
+
+      debugPrint(event.routineId.toString());
+      event.addRoutineRequest.exerciseInfoRequestList.map((e) {
+        debugPrint(e.id.toString());
+        return e;
+      });
 
       RoutinesEntity routinesEntity = await _getRoutinesUseCase.execute(index: 0);
       emit(Loaded(data: routinesEntity));
