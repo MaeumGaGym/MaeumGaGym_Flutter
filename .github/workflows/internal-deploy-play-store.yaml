@@ -22,7 +22,7 @@ jobs:
 
       - name: BaseURL File Settings
         run: |
-          cd lib/core
+          cd lib/core/ignore
           echo "${{ secrets.ENCODED_BASE_URL_FILE }}" | base64 --decode > base_url.dart
           ls
 
