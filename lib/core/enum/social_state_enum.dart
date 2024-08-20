@@ -1,0 +1,1 @@
+enum SocialStateEnum { google, kakao }

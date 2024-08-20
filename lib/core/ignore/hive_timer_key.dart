@@ -1,0 +1,1 @@
+const String hiveTimerKey = "TIMER_DATA";
