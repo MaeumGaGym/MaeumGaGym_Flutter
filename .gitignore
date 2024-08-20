@@ -45,4 +45,4 @@ app.*.map.json
 
 /android/app/serviceAccount.json
 
-/lib/core/ignore
+/lib/core/ignore/base_url.dart
