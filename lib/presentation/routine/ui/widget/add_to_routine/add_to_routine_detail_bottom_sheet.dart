@@ -104,11 +104,6 @@ class AddToRoutineDetailBottomSheet extends StatelessWidget {
                             ),
                           ),
                         );
-
-                    context.read<TodayRoutineBloc>().add(GetTodayRoutineEvent());
-
-                     MaeumNavigator.pop(context);
-                     MaeumNavigator.pop(context);
                   },
                   child: Container(
                     alignment: Alignment.center,

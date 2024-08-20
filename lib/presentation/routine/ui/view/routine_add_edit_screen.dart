@@ -8,8 +8,17 @@ import 'package:maeumgagym_flutter/presentation/routine/ui/widget/routine_add_ed
 import 'package:maeumgagym_flutter/presentation/routine/ui/widget/routine_add_edit/routine_day_of_week_widget.dart';
 import 'package:maeumgagym_flutter/presentation/routine/ui/widget/routine_add_edit/routine_title_text_field.dart';
 import 'package:maeumgagym_flutter/presentation/routine/view_model/routine_day_of_week_state_cubit.dart';
+import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
+import '../../../../component/maeum_toast_message.dart';
+import '../../../../core/enum/bloc_state_enum.dart';
+import '../../../../core/maeum/maeum_navigation.dart';
 import '../../../../domain/routines/entity/routine_entity.dart';
+import '../../../../domain/routines/entity/routines_entity.dart';
+import '../../view_model/routines/routines_bloc.dart';
+import '../../view_model/routines/routines_state.dart';
+import '../../view_model/today_routine/today_routine_bloc.dart';
+import '../../view_model/today_routine/today_routine_event.dart';
 import '../widget/routine_add_edit/routine_add_edit_app_bar.dart';
 import '../widget/routine_add_edit/routine_add_edit_bottom_sheet.dart';
 
@@ -61,34 +70,50 @@ class _RoutineAddEditScreenState extends State<RoutineAddEditScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return MyScaffold(
-      appBar: RoutineAddEditAppBar(appBarTitle: widget.appBarTitle),
-      bottomSheet: RoutineAddEditBottomSheet(
-        isAdd: widget.appBarTitle == null ? true : false,
-        inDetail: widget.inDetail ?? false,
-        routineId: widget.routineData != null ? widget.routineData!.id : 0,
-        routineTitleController: _routineTitleController,
-      ),
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 24.h),
-        child: Column(
-          children: [
-            /// 제목 입력 TextField
-            RoutineTitleTextField(
-              routineTitleController: _routineTitleController,
-              routineFocusNode: _routineFocusNode,
-            ),
+    bool isAdd = widget.appBarTitle == null ? true : false;
 
-            SizedBox(height: 32.h),
+    return MultiBlocListener(
+      listeners: [
+        BlocListener<RoutinesBloc, RoutinesState<RoutinesEntity>>(
+          listenWhen: (_, current) => current.routinesState == BlocStateEnum.loaded,
+          listener: (_, state){
+            showTopSnackBar(Overlay.of(context), MaeumToastMessage(title: "루틴을 ${isAdd ? "추가" : "수정"}했어요."));
+            context.read<TodayRoutineBloc>().add(GetTodayRoutineEvent());
 
-            /// DayOfWeekWidget
-            const RoutineDayOfWeekWidget(),
+            MaeumNavigator.pop(context);
+            widget.inDetail != null ? MaeumNavigator.pop(context) : null;
+          },
+        )
+      ],
+      child: MyScaffold(
+        appBar: RoutineAddEditAppBar(appBarTitle: widget.appBarTitle),
+        bottomSheet: RoutineAddEditBottomSheet(
+          isAdd: isAdd,
+          inDetail: widget.inDetail ?? false,
+          routineId: widget.routineData != null ? widget.routineData!.id : 0,
+          routineTitleController: _routineTitleController,
+        ),
+        body: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 24.h),
+          child: Column(
+            children: [
+              /// 제목 입력 TextField
+              RoutineTitleTextField(
+                routineTitleController: _routineTitleController,
+                routineFocusNode: _routineFocusNode,
+              ),
 
-            SizedBox(height: 32.h),
+              SizedBox(height: 32.h),
 
-            /// 추가할 Routine을 모아둔 List
-            const RoutineAddEditPoseListWidget(),
-          ],
+              /// DayOfWeekWidget
+              const RoutineDayOfWeekWidget(),
+
+              SizedBox(height: 32.h),
+
+              /// 추가할 Routine을 모아둔 List
+              const RoutineAddEditPoseListWidget(),
+            ],
+          ),
         ),
       ),
     );

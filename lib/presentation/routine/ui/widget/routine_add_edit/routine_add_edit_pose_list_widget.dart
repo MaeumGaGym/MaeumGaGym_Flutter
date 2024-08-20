@@ -18,9 +18,8 @@ class RoutineAddEditPoseListWidget extends StatelessWidget {
     return BlocBuilder<RoutineAddPoseListStateCubit, List<RoutineAddPoseListStateModel>>(
       builder: (_, state) {
         return SizedBox(
-          height: 176.h * state.length,
+          height: 500.h,
           child: ListView.builder(
-            shrinkWrap: true,
             itemCount: state.length,
             itemBuilder: (_, index) {
               return Padding(
