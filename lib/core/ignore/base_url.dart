@@ -1,1 +1,0 @@
-const String baseUrl = 'https://stag-server.xquare.app/maeumgagym';
