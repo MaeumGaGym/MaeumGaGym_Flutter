@@ -1,0 +1,1 @@
+const String hivePoseAllKey = "POSE_ALL_DATA";
