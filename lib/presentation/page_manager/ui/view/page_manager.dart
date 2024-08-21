@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:maeumgagym_flutter/presentation/empty_view/view/empty_view_screen.dart';
 import 'package:maeumgagym_flutter/presentation/home/ui/view/home_screen.dart';
+import 'package:maeumgagym_flutter/presentation/pickle/ui/view/pickle_screen.dart';
 import 'package:maeumgagym_flutter/presentation/pose/ui/view/pose_main_screen.dart';
 import 'package:maeumgagym_flutter/presentation/self_care/ui/view/self_care_screen.dart';
 
@@ -20,7 +21,7 @@ class PageManagerScreen extends StatelessWidget {
       const HomeScreen(),
       const PoseMainScreen(),
       const EmptyViewScreen(),
-      const EmptyViewScreen(),
+      const PickleScreen(),
       const SelfCareScreen(),
     ];
 
