@@ -70,6 +70,7 @@ import '../component/pose/presentation/view_model/pose_all/pose_all_bloc.dart';
 import '../component/pose/presentation/view_model/pose_machine_state_cubit.dart';
 import '../component/pose/presentation/view_model/pose_tab_state_cubit.dart';
 import '../domain/purposes/use_case/del_purpose_use_case.dart';
+import '../presentation/pickle/view_model/web_view_controller_state_cubit.dart';
 import '../presentation/pose/view_model/pose_search/pose_search_state_cubit.dart';
 import '../presentation/purpose/view_model/purpose_add_edit/purpose_calender_state_cubit.dart';
 import '../presentation/quotes/view_model/quotes_bloc.dart';
@@ -250,5 +251,8 @@ Future<List<BlocProvider>> di() async {
       ),
     ),
     BlocProvider<PurposeBloc>(create: (context) => PurposeBloc(getPurposeDetailUseCase: getPurposeDetailUseCase)),
+
+    // pickle
+    BlocProvider<WebViewControllerStateCubit>(create: (context) => WebViewControllerStateCubit()),
   ];
 }

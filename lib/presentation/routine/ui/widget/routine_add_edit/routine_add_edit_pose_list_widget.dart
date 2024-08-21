@@ -54,6 +54,7 @@ class RoutineAddEditPoseListWidget extends StatelessWidget {
                           ],
                         ),
                         GestureDetector(
+                          behavior: HitTestBehavior.opaque,
                           onTap: () => context.read<RoutineAddPoseListStateCubit>().delete(index),
                           child: ImageWidget(
                             image: Images.editClose,

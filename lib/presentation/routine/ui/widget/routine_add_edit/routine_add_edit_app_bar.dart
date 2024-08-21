@@ -21,6 +21,7 @@ class RoutineAddEditAppBar extends StatelessWidget implements PreferredSizeWidge
           children: [
             SizedBox(width: 20.w),
             GestureDetector(
+              behavior: HitTestBehavior.opaque,
               onTap: () => MaeumNavigator.pop(context),
               child: ImageWidget(
                 image: Images.arrowLeft,

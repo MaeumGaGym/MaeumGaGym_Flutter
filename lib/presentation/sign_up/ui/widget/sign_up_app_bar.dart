@@ -16,6 +16,7 @@ class SignUpAppBar extends StatelessWidget implements PreferredSizeWidget {
           children: [
             SizedBox(width: 20.w),
             GestureDetector(
+              behavior: HitTestBehavior.opaque,
               onTap: () => Navigator.pop(context),
               child: ImageWidget(
                 image: Images.arrowLeft,

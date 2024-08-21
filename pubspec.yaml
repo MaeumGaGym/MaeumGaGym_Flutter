@@ -3,7 +3,7 @@ description: A new Flutter project.
 
 publish_to: 'none'
 
-version: 0.9.93+124
+version: 0.9.94+126
 
 environment:
   sdk: '>=3.0.6 <4.0.0'
@@ -33,6 +33,7 @@ dependencies:
   flutter_bloc: ^8.1.6
   flutter_screenutil: ^5.9.3
   bloc_concurrency: ^0.2.5
+  webview_flutter: ^4.8.0
 
 dev_dependencies:
   flutter_test:

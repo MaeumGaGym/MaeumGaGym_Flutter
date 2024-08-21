@@ -11,8 +11,6 @@ import 'package:maeumgagym_flutter/domain/routines/entity/routine_entity.dart';
 import 'package:maeumgagym_flutter/domain/routines/entity/routines_entity.dart';
 import 'package:maeumgagym_flutter/presentation/routine/view_model/routines/routines_bloc.dart';
 import 'package:maeumgagym_flutter/presentation/routine/view_model/routines/routines_event.dart';
-import 'package:maeumgagym_flutter/presentation/routine/view_model/today_routine/today_routine_bloc.dart';
-import 'package:maeumgagym_flutter/presentation/routine/view_model/today_routine/today_routine_event.dart';
 
 import '../../../view_model/routines/routines_state.dart';
 

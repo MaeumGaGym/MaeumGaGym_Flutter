@@ -41,6 +41,7 @@ class PoseDetailAppBar extends StatelessWidget implements PreferredSizeWidget {
 
               /// 루틴에 추가
               GestureDetector(
+                behavior: HitTestBehavior.opaque,
                 onTap: () => MaeumNavigator.push(context, AddToRoutineScreen(poseData: poseData)),
                 child: Container(
                   decoration: BoxDecoration(

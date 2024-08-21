@@ -22,6 +22,7 @@ class PurposeAddEditAppBar extends StatelessWidget implements PreferredSizeWidge
           child: Row(
             children: [
               GestureDetector(
+                behavior: HitTestBehavior.opaque,
                 onTap: () => MaeumNavigator.pop(context),
                 child: ImageWidget(
                   image: Images.arrowLeft,

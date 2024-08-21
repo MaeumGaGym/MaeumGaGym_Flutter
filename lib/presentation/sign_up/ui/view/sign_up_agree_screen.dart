@@ -88,6 +88,7 @@ class SignUpAgreeScreen extends StatelessWidget {
                   child: Container(
                     padding: EdgeInsets.symmetric(vertical: 8.h),
                     child: GestureDetector(
+                      behavior: HitTestBehavior.opaque,
                       onTap: () => context.read<CheckBoxStateCubit>().clickAllAgree(),
                       child: Row(
                         children: [

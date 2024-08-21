@@ -25,6 +25,7 @@ class HomeBottomSpace extends StatelessWidget {
                 ),
                 SizedBox(height: 8.h),
                 GestureDetector(
+                  behavior: HitTestBehavior.opaque,
                   onTap: () {
                     launchUrl(Uri.parse(
                         "https://info-dsm.notion.site/2a0474e87f754fbe8f53d58f2003ccb2?pvs=4"));

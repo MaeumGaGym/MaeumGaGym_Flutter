@@ -87,6 +87,7 @@ class _PurposeAddEditCalenderWidgetState extends State<PurposeAddEditCalenderWid
               );
 
           return GestureDetector(
+            behavior: HitTestBehavior.opaque,
             onTap: () {
               widget.saveDate(date: date);
               widget.removeCalender();
@@ -149,6 +150,7 @@ class _PurposeAddEditCalenderWidgetState extends State<PurposeAddEditCalenderWid
       children: [
         Expanded(
           child: GestureDetector(
+            behavior: HitTestBehavior.opaque,
             onTap: () => widget.removeCalender(),
             child: Container(color: Colors.transparent,)
           ),
@@ -207,6 +209,7 @@ class _PurposeAddEditCalenderWidgetState extends State<PurposeAddEditCalenderWid
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 GestureDetector(
+                                  behavior: HitTestBehavior.opaque,
                                   onTap: () {
                                     if (_currentDateTime.month != 1) {
                                       // page 뒤로가기
@@ -231,6 +234,7 @@ class _PurposeAddEditCalenderWidgetState extends State<PurposeAddEditCalenderWid
                                   ),
                                 ),
                                 GestureDetector(
+                                  behavior: HitTestBehavior.opaque,
                                   onTap: () {
                                     if (_currentDateTime.month != 12) {
                                       setState(() {

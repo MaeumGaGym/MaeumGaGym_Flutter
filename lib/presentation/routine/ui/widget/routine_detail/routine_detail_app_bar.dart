@@ -18,6 +18,7 @@ class RoutineDetailAppBar extends StatelessWidget implements PreferredSizeWidget
           child: Row(
             children: [
               GestureDetector(
+                behavior: HitTestBehavior.opaque,
                 onTap: () => MaeumNavigator.pop(context),
                 child: ImageWidget(image: Images.arrowLeft, width: 28.w),
               )
