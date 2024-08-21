@@ -22,6 +22,7 @@ class MetronomeAppBar extends StatelessWidget implements PreferredSizeWidget{
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               GestureDetector(
+                behavior: HitTestBehavior.opaque,
                 onTap: () => MaeumNavigator.pop(context),
                 child: ImageWidget(
                   image: Images.arrowLeft,

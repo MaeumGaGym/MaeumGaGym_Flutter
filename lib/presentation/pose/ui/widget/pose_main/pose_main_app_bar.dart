@@ -33,16 +33,8 @@ class PoseMainAppBar extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               GestureDetector(
-                onTap: () async {
-                  MaeumNavigator.push(context, const PoseSearchScreen());
-                  // await Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(
-                  //     builder: (context) => const PoseSearchScreen(),
-                  //   ),
-                  // );
-                  // ref.read(poseSearchController.notifier).state = '';
-                },
+                behavior: HitTestBehavior.opaque,
+                onTap: () async => MaeumNavigator.push(context, const PoseSearchScreen()),
                 child: ImageWidget(
                   image: Images.iconsSearch,
                   width: 28.w,

@@ -27,6 +27,7 @@ class BottomNavigationItem extends StatelessWidget {
     bool isSelected = context.watch<PageManagerStateCubit>().state == clickState;
 
     return GestureDetector(
+      behavior: HitTestBehavior.opaque,
       onTap: () {
         pageController.animateToPage(
           clickState,
@@ -36,7 +37,8 @@ class BottomNavigationItem extends StatelessWidget {
         context.read<PageManagerStateCubit>().changeState(clickState);
       },
       child: SizedBox(
-        height: 64,
+        width: (1.sw / 5).floorToDouble(),
+        height: 64.h,
         child: FittedBox(
           fit: BoxFit.scaleDown,
           child: Column(

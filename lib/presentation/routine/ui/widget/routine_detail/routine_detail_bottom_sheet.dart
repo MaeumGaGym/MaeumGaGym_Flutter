@@ -32,6 +32,7 @@ class RoutineDetailBottomSheet extends StatelessWidget {
           ),
           SizedBox(width: 20.w),
           GestureDetector(
+            behavior: HitTestBehavior.opaque,
             onTap: () {
               showDialog(
                 context: context,

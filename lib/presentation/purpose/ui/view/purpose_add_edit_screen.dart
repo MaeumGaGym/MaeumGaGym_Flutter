@@ -151,6 +151,7 @@ class _PurposeAddEditScreenState extends State<PurposeAddEditScreen> {
                 BlocBuilder<PurposeStartCalender, PurposeCalenderModel>(
                   builder: (_, state) {
                     return GestureDetector(
+                      behavior: HitTestBehavior.opaque,
                       onTap: () {
                         PurposeStartCalender notifier = context.read<PurposeStartCalender>();
 
@@ -179,6 +180,7 @@ class _PurposeAddEditScreenState extends State<PurposeAddEditScreen> {
                 BlocBuilder<PurposeEndCalender, PurposeCalenderModel>(
                   builder: (_, state) {
                     return GestureDetector(
+                      behavior: HitTestBehavior.opaque,
                       onTap: () {
                         PurposeCalenderStateCubit notifier = context.read<PurposeEndCalender>();
 

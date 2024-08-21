@@ -39,6 +39,7 @@ class PurposeDetailAppBar extends StatelessWidget implements PreferredSizeWidget
                     return const SizedBox.shrink();
                   } else {
                     return GestureDetector(
+                      behavior: HitTestBehavior.opaque,
                       onTap: () {
                         showModalBottomSheet(
                           context: context,

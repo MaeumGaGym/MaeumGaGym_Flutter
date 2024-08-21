@@ -49,6 +49,7 @@ class AgreeWidget extends StatelessWidget {
 
         /// 자세히 보기 ( agreePersonInformation )
         isDetail ? GestureDetector(
+          behavior: HitTestBehavior.opaque,
           onTap: () {
             launchUrl(
               Uri.parse(

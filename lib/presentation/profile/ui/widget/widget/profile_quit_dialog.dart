@@ -41,6 +41,7 @@ class ProfileQuitDialog extends StatelessWidget {
                 children: [
                   Expanded(
                     child: GestureDetector(
+                      behavior: HitTestBehavior.opaque,
                       onTap: () => MaeumNavigator.pop(context),
                       child: Container(
                         height: 48.h,

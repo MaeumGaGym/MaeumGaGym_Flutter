@@ -41,6 +41,7 @@ class _PoseSearchScreenState extends State<PoseSearchScreen> {
         searchFocusNode: searchFocusNode,
       ),
       body: GestureDetector(
+        behavior: HitTestBehavior.opaque,
         onTap: () => searchFocusNode.unfocus(),
         child: const PoseSearchBody(),
       ),

@@ -17,6 +17,7 @@ class AddToRoutineAppBar extends StatelessWidget implements PreferredSizeWidget 
         title: Padding(
           padding: EdgeInsets.only(left: 20.w ),
           child: GestureDetector(
+            behavior: HitTestBehavior.opaque,
             onTap: () => MaeumNavigator.pop(context),
             child: ImageWidget(
               image: Images.arrowLeft,
