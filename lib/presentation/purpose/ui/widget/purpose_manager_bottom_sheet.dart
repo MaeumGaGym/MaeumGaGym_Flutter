@@ -6,7 +6,9 @@ import 'package:maeumgagym_flutter/domain/purposes/entity/purpose_entity.dart';
 import 'package:maeumgagym_flutter/presentation/purpose/ui/view/purpose_add_edit_screen.dart';
 import 'package:maeumgagym_flutter/presentation/purpose/ui/widget/purpose_manager_item_widget.dart';
 import 'package:maeumgagym_flutter/presentation/purpose/view_model/purposes/purposes_event.dart';
+import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
+import '../../../../component/maeum_toast_message.dart';
 import '../../../../core/images.dart';
 import '../../../../core/maeum/maeum_color.dart';
 import '../../view_model/purposes/purposes_bloc.dart';
@@ -53,7 +55,10 @@ class PurposeManagerBottomSheet extends StatelessWidget {
             children: [
               /// 수정 버튼
               PurposeManagerItemWidget(
-                onTap: () => MaeumNavigator.push(context, PurposeAddEditScreen(purposeData: purposeData)),
+                onTap: () {
+                  MaeumNavigator.pop(context);
+                  MaeumNavigator.push(context, PurposeAddEditScreen(purposeData: purposeData));
+                },
                 title: "수정",
                 image: Images.editPencil,
               ),
@@ -63,6 +68,8 @@ class PurposeManagerBottomSheet extends StatelessWidget {
                 onTap: () {
                   MaeumNavigator.pop(context);
                   inDetail ? MaeumNavigator.pop(context) : null;
+
+                  showTopSnackBar(Overlay.of(context), const MaeumToastMessage(title: "목표를 삭제했어요.", isError: true),);
 
                   context.read<PurposesBloc>().add(DelPurposeEvent(purposeId: purposeData.id));
                 },
