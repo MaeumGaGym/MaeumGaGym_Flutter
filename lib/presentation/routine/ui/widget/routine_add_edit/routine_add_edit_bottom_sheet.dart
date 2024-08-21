@@ -94,11 +94,6 @@ class RoutineAddEditBottomSheet extends StatelessWidget {
                         );
                   }
                 }
-
-                MaeumNavigator.pop(context);
-                MaeumNavigator.pop(context);
-
-                inDetail ? MaeumNavigator.pop(context) : null;
               } else {
                 showTopSnackBar(
                   Overlay.of(context),

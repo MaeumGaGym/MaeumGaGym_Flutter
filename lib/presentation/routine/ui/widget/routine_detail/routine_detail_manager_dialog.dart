@@ -4,7 +4,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:maeumgagym_flutter/core/maeum/maeum_color.dart';
 import 'package:maeumgagym_flutter/core/maeum/maeum_text.dart';
 import 'package:maeumgagym_flutter/domain/routines/entity/routine_entity.dart';
+import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
+import '../../../../../component/maeum_toast_message.dart';
 import '../../../../../core/images.dart';
 import '../../../../../core/maeum/maeum_navigation.dart';
 import '../../../../../data/routines/dto/request/add_routine_request.dart';
@@ -30,6 +32,13 @@ class _RoutineDetailManagerDialogState extends State<RoutineDetailManagerDialog>
   Widget build(BuildContext context) {
     RoutineEntity routineData = widget.routineData;
 
+    void showToast(String title){
+      showTopSnackBar(
+        Overlay.of(context),
+        MaeumToastMessage(title: title),
+      );
+    }
+
     return Dialog(
       child: Container(
         width: 1.sw - 80.w,
@@ -52,6 +61,7 @@ class _RoutineDetailManagerDialogState extends State<RoutineDetailManagerDialog>
             /// 수정 버튼
             RoutineManagerItemWidget(
               onTap: () {
+                MaeumNavigator.pop(context);
                 MaeumNavigator.push(
                   context,
                   RoutineAddEditScreen(
@@ -88,6 +98,7 @@ class _RoutineDetailManagerDialogState extends State<RoutineDetailManagerDialog>
                 );
 
                 context.read<RoutinesBloc>().add(GetRoutinesInitEvent());
+                showToast(routineData.routineStatus.isArchived ? "루틴 보관을 취소 했어요" : "루틴을 보관했어요.");
 
                 MaeumNavigator.pop(context);
               },
@@ -118,6 +129,7 @@ class _RoutineDetailManagerDialogState extends State<RoutineDetailManagerDialog>
                 );
 
                 context.read<RoutinesBloc>().add(GetRoutinesInitEvent());
+                showToast(routineData.routineStatus.isShared ? "루틴 공유를 취소 했어요" : "루틴을 공유했어요.");
 
                 MaeumNavigator.pop(context);
               },
@@ -130,6 +142,7 @@ class _RoutineDetailManagerDialogState extends State<RoutineDetailManagerDialog>
               onTap: () {
                 MaeumNavigator.pop(context);
                 MaeumNavigator.pop(context);
+                showToast("루틴을 삭제 했어요.");
 
                 context.read<RoutinesBloc>().add(DelRoutineEvent(routineId: routineData.id));
               },
