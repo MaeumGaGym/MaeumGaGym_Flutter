@@ -6,35 +6,51 @@ import 'package:maeumgagym_flutter/core/maeum/maeum_text.dart';
 import '../../../../component/image_widget.dart';
 import '../../../../core/images.dart';
 
-class RoutineAddEditPoseItemCountWidget extends StatelessWidget {
+class RoutineAddEditPoseItemCountWidget extends StatefulWidget {
   final String title;
   final TextEditingController controller;
-  final FocusNode focusNode;
 
   const RoutineAddEditPoseItemCountWidget({
     super.key,
     required this.title,
     required this.controller,
-    required this.focusNode,
   });
 
-  void incrementControllerValue() {
-    /// controller.text를 int로 변환할 수 있다면 변환 값을 반환, 아니면 null => 0,
-    int currentValue = int.tryParse(controller.text) ?? 0;
-    controller.text = (currentValue + 1).toString();
-  }
+  @override
+  State<RoutineAddEditPoseItemCountWidget> createState() => _RoutineAddEditPoseItemCountWidgetState();
+}
 
-  void decrementControllerValue() {
-    int currentValue = int.tryParse(controller.text) ?? 0;
-
-    /// 횟수가 최솟값인 1보다 작을 수 없기 때문.
-    if (currentValue > 1) {
-      controller.text = (currentValue - 1).toString();
-    }
+class _RoutineAddEditPoseItemCountWidgetState extends State<RoutineAddEditPoseItemCountWidget> {
+  @override
+  void initState() {
+    super.initState();
+    widget.controller.addListener(() {
+      if(widget.controller.text.isEmpty){
+        widget.controller.text = "1";
+      }
+    });
   }
 
   @override
   Widget build(BuildContext context) {
+    final String title = widget.title;
+    final TextEditingController controller = widget.controller;
+
+    void incrementControllerValue() {
+      /// controller.text를 int로 변환할 수 있다면 변환 값을 반환, 아니면 null => 0,
+      int currentValue = int.tryParse(controller.text) ?? 0;
+      controller.text = (currentValue + 1).toString();
+    }
+
+    void decrementControllerValue() {
+      int currentValue = int.tryParse(controller.text) ?? 0;
+
+      /// 횟수가 최솟값인 1보다 작을 수 없기 때문.
+      if (currentValue > 1) {
+        controller.text = (currentValue - 1).toString();
+      }
+    }
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -88,9 +104,7 @@ class RoutineAddEditPoseItemCountWidget extends StatelessWidget {
                 Expanded(
                   child: TextFormField(
                     controller: controller,
-                    focusNode: focusNode,
                     textInputAction: TextInputAction.done,
-                    onTapOutside: (_) => focusNode.unfocus(),
                     onChanged: (value) {
                       if (value.isNotEmpty) {
                         int parsedValue = int.tryParse(value) ?? 0;
