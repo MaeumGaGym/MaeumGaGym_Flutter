@@ -18,8 +18,9 @@ class RoutineAddEditPoseListWidget extends StatelessWidget {
     return BlocBuilder<RoutineAddPoseListStateCubit, List<RoutineAddPoseListStateModel>>(
       builder: (_, state) {
         return SizedBox(
-          height: 500.h,
+          height: 220.h * state.length + 50.h,
           child: ListView.builder(
+            physics: const NeverScrollableScrollPhysics(),
             itemCount: state.length,
             itemBuilder: (_, index) {
               return Padding(
@@ -69,7 +70,6 @@ class RoutineAddEditPoseListWidget extends StatelessWidget {
                     RoutineAddEditPoseItemCountWidget(
                       title: "횟수",
                       controller: state[index].repetitionsController,
-                      focusNode: state[index].repetitionsNode,
                     ),
 
                     SizedBox(height: 12.h),
@@ -77,7 +77,6 @@ class RoutineAddEditPoseListWidget extends StatelessWidget {
                     RoutineAddEditPoseItemCountWidget(
                       title: "세트",
                       controller: state[index].setsController,
-                      focusNode: state[index].setsNode,
                     ),
                   ],
                 ),

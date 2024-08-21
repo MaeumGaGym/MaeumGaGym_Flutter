@@ -37,12 +37,9 @@ class AddToRoutineDetailScreen extends StatefulWidget {
 }
 
 class _AddToRoutineDetailScreenState extends State<AddToRoutineDetailScreen> {
-  //final int repetitions, sets;
   late final TextEditingController _repetitionsController;
-  late final FocusNode _repetitionsNode;
 
   late final TextEditingController _setsController;
-  late final FocusNode _setsNode;
 
   @override
   void initState() {
@@ -52,24 +49,19 @@ class _AddToRoutineDetailScreenState extends State<AddToRoutineDetailScreen> {
         _repetitionsController.text = "10";
       }
     });
-    _repetitionsNode = FocusNode();
 
     _setsController = TextEditingController(text: "1")..addListener(() {
       if(_setsController.text.isEmpty){
         _setsController.text = "1";
       }
     });
-    _setsNode = FocusNode();
   }
 
   @override
   void dispose() {
     super.dispose();
-    _repetitionsController.dispose();
-    _repetitionsNode.dispose();
-
+    _repetitionsController.dispose();;
     _setsController.dispose();
-    _setsNode.dispose();
   }
 
   @override
@@ -138,7 +130,6 @@ class _AddToRoutineDetailScreenState extends State<AddToRoutineDetailScreen> {
                   RoutineAddEditPoseItemCountWidget(
                     title: "횟수",
                     controller: _repetitionsController,
-                    focusNode: _repetitionsNode,
                   ),
 
                   SizedBox(height: 24.h),
@@ -146,7 +137,6 @@ class _AddToRoutineDetailScreenState extends State<AddToRoutineDetailScreen> {
                   RoutineAddEditPoseItemCountWidget(
                     title: "세트",
                     controller: _setsController,
-                    focusNode: _setsNode,
                   ),
                 ],
               ),

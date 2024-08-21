@@ -52,9 +52,7 @@ class _RoutineAddEditScreenState extends State<RoutineAddEditScreen> {
           .map((e) => RoutineAddPoseListStateModel(
           poseData: e.pose,
           repetitionsController: TextEditingController(text: e.repetitions.toString()),
-          repetitionsNode: FocusNode(),
-          setsController: TextEditingController(text: e.sets.toString()),
-          setsNode: FocusNode())).toList();
+          setsController: TextEditingController(text: e.sets.toString()))).toList();
       context.read<RoutineAddPoseListStateCubit>().init(initList: initList);
     } else {
       context.read<RoutineAddPoseListStateCubit>().init(initList: []);
@@ -93,26 +91,29 @@ class _RoutineAddEditScreenState extends State<RoutineAddEditScreen> {
           routineId: widget.routineData != null ? widget.routineData!.id : 0,
           routineTitleController: _routineTitleController,
         ),
-        body: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 24.h),
-          child: Column(
-            children: [
-              /// 제목 입력 TextField
-              RoutineTitleTextField(
-                routineTitleController: _routineTitleController,
-                routineFocusNode: _routineFocusNode,
-              ),
-
-              SizedBox(height: 32.h),
-
-              /// DayOfWeekWidget
-              const RoutineDayOfWeekWidget(),
-
-              SizedBox(height: 32.h),
-
-              /// 추가할 Routine을 모아둔 List
-              const RoutineAddEditPoseListWidget(),
-            ],
+        body: SingleChildScrollView(
+          // physics: const NeverScrollableScrollPhysics(),
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 24.h),
+            child: Column(
+              children: [
+                /// 제목 입력 TextField
+                RoutineTitleTextField(
+                  routineTitleController: _routineTitleController,
+                  routineFocusNode: _routineFocusNode,
+                ),
+          
+                SizedBox(height: 32.h),
+          
+                /// DayOfWeekWidget
+                const RoutineDayOfWeekWidget(),
+          
+                SizedBox(height: 32.h),
+          
+                /// 추가할 Routine을 모아둔 List
+                const RoutineAddEditPoseListWidget(),
+              ],
+            ),
           ),
         ),
       ),

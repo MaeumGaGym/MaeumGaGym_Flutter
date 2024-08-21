@@ -34,8 +34,6 @@ class PosePartWidget extends StatelessWidget {
               poseData: poseData,
               repetitionsController: TextEditingController(text: "10"),
               setsController: TextEditingController(text: "1"),
-              repetitionsNode: FocusNode(),
-              setsNode: FocusNode(),
             ),
           );
 
